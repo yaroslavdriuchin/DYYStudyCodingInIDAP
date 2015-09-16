@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5CE241CC1BA94BF3003C1A08 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CE241CB1BA94BF3003C1A08 /* main.c */; };
+		5CE241D41BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CE241D21BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c */; };
+		5CE241D71BA96134003C1A08 /* DYYSizeOfCheck.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CE241D51BA96134003C1A08 /* DYYSizeOfCheck.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		5CE241C81BA94BF3003C1A08 /* DYYStudyCoding */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DYYStudyCoding; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CE241CB1BA94BF3003C1A08 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		5CE241D21BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DYYCheckNumbersAndReturnValue.c; sourceTree = "<group>"; };
+		5CE241D31BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYYCheckNumbersAndReturnValue.h; sourceTree = "<group>"; };
+		5CE241D51BA96134003C1A08 /* DYYSizeOfCheck.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DYYSizeOfCheck.c; sourceTree = "<group>"; };
+		5CE241D61BA96134003C1A08 /* DYYSizeOfCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYYSizeOfCheck.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				5CE241CB1BA94BF3003C1A08 /* main.c */,
+				5CE241D51BA96134003C1A08 /* DYYSizeOfCheck.c */,
+				5CE241D61BA96134003C1A08 /* DYYSizeOfCheck.h */,
+				5CE241D21BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c */,
+				5CE241D31BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.h */,
 			);
 			path = DYYStudyCoding;
 			sourceTree = "<group>";
@@ -118,6 +128,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CE241D41BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c in Sources */,
+				5CE241D71BA96134003C1A08 /* DYYSizeOfCheck.c in Sources */,
 				5CE241CC1BA94BF3003C1A08 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
