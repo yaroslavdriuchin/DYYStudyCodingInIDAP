@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C01F2AB1BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnValue.c in Sources */ = {isa = PBXBuildFile; fileRef = 5C01F2A91BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnValue.c */; };
+		5CB43FC61BAAD7FD002CE815 /* DYYTestCheckNumbersAssert.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CB43FC41BAAD7FD002CE815 /* DYYTestCheckNumbersAssert.c */; };
 		5CE241CC1BA94BF3003C1A08 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CE241CB1BA94BF3003C1A08 /* main.c */; };
 		5CE241D41BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CE241D21BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c */; };
 		5CE241D71BA96134003C1A08 /* DYYSizeOfCheck.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CE241D51BA96134003C1A08 /* DYYSizeOfCheck.c */; };
@@ -25,12 +27,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5C01F2A91BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnValue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYTestCheckNumbersAndReturnValue.c; path = DYYStudyCoding/Tests/DYYTestCheckNumbersAndReturnValue.c; sourceTree = "<group>"; };
+		5C01F2AA1BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestCheckNumbersAndReturnValue.h; path = DYYStudyCoding/Tests/DYYTestCheckNumbersAndReturnValue.h; sourceTree = "<group>"; };
+		5CB43FC41BAAD7FD002CE815 /* DYYTestCheckNumbersAssert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYTestCheckNumbersAssert.c; path = DYYStudyCoding/Tests/DYYTestCheckNumbersAssert.c; sourceTree = "<group>"; };
+		5CB43FC51BAAD7FD002CE815 /* DYYTestCheckNumbersAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestCheckNumbersAssert.h; path = DYYStudyCoding/Tests/DYYTestCheckNumbersAssert.h; sourceTree = "<group>"; };
 		5CE241C81BA94BF3003C1A08 /* DYYStudyCoding */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DYYStudyCoding; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CE241CB1BA94BF3003C1A08 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		5CE241D21BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DYYCheckNumbersAndReturnValue.c; sourceTree = "<group>"; };
-		5CE241D31BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYYCheckNumbersAndReturnValue.h; sourceTree = "<group>"; };
-		5CE241D51BA96134003C1A08 /* DYYSizeOfCheck.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DYYSizeOfCheck.c; sourceTree = "<group>"; };
-		5CE241D61BA96134003C1A08 /* DYYSizeOfCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYYSizeOfCheck.h; sourceTree = "<group>"; };
+		5CE241D21BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYCheckNumbersAndReturnValue.c; path = DYYCheckNumbersAndReturnValue/DYYCheckNumbersAndReturnValue.c; sourceTree = "<group>"; };
+		5CE241D31BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCheckNumbersAndReturnValue.h; path = DYYCheckNumbersAndReturnValue/DYYCheckNumbersAndReturnValue.h; sourceTree = "<group>"; };
+		5CE241D51BA96134003C1A08 /* DYYSizeOfCheck.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYSizeOfCheck.c; path = DYYSizeofCheck/DYYSizeOfCheck.c; sourceTree = "<group>"; };
+		5CE241D61BA96134003C1A08 /* DYYSizeOfCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYSizeOfCheck.h; path = DYYSizeofCheck/DYYSizeOfCheck.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,9 +50,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C01F2A71BAA98A300365F43 /* DYYSizeofCheck */ = {
+			isa = PBXGroup;
+			children = (
+				5CE241D51BA96134003C1A08 /* DYYSizeOfCheck.c */,
+				5CE241D61BA96134003C1A08 /* DYYSizeOfCheck.h */,
+			);
+			name = DYYSizeofCheck;
+			sourceTree = "<group>";
+		};
+		5C01F2A81BAA98C300365F43 /* DYYCheckNumbersAndReturnValue */ = {
+			isa = PBXGroup;
+			children = (
+				5CE241D21BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c */,
+				5CE241D31BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.h */,
+			);
+			name = DYYCheckNumbersAndReturnValue;
+			sourceTree = "<group>";
+		};
+		5C01F2AC1BAAAF2B00365F43 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5C01F2A91BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnValue.c */,
+				5CB43FC41BAAD7FD002CE815 /* DYYTestCheckNumbersAssert.c */,
+				5CB43FC51BAAD7FD002CE815 /* DYYTestCheckNumbersAssert.h */,
+				5C01F2AA1BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnValue.h */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
 		5CE241BF1BA94BF3003C1A08 = {
 			isa = PBXGroup;
 			children = (
+				5C01F2AC1BAAAF2B00365F43 /* Tests */,
 				5CE241CA1BA94BF3003C1A08 /* DYYStudyCoding */,
 				5CE241C91BA94BF3003C1A08 /* Products */,
 			);
@@ -64,10 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				5CE241CB1BA94BF3003C1A08 /* main.c */,
-				5CE241D51BA96134003C1A08 /* DYYSizeOfCheck.c */,
-				5CE241D61BA96134003C1A08 /* DYYSizeOfCheck.h */,
-				5CE241D21BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c */,
-				5CE241D31BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.h */,
+				5C01F2A71BAA98A300365F43 /* DYYSizeofCheck */,
+				5C01F2A81BAA98C300365F43 /* DYYCheckNumbersAndReturnValue */,
 			);
 			path = DYYStudyCoding;
 			sourceTree = "<group>";
@@ -128,9 +162,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C01F2AB1BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnValue.c in Sources */,
 				5CE241D41BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c in Sources */,
 				5CE241D71BA96134003C1A08 /* DYYSizeOfCheck.c in Sources */,
 				5CE241CC1BA94BF3003C1A08 /* main.c in Sources */,
+				5CB43FC61BAAD7FD002CE815 /* DYYTestCheckNumbersAssert.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +283,7 @@
 				5CE241D11BA94BF3003C1A08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

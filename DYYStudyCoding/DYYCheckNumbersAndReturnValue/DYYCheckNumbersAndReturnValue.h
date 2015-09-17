@@ -12,7 +12,17 @@
 #include <stdio.h>
 
 
-int DYYCheckNumbers(int);
+// int DYYCheckNumbers(int);
+
+//declaration of Parent type
+typedef enum {
+    kDYYParentTypeUndefined = 0,
+    kDYYParentTypeMama,
+    kDYYParentTypePapa,
+    kDYYParentTypeMamaPapa
+} DYYParentType;
+
+extern DYYParentType DYYCheckNumbers(int);
 
 
 #endif /* defined(__DYYStudyCoding__DYYCheckNumbersAndReturnValue__) */
