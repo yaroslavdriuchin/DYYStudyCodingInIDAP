@@ -13,6 +13,4 @@
 
 void SizeofCheckType(void);
 
-void delay(unsigned int);
-
 #endif /* defined(__DYYStudyCoding__DYYSizeOfCheck__) */

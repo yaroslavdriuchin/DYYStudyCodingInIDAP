@@ -12,39 +12,27 @@
 #include "DYYSizeOfCheck.h"
 #include "DYYTestCheckNumbersAssert.h"
 
+#pragma mark -
+#pragma mark Private Declarations
 
-void main()
+int inputNumber;
 
-{
-    // Introduction to program functionality
-    printf("Starting with Sizeof command demonstration....""\n""\n");
-    
+#pragma mark -
+#pragma mark Private Implementations
+
+main(int argc, const char * argv[]) {
+    printf("Starting with Sizeof command demonstration....""\n""\n");   // Introduction to program functionality
     sleep(1);
-    
     SizeofCheckType ();
-    
-    // First and second part of program separator
-    printf("\n""Moving to part 2.....""\n""\n");
-    
+    printf("\n""Moving to part 2.....""\n""\n");    // First and second part of program separator
     sleep(1);
-    
-    int MyInputNumber;
-    
-    //Inputting number to check for 3,5,15
-    printf("Please, input your number:\n");
-    
-    scanf("%d",&MyInputNumber);
-    
-    DYYCheckNumbers(MyInputNumber);  // My custom function for checking 3,5,15
-    
+    printf("Please, input your number:\n");     //Inputting number to check for 3,5,15
+    scanf("%d",&inputNumber);
+    DYYCheckNumbers(inputNumber);               // My custom function for checking 3,5,15
     printf("\n""\n""Running 1000 iterations test.....""\n""\n");
-    
-    sleep(2);
-
-    //Running 1000 iterations test
-    
-    DYYTestCheckNumbersAndReturnValue();
-    
+    sleep(1);
+    DYYTestCheckNumbersAndReturnValue();         //Running 1000 iterations test
     DYYTestCheckNumbersAssert();
     
-}
+    return 0;
+    }
