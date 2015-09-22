@@ -7,17 +7,19 @@
 //
 //This is test for checking DYYCheckNumbers functionality using assert command and custom input number = 5
 
+#include <stdio.h>
+#include <assert.h>
 #include "DYYTestCheckNumbersAssert.h"
 
+/*using assert process for testing if output value of DYYCheckNumbers function with custom input
+coincide with expected output*/
 void DYYTestCheckNumbersAssert() {
-printf ("Running assert testing process with argument = 5.....\n");
-    DYYParentType ReturnValue = kDYYParentTypeUndefined;
-    ReturnValue = DYYCheckNumbers(5);
-    //running assert testing process....
-    assert(kDYYParentTypeUndefined != ReturnValue);
-    assert (kDYYParentTypePapa == ReturnValue );
-    //if test passed confirm to console
-printf ("     Assert testing process passed");
+printf ("\nRunning assert testing process with argument = 5.....\n");
+    DYYParentType returnValue = kDYYParentTypeUndefined;      //defining returnValue as function output type and assigning a default value
+    returnValue = DYYCheckNumbers(5);                         //checking DYYCheckNumbers with argument = 5
+    assert(kDYYParentTypeUndefined != returnValue);           //checking if function output value not equal to preassigned value
+    assert (kDYYParentTypePapa == returnValue );              //checking if function output value equal to expected value
+printf ("     Assert testing process passed");                //if test passed confirm to console
     }
 
 

@@ -9,8 +9,8 @@
 #ifndef __DYYStudyCoding__DYYTestCheckNumbersAssert__
 #define __DYYStudyCoding__DYYTestCheckNumbersAssert__
 
-#include <stdio.h>
-#include <assert.h>
 #include "DYYCheckNumbersAndReturnValue.h"
+
+void DYYTestCheckNumbersAssert(void);
 
 #endif /* defined(__DYYStudyCoding__DYYTestCheckNumbersAssert__) */

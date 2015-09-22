@@ -9,8 +9,6 @@
 #ifndef __DYYStudyCoding__DYYSizeOfCheck__
 #define __DYYStudyCoding__DYYSizeOfCheck__
 
-#include <stdio.h>
-
-void SizeofCheckType(void);
+void DYYSizeofCheckType(void);
 
 #endif /* defined(__DYYStudyCoding__DYYSizeOfCheck__) */

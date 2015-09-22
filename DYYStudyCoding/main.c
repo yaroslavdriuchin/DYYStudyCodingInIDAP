@@ -15,24 +15,25 @@
 #pragma mark -
 #pragma mark Private Declarations
 
-int inputNumber;
+#define DYYDefaultSleep sleep(1)
 
 #pragma mark -
 #pragma mark Private Implementations
 
 main(int argc, const char * argv[]) {
-    printf("Starting with Sizeof command demonstration....""\n""\n");   // Introduction to program functionality
-    sleep(1);
-    SizeofCheckType ();
-    printf("\n""Moving to part 2.....""\n""\n");    // First and second part of program separator
-    sleep(1);
-    printf("Please, input your number:\n");     //Inputting number to check for 3,5,15
-    scanf("%d",&inputNumber);
-    DYYCheckNumbers(inputNumber);               // My custom function for checking 3,5,15
+    int inputNumber;
+    printf("Starting with Sizeof command demonstration....""\n""\n");
+    DYYDefaultSleep;
+    DYYSizeofCheckType ();                          //printing data type sizes using custom DYYSizeofCheckType function
+    printf("\n""Moving to part 2.....""\n""\n");
+    DYYDefaultSleep;
+    printf("Please, input your number:\n");
+    scanf("%d",&inputNumber);                       //Inputting number to check if it can be divided by 3,5,15 with remainder = 0
+    DYYCheckNumbers(inputNumber);                   //Checking input number with DYYCheckNumbers custom function
     printf("\n""\n""Running 1000 iterations test.....""\n""\n");
-    sleep(1);
-    DYYTestCheckNumbersAndReturnValue();         //Running 1000 iterations test
-    DYYTestCheckNumbersAssert();
+    DYYDefaultSleep;
+    DYYTestCheckNumbersAndReturnValue();            //Running 1000 iterations test for testing DYYCheckNumbers function
+    DYYTestCheckNumbersAssert();                     //Running assertion test for testing YYCheckNumbers function
     
     return 0;
     }

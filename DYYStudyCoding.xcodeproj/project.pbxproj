@@ -72,9 +72,9 @@
 			isa = PBXGroup;
 			children = (
 				5C01F2A91BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnValue.c */,
+				5C01F2AA1BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnValue.h */,
 				5CB43FC41BAAD7FD002CE815 /* DYYTestCheckNumbersAssert.c */,
 				5CB43FC51BAAD7FD002CE815 /* DYYTestCheckNumbersAssert.h */,
-				5C01F2AA1BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnValue.h */,
 			);
 			name = Tests;
 			sourceTree = "<group>";

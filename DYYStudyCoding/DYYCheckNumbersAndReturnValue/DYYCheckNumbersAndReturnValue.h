@@ -9,12 +9,7 @@
 #ifndef __DYYStudyCoding__DYYCheckNumbersAndReturnValue__
 #define __DYYStudyCoding__DYYCheckNumbersAndReturnValue__
 
-#include <stdio.h>
-
-
-// int DYYCheckNumbers(int);
-
-//declaration of Parent type
+//declaration of Parent data type with predefined values
 typedef enum {
     kDYYParentTypeUndefined = 0,
     kDYYParentTypeMama,
@@ -23,6 +18,5 @@ typedef enum {
 } DYYParentType;
 
 extern DYYParentType DYYCheckNumbers(int);
-
 
 #endif /* defined(__DYYStudyCoding__DYYCheckNumbersAndReturnValue__) */

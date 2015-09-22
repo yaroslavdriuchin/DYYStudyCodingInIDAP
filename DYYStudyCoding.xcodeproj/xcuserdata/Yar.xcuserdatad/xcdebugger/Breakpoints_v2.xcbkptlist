@@ -10,25 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYYStudyCoding/DYYCheckNumbersAndReturnValue/DYYCheckNumbersAndReturnValue.h"
-            timestampString = "464168818.543698"
+            timestampString = "464604320.386977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DYYStudyCoding/DYYCheckNumbersAndReturnValue/DYYCheckNumbersAndReturnValue.h"
-            timestampString = "464168818.543698"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27">
+            startingLineNumber = "11"
+            endingLineNumber = "11">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -38,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYYStudyCoding/DYYCheckNumbersAndReturnValue/DYYCheckNumbersAndReturnValue.h"
-            timestampString = "464168818.543698"
+            timestampString = "464604320.386977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26">
+            startingLineNumber = "21"
+            endingLineNumber = "21">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

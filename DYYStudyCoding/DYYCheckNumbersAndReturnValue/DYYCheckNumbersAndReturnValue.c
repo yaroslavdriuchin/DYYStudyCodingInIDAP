@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Yaroslav Driuchin. All rights reserved.
 
 #include "DYYCheckNumbersAndReturnValue.h"
+#include <stdio.h>
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -17,21 +18,20 @@ const int kCheckNumberThree = 3;
 #pragma mark -
 #pragma mark Private Implementations
 
-DYYParentType DYYCheckNumbers(int InputNumber)
+DYYParentType DYYCheckNumbers(int inputNumber)
 {
-    DYYParentType OutputValue = kDYYParentTypeUndefined;
+    DYYParentType outputValue = kDYYParentTypeUndefined;
    
-    
-    if (InputNumber % kCheckNumberOne == 0 ) {
+    if (inputNumber % kCheckNumberOne == 0 ) {
         printf("MAMAPAPA");
-        OutputValue = kDYYParentTypeMamaPapa;
-        } else if ( InputNumber % kCheckNumberTwo == 0 ) {
+        outputValue = kDYYParentTypeMamaPapa;
+        } else if ( inputNumber % kCheckNumberTwo == 0 ) {
         printf("PAPA");
-        OutputValue = kDYYParentTypePapa;
-        } else if ( InputNumber % kCheckNumberThree == 0 ) {
+        outputValue = kDYYParentTypePapa;
+        } else if ( inputNumber % kCheckNumberThree == 0 ) {
         printf("MAMA");
-        OutputValue = kDYYParentTypeMama;
+        outputValue = kDYYParentTypeMama;
     }
     
-        return OutputValue;
+        return outputValue;
 }
