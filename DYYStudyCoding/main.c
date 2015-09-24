@@ -37,7 +37,10 @@ int main(int argc, const char * argv[]) {
 //    DYYTestCheckNumbersAndReturnValue();            //Running 1000 iterations test for testing DYYCheckNumbers function
 //    DYYTestCheckNumbersAssert();                     //Running assertion test for testing YYCheckNumbers function
 //
-    DYYMacroMethodGenerator();
-    ReturnStructOffsetValue();
+//    DYYMacroMethodGenerator();
+    DYYReturnStructSize();
+    DYYReturnStructOffsetValue();
+   
+    
     return 0;
     }
