@@ -8,11 +8,12 @@
 
 #include <stdio.h>
 #include <unistd.h>
-//#include "DYYCheckNumbersAndReturnValue.h"
-//#include "DYYSizeOfCheck.h"
-//#include "DYYTestCheckNumbersAssert.h"
+#include "DYYCheckNumbersAndReturnValue.h"
+#include "DYYSizeOfCheck.h"
+#include "DYYTestCheckNumbersAssert.h"
 #include "DYYMacroMethodGenerator.h"
 #include "DYYStructureAlignment.h"
+#include "DYYBinaryOutputTranslator.h"
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -40,7 +41,7 @@ int main(int argc, const char * argv[]) {
 //    DYYMacroMethodGenerator();
     DYYReturnStructSize();
     DYYReturnStructOffsetValue();
+    DYYDecimalToBinaryTranslator();
    
-    
     return 0;
     }

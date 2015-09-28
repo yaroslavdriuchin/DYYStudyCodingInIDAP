@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <stdbool.h>
+#include <string.h>
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -70,6 +71,15 @@ typedef struct optimizedBoolsUnionOrder {
 }structOptimizedUnionBools;
 
 #define DYYMacroSizeOutput(structName) printf("\nSize of " #structName " structure in bytes: %lu\n", sizeof(structName))
+
+//char *namesArray[14] = {"boolData1", "boolData2", "boolData3", "boolData4", "boolData5", "boolData6",\
+//    "shortData1", "shortData2", "shortData3", "intData1", "floatData1", "doubleData1", "longLongData1", "char string[6]"};
+//char *(*namePointer)[14] = &namesArray;
+//
+//#define DYYStructMemberOffset(structName) void DYYStructOffset(void) {\
+//for(int counter = 0; counter < 14; counter++) {\
+//printf("\nOffset of %s", *namePointer[counter]," in "#structName" structure is %lu"), offsetof(structName, *namePointer)[counter]);}
+
 #define DYYMacroStructMemberOffset(structName, structMemberName) \
 printf("\nOffset of " #structMemberName " in " #structName" structure is %lu", offsetof(structName, structMemberName));
 
@@ -81,6 +91,8 @@ void DYYReturnStructSize() {
     DYYMacroSizeOutput(structOptimized);
     DYYMacroSizeOutput(structOptimizedUnionBools);
 }
+
+//DYYStructMemberOffset(structRandom);
 
 void DYYReturnStructOffsetValue() {
     DYYMacroStructMemberOffset(structRandom, boolData1);
