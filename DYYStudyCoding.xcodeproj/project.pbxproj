@@ -11,7 +11,7 @@
 		5CAE40571BB28DAD00F0D3BF /* DYYMacroMethodGenerator.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CAE40551BB28DAD00F0D3BF /* DYYMacroMethodGenerator.c */; };
 		5CAE405B1BB2B5DA00F0D3BF /* DYYStructureAlignment.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CAE40591BB2B5DA00F0D3BF /* DYYStructureAlignment.c */; };
 		5CB43FC61BAAD7FD002CE815 /* DYYTestCheckNumbersAssert.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CB43FC41BAAD7FD002CE815 /* DYYTestCheckNumbersAssert.c */; };
-		5CC56E801BB929090026FE13 /* DYYBinaryOutputTranslator.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CC56E7E1BB929090026FE13 /* DYYBinaryOutputTranslator.c */; settings = {ASSET_TAGS = (); }; };
+		5CC56E801BB929090026FE13 /* DYYDecimalToBinaryOutputTranslator.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CC56E7E1BB929090026FE13 /* DYYDecimalToBinaryOutputTranslator.c */; settings = {ASSET_TAGS = (); }; };
 		5CE241CC1BA94BF3003C1A08 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CE241CB1BA94BF3003C1A08 /* main.c */; };
 		5CE241D41BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CE241D21BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c */; };
 		5CE241D71BA96134003C1A08 /* DYYSizeOfCheck.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CE241D51BA96134003C1A08 /* DYYSizeOfCheck.c */; };
@@ -38,8 +38,8 @@
 		5CAE405A1BB2B5DA00F0D3BF /* DYYStructureAlignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYStructureAlignment.h; path = DYYStudyCoding/DYYStructureAlignment/DYYStructureAlignment.h; sourceTree = "<group>"; };
 		5CB43FC41BAAD7FD002CE815 /* DYYTestCheckNumbersAssert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYTestCheckNumbersAssert.c; path = DYYStudyCoding/Tests/DYYTestCheckNumbersAssert.c; sourceTree = "<group>"; };
 		5CB43FC51BAAD7FD002CE815 /* DYYTestCheckNumbersAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestCheckNumbersAssert.h; path = DYYStudyCoding/Tests/DYYTestCheckNumbersAssert.h; sourceTree = "<group>"; };
-		5CC56E7E1BB929090026FE13 /* DYYBinaryOutputTranslator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYBinaryOutputTranslator.c; path = DYYStudyCoding/DYYBinaryOutputTranslator/DYYBinaryOutputTranslator.c; sourceTree = "<group>"; };
-		5CC56E7F1BB929090026FE13 /* DYYBinaryOutputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYBinaryOutputTranslator.h; path = DYYStudyCoding/DYYBinaryOutputTranslator/DYYBinaryOutputTranslator.h; sourceTree = "<group>"; };
+		5CC56E7E1BB929090026FE13 /* DYYDecimalToBinaryOutputTranslator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYDecimalToBinaryOutputTranslator.c; path = DYYStudyCoding/DYYBinaryOutputTranslator/DYYDecimalToBinaryOutputTranslator.c; sourceTree = "<group>"; };
+		5CC56E7F1BB929090026FE13 /* DYYDecimalToBinaryOutputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYDecimalToBinaryOutputTranslator.h; path = DYYStudyCoding/DYYBinaryOutputTranslator/DYYDecimalToBinaryOutputTranslator.h; sourceTree = "<group>"; };
 		5CE241C81BA94BF3003C1A08 /* DYYStudyCoding */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DYYStudyCoding; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CE241CB1BA94BF3003C1A08 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		5CE241D21BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYCheckNumbersAndReturnValue.c; path = DYYCheckNumbersAndReturnValue/DYYCheckNumbersAndReturnValue.c; sourceTree = "<group>"; };
@@ -111,8 +111,8 @@
 		5CC56E811BB929110026FE13 /* DYYBinaryOutputTranslator */ = {
 			isa = PBXGroup;
 			children = (
-				5CC56E7E1BB929090026FE13 /* DYYBinaryOutputTranslator.c */,
-				5CC56E7F1BB929090026FE13 /* DYYBinaryOutputTranslator.h */,
+				5CC56E7E1BB929090026FE13 /* DYYDecimalToBinaryOutputTranslator.c */,
+				5CC56E7F1BB929090026FE13 /* DYYDecimalToBinaryOutputTranslator.h */,
 			);
 			name = DYYBinaryOutputTranslator;
 			path = ..;
@@ -206,7 +206,7 @@
 			files = (
 				5CAE40571BB28DAD00F0D3BF /* DYYMacroMethodGenerator.c in Sources */,
 				5CAE405B1BB2B5DA00F0D3BF /* DYYStructureAlignment.c in Sources */,
-				5CC56E801BB929090026FE13 /* DYYBinaryOutputTranslator.c in Sources */,
+				5CC56E801BB929090026FE13 /* DYYDecimalToBinaryOutputTranslator.c in Sources */,
 				5C01F2AB1BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnValue.c in Sources */,
 				5CE241D41BA94FD4003C1A08 /* DYYCheckNumbersAndReturnValue.c in Sources */,
 				5CE241D71BA96134003C1A08 /* DYYSizeOfCheck.c in Sources */,

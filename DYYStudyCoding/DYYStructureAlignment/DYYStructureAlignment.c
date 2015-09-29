@@ -109,4 +109,20 @@ void DYYReturnStructOffsetValue() {
     DYYMacroStructMemberOffset(structRandom, shortData2);
     DYYMacroStructMemberOffset(structRandom, shortData3);
     DYYMacroStructMemberOffset(structRandom, string [6]);
-    }
+    printf("\n");
+    DYYMacroStructMemberOffset(structOptimized, doubleData1);
+    DYYMacroStructMemberOffset(structOptimized, longLongData1);
+    DYYMacroStructMemberOffset(structOptimized, string[6]);
+    DYYMacroStructMemberOffset(structOptimized, floatData1);
+    DYYMacroStructMemberOffset(structOptimized, intData1);
+    DYYMacroStructMemberOffset(structOptimized, shortData1);
+    DYYMacroStructMemberOffset(structOptimized, shortData2);
+    DYYMacroStructMemberOffset(structOptimized, shortData3);
+    DYYMacroStructMemberOffset(structOptimized, boolData1);
+    DYYMacroStructMemberOffset(structOptimized, boolData2);
+    DYYMacroStructMemberOffset(structOptimized, boolData3);
+    DYYMacroStructMemberOffset(structOptimized, boolData4);
+    DYYMacroStructMemberOffset(structOptimized, boolData5);
+    DYYMacroStructMemberOffset(structOptimized, boolData6);
+    printf("\n");
+}

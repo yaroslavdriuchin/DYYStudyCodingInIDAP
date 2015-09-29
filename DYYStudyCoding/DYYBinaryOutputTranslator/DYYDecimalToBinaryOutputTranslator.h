@@ -13,4 +13,4 @@
 
 #endif /* DYYBinaryOutputTranslator_h */
 
-void DYYDecimalToBinaryTranslator(void);
+void DYYDecimalToBinaryTranslator(double value);

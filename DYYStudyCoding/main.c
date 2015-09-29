@@ -13,7 +13,7 @@
 #include "DYYTestCheckNumbersAssert.h"
 #include "DYYMacroMethodGenerator.h"
 #include "DYYStructureAlignment.h"
-#include "DYYBinaryOutputTranslator.h"
+#include "DYYDecimalToBinaryOutputTranslator.h"
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -21,7 +21,7 @@
 //#define DYYDefaultSleep sleep(1)
 
 #pragma mark -
-#pragma mark Private Implementations
+#pragma mark Public Implementations
 
 int main(int argc, const char * argv[]) {
 //    int inputNumber;
@@ -41,7 +41,7 @@ int main(int argc, const char * argv[]) {
 //    DYYMacroMethodGenerator();
     DYYReturnStructSize();
     DYYReturnStructOffsetValue();
-    DYYDecimalToBinaryTranslator();
+    DYYDecimalToBinaryTranslator(115670);
    
     return 0;
     }
