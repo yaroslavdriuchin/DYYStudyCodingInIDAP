@@ -26,7 +26,7 @@ DYYMacroGenerateTypeMethod(float, "%f")
 #define DYYMacroRunTypeMethod(type, value) output_##type(value)
 
 #pragma mark -
-#pragma mark Private Implementations
+#pragma mark Public Implementations
 
 void DYYMacroMethodGenerator() {
     DYYMacroRunTypeMethod(char, 'v');

@@ -11,6 +11,7 @@
 
 #pragma mark -
 #pragma mark Private Declarations
+
 static const int kDYYBitCount = 8;
 static const int kDYYBitMask = 1;
 static
@@ -21,17 +22,30 @@ void DYYByteToBitTranslator(uint8_t inputByte);
 
 #pragma mark -
 #pragma mark Public Implementations
-void DYYDecimalToBinaryTranslator(double value) {
+
+//Decimal to binary translator takes decimal input and convert it to binary form using 0 flag for Little Endian representation,
+//1 flag for Big Endian and ANY other flag value for both Endian types outputted at the same time
+void DYYDecimalToBinaryTranslator(int value, DYYEndianType inputEndianType) {
+    if (inputEndianType == kDYYLittleEndian) {
     printf("\n\nInput value in Little Endian binary order is: ");
     DYYDataBytesDecomposerLittleEndian(&value, sizeof(value));
+        }
+    else if (inputEndianType == kDYYBigEndian) {
     printf("\nInput value in Big Endian binary order is: ");
     DYYDataBytesDecomposerBigEndian(&value, sizeof(value));
-    
+    }
+    else {
+        printf("\n\nInput value in Little Endian binary order is: ");
+        DYYDataBytesDecomposerLittleEndian(&value, sizeof(value));
+        printf("\nInput value in Big Endian binary order is: ");
+        DYYDataBytesDecomposerBigEndian(&value, sizeof(value));
+    }
 }
 
 #pragma mark -
 #pragma mark Private Implementations
-//Function decomposes whole input value according to Little Endian order to its bytes and send them to Byte-to-Bit translator
+
+//This function decomposes whole input value according to Little Endian order to its bytes and send them to Byte-to-Bit translator
 void DYYDataBytesDecomposerLittleEndian(void *inputValue, size_t sizeOfValueType) {
     uint8_t *bytePointer = (uint8_t *)inputValue;
     for (size_t counter = 0; counter < sizeOfValueType; counter ++) {
