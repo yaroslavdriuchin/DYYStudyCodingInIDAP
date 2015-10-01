@@ -21,17 +21,24 @@ const int kCheckNumberThree = 3;
 DYYParentType DYYCheckNumbers(int inputNumber)
 {
     DYYParentType outputValue = kDYYParentTypeUndefined;
-   
+    if (inputNumber == 0) {
+        return outputValue;
+    }
+    else
     if (inputNumber % kCheckNumberOne == 0 ) {
         printf("MAMAPAPA");
         outputValue = kDYYParentTypeMamaPapa;
-        } else if ( inputNumber % kCheckNumberTwo == 0 ) {
+        }
+    else
+    if ( inputNumber % kCheckNumberTwo == 0 ) {
         printf("PAPA");
         outputValue = kDYYParentTypePapa;
-        } else if ( inputNumber % kCheckNumberThree == 0 ) {
+        }
+    else
+    if ( inputNumber % kCheckNumberThree == 0 ) {
         printf("MAMA");
         outputValue = kDYYParentTypeMama;
-    }
     
+    }
         return outputValue;
 }

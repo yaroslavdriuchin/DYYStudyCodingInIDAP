@@ -23,14 +23,14 @@ void DYYByteToBitTranslator(uint8_t inputByte);
 #pragma mark -
 #pragma mark Public Implementations
 
-//Decimal to binary translator takes decimal input and convert it to binary form using 0 flag for Little Endian representation,
-//1 flag for Big Endian and ANY other flag value for both Endian types outputted at the same time
+//Decimal to binary translator takes decimal input and convert it to binary form using "littleEndian" flag for Little Endian representation,
+//"bigEndian" flag for Big Endian  and "undefinedEndian" or ANY other integer flag value for both Endian types outputted at the same time
 void DYYDecimalToBinaryTranslator(int value, DYYEndianType inputEndianType) {
-    if (inputEndianType == kDYYLittleEndian) {
+    if (inputEndianType == littleEndian) {
     printf("\n\nInput value in Little Endian binary order is: ");
     DYYDataBytesDecomposerLittleEndian(&value, sizeof(value));
         }
-    else if (inputEndianType == kDYYBigEndian) {
+    else if (inputEndianType == bigEndian) {
     printf("\nInput value in Big Endian binary order is: ");
     DYYDataBytesDecomposerBigEndian(&value, sizeof(value));
     }
