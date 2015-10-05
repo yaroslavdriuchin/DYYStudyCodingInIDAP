@@ -23,22 +23,21 @@ void DYYByteToBitTranslator(uint8_t inputByte);
 #pragma mark -
 #pragma mark Public Implementations
 
-//Decimal to binary translator takes decimal input and convert it to binary form using "littleEndian" flag for Little Endian representation,
-//"bigEndian" flag for Big Endian  and "undefinedEndian" or ANY other integer flag value for both Endian types outputted at the same time
+//Decimal to binary translator takes decimal input and convert it to binary form using "DYYEndianTypeLittle" flag for Little Endian representation,
+//"DYYEndianTypeBig" flag for Big Endian  and "DYYEndianTypeUndefined" or ANY other integer flag value for both Endian types outputted at the same time
 void DYYDecimalToBinaryTranslator(int value, DYYEndianType inputEndianType) {
-    if (inputEndianType == littleEndian) {
-    printf("\n\nInput value in Little Endian binary order is: ");
-    DYYDataBytesDecomposerLittleEndian(&value, sizeof(value));
-        }
-    else if (inputEndianType == bigEndian) {
-    printf("\nInput value in Big Endian binary order is: ");
-    DYYDataBytesDecomposerBigEndian(&value, sizeof(value));
-    }
-    else {
+    if (DYYEndianTypeLittle == inputEndianType) {
         printf("\n\nInput value in Little Endian binary order is: ");
         DYYDataBytesDecomposerLittleEndian(&value, sizeof(value));
+        }
+    
+    else if (DYYEndianTypeBig == inputEndianType) {
         printf("\nInput value in Big Endian binary order is: ");
         DYYDataBytesDecomposerBigEndian(&value, sizeof(value));
+    }
+    
+    else {
+        printf("\n\nPlease specify Endian type of output value");
     }
 }
 
@@ -54,6 +53,7 @@ void DYYDataBytesDecomposerLittleEndian(void *inputValue, size_t sizeOfValueType
     DYYByteToBitTranslator(currentByte);
     }
 }
+
 //Function decomposes whole input value according to Big Endian order to its bytes and send them to Byte-to-Bit translator
 void DYYDataBytesDecomposerBigEndian(void *inputValue, size_t sizeOfValueType) {
     uint8_t *bytePointer = (uint8_t *)inputValue;
@@ -63,9 +63,10 @@ void DYYDataBytesDecomposerBigEndian(void *inputValue, size_t sizeOfValueType) {
         printf (" ");
     }
 }
+
 //'1' is moving in acsending order and being added to bits of Input Byte resulting binary output for given byte
 void DYYByteToBitTranslator(uint8_t inputByte) {
     for (int bitCount = 0; bitCount < (sizeof(inputByte) * kDYYBitCount); bitCount++) {
         printf("%d", ((inputByte & (kDYYBitMask << bitCount))) != 0 ? 1 : 0);
         }
-    }
+}

@@ -30,7 +30,7 @@ typedef struct randomOrder {
     short shortData2;
     short shortData3;
     char string[6];
-}structRandom;
+} DYYstructRandom;
 
 typedef struct optimizedOrder {
     long long longLongData1;
@@ -47,7 +47,7 @@ typedef struct optimizedOrder {
     bool boolData4;
     bool boolData5;
     bool boolData6;
-}structOptimized;
+} DYYstructOptimized;
 
 typedef struct optimizedBoolsUnionOrder {
     double doubleData1;
@@ -58,30 +58,36 @@ typedef struct optimizedBoolsUnionOrder {
     short shortData1;
     short shortData2;
     short shortData3;
-    union boolsUnion {
-        bool boolData1;
-        bool boolData2;
-        bool boolData3;
-        bool boolData4;
-        bool boolData5;
-        bool boolData6;
+    union allBoolsUnion {
+         struct {
+                bool boolData1 : 1;
+                bool boolData2 : 1;
+                bool boolData3 : 1;
+                bool boolData4 : 1;
+                bool boolData5 : 1;
+                bool boolData6 : 1;
+         };
+        char DYYAllBoolFlags;
     } allBoolsUnion;
-}structOptimizedUnionBools;
+} DYYstructOptimizedUnionBools;
 
 #define DYYMacroSizeOutput(structName) printf("\nSize of " #structName " structure in bytes: %lu\n", sizeof(structName))
+
 #define DYYMacroStructMemberOffset(structName, structMemberName) \
-printf("\nOffset of " #structMemberName " in " #structName" structure is %lu", offsetof(structName, structMemberName));
-#define DYYMacroStructRandomOffset(memberName) DYYMacroStructMemberOffset(structRandom, memberName);
-#define DYYMacroStructOptimizedOffset(memberName) DYYMacroStructMemberOffset(structOptimized, memberName);
-#define DYYMacroStructOptimizedBoolsOffset(memberName) DYYMacroStructMemberOffset(structOptimizedUnionBools, memberName);
+        printf("\nOffset of " #structMemberName " in " #structName" structure is %lu",\
+                offsetof(structName, structMemberName));
+
+#define DYYMacroStructRandomOffset(memberName) DYYMacroStructMemberOffset(DYYstructRandom, memberName);
+#define DYYMacroStructOptimizedOffset(memberName) DYYMacroStructMemberOffset(DYYstructOptimized, memberName);
+#define DYYMacroStructOptimizedBoolsOffset(memberName) DYYMacroStructMemberOffset(DYYstructOptimizedUnionBools, memberName);
 
 #pragma mark -
 #pragma mark Private Implementations
 
 void DYYReturnStructSize() {
-    DYYMacroSizeOutput(structRandom);
-    DYYMacroSizeOutput(structOptimized);
-    DYYMacroSizeOutput(structOptimizedUnionBools);
+    DYYMacroSizeOutput(DYYstructRandom);
+    DYYMacroSizeOutput(DYYstructOptimized);
+    DYYMacroSizeOutput(DYYstructOptimizedUnionBools);
 }
 
 void DYYReturnStructOffsetValue() {

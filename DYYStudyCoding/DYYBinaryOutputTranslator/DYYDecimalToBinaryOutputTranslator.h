@@ -11,9 +11,9 @@
 
 #include <stdio.h>
 typedef enum {
-    littleEndian,
-    bigEndian,
-    undefinedEndian
+    DYYEndianTypeUndefined,
+    DYYEndianTypeLittle,
+    DYYEndianTypeBig,
 } DYYEndianType;
 
 //Decimal to binary translator takes decimal input and convert it to binary form using "littleEndian" flag for Little Endian representation,

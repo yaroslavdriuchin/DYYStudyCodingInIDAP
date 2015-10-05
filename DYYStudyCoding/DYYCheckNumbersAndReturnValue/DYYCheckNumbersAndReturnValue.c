@@ -25,17 +25,17 @@ DYYParentType DYYCheckNumbers(int inputNumber)
         return outputValue;
     }
     else
-    if (inputNumber % kCheckNumberOne == 0 ) {
+    if (0 == inputNumber % kCheckNumberOne) {
         printf("MAMAPAPA");
         outputValue = kDYYParentTypeMamaPapa;
         }
     else
-    if ( inputNumber % kCheckNumberTwo == 0 ) {
+    if (0 == inputNumber % kCheckNumberTwo) {
         printf("PAPA");
         outputValue = kDYYParentTypePapa;
         }
     else
-    if ( inputNumber % kCheckNumberThree == 0 ) {
+    if (0 == inputNumber % kCheckNumberThree) {
         printf("MAMA");
         outputValue = kDYYParentTypeMama;
     
