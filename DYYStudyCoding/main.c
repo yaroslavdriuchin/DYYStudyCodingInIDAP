@@ -21,7 +21,7 @@
 int main(int argc, const char * argv[]) {
     DYYReturnStructSize();
     DYYReturnStructOffsetValue();
-    DYYDecimalToBinaryTranslator(151, DYYEndianTypeBig);
+    DYYDecimalValueToBinaryOutputTranslator(151, DYYEndianTypeBig);
     
     return 0;
     }

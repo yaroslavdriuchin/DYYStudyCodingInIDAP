@@ -9,7 +9,7 @@
 #ifndef __DYYStudyCoding__DYYStructureAlignment__
 #define __DYYStudyCoding__DYYStructureAlignment__
 
-void DYYReturnStructOffsetValue(void);
-void DYYReturnStructSize(void);
+extern void DYYReturnStructOffsetValue(void);
+extern void DYYReturnStructSize(void);
 
 #endif /* defined(__DYYStudyCoding__DYYStructureAlignment__) */
