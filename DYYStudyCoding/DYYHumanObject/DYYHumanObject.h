@@ -8,19 +8,21 @@
 
 #ifndef DYYHumanObject_h
 #define DYYHumanObject_h
-
+#include <stdbool.h>
 #include <stdio.h>
 
 typedef enum {
-       DYYPersonGenderUndefined,
-       DYYPersonGenderMale,
-       DYYPersonGenderFemale,
+    DYYPersonGenderUndefined,
+    DYYPersonGenderMale,
+    DYYPersonGenderFemale,
 } DYYPersonGender;
 
-void DYYPersonWithNameAgeGenderCreate (char _personName, uint8_t _personAge, DYYPersonGender _personGender);
+typedef struct DYYPersonDataList DYYPersonData;
 
-void DYYMarryPersonSet (void *_personPartner);
+DYYPersonData *DYYPersonCreateWithInitialParameters(char *inputPersonName, uint8_t inputPersonAge, DYYPersonGender inputPersonGender);
 
-void DYYDivorsePersonSet (void *_personPartner);
+//void DYYMarryPersonSet(void *personPartner);
+//
+//void DYYDivorsePersonSet(void *personPartner);
 
 #endif /* DYYHumanObject_h */
