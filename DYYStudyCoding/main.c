@@ -11,6 +11,7 @@
 //#include "DYYTestCheckNumbersAndReturnValue.h"
 #include "DYYStructureAlignment.h"
 #include "DYYDecimalToBinaryOutputTranslator.h"
+#include "DYYTestHumanObjectCreateMethod.h"
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -19,9 +20,9 @@
 #pragma mark Public Implementations
 
 int main(int argc, const char * argv[]) {
-    DYYReturnStructSize();
-    DYYReturnStructOffsetValue();
-    DYYDecimalValueToBinaryOutputTranslator(151, DYYEndianTypeBig);
-    
+//    DYYReturnStructSize();
+//    DYYReturnStructOffsetValue();
+//    DYYDecimalValueToBinaryOutputTranslator(151, DYYEndianTypeBig);
+    DYYTestHumanObjectCreateMethod();
     return 0;
     }

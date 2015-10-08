@@ -12,14 +12,26 @@
 #include <stdio.h>
 
 typedef enum {
-    DYYPersonGenderUndefined,
     DYYPersonGenderMale,
     DYYPersonGenderFemale,
 } DYYPersonGender;
 
+struct DYYPersonDataList {
+    char *_personName;
+    DYYPersonGender _personGender;
+    void *_personPartner;
+    void *_personParent;
+    void *_personChildrenList[20];
+    uint8_t _personChildrenTotalCount;
+    unsigned int _personAge;
+    bool _personMarriedStatus;
+};
+
 typedef struct DYYPersonDataList DYYPersonData;
 
-DYYPersonData *DYYPersonCreateWithInitialParameters(char *inputPersonName, uint8_t inputPersonAge, DYYPersonGender inputPersonGender);
+char *DYYPersonName(DYYPersonData *personDataObject);
+
+DYYPersonData *DYYPersonCreateWithNameAgeGender(char *inputPersonName, unsigned int inputPersonAge, DYYPersonGender inputPersonGender);
 
 //void DYYMarryPersonSet(void *personPartner);
 //

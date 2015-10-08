@@ -5,7 +5,7 @@
 //  Created by Yar on 9/17/15.
 //  Copyright (c) 2015 Yaroslav Driuchin. All rights reserved.
 //
-//This is test for checking DYYCheckNumbers functionality using assert command and custom input number = 5
+//As a user I want to test DYYCheckNumbers functionality using assert command and custom input number = 5
 
 #include <stdio.h>
 #include <assert.h>
