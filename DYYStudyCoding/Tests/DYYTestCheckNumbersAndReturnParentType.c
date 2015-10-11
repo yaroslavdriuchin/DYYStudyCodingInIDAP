@@ -7,17 +7,17 @@
 //
 
 #include <stdio.h>
-#include "DYYTestCheckNumbersAndReturnValue.h"
-#include "DYYCheckNumbersAndReturnValue.h"
+#include "DYYTestCheckNumbersAndReturnParentType.h"
+#include "DYYCheckNumbersAndReturnParentType.h"
 
 //This is test function for checking DYYCheckNumbers functionality with 1000 iterations incrementing input numbers
-void DYYTestCheckNumbersAndReturnValue() {
+void DYYTestCheckNumbersAndReturnParentType() {
     int returnValue;
     for (int counter = 0; counter <= 1000; counter++)
     {
         printf ("Test input number: %d", counter);
         printf ("      Function printed output:  ");
-        returnValue = DYYCheckNumbers(counter);                         //function output value is calculated for current counter
+        returnValue = DYYCheckNumbersAndReturnParentType(counter);                         //function output value is calculated for current counter
         printf ("      Function return value:  %d\n", returnValue);     //function output value is printed out 
     
     }

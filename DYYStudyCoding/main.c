@@ -7,10 +7,10 @@
 //
 
 #include <stdio.h>
-//#include "DYYCheckNumbersAndReturnValue.h"
-//#include "DYYTestCheckNumbersAndReturnValue.h"
+//#include "DYYCheckNumbersAndReturnParentsType.h"
+//#include "DYYTestCheckNumbersAndReturnParentsType.h"
 #include "DYYStructureAlignment.h"
-#include "DYYDecimalToBinaryOutputTranslator.h"
+#include "DYYPrintDecimalToBinaryOutput.h"
 #include "DYYTestHumanObjectCreateMethod.h"
 
 #pragma mark -
@@ -22,7 +22,7 @@
 int main(int argc, const char * argv[]) {
 //    DYYReturnStructSize();
 //    DYYReturnStructOffsetValue();
-//    DYYDecimalValueToBinaryOutputTranslator(151, DYYEndianTypeBig);
+//    DYYPrintDecimalValueToBinaryOutput(151, DYYEndianTypeBig);
     DYYTestHumanObjectCreateMethod();
     return 0;
     }

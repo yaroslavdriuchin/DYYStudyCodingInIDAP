@@ -6,7 +6,7 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#include "DYYDecimalToBinaryOutputTranslator.h"
+#include "DYYPrintDecimalToBinaryOutput.h"
 #include <stdbool.h>
 
 #pragma mark -
@@ -25,7 +25,7 @@ void DYYByteToBitTranslator(uint8_t inputByte);
 
 //Decimal to binary translator takes decimal input and convert it to binary form using "DYYEndianTypeLittle" flag for Little Endian representation,
 //"DYYEndianTypeBig" flag for Big Endian 
-void DYYDecimalValueToBinaryOutputTranslator(int value, DYYEndianType inputEndianType) {
+void DYYPrintDecimalValueToBinaryOutput(int value, DYYEndianType inputEndianType) {
     printf("\nInput value in binary order is: ");
     if (DYYEndianTypeLittle == inputEndianType) {
         DYYTypecastValueAndTakePointer(value);

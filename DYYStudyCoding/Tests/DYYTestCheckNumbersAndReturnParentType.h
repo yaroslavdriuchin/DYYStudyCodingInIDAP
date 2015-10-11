@@ -9,6 +9,6 @@
 #ifndef __DYYStudyCoding__DYYTestCheckNumbersAndReturnValue__
 #define __DYYStudyCoding__DYYTestCheckNumbersAndReturnValue__
 
-void DYYTestCheckNumbersAndReturnValue(void);
+void DYYTestCheckNumbersAndReturnParentType(void);
 
 #endif /* defined(__DYYStudyCoding__DYYTestCheckNumbersAndReturnValue__) */

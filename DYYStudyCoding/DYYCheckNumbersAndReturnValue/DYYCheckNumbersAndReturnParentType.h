@@ -17,6 +17,6 @@ typedef enum {
     kDYYParentTypeMamaPapa
 } DYYParentType;
 
-extern DYYParentType DYYCheckNumbers(int);
+extern DYYParentType DYYCheckNumbersAndReturnParentType(int);
 
 #endif /* defined(__DYYStudyCoding__DYYCheckNumbersAndReturnValue__) */
