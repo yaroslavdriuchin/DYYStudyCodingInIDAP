@@ -19,6 +19,7 @@
 static void DYYPersonSetName(DYYPersonData *personDataPointer, char *name);
 static void DYYPersonSetAge(DYYPersonData *personDataPointer, unsigned int age);
 static void DYYPersonSetGender(DYYPersonData *personDataPointer, DYYPersonGender gender);
+char *DYYPersonName(DYYPersonData *personDataObject);
 
 #pragma mark -
 #pragma mark Public Implementations
@@ -26,12 +27,12 @@ static void DYYPersonSetGender(DYYPersonData *personDataPointer, DYYPersonGender
 DYYPersonData *DYYPersonCreateWithNameAgeGender(char *inputPersonName,
                                                     unsigned int inputPersonAge,
                                                     DYYPersonGender inputPersonGender) {
-    DYYPersonData *personDataObject;
-    personDataObject = calloc(1, sizeof(DYYPersonData));
-    assert(NULL != personDataObject);
-    DYYPersonSetName(personDataObject, inputPersonName);
-    DYYPersonSetAge(personDataObject, inputPersonAge);
-    DYYPersonSetGender(personDataObject, inputPersonGender);
+        DYYPersonData *personDataObject;
+        personDataObject = calloc(1, sizeof(DYYPersonData));
+        assert(NULL != personDataObject);
+        DYYPersonSetName(personDataObject, inputPersonName);
+        DYYPersonSetAge(personDataObject, inputPersonAge);
+        DYYPersonSetGender(personDataObject, inputPersonGender);
     
     return personDataObject;
 }

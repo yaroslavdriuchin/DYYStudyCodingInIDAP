@@ -29,12 +29,9 @@ struct DYYPersonDataList {
 
 typedef struct DYYPersonDataList DYYPersonData;
 
-char *DYYPersonName(DYYPersonData *personDataObject);
-
 DYYPersonData *DYYPersonCreateWithNameAgeGender(char *inputPersonName, unsigned int inputPersonAge, DYYPersonGender inputPersonGender);
 
-//void DYYMarryPersonSet(void *personPartner);
-//
-//void DYYDivorsePersonSet(void *personPartner);
-
+//void DYYPersonSetMarriedWithPartner(void *personPartner);
+//void DYYPersonSetDivorcedWithPartner(void *personPartner);
+//void *DYYPersonCreateNewChildWithMotherFather (char *newChildName, DYYPersonGender newChildGender, void *newChildFather, void *newChildMother);
 #endif /* DYYHumanObject_h */

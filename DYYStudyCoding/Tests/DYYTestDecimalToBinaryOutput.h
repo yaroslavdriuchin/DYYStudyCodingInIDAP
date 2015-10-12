@@ -12,4 +12,6 @@
 #include <stdio.h>
 #include "DYYPrintDecimalToBinaryOutput.h"
 
+void DYYTestDecimalToBinaryOutput(void);
+
 #endif /* DYYTestDecimalToBinaryOutput_h */

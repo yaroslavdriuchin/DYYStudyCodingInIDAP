@@ -17,5 +17,6 @@ void DYYTestHumanObjectCreateMethod(void) {
     DYYPersonData *testCreatedObject = DYYPersonCreateWithNameAgeGender(testName, testAge, testGender);
     printf("%s\n", testCreatedObject->_personName);
     printf("%d\n", testCreatedObject->_personAge);
-//    printf("%\n", testCreatedObject->_personGender);
+    if(testGender == DYYPersonGenderMale) printf("Male\n");
+           else printf("Female\n");
 }

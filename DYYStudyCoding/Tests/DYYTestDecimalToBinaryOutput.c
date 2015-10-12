@@ -26,4 +26,8 @@ void DYYTestDecimalToBinaryOutput(void) {
         char inputValueChar = 'N';
         void *inputValuePointerChar = &inputValueChar;
         DYYPrintDecimalValueToBinaryOutput(inputValuePointerChar, sizeof(inputValueChar), DYYEndianTypeLittle);
+//input value is 2734 of Double Type with no defined byte order
+        double inputValueDouble = 35281;
+        void *inputValuePointerDouble = &inputValueDouble;
+        DYYPrintDecimalValueToBinaryOutput(inputValuePointerDouble, sizeof(inputValueDouble), 123);
 }
