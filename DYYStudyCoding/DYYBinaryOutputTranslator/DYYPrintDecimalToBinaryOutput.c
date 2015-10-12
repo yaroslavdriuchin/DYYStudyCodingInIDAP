@@ -17,29 +17,26 @@ static const int kDYYBitMask = 1;
 static
 void DYYByteToBitTranslator(uint8_t inputByte);
 
-#define DYYTypecastValueAndTakePointer(value) void *valuePointer = &value;\
-       uint8_t *bytePointer = ((uint8_t *)valuePointer)
-
 #pragma mark -
-#pragma mark Public Implementations$
+#pragma mark Public Implementations
 
 //Decimal to binary translator takes decimal input and convert it to binary form using "DYYEndianTypeLittle" flag for Little Endian representation,
 //"DYYEndianTypeBig" flag for Big Endian 
-void DYYPrintDecimalValueToBinaryOutput(int value, DYYEndianType inputEndianType) {
+void DYYPrintDecimalValueToBinaryOutput(void *valuePointer, size_t sizeOfValue, DYYEndianType inputEndianTypeFlag) {
     printf("\nInput value in binary order is: ");
-    if (DYYEndianTypeLittle == inputEndianType) {
-        DYYTypecastValueAndTakePointer(value);
-        for (size_t counter = 0; counter < sizeof(value); counter ++) {
+    if (DYYEndianTypeLittle == inputEndianTypeFlag) {
+        uint8_t *bytePointer = ((uint8_t *)valuePointer);
+        for (size_t counter = 0; counter < sizeOfValue; counter ++) {
             uint8_t currentByte = *(bytePointer + counter);
             DYYByteToBitTranslator(currentByte);
             printf (" ");
         }
     }
     else
-    if (DYYEndianTypeBig == inputEndianType) {
-        DYYTypecastValueAndTakePointer(value);
-        for (size_t counter = 1; counter <= sizeof(value); counter ++) {
-            uint8_t currentByte = *(bytePointer + sizeof(value) - counter);
+    if (DYYEndianTypeBig == inputEndianTypeFlag) {
+            uint8_t *bytePointer = ((uint8_t *)valuePointer);
+        for (size_t counter = 1; counter <= sizeOfValue; counter ++) {
+            uint8_t currentByte = *(bytePointer + sizeOfValue - counter);
             DYYByteToBitTranslator(currentByte);
             printf (" ");
             }

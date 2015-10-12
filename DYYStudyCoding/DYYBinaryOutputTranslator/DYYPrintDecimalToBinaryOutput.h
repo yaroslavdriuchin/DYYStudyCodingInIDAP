@@ -18,6 +18,6 @@ typedef enum {
 
 //Decimal to binary translator takes decimal input and convert it to binary form using "littleEndian" flag for Little Endian representation,
 //"bigEndian" flag for Big Endian
-extern void DYYPrintDecimalValueToBinaryOutput(int value, DYYEndianType inputEndianTypeFlag);
+extern void DYYPrintDecimalValueToBinaryOutput(void *value, size_t sizeOfValue, DYYEndianType inputEndianTypeFlag);
 
 #endif /* DYYBinaryOutputTranslator_h */
