@@ -13,10 +13,10 @@
 void DYYTestHumanObjectCreateMethod(void) {
     char *testName = "Ramzan Abdurahmanov";
     unsigned int testAge = 103;
-    DYYPersonGender testGender = DYYPersonGenderMale;
-    DYYPersonData *testCreatedObject = DYYPersonCreateWithNameAgeGender(testName, testAge, testGender);
-    printf("%s\n", testCreatedObject->_personName);
-    printf("%d\n", testCreatedObject->_personAge);
-    if(testGender == DYYPersonGenderMale) printf("Male\n");
+    DYYGender testGender = DYYGenderMale;
+    DYYPerson *testCreatedObject = DYYPersonCreateWithNameAgeGender(testName, testAge, testGender);
+    printf("%s\n", testCreatedObject->_name);
+    printf("%d\n", testCreatedObject->_age);
+    if(testGender == testCreatedObject->_gender) printf("Male\n");
            else printf("Female\n");
 }

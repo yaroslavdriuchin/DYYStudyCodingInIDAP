@@ -23,6 +23,6 @@ int main(int argc, const char * argv[]) {
 //    DYYReturnStructSize();
 //    DYYReturnStructOffsetValue();
 //    DYYTestDecimalToBinaryOutput();
-    DYYTestHumanObjectCreateMethod();
+DYYTestHumanObjectCreateMethod();
     return 0;
     }

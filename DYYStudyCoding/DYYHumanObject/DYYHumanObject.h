@@ -11,27 +11,33 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+//int kDYYChildrenMaxCount = 20;
+
 typedef enum {
-    DYYPersonGenderMale,
-    DYYPersonGenderFemale,
-} DYYPersonGender;
+    DYYGenderMale,
+    DYYGenderFemale,
+} DYYGender;
 
 struct DYYPersonDataList {
-    char *_personName;
-    DYYPersonGender _personGender;
-    void *_personPartner;
-    void *_personParent;
-    void *_personChildrenList[20];
-    uint8_t _personChildrenTotalCount;
-    unsigned int _personAge;
-    bool _personMarriedStatus;
+    char *_name;
+    DYYGender _gender;
+    void *_partner;
+    void *_father;
+    void *_mother;
+    void *_childrenList[20];
+    uint8_t _childrenCount;
+    unsigned int _age;
+    bool _marriedStatus;
+    unsigned int _matureness;
 };
 
-typedef struct DYYPersonDataList DYYPersonData;
+unsigned int DYYMaturenessRank = 0;
 
-DYYPersonData *DYYPersonCreateWithNameAgeGender(char *inputPersonName, unsigned int inputPersonAge, DYYPersonGender inputPersonGender);
+typedef struct DYYPersonDataList DYYPerson;
 
-//void DYYPersonSetMarriedWithPartner(void *personPartner);
+DYYPerson *DYYPersonCreateWithNameAgeGender(char *name, unsigned int age, DYYGender gender);
+
+void DYYPersonSetMarriedWithPartner(void *person, void *personPartner);
 //void DYYPersonSetDivorcedWithPartner(void *personPartner);
 //void *DYYPersonCreateNewChildWithMotherFather (char *newChildName, DYYPersonGender newChildGender, void *newChildFather, void *newChildMother);
 #endif /* DYYHumanObject_h */
