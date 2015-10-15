@@ -28,10 +28,20 @@ void DYYTestHumanObjectCreateMethod(void) {
     uint8_t testAgeThree = 24;
     DYYGender testGenderThree = DYYGenderMale;
     DYYPerson *testCreatedObjectThree = DYYPersonCreateWithNameAgeGender(testNameThree, testAgeThree, testGenderThree);
+    
     bool resultMarry = DYYPersonSetMarried(testCreatedObjectTwo, testCreatedObject);
-    printf("%d\n", resultMarry);
-    printf("%d\n", testCreatedObjectTwo->_retainCount);
-    bool resultDivorce = DYYPersonSetDivorced(testCreatedObjectTwo);
-    printf("%d\n", resultMarry);
-    printf("%d\n", testCreatedObjectTwo->_retainCount);
+    
+    printf("Result of marriage %d\n", resultMarry);
+    printf("Retain count is %d\n", testCreatedObject->_retainCount);
+    printf("%s\n", testCreatedObjectTwo->_name);
+//    bool resultDealloc = DYYPersonDeallocate(testCreatedObject);
+//    printf("Result of deallocation try 1: %d\n", resultDealloc);
+//    printf("%s\n", testCreatedObjectTwo->_name);
+//    bool resultDivorce = DYYPersonSetDivorced(testCreatedObject);
+//    printf("Result of divorce %d\n", resultDivorce);
+    printf("Retain count %d\n", testCreatedObjectTwo->_retainCount);
+    printf("%s\n", testCreatedObjectTwo->_name);
+    bool resultDeallocTwo = DYYPersonDeallocate(testCreatedObject);
+    printf("Result of deallocation try 2: %d\n", resultDeallocTwo);
+    printf("%s\n", testCreatedObjectTwo->_name);
 }

@@ -37,6 +37,6 @@ DYYPerson *DYYPersonCreateWithNameAgeGender(char *name, unsigned int age, DYYGen
 
 bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *personPartner);
 bool DYYPersonSetDivorced(DYYPerson *person);
-void DYYPersonDeallocate(DYYPerson *person);
+bool DYYPersonDeallocate(DYYPerson *person);
 //void *DYYPersonCreateNewChildWithMotherFather (char *newChildName, DYYPersonGender newChildGender, void *newChildFather, void *newChildMother);
 #endif /* DYYHumanObject_h */

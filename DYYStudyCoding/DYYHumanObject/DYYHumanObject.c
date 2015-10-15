@@ -14,7 +14,7 @@
 #pragma mark -
 #pragma mark Private Declarations
 
-#define DYYFreeAllocatedData(inputField) if (NULL != person->inputField) { \
+#define DYYFreeAllocatedData(person, inputField) if (NULL != person->inputField) { \
                     free(person->inputField); \
                     person->inputField = NULL; \
                 }
@@ -53,18 +53,31 @@ DYYPerson *DYYPersonCreateWithNameAgeGender(char *name,
     return personObject;
 }
 
+bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *personPartner) {
+    if (NULL != person && NULL != personPartner && person != personPartner) {
+        DYYPersonSetDivorced(person);
+        if (DYYPersonSetDivorced(person) == true && person->_gender != personPartner->_gender) {
+                personPartner->_partner = person;
+                person->_partner = personPartner;
+                DYYPersonRetain(personPartner);
+        }
+        return true;
+    }
+    else
+        return false;
+}
+
+
 bool DYYPersonSetDivorced(DYYPerson *person) {
     if (NULL != person) {
         DYYPerson *personPartner = person->_partner;
-        if (NULL != personPartner) {
-            free(personPartner->_partner);
-            free(person->_partner);
-            if (DYYPersonRetainCount(person) > DYYPersonRetainCount(personPartner)) {
-                DYYPersonRelease(person);
-            }
-            if (DYYPersonRetainCount(person) == 0) {
-                DYYPersonDeallocate(person);
-            }
+        DYYFreeAllocatedData(person, _partner)
+        DYYFreeAllocatedData(personPartner, _partner)
+        //            free(personPartner->_partner);
+        //            free(person->_partner);
+        DYYPersonRelease(personPartner);
+        if (DYYPersonRetainCount(person) == 0) {
+            DYYPersonDeallocate(person);
         }
         return true;
     }
@@ -72,33 +85,21 @@ bool DYYPersonSetDivorced(DYYPerson *person) {
         return false;
 }
 
-
-bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *personPartner) {
-    if (NULL != person && NULL != personPartner && person != personPartner && person->_gender != personPartner->_gender) {
-        DYYPersonSetDivorced(person);
-        if (DYYPersonSetDivorced(person) == true) {
-                personPartner->_partner = person;
-                person->_partner = personPartner;
-                DYYPersonRetain(person);
+bool DYYPersonDeallocate(DYYPerson *person) {
+    if (DYYPersonRetainCount(person) == 1 && person->_partner == NULL) {
+            DYYPersonSetName(person, NULL);
+            free(person);
+            return true;
         }
-        return true;
-    }
     else
-        return false;
-}
-
-void DYYPersonDeallocate(DYYPerson *person) {
-    if (DYYPersonRetainCount(person) == 0 && person->_partner != 0) {
-    DYYPersonSetName(person, NULL);
-        
-    }
+           return false;
 }
 
 #pragma mark -
 #pragma mark Accessors
 static void DYYPersonSetName(DYYPerson *person, char *name) {
     if (NULL != person) {
-        DYYFreeAllocatedData(_name);
+        DYYFreeAllocatedData(person, _name);
                 if (name) {
                 person->_name = strdup(name);
         }
@@ -156,7 +157,3 @@ unsigned int DYYPersonRetainCount(DYYPerson *person) {
       else
           return UINT_MAX;
 }
-
-//void DYYPersonSetPartner(DYYPerson *person, DYYPerson *personPartner) {
-//    if (NULL != person )
-//}

@@ -298,13 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYYStudyCoding/DYYHumanObject/DYYHumanObject.c"
-            timestampString = "466597038.904848"
+            timestampString = "466610368.184516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "DYYPersonRetain()"
-            landmarkType = "7">
+            startingLineNumber = "144"
+            endingLineNumber = "144">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
