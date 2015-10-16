@@ -33,10 +33,10 @@ struct DYYPersonDataList {
     bool _marriedStatus;
 };
 
-DYYPerson *DYYPersonCreateWithNameAgeGender(char *name, unsigned int age, DYYGender gender);
-
-bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *personPartner);
-bool DYYPersonSetDivorced(DYYPerson *person);
+extern DYYPerson *DYYPersonCreateWithNameAgeGender(char *name, unsigned int age, DYYGender gender);
+extern bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *personPartner);
+extern bool DYYPersonSetDivorced(DYYPerson *person);
 bool DYYPersonDeallocate(DYYPerson *person);
-//void *DYYPersonCreateNewChildWithMotherFather (char *newChildName, DYYPersonGender newChildGender, void *newChildFather, void *newChildMother);
+extern DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGender gender, DYYPerson *father, DYYPerson *mother);
+
 #endif /* DYYHumanObject_h */
