@@ -29,13 +29,13 @@ typedef struct randomOrder {
     short shortData1;
     short shortData2;
     short shortData3;
-    char string[6];
+    char *string;
 } DYYstructRandom;
 
 typedef struct optimizedOrder {
     long long longLongData1;
     double doubleData1;
-    char string[6];
+    char *string;
     float floatData1;
     int intData1;
     short shortData1;
@@ -52,7 +52,7 @@ typedef struct optimizedOrder {
 typedef struct optimizedBoolsUnionOrder {
     double doubleData1;
     long long longLongData1;
-    char string[6];
+    char *string;
     float floatData1;
     int intData1;
     short shortData1;
@@ -104,11 +104,11 @@ void DYYReturnStructOffsetValue() {
     DYYMacroStructRandomOffset(shortData1);
     DYYMacroStructRandomOffset(shortData2);
     DYYMacroStructRandomOffset(shortData3);
-    DYYMacroStructRandomOffset(string [6]);
+    DYYMacroStructRandomOffset(string);
     printf("\n");
     DYYMacroStructOptimizedOffset(longLongData1);
     DYYMacroStructOptimizedOffset(doubleData1);
-    DYYMacroStructOptimizedOffset(string[6]);
+    DYYMacroStructOptimizedOffset(string);
     DYYMacroStructOptimizedOffset(floatData1);
     DYYMacroStructOptimizedOffset(intData1);
     DYYMacroStructOptimizedOffset(shortData1);
@@ -123,7 +123,7 @@ void DYYReturnStructOffsetValue() {
     printf("\n");
     DYYMacroStructOptimizedBoolsOffset(doubleData1);
     DYYMacroStructOptimizedBoolsOffset(longLongData1);
-    DYYMacroStructOptimizedBoolsOffset(string[6]);
+    DYYMacroStructOptimizedBoolsOffset(string);
     DYYMacroStructOptimizedBoolsOffset(floatData1);
     DYYMacroStructOptimizedBoolsOffset(intData1);
     DYYMacroStructOptimizedBoolsOffset(shortData1);

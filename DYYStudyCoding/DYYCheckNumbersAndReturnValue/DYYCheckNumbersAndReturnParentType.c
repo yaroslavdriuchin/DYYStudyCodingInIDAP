@@ -11,34 +11,35 @@
 #pragma mark -
 #pragma mark Private Declarations
 
-const int kCheckNumberOne = 15;
-const int kCheckNumberTwo = 5;
-const int kCheckNumberThree = 3;
+static const int kCheckNumberOne   = 15;
+static const int kCheckNumberTwo   =  5;
+static const int kCheckNumberThree =  3;
 
 #pragma mark -
 #pragma mark Private Implementations
 
-DYYParentType DYYCheckNumbersAndReturnParentType(int inputNumber)
-{
+DYYParentType DYYCheckNumbersAndReturnParentType(int inputNumber) {
+
     DYYParentType outputValue = kDYYParentTypeUndefined;
+    
     if (inputNumber == 0) {
         return outputValue;
     }
     else
-    if (0 == inputNumber % kCheckNumberOne) {
-        printf("MAMAPAPA");
-        outputValue = kDYYParentTypeMamaPapa;
+        if (0 == inputNumber % kCheckNumberOne) {
+            printf("MAMAPAPA");
+            outputValue = kDYYParentTypeMamaPapa;
         }
-    else
-    if (0 == inputNumber % kCheckNumberTwo) {
-        printf("PAPA");
-        outputValue = kDYYParentTypePapa;
-        }
-    else
-    if (0 == inputNumber % kCheckNumberThree) {
-        printf("MAMA");
-        outputValue = kDYYParentTypeMama;
-    
-    }
-        return outputValue;
+        else
+            if (0 == inputNumber % kCheckNumberTwo) {
+                printf("PAPA");
+                outputValue = kDYYParentTypePapa;
+            }
+            else
+                if (0 == inputNumber % kCheckNumberThree) {
+                    printf("MAMA");
+                    outputValue = kDYYParentTypeMama;
+                    
+                }
+    return outputValue;
 }

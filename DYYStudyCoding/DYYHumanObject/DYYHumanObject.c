@@ -29,6 +29,10 @@ uint8_t DYYPersonAge(DYYPerson *person);
 static
 void DYYPersonSetGender(DYYPerson *person, DYYGender gender);
 static
+bool DYYPersonSetPartner(DYYPerson *person, DYYPerson *partner);
+static
+void *DYYPersonPartner(DYYPerson *person);
+static
 DYYGender DYYPersonGender(DYYPerson *person);
 static
 char *DYYPersonName(DYYPerson *person);
@@ -62,36 +66,38 @@ DYYPerson *DYYPersonCreateWithNameAgeGender(char *name,
 bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *partner) {
     if (NULL != person
         && NULL != partner
-        && person->_age > partner->_age
-        && person->_gender != partner->_gender) {
+        && DYYPersonAge(person) > DYYPersonAge(partner)
+        && DYYPersonGender(person) != DYYPersonGender(partner)) {
                 DYYPersonSetDivorced(person);
                 DYYPersonSetDivorced(partner);
-                partner->_partner = person;
+                DYYPersonSetPartner(partner, person);
                 partner->_marriedStatus = true;
-                person->_partner = partner;
+                DYYPersonSetPartner(person, partner);
                 person->_marriedStatus = true;
                 DYYPersonRetain(partner);
+        
                 return true;
                 }
-         else {
-                return false;
-              }
+                 else {
+                        return false;
+                      }
 }
 
 bool DYYPersonSetDivorced(DYYPerson *person) {
         DYYPerson *partner = person->_partner;
         if (NULL != person
             && NULL != partner
-            && person->_partner != NULL
-            && person->_age > partner->_age) {
+            && NULL != DYYPersonPartner(person)
+            && DYYPersonAge(person) > DYYPersonAge(partner)) {
             DYYFreeAllocatedData(person, _partner);
             person->_marriedStatus = false;
             DYYPersonRelease(partner);
+            
             return true;
             }
-            else {
-                   return false;
-                  }
+                else {
+                       return false;
+                      }
 }
 
 bool DYYPersonDeallocate(DYYPerson *person) {
@@ -101,18 +107,19 @@ bool DYYPersonDeallocate(DYYPerson *person) {
             DYYPersonSetName(person, NULL);
             DYYPersonSetDivorced(person);
             free(person);
+        
             return true;
         }
-        else {
-               return false;
-             }
+            else {
+                   return false;
+                 }
 }
 
 DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGender gender, DYYPerson *father, DYYPerson *mother) {
     if (NULL != father
         && NULL != mother
-        && father->_gender == DYYGenderMale
-        && mother->_gender == DYYGenderFemale) {
+        && DYYPersonGender(father) == DYYGenderMale
+        && DYYPersonGender(mother) == DYYGenderFemale) {
             DYYPerson *child = DYYPersonCreateWithNameAgeGender(name, age, gender);
             DYYPersonSetAsParent(father, child);
             DYYPersonSetAsParent(mother, child);
@@ -120,14 +127,15 @@ DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGen
             child->_mother = mother;
             return child;
     }
-    else  {
-        return NULL;
-          }
+        else  {
+               return NULL;
+              }
 }
 
 #pragma mark -
 #pragma mark Accessors
-static void DYYPersonSetName(DYYPerson *person, char *name) {
+
+void DYYPersonSetName(DYYPerson *person, char *name) {
     if (NULL != person) {
         DYYFreeAllocatedData(person, _name);
                 if (name) {
@@ -140,7 +148,7 @@ char *DYYPersonName(DYYPerson *person) {
     return NULL != person ? person->_name : NULL;
 }
 
-static void DYYPersonSetAge(DYYPerson *person, uint8_t age) {
+void DYYPersonSetAge(DYYPerson *person, uint8_t age) {
     if (NULL != person) {
             person->_age = age;
     }
@@ -150,7 +158,7 @@ uint8_t DYYPersonAge(DYYPerson *person) {
     return NULL != person ? person->_age : 0;
 }
 
-static void DYYPersonSetGender(DYYPerson *person, DYYGender gender) {
+void DYYPersonSetGender(DYYPerson *person, DYYGender gender) {
     if (NULL != person) {
             person->_gender = gender;
     }
@@ -158,6 +166,28 @@ static void DYYPersonSetGender(DYYPerson *person, DYYGender gender) {
 
 DYYGender DYYPersonGender(DYYPerson *person) {
     return NULL != person ? person->_gender : 0;
+}
+
+bool DYYPersonSetPartner(DYYPerson *person, DYYPerson *partner) {
+    if (person != NULL && partner != NULL) {
+    person->_partner = partner;
+        
+    return true;
+    }
+      else  {
+             return false;
+            }
+}
+
+void *DYYPersonPartner(DYYPerson *person) {
+    if (NULL != person) {
+        DYYPerson *partner = person->_partner;
+        
+        return partner;
+        }
+          else {
+                return NULL;
+               }
 }
 
 void DYYPersonRetain(DYYPerson *person) {
@@ -176,10 +206,12 @@ void DYYPersonRelease(DYYPerson *person) {
 unsigned int DYYPersonRetainCount(DYYPerson *person) {
     if (NULL!= person) {
         unsigned int retainCount = person->_retainCount;
+        
         return retainCount;
         }
-      else
-          return UINT_MAX;
+          else  {
+                 return UINT_MAX;
+                }
 }
 
 void DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {

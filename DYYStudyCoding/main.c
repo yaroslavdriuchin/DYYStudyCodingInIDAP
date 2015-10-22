@@ -7,11 +7,11 @@
 //
 
 #include <stdio.h>
-//#include "DYYCheckNumbersAndReturnParentsType.h"
-//#include "DYYTestCheckNumbersAndReturnParentsType.h"
+//#include "DYYCheckNumbersAndReturnParentType.h"
+//#include "DYYTestCheckNumbersAndReturnParentType.h"
 //#include "DYYStructureAlignment.h"
-//#include "DYYTestDecimalToBinaryOutput.h"
-#include "DYYTestHumanObjectCreateMethod.h"
+#include "DYYTestDecimalToBinaryOutput.h"
+//#include "DYYTestHumanObjectCreateMethod.h"
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -22,7 +22,8 @@
 int main(int argc, const char * argv[]) {
 //    DYYReturnStructSize();
 //    DYYReturnStructOffsetValue();
+//    DYYTestCheckNumbersAndReturnParentType();
 //    DYYTestDecimalToBinaryOutput();
-DYYTestHumanObjectCreateMethod();
+    DYYTestHumanObjectCreateMethod();
     return 0;
     }
