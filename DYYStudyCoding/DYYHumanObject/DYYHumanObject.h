@@ -34,9 +34,15 @@ struct DYYPersonDataList {
 };
 
 extern DYYPerson *DYYPersonCreateWithNameAgeGender(char *name, unsigned int age, DYYGender gender);
+
 extern bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *personPartner);
+
 extern bool DYYPersonSetDivorced(DYYPerson *person);
-bool DYYPersonDeallocate(DYYPerson *person);
+
+bool __DYYPersonDeallocate(DYYPerson *person);
+
 extern DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGender gender, DYYPerson *father, DYYPerson *mother);
+
+extern bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother, DYYPerson *child);
 
 #endif /* DYYHumanObject_h */

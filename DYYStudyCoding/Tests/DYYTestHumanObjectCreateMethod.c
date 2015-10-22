@@ -20,13 +20,13 @@ void DYYTestHumanObjectCreateMethod(void) {
     printf("Result of marriage %d\n", resultMarry);
     printf("Retain count is %d\n", testObjectMalvina->_retainCount);
 //trying to deallocate object 1, expected 0 output for attempt
-    bool resultDealloc = DYYPersonDeallocate(testObjectRamzan);
+    bool resultDealloc = __DYYPersonDeallocate(testObjectRamzan);
     printf("Result of deallocation try 1: %d\n", resultDealloc);
 //divorcing object 1 with its current partner
     bool resultDivorce = DYYPersonSetDivorced(testObjectRamzan);
     printf("Result of divorce %d\n", resultDivorce);
     printf("Retain count %d\n", testObjectMalvina->_retainCount);
-//    bool resultDeallocTwo = DYYPersonDeallocate(testObjectVitalik);
+//    bool resultDeallocTwo = __DYYPersonDeallocate(testObjectVitalik);
 //    printf("Result of deallocation try 2: %d\n", resultDeallocTwo);
     
 //creating new child of objects with different genders and checking record
