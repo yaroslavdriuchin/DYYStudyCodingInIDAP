@@ -24,13 +24,7 @@ static
 void DYYPersonSetName(DYYPerson *person, char *name);
 
 static
-char *DYYPersonName(DYYPerson *person);
-
-static
 void DYYPersonSetAge(DYYPerson *person, uint8_t age);
-
-static
-uint8_t DYYPersonAge(DYYPerson *person);
 
 static
 void DYYPersonSetGender(DYYPerson *person, DYYGender gender);
@@ -39,22 +33,10 @@ static
 bool DYYPersonSetPartner(DYYPerson *person, DYYPerson *partner);
 
 static
-void *DYYPersonPartner(DYYPerson *person);
-
-static
-DYYGender DYYPersonGender(DYYPerson *person);
-
-static
-char *DYYPersonName(DYYPerson *person);
-
-static
 void DYYPersonRetain(DYYPerson *person);
 
 static
 void DYYPersonRelease(DYYPerson *person);
-
-static
-unsigned int DYYPersonRetainCount(DYYPerson *person);
 
 static
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child);
@@ -64,9 +46,6 @@ bool DYYPersonSetParent(DYYPerson *child, DYYPerson *parent);
 
 static
 bool DYYPersonSetMarriedStatus(DYYPerson *person, bool marriedStatus);
-
-static
-uint8_t DYYPersonCurrentChildrenCount(DYYPerson *parent);
 
 static
 void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child);
@@ -114,7 +93,7 @@ DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGen
         DYYPersonSetAsParent(father, child);
         DYYPersonSetAsParent(mother, child);
         father->_childrenCount = DYYPersonCurrentChildrenCount(father);
-        mother->_childrenCount = DYYPersonCurrentChildrenCount(father);
+        mother->_childrenCount = DYYPersonCurrentChildrenCount(mother);
         child->_father = father;
         child->_mother = mother;
         return child;

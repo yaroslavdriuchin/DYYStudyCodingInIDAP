@@ -25,5 +25,6 @@ int main(int argc, const char * argv[]) {
 //    DYYTestCheckNumbersAndReturnParentType();
 //    DYYTestDecimalToBinaryOutput();
     DYYTestHumanObjectCreateMethod();
+    DYYTestHumanObjectMethod();
     return 0;
     }

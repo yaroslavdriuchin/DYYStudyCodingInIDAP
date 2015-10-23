@@ -45,4 +45,16 @@ extern bool DYYPersonSetDivorced(DYYPerson *person);
 
 extern bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother, DYYPerson *child);
 
+char *DYYPersonName(DYYPerson *person);
+
+uint8_t DYYPersonAge(DYYPerson *person);
+
+DYYGender DYYPersonGender(DYYPerson *person);
+
+unsigned int DYYPersonRetainCount(DYYPerson *person);
+
+void *DYYPersonPartner(DYYPerson *person);
+
+uint8_t DYYPersonCurrentChildrenCount(DYYPerson *parent);
+
 #endif /* DYYHumanObject_h */
