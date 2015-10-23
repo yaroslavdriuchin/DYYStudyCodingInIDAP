@@ -10,8 +10,8 @@
 //#include "DYYCheckNumbersAndReturnParentType.h"
 //#include "DYYTestCheckNumbersAndReturnParentType.h"
 //#include "DYYStructureAlignment.h"
-#include "DYYTestDecimalToBinaryOutput.h"
-//#include "DYYTestHumanObjectCreateMethod.h"
+//#include "DYYTestDecimalToBinaryOutput.h"
+#include "DYYTestHumanObjectCreateMethod.h"
 
 #pragma mark -
 #pragma mark Private Declarations

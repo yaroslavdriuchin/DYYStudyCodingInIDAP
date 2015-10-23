@@ -60,6 +60,9 @@ static
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child);
 
 static
+bool DYYPersonSetMarriedStatus(DYYPerson *person, bool marriedStatus);
+
+static
 void DYYPersonRemoveChild (DYYPerson *parent, DYYPerson *child);
 
 static
@@ -67,7 +70,21 @@ uint8_t DYYPersonCurrentChildrenCount(DYYPerson *parent);
 
 
 #pragma mark -
-#pragma mark Public Implementations
+#pragma mark Initializations and Deallocators
+
+bool __DYYPersonDeallocate(DYYPerson *person) {
+    if (person != NULL
+        && DYYPersonRetainCount(person) <= 1
+        && person->_partner == NULL) {
+        DYYPersonSetName(person, NULL);
+        DYYPersonSetDivorced(person);
+        free(person);
+        
+        return true;
+    }  else   {
+        return false;
+    }
+}
 
 DYYPerson *DYYPersonCreateWithNameAgeGender(char *name,
                                                     unsigned int age,
@@ -84,75 +101,27 @@ DYYPerson *DYYPersonCreateWithNameAgeGender(char *name,
     return personObject;
 }
 
-bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *partner) {
-    if (DYYCheckTwoObjectsNULL(person, partner)
-        && DYYPersonAge(person) > DYYPersonAge(partner)
-        && DYYPersonGender(person) != DYYPersonGender(partner)) {
-                DYYPersonSetDivorced(person);
-                DYYPersonSetDivorced(partner);
-                DYYPersonSetPartner(partner, person);
-                partner->_marriedStatus = true;
-                DYYPersonSetPartner(person, partner);
-                person->_marriedStatus  = true;
-                DYYPersonRetain(partner);
-        
-                return true;
-                }
-                 else {
-                        return false;
-                      }
-}
-
-bool DYYPersonSetDivorced(DYYPerson *person) {
-        DYYPerson *partner = person->_partner;
-        if (DYYCheckTwoObjectsNULL(person, partner)
-            && NULL != DYYPersonPartner(person)
-            && DYYPersonAge(person) > DYYPersonAge(partner)) {
-            DYYFreeAllocatedData(person, _partner);
-            person->_marriedStatus = false;
-            DYYPersonRelease(partner);
-            
-            return true;
-            }
-                else {
-                       return false;
-                      }
-}
-
-bool __DYYPersonDeallocate(DYYPerson *person) {
-    if (person != NULL
-        && DYYPersonRetainCount(person) <= 1 &&
-        person->_partner == NULL) {
-            DYYPersonSetName(person, NULL);
-            DYYPersonSetDivorced(person);
-            free(person);
-        
-            return true;
-        }
-            else {
-                   return false;
-                 }
-}
 
 DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGender gender, DYYPerson *father, DYYPerson *mother) {
     if (DYYCheckTwoObjectsNULL(father, mother)
-        && DYYPersonGender(father) == DYYGenderMale
-        && DYYPersonGender(mother) == DYYGenderFemale
+        && DYYPersonGender(father) == kDYYGenderMale
+        && DYYPersonGender(mother) == kDYYGenderFemale
         && DYYPersonCurrentChildrenCount(mother) < kDYYChildrenMaxCount
         && DYYPersonCurrentChildrenCount(father) < kDYYChildrenMaxCount) {
-                DYYPerson *child = DYYPersonCreateWithNameAgeGender(name, age, gender);
-                DYYPersonSetAsParent(father, child);
-                DYYPersonSetAsParent(mother, child);
-                father->_childrenCount = DYYPersonCurrentChildrenCount(father);
-                mother->_childrenCount = DYYPersonCurrentChildrenCount(father);
-                child->_father = father;
-                child->_mother = mother;
-                return child;
+        DYYPerson *child = DYYPersonCreateWithNameAgeGender(name, age, gender);
+        DYYPersonSetAsParent(father, child);
+        DYYPersonSetAsParent(mother, child);
+        father->_childrenCount = DYYPersonCurrentChildrenCount(father);
+        mother->_childrenCount = DYYPersonCurrentChildrenCount(father);
+        child->_father = father;
+        child->_mother = mother;
+        return child;
     }
-        else  {
-                return NULL;
-              }
+    else  {
+        return NULL;
+    }
 }
+
 
 #pragma mark -
 #pragma mark Accessors
@@ -214,13 +183,13 @@ void *DYYPersonPartner(DYYPerson *person) {
 
 void DYYPersonRetain(DYYPerson *person) {
     if (NULL != person) {
-        person->_retainCount = person->_retainCount++;
+        person->_retainCount = person->_retainCount + 1;
     }
 }
 
 void DYYPersonRelease(DYYPerson *person) {
     if (NULL != person) {
-        person->_retainCount = person->_retainCount--;
+        person->_retainCount = person->_retainCount - 1;
         if (person->_retainCount == 0) {
               __DYYPersonDeallocate(person);
         }
@@ -252,11 +221,21 @@ bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {
         
         return true;
     }
-    else  {
-           return false;
-          }
+       else  {
+               return false;
+             }
 }
 
+bool DYYPersonSetMarriedStatus(DYYPerson *person, bool marriedStatus) {
+    if (NULL != person) {
+        person->_marriedStatus = marriedStatus;
+        
+        return true;
+    }  else  {
+              return false;
+             }
+}
+    
 uint8_t DYYPersonCurrentChildrenCount(DYYPerson *parent) {
     uint8_t childrenCount = 0;
     if (parent != NULL) {
@@ -268,6 +247,50 @@ uint8_t DYYPersonCurrentChildrenCount(DYYPerson *parent) {
         
         } return childrenCount;
 }
+
+#pragma mark -
+#pragma mark Public Implementations
+
+
+bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *partner) {
+    if (DYYCheckTwoObjectsNULL(person, partner)
+        && DYYPersonAge(person) > DYYPersonAge(partner)
+        && DYYPersonGender(person) != DYYPersonGender(partner)) {
+        DYYPersonSetDivorced(person);
+        DYYPersonSetPartner(partner, person);
+        DYYPersonSetMarriedStatus(partner, true);
+        DYYPersonSetPartner(person, partner);
+        DYYPersonSetMarriedStatus(person, true);
+        DYYPersonRetain(partner);
+        
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool DYYPersonSetDivorced(DYYPerson *person) {
+    DYYPerson *partner = person->_partner;
+    
+    if (DYYCheckTwoObjectsNULL(person, partner)
+        && NULL != DYYPersonPartner(person)
+        && DYYPersonAge(person) > DYYPersonAge(partner)) {
+        DYYPersonSetMarriedStatus(partner, false);
+        DYYFreeAllocatedData(partner, _partner);
+        DYYPersonSetMarriedStatus(person, false);
+        DYYFreeAllocatedData(person, _partner);
+        DYYPersonRelease(partner);
+        
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+#pragma mark -
+#pragma mark Private Implementations
 
 //bool DYYPersonRemoveChildOfFatherAndMother (DYYPerson *father, DYYPerson *mother, DYYPerson *child) {
 //          if (DYYCheckTwoObjectsNULL(father, mother)

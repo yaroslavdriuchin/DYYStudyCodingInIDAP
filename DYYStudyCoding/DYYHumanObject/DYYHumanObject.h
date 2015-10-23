@@ -14,8 +14,8 @@
 static const uint8_t kDYYChildrenMaxCount = 20;
 
 typedef enum {
-    DYYGenderMale,
-    DYYGenderFemale,
+    kDYYGenderMale,
+    kDYYGenderFemale,
 } DYYGender;
 
 typedef struct DYYPersonDataList DYYPerson;
@@ -33,15 +33,15 @@ struct DYYPersonDataList {
     bool _marriedStatus;
 };
 
+bool __DYYPersonDeallocate(DYYPerson *person);
+
 extern DYYPerson *DYYPersonCreateWithNameAgeGender(char *name, unsigned int age, DYYGender gender);
+
+extern DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGender gender, DYYPerson *father, DYYPerson *mother);
 
 extern bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *personPartner);
 
 extern bool DYYPersonSetDivorced(DYYPerson *person);
-
-bool __DYYPersonDeallocate(DYYPerson *person);
-
-extern DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGender gender, DYYPerson *father, DYYPerson *mother);
 
 extern bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother, DYYPerson *child);
 

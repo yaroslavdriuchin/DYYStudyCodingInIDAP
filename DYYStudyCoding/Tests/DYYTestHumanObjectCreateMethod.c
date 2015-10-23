@@ -12,9 +12,9 @@
 
 void DYYTestHumanObjectCreateMethod(void) {
 //creating 3 test objects of different gender and parameters
-    DYYPerson *testObjectRamzan = DYYPersonCreateWithNameAgeGender("Ramzan Abdurahmanov", 104, DYYGenderMale);
-    DYYPerson *testObjectMalvina = DYYPersonCreateWithNameAgeGender("Malvina Frankenstein", 16, DYYGenderFemale);
-    DYYPerson *testObjectVitalik = DYYPersonCreateWithNameAgeGender("Vitalik S Shulyavki", 24, DYYGenderMale);
+    DYYPerson *testObjectRamzan = DYYPersonCreateWithNameAgeGender("Ramzan Abdurahmanov", 104, kDYYGenderMale);
+    DYYPerson *testObjectMalvina = DYYPersonCreateWithNameAgeGender("Malvina Frankenstein", 16, kDYYGenderFemale);
+    DYYPerson *testObjectVitalik = DYYPersonCreateWithNameAgeGender("Vitalik S Shulyavki", 24, kDYYGenderMale);
 //marry 2 objects and checking method output of success and retain count of weak object
     bool resultMarry = DYYPersonSetMarried(testObjectRamzan, testObjectMalvina);
     printf("Result of marriage %d\n", resultMarry);
@@ -32,7 +32,7 @@ void DYYTestHumanObjectCreateMethod(void) {
 //creating new child of objects with different genders and checking record
     DYYPerson *testObjectBob = DYYPersonCreateChildOfFatherAndMother("Gubka Bob",
                                                                       1,
-                                                                      DYYGenderMale,
+                                                                      kDYYGenderMale,
                                                                       testObjectVitalik,
                                                                       testObjectMalvina);
     printf("%s\n", testObjectBob->_name);

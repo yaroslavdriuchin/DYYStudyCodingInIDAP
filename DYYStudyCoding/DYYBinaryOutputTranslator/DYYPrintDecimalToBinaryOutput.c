@@ -34,9 +34,7 @@ void DYYPrintDecimalValueToBinaryOutput(void *valuePointer, size_t sizeOfValue, 
                         printf (" ");
                 
                         }
-    }
-        else
-            if (DYYEndianTypeBig == inputEndianTypeFlag) {
+    }  else if  (DYYEndianTypeBig == inputEndianTypeFlag) {
                 printf("\nInput value binary output in Big Endian byte order is: ");
                 for (size_t counter = 1; counter <= sizeOfValue; counter ++) {
                             uint8_t currentByte = *(bytePointer + sizeOfValue - counter);
@@ -44,8 +42,7 @@ void DYYPrintDecimalValueToBinaryOutput(void *valuePointer, size_t sizeOfValue, 
                             printf (" ");
                     
                             }
-            }
-                else  {
+            }   else  {
                       printf("\n\nPlease specify Endian type of output value\n");
                       }
 }
