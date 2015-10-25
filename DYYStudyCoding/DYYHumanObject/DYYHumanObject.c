@@ -18,6 +18,7 @@
                     free(person->inputField); \
                     person->inputField = NULL; \
                 }
+
 #define DYYCheckTwoObjectsNULL(objectOne, objectTwo) NULL != objectOne && NULL != objectTwo
 
 static
@@ -53,17 +54,12 @@ void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child);
 #pragma mark -
 #pragma mark Initializations and Deallocators
 
-bool __DYYPersonDeallocate(DYYPerson *person) {
+void __DYYPersonDeallocate(DYYPerson *person) {
     if (person != NULL
-        && DYYPersonRetainCount(person) <= 1
-        && person->_partner == NULL) {
+        && DYYPersonRetainCount(person) <= 1) {
         DYYPersonSetName(person, NULL);
         DYYPersonSetDivorced(person);
         free(person);
-        
-        return true;
-    }  else   {
-        return false;
     }
 }
 
@@ -71,8 +67,7 @@ DYYPerson *DYYPersonCreateWithNameAgeGender(char *name,
                                                     unsigned int age,
                                                     DYYGender gender)
 {
-        DYYPerson *personObject;
-        personObject = calloc(1, sizeof(DYYPerson));
+        DYYPerson *personObject = calloc(1, sizeof(DYYPerson));
         assert(NULL != personObject);
         DYYPersonSetName(personObject, name);
         DYYPersonSetAge(personObject, age);
@@ -88,14 +83,13 @@ DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGen
         && DYYPersonGender(father) == kDYYGenderMale
         && DYYPersonGender(mother) == kDYYGenderFemale
         && DYYPersonCurrentChildrenCount(mother) < kDYYChildrenMaxCount
-        && DYYPersonCurrentChildrenCount(father) < kDYYChildrenMaxCount) {
+        && DYYPersonCurrentChildrenCount(father) < kDYYChildrenMaxCount)
+    {
         DYYPerson *child = DYYPersonCreateWithNameAgeGender(name, age, gender);
         DYYPersonSetAsParent(father, child);
         DYYPersonSetAsParent(mother, child);
-        father->_childrenCount = DYYPersonCurrentChildrenCount(father);
-        mother->_childrenCount = DYYPersonCurrentChildrenCount(mother);
-        child->_father = father;
-        child->_mother = mother;
+        DYYPersonSetParent(child, father);
+        DYYPersonSetParent(child, mother);
         return child;
     }
     else  {
@@ -141,25 +135,22 @@ DYYGender DYYPersonGender(DYYPerson *person) {
 }
 
 bool DYYPersonSetPartner(DYYPerson *person, DYYPerson *partner) {
-    if (DYYCheckTwoObjectsNULL(person, partner)) {
+    if (DYYCheckTwoObjectsNULL(person, partner) && person != partner) {
     person->_partner = partner;
         
     return true;
     }
-      else  {
-             return false;
-            }
+    
+      return false;
 }
 
 void *DYYPersonPartner(DYYPerson *person) {
     if (NULL != person) {
-        DYYPerson *partner = person->_partner;
-        
-        return partner;
-        }
-          else {
-                return NULL;
-               }
+           return person->_partner;
+           }
+
+    return NULL;
+
 }
 
 void DYYPersonRetain(DYYPerson *person) {
@@ -170,7 +161,7 @@ void DYYPersonRetain(DYYPerson *person) {
 
 void DYYPersonRelease(DYYPerson *person) {
     if (NULL != person) {
-        person->_retainCount = person->_retainCount - 1;
+        person->_retainCount--;
         if (person->_retainCount == 0) {
               __DYYPersonDeallocate(person);
         }
@@ -179,14 +170,13 @@ void DYYPersonRelease(DYYPerson *person) {
 }
 
 unsigned int DYYPersonRetainCount(DYYPerson *person) {
-    if (NULL!= person) {
+    if (NULL != person) {
         unsigned int retainCount = person->_retainCount;
         
         return retainCount;
         }
-          else  {
-                 return UINT_MAX;
-                }
+    
+    return UINT_MAX;
 }
 
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {
@@ -194,6 +184,7 @@ bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {
     for (uint8_t counter = 0; counter < kDYYChildrenMaxCount; counter++) {
         if (NULL == parent->_childrenList[counter]) {
                     parent->_childrenList[counter] = child;
+                    parent->_childrenCount = parent->_childrenCount++;
                     DYYPersonRetain(child);
             
                     break;
@@ -214,15 +205,17 @@ bool DYYPersonSetParent(DYYPerson *child, DYYPerson *parent) {
         }   else  {
                   child->_mother = parent;
                   }
-        if (NULL == parent) {
+        
+    if (NULL == parent) {
             child->_father = NULL;
             child->_mother = NULL;
         }
+        
         return true;
     }
-    else   {
-            return false;
-           }
+    
+        return false;
+
 }
 
 bool DYYPersonSetMarriedStatus(DYYPerson *person, bool marriedStatus) {
@@ -270,7 +263,7 @@ bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *partner) {
 }
 
 bool DYYPersonSetDivorced(DYYPerson *person) {
-    DYYPerson *partner = person->_partner;
+    DYYPerson *partner = DYYPersonPartner(person);
     
     if (DYYCheckTwoObjectsNULL(person, partner)
         && NULL != DYYPersonPartner(person)
@@ -294,8 +287,6 @@ bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother,
               && (father != child || mother != child || mother != father)) {
                       DYYPersonSearchAndRemoveChild(father, child);
                       DYYPersonSearchAndRemoveChild(mother, child);
-                      father->_childrenCount = DYYPersonCurrentChildrenCount(father);
-                      father->_childrenCount = DYYPersonCurrentChildrenCount(mother);
                       DYYPersonSetParent(child, NULL);
                       return true;
           } else     {
@@ -310,6 +301,7 @@ void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child) {
     for (uint8_t counter = 0; counter < kDYYChildrenMaxCount; counter++) {
         if (child == parent->_childrenList[counter]) {
             parent->_childrenList[counter] = NULL;
+            parent->_childrenCount = parent->_childrenCount--;
             DYYPersonRelease(child);
             
             break;

@@ -33,12 +33,11 @@ void DYYTestHumanObjectMethod(void) {
     DYYPerson *testObjectMalvina = DYYPersonCreateWithNameAgeGender("Malvina Frankenstein", 16, kDYYGenderFemale);
     DYYPerson *testObjectVitalik = DYYPersonCreateWithNameAgeGender("Vitalik S Shulyavki", 24, kDYYGenderMale);
 //marry 2 objects and checking method output of success and retain count of weak object
-    bool resultMarry = DYYPersonSetMarried(testObjectRamzan, testObjectMalvina);
-    printf("Result of marriage %d\n", resultMarry);
+    printf("Result of marriage %d\n", DYYPersonSetMarried(testObjectRamzan, testObjectMalvina));
     printf("Retain count is %d\n", DYYPersonRetainCount(testObjectMalvina));
 //trying to deallocate object 1, expected 0 output for attempt
-    bool resultDealloc = __DYYPersonDeallocate(testObjectRamzan);
-    printf("Result of deallocation try 1: %d\n", resultDealloc);
+//    void resultDealloc = __DYYPersonDeallocate(testObjectRamzan);
+//    printf("Result of deallocation try 1: %d\n", resultDealloc);
 //divorcing object 1 with its current partner
     bool resultDivorce = DYYPersonSetDivorced(testObjectRamzan);
     printf("Result of divorce %d\n", resultDivorce);
@@ -50,8 +49,7 @@ void DYYTestHumanObjectMethod(void) {
                                                                       kDYYGenderMale,
                                                                       testObjectVitalik,
                                                                       testObjectMalvina);
-    char *gubkaName = DYYPersonName(testObjectBob);
-    printf("Name of the child is %s\n", gubkaName);
-    printf("Children count of parent is: %d\n", DYYPersonCurrentChildrenCount(testObjectVitalik));
+    printf("Name of the child is %s\n", DYYPersonName(testObjectBob));
+    printf("Children count of parent is: %d\n", DYYPersonCurrentChildrenCount(testObjectMalvina));
     
 }

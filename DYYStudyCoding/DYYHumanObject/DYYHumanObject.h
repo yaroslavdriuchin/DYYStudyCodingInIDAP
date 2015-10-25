@@ -22,18 +22,18 @@ typedef struct DYYPersonDataList DYYPerson;
 
 struct DYYPersonDataList {
     char *_name;
-    DYYGender _gender;
     DYYPerson *_partner;
     DYYPerson *_father;
     DYYPerson *_mother;
     DYYPerson *_childrenList[kDYYChildrenMaxCount];
     uint8_t _childrenCount;
     uint8_t _age;
+    DYYGender _gender;
     unsigned int _retainCount;
     bool _marriedStatus;
 };
 
-bool __DYYPersonDeallocate(DYYPerson *person);
+extern void __DYYPersonDeallocate(DYYPerson *person);
 
 extern DYYPerson *DYYPersonCreateWithNameAgeGender(char *name, unsigned int age, DYYGender gender);
 
@@ -45,16 +45,16 @@ extern bool DYYPersonSetDivorced(DYYPerson *person);
 
 extern bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother, DYYPerson *child);
 
-char *DYYPersonName(DYYPerson *person);
+extern char *DYYPersonName(DYYPerson *person);
 
-uint8_t DYYPersonAge(DYYPerson *person);
+extern uint8_t DYYPersonAge(DYYPerson *person);
 
-DYYGender DYYPersonGender(DYYPerson *person);
+extern DYYGender DYYPersonGender(DYYPerson *person);
 
-unsigned int DYYPersonRetainCount(DYYPerson *person);
+extern unsigned int DYYPersonRetainCount(DYYPerson *person);
 
-void *DYYPersonPartner(DYYPerson *person);
+extern void *DYYPersonPartner(DYYPerson *person);
 
-uint8_t DYYPersonCurrentChildrenCount(DYYPerson *parent);
+extern uint8_t DYYPersonCurrentChildrenCount(DYYPerson *parent);
 
 #endif /* DYYHumanObject_h */
