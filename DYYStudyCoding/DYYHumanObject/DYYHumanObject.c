@@ -37,9 +37,6 @@ static
 void DYYPersonRetain(DYYPerson *person);
 
 static
-void DYYPersonRelease(DYYPerson *person);
-
-static
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child);
 
 static
@@ -51,6 +48,9 @@ bool DYYPersonSetMarriedStatus(DYYPerson *person, bool marriedStatus);
 static
 void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child);
 
+static
+void DYYPersonRemoveAllChildren(DYYPerson *parent);
+
 #pragma mark -
 #pragma mark Initializations and Deallocators
 
@@ -59,7 +59,9 @@ void __DYYPersonDeallocate(DYYPerson *person) {
         && DYYPersonRetainCount(person) <= 1) {
         DYYPersonSetName(person, NULL);
         DYYPersonSetDivorced(person);
-        free(person);
+        DYYPersonRemoveAllChildren(person);
+//        free(person);
+        __DYYPersonDeallocate(person);
     }
 }
 
@@ -67,12 +69,13 @@ DYYPerson *DYYPersonCreateWithNameAgeGender(char *name,
                                                     unsigned int age,
                                                     DYYGender gender)
 {
-        DYYPerson *personObject = calloc(1, sizeof(DYYPerson));
-        assert(NULL != personObject);
+    DYYPerson *personObject = DYYObjectCreateOfType(DYYPerson);
+//        DYYPerson *personObject = calloc(1, sizeof(DYYPerson));
+//        assert(NULL != personObject);
         DYYPersonSetName(personObject, name);
         DYYPersonSetAge(personObject, age);
         DYYPersonSetGender(personObject, gender);
-        personObject->_retainCount = 1;
+//        personObject->_retainCount = 1;
     
     return personObject;
 }
@@ -93,8 +96,8 @@ DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGen
         return child;
     }
     else  {
-        return NULL;
-    }
+            return NULL;
+          }
 }
 
 
@@ -276,9 +279,8 @@ bool DYYPersonSetDivorced(DYYPerson *person) {
         
         return true;
     }
-    else {
+    
         return false;
-    }
 }
 
 bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother, DYYPerson *child) {
@@ -307,4 +309,16 @@ void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child) {
             break;
             }
       }
+}
+
+void DYYPersonRemoveAllChildren(DYYPerson *parent) {
+    for (uint8_t counter = 0; counter < kDYYChildrenMaxCount; counter++) {
+        if (parent->_childrenList[counter]) {
+        DYYPerson *child = parent->_childrenList[counter];
+        DYYPersonRelease(child);
+        parent->_childrenList[counter] = NULL;
+        parent->_childrenCount = parent->_childrenCount--;
+  
+        }
+    }
 }

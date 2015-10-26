@@ -32,16 +32,10 @@ void DYYTestHumanObjectMethod(void) {
     DYYPerson *testObjectRamzan = DYYPersonCreateWithNameAgeGender("Ramzan Abdurahmanov", 104, kDYYGenderMale);
     DYYPerson *testObjectMalvina = DYYPersonCreateWithNameAgeGender("Malvina Frankenstein", 16, kDYYGenderFemale);
     DYYPerson *testObjectVitalik = DYYPersonCreateWithNameAgeGender("Vitalik S Shulyavki", 24, kDYYGenderMale);
+    
 //marry 2 objects and checking method output of success and retain count of weak object
     printf("Result of marriage %d\n", DYYPersonSetMarried(testObjectRamzan, testObjectMalvina));
     printf("Retain count is %d\n", DYYPersonRetainCount(testObjectMalvina));
-//trying to deallocate object 1, expected 0 output for attempt
-//    void resultDealloc = __DYYPersonDeallocate(testObjectRamzan);
-//    printf("Result of deallocation try 1: %d\n", resultDealloc);
-//divorcing object 1 with its current partner
-    bool resultDivorce = DYYPersonSetDivorced(testObjectRamzan);
-    printf("Result of divorce %d\n", resultDivorce);
-    printf("Retain count %d\n", DYYPersonRetainCount(testObjectMalvina));
 
 //creating new child of objects with different genders and checking record
     DYYPerson *testObjectBob = DYYPersonCreateChildOfFatherAndMother("Gubka Bob",
@@ -52,4 +46,20 @@ void DYYTestHumanObjectMethod(void) {
     printf("Name of the child is %s\n", DYYPersonName(testObjectBob));
     printf("Children count of parent is: %d\n", DYYPersonCurrentChildrenCount(testObjectMalvina));
     
+//Adding second child to mother array with different partner, children count expected to increase +1
+    DYYPerson *testObjectBritney = DYYPersonCreateChildOfFatherAndMother("Britney Spears",
+                                                                     1,
+                                                                     kDYYGenderFemale,
+                                                                     testObjectRamzan,
+                                                                     testObjectMalvina);
+    printf("Name of the child is %s\n", DYYPersonName(testObjectBritney));
+    printf("Children count of parent is: %d\n", DYYPersonCurrentChildrenCount(testObjectMalvina));
+    
+//divorcing object 1 with its current partner, expected result of divorse = true = 1
+    printf("Result of divorce %d\n", DYYPersonSetDivorced(testObjectRamzan));
+    
+//sending release message to object with RetainCount = 1, expected it to deallocate, checking it
+//    DYYPersonRelease(testObjectRamzan);
+    
+//
 }

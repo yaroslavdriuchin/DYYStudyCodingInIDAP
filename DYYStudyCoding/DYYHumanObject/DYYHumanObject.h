@@ -5,11 +5,14 @@
 //  Created by Yar on 10/6/15.
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
-
 #ifndef DYYHumanObject_h
 #define DYYHumanObject_h
+
 #include <stdbool.h>
 #include <stdio.h>
+#include "DYYObject.h"
+
+
 
 static const uint8_t kDYYChildrenMaxCount = 20;
 
@@ -21,6 +24,7 @@ typedef enum {
 typedef struct DYYPersonDataList DYYPerson;
 
 struct DYYPersonDataList {
+    DYYObject _extra;
     char *_name;
     DYYPerson *_partner;
     DYYPerson *_father;
@@ -56,5 +60,7 @@ extern unsigned int DYYPersonRetainCount(DYYPerson *person);
 extern void *DYYPersonPartner(DYYPerson *person);
 
 extern uint8_t DYYPersonCurrentChildrenCount(DYYPerson *parent);
+
+extern void DYYPersonRelease(DYYPerson *person);
 
 #endif /* DYYHumanObject_h */
