@@ -5,19 +5,16 @@
 //  Created by Yar on 10/6/15.
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
-#include "DYYHumanObject.h"
+
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
 #include <limits.h>
+#include "DYYHumanObject.h"
+#include "DYYMacro.h"
 
 #pragma mark -
 #pragma mark Private Declarations
-
-#define DYYFreeAllocatedData(person, inputField) if (NULL != person->inputField) { \
-                    free(person->inputField); \
-                    person->inputField = NULL; \
-                }
 
 #define DYYCheckTwoObjectsNULL(objectOne, objectTwo) NULL != objectOne && NULL != objectTwo
 
@@ -32,9 +29,6 @@ void DYYPersonSetGender(DYYPerson *person, DYYGender gender);
 
 static
 bool DYYPersonSetPartner(DYYPerson *person, DYYPerson *partner);
-//
-//static
-//void DYYPersonRetain(DYYPerson *person);
 
 static
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child);
@@ -60,7 +54,6 @@ void __DYYPersonDeallocate(void *person) {
         DYYPersonSetName(person, NULL);
         DYYPersonSetDivorced(person);
         DYYPersonRemoveAllChildren(person);
-//        free(person);
         __DYYObjectDeallocate(person);
     }
 }
@@ -69,13 +62,10 @@ DYYPerson *DYYPersonCreateWithNameAgeGender(char *name,
                                                     unsigned int age,
                                                     DYYGender gender)
 {
-    DYYPerson *personObject = DYYObjectCreateOfType(DYYPerson);
-//        DYYPerson *personObject = calloc(1, sizeof(DYYPerson));
-//        assert(NULL != personObject);
+        DYYPerson *personObject = DYYObjectCreateOfType(DYYPerson);
         DYYPersonSetName(personObject, name);
         DYYPersonSetAge(personObject, age);
         DYYPersonSetGender(personObject, gender);
-//        personObject->_retainCount = 1;
     
     return personObject;
 }
@@ -100,21 +90,24 @@ DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGen
           }
 }
 
-
 #pragma mark -
 #pragma mark Accessors
 
 void DYYPersonSetName(DYYPerson *person, char *name) {
     if (NULL != person) {
-        DYYFreeAllocatedData(person, _name);
-                if (name) {
-                person->_name = strdup(name);
-        }
+    DYYString *string = DYYStringCreate(name);
+    DYYObjectRetain(string);
     }
 }
 
-char *DYYPersonName(DYYPerson *person) {
-    return NULL != person ? person->_name : NULL;
+DYYString *DYYPersonName(DYYPerson *person) {
+    if (NULL != person) {
+        DYYString *name = DYYStringValue(person->_name);
+        
+        return name;
+      }
+    
+    return NULL;
 }
 
 void DYYPersonSetAge(DYYPerson *person, uint8_t age) {
@@ -155,32 +148,6 @@ void *DYYPersonPartner(DYYPerson *person) {
     return NULL;
 
 }
-
-//void DYYPersonRetain(DYYPerson *person) {
-//    if (NULL != person) {
-//        person->_retainCount = person->_retainCount + 1;
-//    }
-//}
-//
-//void DYYPersonRelease(DYYPerson *person) {
-//    if (NULL != person) {
-//        person->_retainCount--;
-//        if (person->_retainCount == 0) {
-//              __DYYPersonDeallocate(person);
-//        }
-//    }
-//    
-//}
-//
-//unsigned int DYYPersonRetainCount(DYYPerson *person) {
-//    if (NULL != person) {
-//        unsigned int retainCount = person->_retainCount;
-//        
-//        return retainCount;
-//        }
-//    
-//    return UINT_MAX;
-//}
 
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {
     if (parent != child) {

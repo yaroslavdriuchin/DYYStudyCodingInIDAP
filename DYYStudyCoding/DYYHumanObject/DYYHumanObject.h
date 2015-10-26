@@ -11,6 +11,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "DYYObject.h"
+#include "DYYStringObject.h"
 
 
 
@@ -25,7 +26,7 @@ typedef struct DYYPersonDataList DYYPerson;
 
 struct DYYPersonDataList {
     DYYObject _extra;
-    char *_name;
+    DYYString *_name;
     DYYPerson *_partner;
     DYYPerson *_father;
     DYYPerson *_mother;
@@ -49,13 +50,11 @@ extern bool DYYPersonSetDivorced(DYYPerson *person);
 
 extern bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother, DYYPerson *child);
 
-extern char *DYYPersonName(DYYPerson *person);
+extern DYYString *DYYPersonName(DYYPerson *person);
 
 extern uint8_t DYYPersonAge(DYYPerson *person);
 
 extern DYYGender DYYPersonGender(DYYPerson *person);
-
-// extern unsigned int DYYPersonRetainCount(DYYPerson *person);
 
 extern void *DYYPersonPartner(DYYPerson *person);
 

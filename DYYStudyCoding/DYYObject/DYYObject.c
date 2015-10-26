@@ -9,13 +9,14 @@
 #include <assert.h>
 #include "DYYObject.h"
 
+#pragma mark -
+#pragma mark Public Implementations
 
 void __DYYObjectDeallocate(void *object) {
     if (NULL != object) {
         free(object);
     }
 }
-
 
 void *__DYYObjectCreate(size_t size, DYYObjectDeallocator deallocator) {
     assert(0 != size);

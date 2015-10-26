@@ -19,6 +19,7 @@
 		5CE241D71BA96134003C1A08 /* DYYSizeOfCheck.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CE241D51BA96134003C1A08 /* DYYSizeOfCheck.c */; };
 		5CEE7D201BC6629200876585 /* DYYTestHumanObjectCreateMethod.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE7D1E1BC6629200876585 /* DYYTestHumanObjectCreateMethod.c */; };
 		CE1FCBA01BDE2FA3001DF4C8 /* DYYObject.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1FCB9E1BDE2FA3001DF4C8 /* DYYObject.c */; };
+		CE1FCBA41BDE6118001DF4C8 /* DYYStringObject.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1FCBA21BDE6118001DF4C8 /* DYYStringObject.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,6 +59,9 @@
 		5CEE7D1F1BC6629200876585 /* DYYTestHumanObjectCreateMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestHumanObjectCreateMethod.h; path = DYYStudyCoding/Tests/DYYTestHumanObjectCreateMethod.h; sourceTree = "<group>"; };
 		CE1FCB9E1BDE2FA3001DF4C8 /* DYYObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYObject.c; path = DYYStudyCoding/DYYObject/DYYObject.c; sourceTree = "<group>"; };
 		CE1FCB9F1BDE2FA3001DF4C8 /* DYYObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYObject.h; path = DYYStudyCoding/DYYObject/DYYObject.h; sourceTree = "<group>"; };
+		CE1FCBA21BDE6118001DF4C8 /* DYYStringObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYStringObject.c; path = DYYStudyCoding/DYYStringObject/DYYStringObject.c; sourceTree = "<group>"; };
+		CE1FCBA31BDE6118001DF4C8 /* DYYStringObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYStringObject.h; path = DYYStudyCoding/DYYStringObject/DYYStringObject.h; sourceTree = "<group>"; };
+		CE1FCBA61BDE6A84001DF4C8 /* DYYMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYYMacro.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,8 @@
 		5CE241CA1BA94BF3003C1A08 /* DYYStudyCoding */ = {
 			isa = PBXGroup;
 			children = (
+				CE1FCBA61BDE6A84001DF4C8 /* DYYMacro.h */,
+				CE1FCBA51BDE611E001DF4C8 /* DYYStringObject */,
 				CE1FCBA11BDE2FBD001DF4C8 /* DYYObject */,
 				5C1556061BC3F51E00C69799 /* DYYHumanObject */,
 				5CC56E811BB929110026FE13 /* DYYPrintDecimalToBinaryOutput */,
@@ -179,6 +185,16 @@
 				CE1FCB9F1BDE2FA3001DF4C8 /* DYYObject.h */,
 			);
 			name = DYYObject;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		CE1FCBA51BDE611E001DF4C8 /* DYYStringObject */ = {
+			isa = PBXGroup;
+			children = (
+				CE1FCBA21BDE6118001DF4C8 /* DYYStringObject.c */,
+				CE1FCBA31BDE6118001DF4C8 /* DYYStringObject.h */,
+			);
+			name = DYYStringObject;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -276,6 +292,7 @@
 			files = (
 				5CAE40571BB28DAD00F0D3BF /* DYYMacroMethodGenerator.c in Sources */,
 				5CAE405B1BB2B5DA00F0D3BF /* DYYStructureAlignment.c in Sources */,
+				CE1FCBA41BDE6118001DF4C8 /* DYYStringObject.c in Sources */,
 				5CEE7D201BC6629200876585 /* DYYTestHumanObjectCreateMethod.c in Sources */,
 				5CC56E801BB929090026FE13 /* DYYPrintDecimalToBinaryOutput.c in Sources */,
 				5C01F2AB1BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnParentType.c in Sources */,
