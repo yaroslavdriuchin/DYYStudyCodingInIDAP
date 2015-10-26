@@ -37,7 +37,7 @@ struct DYYPersonDataList {
     bool _marriedStatus;
 };
 
-extern void __DYYPersonDeallocate(DYYPerson *person);
+extern void __DYYPersonDeallocate(void *person);
 
 extern DYYPerson *DYYPersonCreateWithNameAgeGender(char *name, unsigned int age, DYYGender gender);
 
@@ -55,7 +55,7 @@ extern uint8_t DYYPersonAge(DYYPerson *person);
 
 extern DYYGender DYYPersonGender(DYYPerson *person);
 
-extern unsigned int DYYPersonRetainCount(DYYPerson *person);
+// extern unsigned int DYYPersonRetainCount(DYYPerson *person);
 
 extern void *DYYPersonPartner(DYYPerson *person);
 

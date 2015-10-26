@@ -18,7 +18,7 @@ void DYYTestHumanObjectCreateMethod(void) {
     assert(NULL != testObject);
     assert(NULL != DYYPersonName(testObject));
 //expected retain count as 1 and given age and gender to pass assert process
-    assert(1 == DYYPersonRetainCount(testObject));
+    assert(1 == DYYObjectRetainCount(testObject));
     assert(45 == DYYPersonAge(testObject));
     assert(kDYYGenderMale == DYYPersonGender(testObject));
 //expected zero values with partner and children count parameters
@@ -35,7 +35,7 @@ void DYYTestHumanObjectMethod(void) {
     
 //marry 2 objects and checking method output of success and retain count of weak object
     printf("Result of marriage %d\n", DYYPersonSetMarried(testObjectRamzan, testObjectMalvina));
-    printf("Retain count is %d\n", DYYPersonRetainCount(testObjectMalvina));
+    printf("Retain count is %d\n", DYYObjectRetainCount(testObjectMalvina));
 
 //creating new child of objects with different genders and checking record
     DYYPerson *testObjectBob = DYYPersonCreateChildOfFatherAndMother("Gubka Bob",
@@ -59,7 +59,8 @@ void DYYTestHumanObjectMethod(void) {
     printf("Result of divorce %d\n", DYYPersonSetDivorced(testObjectRamzan));
     
 //sending release message to object with RetainCount = 1, expected it to deallocate, checking it
-//    DYYPersonRelease(testObjectRamzan);
+    DYYObjectRelease(testObjectRamzan);
+    printf("Force Release and Deallocation of created object was successful\n");
     
 //
 }

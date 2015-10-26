@@ -32,9 +32,9 @@ void DYYPersonSetGender(DYYPerson *person, DYYGender gender);
 
 static
 bool DYYPersonSetPartner(DYYPerson *person, DYYPerson *partner);
-
-static
-void DYYPersonRetain(DYYPerson *person);
+//
+//static
+//void DYYPersonRetain(DYYPerson *person);
 
 static
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child);
@@ -54,14 +54,14 @@ void DYYPersonRemoveAllChildren(DYYPerson *parent);
 #pragma mark -
 #pragma mark Initializations and Deallocators
 
-void __DYYPersonDeallocate(DYYPerson *person) {
+void __DYYPersonDeallocate(void *person) {
     if (person != NULL
-        && DYYPersonRetainCount(person) <= 1) {
+        && DYYObjectRetainCount(person) <= 1) {
         DYYPersonSetName(person, NULL);
         DYYPersonSetDivorced(person);
         DYYPersonRemoveAllChildren(person);
 //        free(person);
-        __DYYPersonDeallocate(person);
+        __DYYObjectDeallocate(person);
     }
 }
 
@@ -156,31 +156,31 @@ void *DYYPersonPartner(DYYPerson *person) {
 
 }
 
-void DYYPersonRetain(DYYPerson *person) {
-    if (NULL != person) {
-        person->_retainCount = person->_retainCount + 1;
-    }
-}
-
-void DYYPersonRelease(DYYPerson *person) {
-    if (NULL != person) {
-        person->_retainCount--;
-        if (person->_retainCount == 0) {
-              __DYYPersonDeallocate(person);
-        }
-    }
-    
-}
-
-unsigned int DYYPersonRetainCount(DYYPerson *person) {
-    if (NULL != person) {
-        unsigned int retainCount = person->_retainCount;
-        
-        return retainCount;
-        }
-    
-    return UINT_MAX;
-}
+//void DYYPersonRetain(DYYPerson *person) {
+//    if (NULL != person) {
+//        person->_retainCount = person->_retainCount + 1;
+//    }
+//}
+//
+//void DYYPersonRelease(DYYPerson *person) {
+//    if (NULL != person) {
+//        person->_retainCount--;
+//        if (person->_retainCount == 0) {
+//              __DYYPersonDeallocate(person);
+//        }
+//    }
+//    
+//}
+//
+//unsigned int DYYPersonRetainCount(DYYPerson *person) {
+//    if (NULL != person) {
+//        unsigned int retainCount = person->_retainCount;
+//        
+//        return retainCount;
+//        }
+//    
+//    return UINT_MAX;
+//}
 
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {
     if (parent != child) {
@@ -188,7 +188,7 @@ bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {
         if (NULL == parent->_childrenList[counter]) {
                     parent->_childrenList[counter] = child;
                     parent->_childrenCount = parent->_childrenCount++;
-                    DYYPersonRetain(child);
+                    DYYObjectRetain(child);
             
                     break;
                     }
@@ -256,7 +256,7 @@ bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *partner) {
         DYYPersonSetMarriedStatus(partner, true);
         DYYPersonSetPartner(person, partner);
         DYYPersonSetMarriedStatus(person, true);
-        DYYPersonRetain(partner);
+        DYYObjectRetain(partner);
         
         return true;
     }
@@ -275,7 +275,7 @@ bool DYYPersonSetDivorced(DYYPerson *person) {
         DYYFreeAllocatedData(partner, _partner);
         DYYPersonSetMarriedStatus(person, false);
         DYYFreeAllocatedData(person, _partner);
-        DYYPersonRelease(partner);
+        DYYObjectRelease(partner);
         
         return true;
     }
@@ -304,7 +304,7 @@ void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child) {
         if (child == parent->_childrenList[counter]) {
             parent->_childrenList[counter] = NULL;
             parent->_childrenCount = parent->_childrenCount--;
-            DYYPersonRelease(child);
+            DYYObjectRelease(child);
             
             break;
             }
@@ -315,7 +315,7 @@ void DYYPersonRemoveAllChildren(DYYPerson *parent) {
     for (uint8_t counter = 0; counter < kDYYChildrenMaxCount; counter++) {
         if (parent->_childrenList[counter]) {
         DYYPerson *child = parent->_childrenList[counter];
-        DYYPersonRelease(child);
+        DYYObjectRelease(child);
         parent->_childrenList[counter] = NULL;
         parent->_childrenCount = parent->_childrenCount--;
   
