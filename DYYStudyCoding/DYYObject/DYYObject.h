@@ -19,7 +19,7 @@ typedef struct {
     DYYObjectDeallocator _deallocatorFunctionPointer;
 } DYYObject;
 
-#define DYYObjectCreateOfType(type) __DYYObjectCreate(sizeof(type), (DYYObjectDeallocator)__ ##type ##Deallocate)
+
 
 extern
 void *__DYYObjectCreate(size_t size, DYYObjectDeallocator);

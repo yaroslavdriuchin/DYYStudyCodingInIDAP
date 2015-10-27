@@ -9,9 +9,11 @@
 #ifndef DYYMacro_h
 #define DYYMacro_h
 
-#define DYYFreeAllocatedData(person, inputField) if (NULL != person->inputField) { \
-free(person->inputField); \
-person->inputField = NULL; \
+#define DYYFreeAllocatedData(object, inputField) if (NULL != object->inputField) { \
+free(object->inputField); \
+object->inputField = NULL; \
 }
+
+#define DYYObjectCreateOfType(type) __DYYObjectCreate(sizeof(type), (DYYObjectDeallocator)__ ##type ##Deallocate)
 
 #endif /* DYYMacro_h */

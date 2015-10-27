@@ -22,7 +22,7 @@ static
 void DYYPersonSetName(DYYPerson *person, char *name);
 
 static
-void DYYPersonSetAge(DYYPerson *person, uint8_t age);
+void DYYPersonSetAge(DYYPerson *person, unsigned int age);
 
 static
 void DYYPersonSetGender(DYYPerson *person, DYYGender gender);
@@ -59,9 +59,8 @@ void __DYYPersonDeallocate(void *person) {
 }
 
 DYYPerson *DYYPersonCreateWithNameAgeGender(char *name,
-                                                    unsigned int age,
-                                                    DYYGender gender)
-{
+                                            unsigned int age,
+                                            DYYGender gender)    {
         DYYPerson *personObject = DYYObjectCreateOfType(DYYPerson);
         DYYPersonSetName(personObject, name);
         DYYPersonSetAge(personObject, age);
@@ -71,7 +70,7 @@ DYYPerson *DYYPersonCreateWithNameAgeGender(char *name,
 }
 
 
-DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGender gender, DYYPerson *father, DYYPerson *mother) {
+DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, unsigned int age, DYYGender gender, DYYPerson *father, DYYPerson *mother) {
     if (DYYCheckTwoObjectsNULL(father, mother)
         && DYYPersonGender(father) == kDYYGenderMale
         && DYYPersonGender(mother) == kDYYGenderFemale
@@ -96,6 +95,7 @@ DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGen
 void DYYPersonSetName(DYYPerson *person, char *name) {
     if (NULL != person) {
     DYYString *string = DYYStringCreate(name);
+    person->_name = string;
     DYYObjectRetain(string);
     }
 }
@@ -110,13 +110,13 @@ DYYString *DYYPersonName(DYYPerson *person) {
     return NULL;
 }
 
-void DYYPersonSetAge(DYYPerson *person, uint8_t age) {
+void DYYPersonSetAge(DYYPerson *person, unsigned int age) {
     if (NULL != person && person->_age != age) {
             person->_age = age;
     }
 }
 
-uint8_t DYYPersonAge(DYYPerson *person) {
+unsigned int DYYPersonAge(DYYPerson *person) {
     return NULL != person ? person->_age : 0;
 }
 

@@ -6,9 +6,9 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
+#include <string.h>
 #include "DYYStringObject.h"
 #include "DYYMacro.h"
-#include <string.h>
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -19,27 +19,26 @@
 void __DYYStringDeallocate(DYYString *stringObject) {
     DYYStringSetValue(stringObject, NULL);
     __DYYObjectDeallocate(stringObject);
-};
+}
 
 void *DYYStringCreate(char *value) {
     DYYString *stringObject = DYYObjectCreateOfType(DYYString);
     DYYStringSetValue(stringObject, value);
     
     return stringObject;
-};
+}
 
 #pragma mark -
 #pragma mark Accessors
 
 void DYYStringSetValue(DYYString *stringObject, char *value) {
-    if (NULL == stringObject) {
-         return;
-    }
+    if (NULL != stringObject) {
     DYYFreeAllocatedData(stringObject, _string);
     stringObject->_string = strdup(value);
-    
-};
+        
+    }
+}
 
-void *DYYStringValue(DYYString *stringObject) {
+void *DYYStringValue(DYYString *stringObject)   {
     return NULL != stringObject ? stringObject->_string : NULL;
-    };
+}

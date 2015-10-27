@@ -8,6 +8,7 @@
 
 #include <assert.h>
 #include "DYYObject.h"
+#include "DYYMacro.h"
 
 #pragma mark -
 #pragma mark Public Implementations

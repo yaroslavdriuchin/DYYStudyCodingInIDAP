@@ -9,6 +9,8 @@
 //for setting Married and Divorce statuses and Creating New Child Method 
 #include "DYYTestHumanObjectCreateMethod.h"
 #include "DYYHumanObject.h"
+#include "DYYStringObject.h"
+#include "DYYObject.h"
 #include <assert.h>
 
 void DYYTestHumanObjectCreateMethod(void) {
@@ -16,7 +18,7 @@ void DYYTestHumanObjectCreateMethod(void) {
     DYYPerson *testObject = DYYPersonCreateWithNameAgeGender("Antonio Banderas", 45, kDYYGenderMale);
 //expected not NULL with object pointer and person name
     assert(NULL != testObject);
-//    assert(NULL != DYYPersonName(testObject));
+    assert(NULL != DYYPersonName(testObject));
 //expected retain count as 1 and given age and gender to pass assert process
     assert(1 == DYYObjectRetainCount(testObject));
     assert(45 == DYYPersonAge(testObject));
@@ -35,7 +37,7 @@ void DYYTestHumanObjectMethod(void) {
     
 //marry 2 objects and checking method output of success and retain count of weak object
     printf("Result of marriage %d\n", DYYPersonSetMarried(testObjectRamzan, testObjectMalvina));
-    printf("Retain count of Bride is %d\n", DYYObjectRetainCount(testObjectMalvina));
+    printf("Retain count of Bride is %u\n", DYYObjectRetainCount(testObjectMalvina));
 
 //creating new child of objects with different genders and checking record
     DYYPerson *testObjectBob = DYYPersonCreateChildOfFatherAndMother("Gubka Bob",
@@ -46,8 +48,8 @@ void DYYTestHumanObjectMethod(void) {
     
 //checking children count of parent with new child, expected 1, checking retain count of new child, expected 3
     printf("Name of the child is %s\n", DYYPersonName(testObjectBob));
-    printf("Children count of parent is: %d\n", DYYPersonCurrentChildrenCount(testObjectMalvina));
-    printf("Retain count of 1st child is %d\n", DYYObjectRetainCount(testObjectBob));
+    printf("Children count of parent is: %u\n", DYYPersonCurrentChildrenCount(testObjectMalvina));
+    printf("Retain count of 1st child is %u\n", DYYObjectRetainCount(testObjectBob));
     
 //Adding second child to mother array with different partner
     DYYPerson *testObjectBritney = DYYPersonCreateChildOfFatherAndMother("Britney Spears",
@@ -58,8 +60,8 @@ void DYYTestHumanObjectMethod(void) {
     
 //checking children count of parent with new child, expected 2, checking retain count of new child, expected 3
     printf("Name of the child is %s\n", DYYPersonName(testObjectBritney));
-    printf("Children count of parent is: %d\n", DYYPersonCurrentChildrenCount(testObjectMalvina));
-    printf("Retain count of 2nd child is %d\n", DYYObjectRetainCount(testObjectBritney));
+    printf("Children count of parent is: %u\n", DYYPersonCurrentChildrenCount(testObjectMalvina));
+    printf("Retain count of 2nd child is %u\n", DYYObjectRetainCount(testObjectBritney));
     
 //divorcing object 1 with its current partner, expected result of divorse = true = 1
     printf("Result of divorce %d\n", DYYPersonSetDivorced(testObjectRamzan));

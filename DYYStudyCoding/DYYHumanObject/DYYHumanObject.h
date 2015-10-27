@@ -32,7 +32,7 @@ struct DYYPersonDataList {
     DYYPerson *_mother;
     DYYPerson *_childrenList[kDYYChildrenMaxCount];
     uint8_t _childrenCount;
-    uint8_t _age;
+    unsigned int _age;
     DYYGender _gender;
     unsigned int _retainCount;
     bool _marriedStatus;
@@ -42,7 +42,7 @@ extern void __DYYPersonDeallocate(void *person);
 
 extern DYYPerson *DYYPersonCreateWithNameAgeGender(char *name, unsigned int age, DYYGender gender);
 
-extern DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, uint8_t age, DYYGender gender, DYYPerson *father, DYYPerson *mother);
+extern DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, unsigned int age, DYYGender gender, DYYPerson *father, DYYPerson *mother);
 
 extern bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *personPartner);
 
@@ -52,7 +52,7 @@ extern bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *
 
 extern DYYString *DYYPersonName(DYYPerson *person);
 
-extern uint8_t DYYPersonAge(DYYPerson *person);
+extern unsigned int DYYPersonAge(DYYPerson *person);
 
 extern DYYGender DYYPersonGender(DYYPerson *person);
 
