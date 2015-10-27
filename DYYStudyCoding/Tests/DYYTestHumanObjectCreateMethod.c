@@ -26,6 +26,7 @@ void DYYTestHumanObjectCreateMethod(void) {
 //expected zero values with partner and children count parameters
     assert(NULL == DYYPersonPartner(testObject));
     assert(0 == DYYPersonCurrentChildrenCount(testObject));
+    printf("Test object was created, assert tests were passed\n");
 }
 
 

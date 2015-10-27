@@ -55,6 +55,7 @@ void __DYYPersonDeallocate(void *person) {
         DYYPersonSetDivorced(person);
         DYYPersonRemoveAllChildren(person);
         __DYYObjectDeallocate(person);
+        
     }
 }
 
@@ -82,11 +83,11 @@ DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, unsigned int age, D
         DYYPersonSetAsParent(mother, child);
         DYYPersonSetParent(child, father);
         DYYPersonSetParent(child, mother);
+    
         return child;
     }
-    else  {
+    
             return NULL;
-          }
 }
 
 #pragma mark -
@@ -97,6 +98,7 @@ void DYYPersonSetName(DYYPerson *person, char *name) {
     DYYString *string = DYYStringCreate(name);
     person->_name = string;
     DYYObjectRetain(string);
+    
     }
 }
 
@@ -130,14 +132,14 @@ DYYGender DYYPersonGender(DYYPerson *person) {
     return NULL != person ? person->_gender : 0;
 }
 
-bool DYYPersonSetPartner(DYYPerson *person, DYYPerson *partner) {
+bool DYYPersonSetPartner(DYYPerson *person, DYYPerson *partner)  {
     if (DYYCheckTwoObjectsNULL(person, partner) && person != partner) {
     person->_partner = partner;
         
     return true;
     }
     
-      return false;
+    return false;
 }
 
 void *DYYPersonPartner(DYYPerson *person) {
@@ -146,12 +148,11 @@ void *DYYPersonPartner(DYYPerson *person) {
            }
 
     return NULL;
-
 }
 
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {
     if (parent != child) {
-    for (uint8_t counter = 0; counter < kDYYChildrenMaxCount; counter++) {
+    for (uint16_t counter = 0; counter < kDYYChildrenMaxCount; counter++) {
         if (NULL == parent->_childrenList[counter]) {
                     parent->_childrenList[counter] = child;
                     parent->_childrenCount = parent->_childrenCount++;
@@ -163,9 +164,8 @@ bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {
         
         return true;
     }
-       else  {
-               return false;
-             }
+    
+        return false;
 }
 
 bool DYYPersonSetParent(DYYPerson *child, DYYPerson *parent) {
@@ -181,30 +181,29 @@ bool DYYPersonSetParent(DYYPerson *child, DYYPerson *parent) {
             child->_mother = NULL;
         }
         
-        return true;
+    return true;
     }
     
-        return false;
-
+    return false;
 }
 
 bool DYYPersonSetMarriedStatus(DYYPerson *person, bool marriedStatus) {
     if (NULL != person) {
         person->_marriedStatus = marriedStatus;
         
-        return true;
-    }  else  {
-              return false;
-             }
+    return true;
+    }
+    
+    return false;
 }
     
-uint8_t DYYPersonCurrentChildrenCount(DYYPerson *parent) {
-    uint8_t childrenCount = 0;
+uint16_t DYYPersonCurrentChildrenCount(DYYPerson *parent) {
+    uint16_t childrenCount = 0;
     if (parent != NULL) {
-        for (uint8_t counter = 0; counter < kDYYChildrenMaxCount; counter++) {
+        for (uint16_t counter = 0; counter < kDYYChildrenMaxCount; counter++) {
             if (NULL != parent->_childrenList[counter]) {
                          childrenCount++;
-                       }
+                         }
                 }
         
         } return childrenCount;
@@ -212,7 +211,6 @@ uint8_t DYYPersonCurrentChildrenCount(DYYPerson *parent) {
 
 #pragma mark -
 #pragma mark Public Implementations
-
 
 bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *partner) {
     if (DYYCheckTwoObjectsNULL(person, partner)
@@ -227,9 +225,8 @@ bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *partner) {
         
         return true;
     }
-    else {
+    
         return false;
-    }
 }
 
 bool DYYPersonSetDivorced(DYYPerson *person) {
@@ -251,23 +248,24 @@ bool DYYPersonSetDivorced(DYYPerson *person) {
 }
 
 bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother, DYYPerson *child) {
-          if (DYYCheckTwoObjectsNULL(father, mother)
-              && child  != NULL
-              && (father != child || mother != child || mother != father)) {
-                      DYYPersonSearchAndRemoveChild(father, child);
-                      DYYPersonSearchAndRemoveChild(mother, child);
-                      DYYPersonSetParent(child, NULL);
-                      return true;
-          } else     {
-                      return false;
-                     }
+      if (DYYCheckTwoObjectsNULL(father, mother)
+          && child  != NULL
+          && (father != child || mother != child || mother != father)) {
+                  DYYPersonSearchAndRemoveChild(father, child);
+                  DYYPersonSearchAndRemoveChild(mother, child);
+                  DYYPersonSetParent(child, NULL);
+          
+                  return true;
+          }
+    
+          return false;
 }
 
 #pragma mark -
 #pragma mark Private Implementations
 
 void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child) {
-    for (uint8_t counter = 0; counter < kDYYChildrenMaxCount; counter++) {
+    for (uint16_t counter = 0; counter < kDYYChildrenMaxCount; counter++) {
         if (child == parent->_childrenList[counter]) {
             parent->_childrenList[counter] = NULL;
             parent->_childrenCount = parent->_childrenCount--;
@@ -279,7 +277,7 @@ void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child) {
 }
 
 void DYYPersonRemoveAllChildren(DYYPerson *parent) {
-    for (uint8_t counter = 0; counter < kDYYChildrenMaxCount; counter++) {
+    for (uint16_t counter = 0; counter < kDYYChildrenMaxCount; counter++) {
         if (parent->_childrenList[counter]) {
         DYYPerson *child = parent->_childrenList[counter];
         DYYObjectRelease(child);

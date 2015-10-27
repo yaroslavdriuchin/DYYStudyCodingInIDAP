@@ -8,14 +8,14 @@
 #ifndef DYYHumanObject_h
 #define DYYHumanObject_h
 
+
 #include <stdbool.h>
 #include <stdio.h>
 #include "DYYObject.h"
 #include "DYYStringObject.h"
 
 
-
-static const uint8_t kDYYChildrenMaxCount = 20;
+static const uint16_t kDYYChildrenMaxCount = 20;
 
 typedef enum {
     kDYYGenderMale,
@@ -31,7 +31,7 @@ struct DYYPersonDataList {
     DYYPerson *_father;
     DYYPerson *_mother;
     DYYPerson *_childrenList[kDYYChildrenMaxCount];
-    uint8_t _childrenCount;
+    uint16_t _childrenCount;
     unsigned int _age;
     DYYGender _gender;
     unsigned int _retainCount;
@@ -58,7 +58,7 @@ extern DYYGender DYYPersonGender(DYYPerson *person);
 
 extern void *DYYPersonPartner(DYYPerson *person);
 
-extern uint8_t DYYPersonCurrentChildrenCount(DYYPerson *parent);
+extern uint16_t DYYPersonCurrentChildrenCount(DYYPerson *parent);
 
 extern void DYYPersonRelease(DYYPerson *person);
 
