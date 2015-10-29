@@ -19,7 +19,7 @@
 #define DYYCheckTwoObjectsNULL(objectOne, objectTwo) NULL != objectOne && NULL != objectTwo
 
 static
-void DYYPersonSetName(DYYPerson *person, char *name);
+void DYYPersonSetName(DYYPerson *person, DYYString *name);
 
 static
 void DYYPersonSetAge(DYYPerson *person, unsigned int age);
@@ -37,7 +37,7 @@ static
 bool DYYPersonSetParent(DYYPerson *child, DYYPerson *parent);
 
 static
-bool DYYPersonSetMarriedStatus(DYYPerson *person, bool marriedStatus);
+void DYYPersonMarryStatus(DYYPerson *person, bool marriedStatus);
 
 static
 void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child);
@@ -52,14 +52,14 @@ void __DYYPersonDeallocate(void *person) {
     if (person != NULL
         && DYYObjectRetainCount(person) <= 1) {
         DYYPersonSetName(person, NULL);
-        DYYPersonSetDivorced(person);
+        DYYPersonDivorce(person);
         DYYPersonRemoveAllChildren(person);
         __DYYObjectDeallocate(person);
         
     }
 }
 
-DYYPerson *DYYPersonCreateWithNameAgeGender(char *name,
+DYYPerson *DYYPersonCreateWithNameAgeGender(DYYString *name,
                                             unsigned int age,
                                             DYYGender gender)    {
         DYYPerson *personObject = DYYObjectCreateOfType(DYYPerson);
@@ -71,7 +71,7 @@ DYYPerson *DYYPersonCreateWithNameAgeGender(char *name,
 }
 
 
-DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, unsigned int age, DYYGender gender, DYYPerson *father, DYYPerson *mother) {
+DYYPerson *DYYPersonCreateChildOfFatherAndMother(DYYString *name, unsigned int age, DYYGender gender, DYYPerson *father, DYYPerson *mother) {
     if (DYYCheckTwoObjectsNULL(father, mother)
         && DYYPersonGender(father) == kDYYGenderMale
         && DYYPersonGender(mother) == kDYYGenderFemale
@@ -93,23 +93,19 @@ DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, unsigned int age, D
 #pragma mark -
 #pragma mark Accessors
 
-void DYYPersonSetName(DYYPerson *person, char *name) {
-    if (NULL != person) {
-    DYYString *string = DYYStringCreate(name);
-    person->_name = string;
-    DYYObjectRetain(string);
-    
+void DYYPersonSetName(DYYPerson *person, DYYString *name) {
+    if (NULL != person && name != person->_name)  {
+        DYYObjectRelease(person->_name);
+        person->_name = DYYStringCreateWithValue(name);
+        DYYObjectRetain(person->_name);
     }
 }
 
 DYYString *DYYPersonName(DYYPerson *person) {
-    if (NULL != person) {
-        DYYString *name = DYYStringValue(person->_name);
-        
-        return name;
-      }
-    
-    return NULL;
+    if (NULL == person) {
+        return NULL;
+    }
+        return DYYStringValue(person->_name);
 }
 
 void DYYPersonSetAge(DYYPerson *person, unsigned int age) {
@@ -119,7 +115,11 @@ void DYYPersonSetAge(DYYPerson *person, unsigned int age) {
 }
 
 unsigned int DYYPersonAge(DYYPerson *person) {
-    return NULL != person ? person->_age : 0;
+    if (NULL != person) {
+            return person->_age;
+    }
+    
+    return 0;
 }
 
 void DYYPersonSetGender(DYYPerson *person, DYYGender gender) {
@@ -129,17 +129,20 @@ void DYYPersonSetGender(DYYPerson *person, DYYGender gender) {
 }
 
 DYYGender DYYPersonGender(DYYPerson *person) {
-    return NULL != person ? person->_gender : 0;
+    if (NULL != person) {
+           return person->_gender;
+    }
+    return 0;
 }
 
 bool DYYPersonSetPartner(DYYPerson *person, DYYPerson *partner)  {
-    if (DYYCheckTwoObjectsNULL(person, partner) && person != partner) {
-    person->_partner = partner;
+    if (person!= NULL && person != partner) {
+        person->_partner = partner;
         
-    return true;
+        return true;
     }
     
-    return false;
+        return false;
 }
 
 void *DYYPersonPartner(DYYPerson *person) {
@@ -187,16 +190,20 @@ bool DYYPersonSetParent(DYYPerson *child, DYYPerson *parent) {
     return false;
 }
 
-bool DYYPersonSetMarriedStatus(DYYPerson *person, bool marriedStatus) {
+void DYYPersonMarryStatus(DYYPerson *person, bool marriedStatus) {
     if (NULL != person) {
-        person->_marriedStatus = marriedStatus;
-        
-    return true;
-    }
+            person->_marriedStatus = marriedStatus;
+       }
+}
+
+bool DYYPersonMarriedStatus(DYYPerson *person) {
+    if (NULL != person) {
+           return person->_marriedStatus;
+       }
     
     return false;
 }
-    
+
 uint16_t DYYPersonCurrentChildrenCount(DYYPerson *parent) {
     uint16_t childrenCount = 0;
     if (parent != NULL) {
@@ -212,15 +219,15 @@ uint16_t DYYPersonCurrentChildrenCount(DYYPerson *parent) {
 #pragma mark -
 #pragma mark Public Implementations
 
-bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *partner) {
+bool DYYPersonMarry(DYYPerson *person, DYYPerson *partner) {
     if (DYYCheckTwoObjectsNULL(person, partner)
         && DYYPersonAge(person) > DYYPersonAge(partner)
         && DYYPersonGender(person) != DYYPersonGender(partner)) {
-        DYYPersonSetDivorced(person);
+        DYYPersonDivorce(person);
         DYYPersonSetPartner(partner, person);
-        DYYPersonSetMarriedStatus(partner, true);
+        DYYPersonMarryStatus(partner, true);
         DYYPersonSetPartner(person, partner);
-        DYYPersonSetMarriedStatus(person, true);
+        DYYPersonMarryStatus(person, true);
         DYYObjectRetain(partner);
         
         return true;
@@ -229,16 +236,16 @@ bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *partner) {
         return false;
 }
 
-bool DYYPersonSetDivorced(DYYPerson *person) {
+bool DYYPersonDivorce(DYYPerson *person) {
     DYYPerson *partner = DYYPersonPartner(person);
     
     if (DYYCheckTwoObjectsNULL(person, partner)
         && NULL != DYYPersonPartner(person)
         && DYYPersonAge(person) > DYYPersonAge(partner)) {
-        DYYPersonSetMarriedStatus(partner, false);
-        DYYFreeAllocatedData(partner, _partner);
-        DYYPersonSetMarriedStatus(person, false);
-        DYYFreeAllocatedData(person, _partner);
+        DYYPersonMarryStatus(partner, false);
+        DYYPersonSetPartner(partner, NULL);
+        DYYPersonMarryStatus(person, false);
+        DYYPersonSetPartner(person, NULL);
         DYYObjectRelease(partner);
         
         return true;

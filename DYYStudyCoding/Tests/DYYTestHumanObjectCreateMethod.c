@@ -37,7 +37,7 @@ void DYYTestHumanObjectMethod(void) {
     DYYPerson *testObjectVitalik = DYYPersonCreateWithNameAgeGender("Vitalik S Shulyavki", 24, kDYYGenderMale);
     
 //marry 2 objects and checking method output of success and retain count of weak object
-    printf("Result of marriage %d\n", DYYPersonSetMarried(testObjectRamzan, testObjectMalvina));
+    printf("Result of marriage %d\n", DYYPersonMarry(testObjectRamzan, testObjectMalvina));
     printf("Retain count of Bride is %u\n", DYYObjectRetainCount(testObjectMalvina));
 
 //creating new child of objects with different genders and checking record
@@ -65,7 +65,7 @@ void DYYTestHumanObjectMethod(void) {
     printf("Retain count of 2nd child is %u\n", DYYObjectRetainCount(testObjectBritney));
     
 //divorcing object 1 with its current partner, expected result of divorse = true = 1
-    printf("Result of divorce %d\n", DYYPersonSetDivorced(testObjectRamzan));
+    printf("Result of divorce %d\n", DYYPersonDivorce(testObjectRamzan));
     
 //sending release message to object with RetainCount = 1, expected it to deallocate, checking it
     DYYObjectRelease(testObjectRamzan);

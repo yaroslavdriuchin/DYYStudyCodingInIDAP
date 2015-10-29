@@ -14,7 +14,7 @@
 #include "DYYObject.h"
 
 typedef struct {
-    DYYObject _extra;
+    DYYObject _super;
     char *_string;
 } DYYString;
 
@@ -22,10 +22,10 @@ extern
 void __DYYStringDeallocate(DYYString *stringObject);
 
 extern
-void *DYYStringCreate(char *value);
+void *DYYStringCreateWithValue(DYYString *value);
 
 extern
-void DYYStringSetValue(DYYString *stringObject, char *value);
+void DYYStringSetValue(DYYString *stringObject, DYYString *value);
 
 extern
 void *DYYStringValue(DYYString *stringObject);

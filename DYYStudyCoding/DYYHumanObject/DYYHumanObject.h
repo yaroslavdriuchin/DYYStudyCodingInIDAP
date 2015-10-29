@@ -25,7 +25,7 @@ typedef enum {
 typedef struct DYYPersonDataList DYYPerson;
 
 struct DYYPersonDataList {
-    DYYObject _extra;
+    DYYObject _super;
     DYYString *_name;
     DYYPerson *_partner;
     DYYPerson *_father;
@@ -34,19 +34,18 @@ struct DYYPersonDataList {
     uint16_t _childrenCount;
     unsigned int _age;
     DYYGender _gender;
-    unsigned int _retainCount;
     bool _marriedStatus;
 };
 
 extern void __DYYPersonDeallocate(void *person);
 
-extern DYYPerson *DYYPersonCreateWithNameAgeGender(char *name, unsigned int age, DYYGender gender);
+extern DYYPerson *DYYPersonCreateWithNameAgeGender(DYYString *name, unsigned int age, DYYGender gender);
 
-extern DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, unsigned int age, DYYGender gender, DYYPerson *father, DYYPerson *mother);
+extern DYYPerson *DYYPersonCreateChildOfFatherAndMother(DYYString *name, unsigned int age, DYYGender gender, DYYPerson *father, DYYPerson *mother);
 
-extern bool DYYPersonSetMarried(DYYPerson *person, DYYPerson *personPartner);
+extern bool DYYPersonMarry(DYYPerson *person, DYYPerson *personPartner);
 
-extern bool DYYPersonSetDivorced(DYYPerson *person);
+extern bool DYYPersonDivorce(DYYPerson *person);
 
 extern bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother, DYYPerson *child);
 
@@ -57,6 +56,8 @@ extern unsigned int DYYPersonAge(DYYPerson *person);
 extern DYYGender DYYPersonGender(DYYPerson *person);
 
 extern void *DYYPersonPartner(DYYPerson *person);
+
+extern bool DYYPersonMarriedStatus(DYYPerson *person);
 
 extern uint16_t DYYPersonCurrentChildrenCount(DYYPerson *parent);
 
