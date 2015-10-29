@@ -28,7 +28,7 @@ static
 void DYYPersonSetGender(DYYPerson *person, DYYGender gender);
 
 static
-bool DYYPersonSetPartner(DYYPerson *person, DYYPerson *partner);
+void DYYPersonSetPartner(DYYPerson *person, DYYPerson *partner);
 
 static
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child);
@@ -67,7 +67,7 @@ DYYPerson *DYYPersonCreateWithNameAgeGender(DYYString *name,
         DYYPersonSetAge(personObject, age);
         DYYPersonSetGender(personObject, gender);
     
-    return personObject;
+        return personObject;
 }
 
 
@@ -87,7 +87,7 @@ DYYPerson *DYYPersonCreateChildOfFatherAndMother(DYYString *name, unsigned int a
         return child;
     }
     
-            return NULL;
+        return NULL;
 }
 
 #pragma mark -
@@ -132,17 +132,17 @@ DYYGender DYYPersonGender(DYYPerson *person) {
     if (NULL != person) {
            return person->_gender;
     }
+    
     return 0;
 }
 
-bool DYYPersonSetPartner(DYYPerson *person, DYYPerson *partner)  {
+void DYYPersonSetPartner(DYYPerson *person, DYYPerson *partner)  {
     if (person!= NULL && person != partner) {
         person->_partner = partner;
-        
-        return true;
-    }
-    
-        return false;
+        if (DYYPersonAge(person) > DYYPersonAge(partner)) {
+            DYYObjectRetain(partner);
+            }
+     }
 }
 
 void *DYYPersonPartner(DYYPerson *person) {
@@ -221,14 +221,13 @@ uint16_t DYYPersonCurrentChildrenCount(DYYPerson *parent) {
 
 bool DYYPersonMarry(DYYPerson *person, DYYPerson *partner) {
     if (DYYCheckTwoObjectsNULL(person, partner)
-        && DYYPersonAge(person) > DYYPersonAge(partner)
         && DYYPersonGender(person) != DYYPersonGender(partner)) {
         DYYPersonDivorce(person);
         DYYPersonSetPartner(partner, person);
         DYYPersonMarryStatus(partner, true);
         DYYPersonSetPartner(person, partner);
         DYYPersonMarryStatus(person, true);
-        DYYObjectRetain(partner);
+//        DYYObjectRetain(partner);
         
         return true;
     }
@@ -240,8 +239,8 @@ bool DYYPersonDivorce(DYYPerson *person) {
     DYYPerson *partner = DYYPersonPartner(person);
     
     if (DYYCheckTwoObjectsNULL(person, partner)
-        && NULL != DYYPersonPartner(person)
-        && DYYPersonAge(person) > DYYPersonAge(partner)) {
+        && NULL != DYYPersonPartner(person))
+    {
         DYYPersonMarryStatus(partner, false);
         DYYPersonSetPartner(partner, NULL);
         DYYPersonMarryStatus(person, false);

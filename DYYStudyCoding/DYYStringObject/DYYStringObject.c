@@ -34,6 +34,7 @@ void *DYYStringCreateWithValue(DYYString *value) {
 void DYYStringSetValue(DYYString *stringObject, DYYString *value) {
     if (NULL != stringObject && DYYStringValue(stringObject) != value) {
     char *inputValue = ((char *)value);
+    DYYFreeAllocatedData(stringObject, _string);
     stringObject->_string = strdup(inputValue);
         
     }

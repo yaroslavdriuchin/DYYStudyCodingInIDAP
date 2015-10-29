@@ -37,7 +37,7 @@ void DYYTestHumanObjectMethod(void) {
     DYYPerson *testObjectVitalik = DYYPersonCreateWithNameAgeGender("Vitalik S Shulyavki", 24, kDYYGenderMale);
     
 //marry 2 objects and checking method output of success and retain count of weak object
-    printf("Result of marriage %d\n", DYYPersonMarry(testObjectRamzan, testObjectMalvina));
+    printf("Result of marriage %d\n", DYYPersonMarry(testObjectMalvina, testObjectRamzan));
     printf("Retain count of Bride is %u\n", DYYObjectRetainCount(testObjectMalvina));
 
 //creating new child of objects with different genders and checking record
