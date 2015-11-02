@@ -46,19 +46,3 @@ void *DYYArrayValueAtCount(DYYArray *arrayObject, uint8_t count) {
     
     return NULL;
 }
-
-#pragma mark-
-#pragma mark Public implementations
-
-//uint SAPArrayNotNullElementsCount(SAPArray *object) {
-//    uint childrenCounter = 0;
-//    if (NULL != object) {
-//        for (uint index = 0; index < kSAPArraySize; index++) {
-//            if (NULL != SAPArrayValueAtIndex(object, index)) {
-//                childrenCounter++;
-//            }
-//        }
-//    }
-//    
-//    return childrenCounter;
-//}
