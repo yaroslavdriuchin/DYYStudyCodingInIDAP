@@ -21,9 +21,9 @@ typedef enum {
     kDYYGenderFemale,
 } DYYGender;
 
-typedef struct DYYPersonDataList DYYPerson;
+typedef struct DYYPersonData DYYPerson;
 
-struct DYYPersonDataList {
+struct DYYPersonData {
     DYYObject _super;
     DYYString *_name;
     DYYPerson *_partner;
