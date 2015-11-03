@@ -8,8 +8,6 @@
 
 #include "DYYStaticArrayObject.h"
 #include "DYYMacro.h"
-//#include "DYYHumanObject.h"
-//#include "DYYObject.h"
 
 #pragma mark -
 #pragma mark Initializations and Deallocators

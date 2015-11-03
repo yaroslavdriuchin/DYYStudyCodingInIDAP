@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "DYYObject.h"
-// #include "DYYHumanObject.h"
 
 static const uint16_t kDYYArrayMaxCount = 20;
 
