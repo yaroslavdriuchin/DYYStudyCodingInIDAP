@@ -10,13 +10,15 @@
 #include "DYYMacro.h"
 
 #pragma mark -
+#pragma mark Private Declarations
+
+void DYYArraySetAllArrayNull(DYYArray *object);
+
+#pragma mark -
 #pragma mark Initializations and Deallocators
 
 void __DYYArrayDeallocate(DYYArray *object) {
-    for (uint8_t count = 0; count < kDYYArrayMaxCount; count++) {
-        DYYArraySetValueAtCount(object, count, NULL);
-    }
-    
+    DYYArraySetAllArrayNull(object);
     __DYYObjectDeallocate(object);
 }
 
@@ -30,10 +32,15 @@ DYYArray *DYYArrayCreate(void) {
 #pragma mark Accessors
 
 void DYYArraySetValueAtCount(DYYArray *arrayObject, uint8_t count, void *value) {
-    if (arrayObject != NULL) {
+    if (NULL != arrayObject && NULL != value) {
         DYYObjectRelease(arrayObject->_staticArray[count]);
+        DYYObjectRetain(arrayObject->_staticArray[count]);
         arrayObject->_staticArray[count] = value;
-        DYYObjectRetain(value);
+    }
+    
+    if (NULL != arrayObject && NULL == value) {
+        arrayObject->_staticArray[count] = NULL;
+        DYYObjectRelease(arrayObject->_staticArray[count]);
     }
 }
 
@@ -43,4 +50,15 @@ void *DYYArrayValueAtCount(DYYArray *arrayObject, uint8_t count) {
      }
     
     return NULL;
+}
+
+#pragma mark -
+#pragma mark Private Implementations
+
+void DYYArraySetAllArrayNull(DYYArray *object) {
+    if (NULL != object) {
+        for (uint8_t count = 0; count < kDYYArrayMaxCount; count++) {
+            DYYArraySetValueAtCount(object, count, NULL);
+         }
+    }
 }

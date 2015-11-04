@@ -6,7 +6,8 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 //As a software developer I want to test the functionality of the Human Object with corresponding methods
-//for setting Married and Divorce statuses and Creating New Child Method 
+//for setting "Married" and "Divorce" condition of objects, "Create New Child" method and removing child of parents
+
 #include "DYYTestHumanObjectCreateMethod.h"
 #include "DYYHumanObject.h"
 #include "DYYStringObject.h"
@@ -14,15 +15,18 @@
 #include <assert.h>
 
 void DYYTestHumanObjectCreateMethod(void) {
-//creating test object with initial parameters
+//creating test object with initial parameters of Name, Age, Gender
     DYYPerson *testObject = DYYPersonCreateWithNameAgeGender("Antonio Banderas", 45, kDYYGenderMale);
+    
 //expected not NULL with object pointer and person name
     assert(NULL != testObject);
     assert(NULL != DYYPersonName(testObject));
+    
 //expected retain count as 1 and given age and gender to pass assert process
     assert(1 == DYYObjectRetainCount(testObject));
     assert(45 == DYYPersonAge(testObject));
     assert(kDYYGenderMale == DYYPersonGender(testObject));
+    
 //expected zero values with partner and children count parameters
     assert(NULL == DYYPersonPartner(testObject));
     assert(0 == DYYPersonCurrentChildrenCount(testObject));
