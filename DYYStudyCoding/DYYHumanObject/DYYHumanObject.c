@@ -43,6 +43,9 @@ static
 void DYYPersonSetChildrenArray(DYYPerson *person);
 
 static
+DYYArray *DYYPersonChildrenArray(DYYPerson *person);
+
+static
 void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child);
 
 static
@@ -160,15 +163,13 @@ void *DYYPersonPartner(DYYPerson *person) {
 
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {
     if (parent != NULL && parent != child) {
-        DYYArray *childrenArray = parent->_childrenArray;
-        
-    for (uint16_t counter = 0; counter < kDYYArrayMaxCount; counter++) {
-        if (NULL == DYYArrayValueAtCount(childrenArray, counter)) {
-            DYYArraySetValueAtCount(childrenArray, counter, child);
-            parent->_childrenCount = parent->_childrenCount + 1;
-            DYYObjectRetain(childrenArray);
-            
-            return true;
+        for (uint16_t counter = 0; counter < kDYYArrayMaxCount; counter++) {
+            if (NULL == DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter)) {
+                DYYArraySetValueAtCount(DYYPersonChildrenArray(parent), counter, child);
+                parent->_childrenCount = parent->_childrenCount + 1;
+                DYYObjectRetain(DYYPersonChildrenArray(parent));
+                
+                return true;
             }
         }
     }
@@ -210,10 +211,9 @@ bool DYYPersonMarriedStatus(DYYPerson *person) {
 
 uint16_t DYYPersonCurrentChildrenCount(DYYPerson *parent) {
     uint16_t childrenCount = 0;
-    DYYArray *children = parent->_childrenArray;
     if (parent != NULL) {
         for (uint16_t counter = 0; counter < kDYYArrayMaxCount; counter++) {
-            if (NULL != DYYArrayValueAtCount(children, counter)) {
+            if (NULL != DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter)) {
                          childrenCount++;
                          }
                 }
@@ -258,17 +258,17 @@ bool DYYPersonDivorce(DYYPerson *person) {
 }
 
 bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother, DYYPerson *child) {
-      if (DYYCheckTwoObjectsNULL(father, mother)
-          && child  != NULL
-          && (father != child || mother != child || mother != father)) {
-                  DYYPersonSearchAndRemoveChild(father, child);
-                  DYYPersonSearchAndRemoveChild(mother, child);
-                  DYYPersonSetParent(child, NULL);
-          
-                  return true;
-          }
-    
-          return false;
+  if (DYYCheckTwoObjectsNULL(father, mother)
+      && child  != NULL
+      && (father != child || mother != child || mother != father)) {
+              DYYPersonSearchAndRemoveChild(father, child);
+              DYYPersonSearchAndRemoveChild(mother, child);
+              DYYPersonSetParent(child, NULL);
+      
+              return true;
+              }
+
+              return false;
 }
 
 #pragma mark -
@@ -280,15 +280,23 @@ void DYYPersonSetChildrenArray(DYYPerson *person) {
     }
 }
 
+DYYArray *DYYPersonChildrenArray(DYYPerson *person){
+    if (person != NULL) {
+        DYYArray *childrenArray = person->_childrenArray;
+        
+        return childrenArray;
+        }  else  {
+                   return NULL;
+                 }
+}
+
 
 void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child) {
-    DYYArray *children = parent->_childrenArray;
-    
     for (uint16_t counter = 0; counter < kDYYArrayMaxCount; counter++) {
-        if (child == DYYArrayValueAtCount(children, counter)) {
-            DYYArraySetValueAtCount(children, counter, NULL);
+        if (child == DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter)) {
+            DYYArraySetValueAtCount(DYYPersonChildrenArray(parent), counter, NULL);
             parent->_childrenCount = parent->_childrenCount - 1;
-            DYYObjectRelease(child);
+            DYYObjectRelease(DYYPersonChildrenArray(parent));
             
             return;
             }
@@ -296,15 +304,13 @@ void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child) {
 }
 
 void DYYPersonRemoveAllChildren(DYYPerson *parent) {
-    DYYArray *children = parent->_childrenArray;
-    
     for (uint16_t counter = 0; counter < kDYYArrayMaxCount; counter++) {
-        if (DYYArrayValueAtCount(children, counter) != NULL) {
-        DYYPerson *child = DYYArrayValueAtCount(children, counter);
-        DYYObjectRelease(child);
-        DYYArraySetValueAtCount(children, counter, NULL);
-        parent->_childrenCount = parent->_childrenCount - 1;
-  
+        if (DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter) != NULL) {
+            DYYPerson *child = DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter);
+            DYYObjectRelease(child);
+            DYYArraySetValueAtCount(DYYPersonChildrenArray(parent), counter, NULL);
+            parent->_childrenCount = parent->_childrenCount - 1;
+      
         }
     }
 }
