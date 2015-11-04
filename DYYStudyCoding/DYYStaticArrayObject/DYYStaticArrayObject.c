@@ -31,7 +31,7 @@ DYYArray *DYYArrayCreate(void) {
 #pragma mark -
 #pragma mark Accessors
 
-void DYYArraySetValueAtCount(DYYArray *arrayObject, uint8_t count, void *value) {
+void DYYArraySetValueAtCount(DYYArray *arrayObject, uint16_t count, void *value) {
     if (NULL != arrayObject && NULL != value) {
         DYYObjectRelease(arrayObject->_staticArray[count]);
         DYYObjectRetain(arrayObject->_staticArray[count]);
@@ -44,7 +44,7 @@ void DYYArraySetValueAtCount(DYYArray *arrayObject, uint8_t count, void *value) 
     }
 }
 
-void *DYYArrayValueAtCount(DYYArray *arrayObject, uint8_t count) {
+void *DYYArrayValueAtCount(DYYArray *arrayObject, uint16_t count) {
     if (NULL != arrayObject) {
         return arrayObject->_staticArray[count];
      }
@@ -57,7 +57,7 @@ void *DYYArrayValueAtCount(DYYArray *arrayObject, uint8_t count) {
 
 void DYYArraySetAllArrayNull(DYYArray *object) {
     if (NULL != object) {
-        for (uint8_t count = 0; count < kDYYArrayMaxCount; count++) {
+        for (uint16_t count = 0; count < kDYYArrayMaxCount; count++) {
             DYYArraySetValueAtCount(object, count, NULL);
          }
     }

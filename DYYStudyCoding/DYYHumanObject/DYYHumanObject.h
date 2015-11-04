@@ -14,8 +14,6 @@
 #include "DYYStringObject.h"
 #include "DYYStaticArrayObject.h"
 
-//static const uint16_t kDYYChildrenMaxCount = 20;
-
 typedef enum {
     kDYYGenderMale,
     kDYYGenderFemale,

@@ -25,10 +25,10 @@ struct DYYDynamicArray {
 };
 
 extern
-DYYDynamicArray *DYYDynamicArrayCreate(void);
+void __DYYDynamicArrayDeallocate(DYYDynamicArray *object);
 
 extern
-void __DYYDynamicArrayDeallocate(DYYDynamicArray *object);
+DYYDynamicArray *DYYDynamicArrayCreate(void);
 
 extern
 void DYYDynamicArraySetValueAtCount(DYYDynamicArray *object, uint8_t count, void *value);

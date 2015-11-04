@@ -29,9 +29,9 @@ extern
 void __DYYArrayDeallocate(DYYArray *object);
 
 extern
-void DYYArraySetValueAtCount(DYYArray *object, uint8_t count, void *value);
+void DYYArraySetValueAtCount(DYYArray *object, uint16_t count, void *value);
 
 extern
-void *DYYArrayValueAtCount(DYYArray *object, uint8_t count);
+void *DYYArrayValueAtCount(DYYArray *object, uint16_t count);
 
 #endif /* DYYStaticArrayObject_h */
