@@ -15,7 +15,7 @@
 typedef void(*DYYObjectDeallocator)(void *object);
 
 typedef struct {
-    uint64_t _retainCount;
+    uint _retainCount;
     DYYObjectDeallocator _deallocatorFunctionPointer;
 } DYYObject;
 
@@ -26,7 +26,7 @@ extern
 void __DYYObjectDeallocate(void *object);
 
 extern
-uint64_t DYYObjectRetainCount(void *object);
+uint DYYObjectRetainCount(void *object);
 
 extern
 void DYYObjectRelease(void *object);

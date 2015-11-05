@@ -11,8 +11,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "DYYObject.h"
-#include "DYYStringObject.h"
-#include "DYYStaticArrayObject.h"
+#include "DYYString.h"
+#include "DYYStaticArray.h"
 
 typedef enum {
     kDYYGenderMale,
@@ -36,9 +36,9 @@ struct DYYPersonData {
 
 extern void __DYYPersonDeallocate(void *person);
 
-extern DYYPerson *DYYPersonCreateWithNameAgeGender(DYYString *name, unsigned int age, DYYGender gender);
+extern DYYPerson *DYYPersonCreateWithNameAgeGender(char *name, unsigned int age, DYYGender gender);
 
-extern DYYPerson *DYYPersonCreateChildOfFatherAndMother(DYYString *name, unsigned int age, DYYGender gender, DYYPerson *father, DYYPerson *mother);
+extern DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, unsigned int age, DYYGender gender, DYYPerson *father, DYYPerson *mother);
 
 extern bool DYYPersonMarry(DYYPerson *person, DYYPerson *personPartner);
 
@@ -46,7 +46,7 @@ extern bool DYYPersonDivorce(DYYPerson *person);
 
 extern bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother, DYYPerson *child);
 
-extern DYYString *DYYPersonName(DYYPerson *person);
+extern char *DYYPersonName(DYYPerson *person);
 
 extern unsigned int DYYPersonAge(DYYPerson *person);
 

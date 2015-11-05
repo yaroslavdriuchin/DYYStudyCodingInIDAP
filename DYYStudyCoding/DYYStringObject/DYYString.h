@@ -22,12 +22,12 @@ extern
 void __DYYStringDeallocate(DYYString *stringObject);
 
 extern
-void *DYYStringCreateWithValue(DYYString *value);
+void *DYYStringCreateWithString(char *value);
 
 extern
-void DYYStringSetValue(DYYString *stringObject, DYYString *value);
+void DYYStringSetValue(DYYString *stringObject, char *value);
 
 extern
-void *DYYStringValue(DYYString *stringObject);
+char *DYYStringValue(DYYString *stringObject);
 
 #endif /* DYYStringObject_h */

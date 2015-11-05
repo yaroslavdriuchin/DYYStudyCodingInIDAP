@@ -10,16 +10,14 @@
 #include <assert.h>
 #include <string.h>
 #include <limits.h>
-#include "DYYHumanObject.h"
+#include "DYYHuman.h"
 #include "DYYMacro.h"
 
 #pragma mark -
 #pragma mark Private Declarations
 
-#define DYYCheckTwoObjectsNULL(objectOne, objectTwo) NULL != objectOne && NULL != objectTwo
-
 static
-void DYYPersonSetName(DYYPerson *person, DYYString *name);
+void DYYPersonSetName(DYYPerson *person, char *name);
 
 static
 void DYYPersonSetAge(DYYPerson *person, unsigned int age);
@@ -46,6 +44,12 @@ static
 DYYArray *DYYPersonChildrenArray(DYYPerson *person);
 
 static
+void DYYPersonIncrementChildrenCount(DYYPerson *person);
+
+static
+void DYYPersonDecrementChildrenCount(DYYPerson *person);
+
+static
 void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child);
 
 static
@@ -56,7 +60,7 @@ void DYYPersonRemoveAllChildren(DYYPerson *parent);
 
 void __DYYPersonDeallocate(void *person) {
     if (person != NULL
-        && DYYObjectRetainCount(person) <= 1) {
+        && DYYObjectRetainCount(person) == 1) {
         DYYPersonSetName(person, NULL);
         DYYPersonDivorce(person);
         DYYPersonRemoveAllChildren(person);
@@ -65,7 +69,7 @@ void __DYYPersonDeallocate(void *person) {
     }
 }
 
-DYYPerson *DYYPersonCreateWithNameAgeGender(DYYString *name,
+DYYPerson *DYYPersonCreateWithNameAgeGender(char *name,
                                             unsigned int age,
                                             DYYGender gender)    {
         DYYPerson *personObject = DYYObjectCreateOfType(DYYPerson);
@@ -78,7 +82,7 @@ DYYPerson *DYYPersonCreateWithNameAgeGender(DYYString *name,
 }
 
 
-DYYPerson *DYYPersonCreateChildOfFatherAndMother(DYYString *name, unsigned int age, DYYGender gender, DYYPerson *father, DYYPerson *mother) {
+DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name, unsigned int age, DYYGender gender, DYYPerson *father, DYYPerson *mother) {
     if (DYYCheckTwoObjectsNULL(father, mother)
         && DYYPersonGender(father) == kDYYGenderMale
         && DYYPersonGender(mother) == kDYYGenderFemale
@@ -100,16 +104,21 @@ DYYPerson *DYYPersonCreateChildOfFatherAndMother(DYYString *name, unsigned int a
 #pragma mark -
 #pragma mark Accessors
 
-void DYYPersonSetName(DYYPerson *person, DYYString *name) {
-    if (NULL != person && name != person->_name)  {
-        DYYObjectRelease(person->_name);
-        person->_name = DYYStringCreateWithValue(name);
-        DYYObjectRetain(person->_name);
+void DYYPersonSetName(DYYPerson *person, char *name) {
+    if (NULL != person) {
+        DYYString *stringObject = DYYStringCreateWithString(name);
+        person->_name = stringObject;
+        DYYObjectRetain(stringObject);
     }
     
+    if (NULL != person && NULL == name) {
+        DYYString *stringObject = person->_name;
+        DYYStringSetValue(stringObject, NULL);
+        DYYObjectRelease(stringObject);
+    }
 }
 
-DYYString *DYYPersonName(DYYPerson *person) {
+char *DYYPersonName(DYYPerson *person) {
     if (NULL == person) {
         return NULL;
     }
@@ -166,8 +175,8 @@ bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {
         for (uint16_t counter = 0; counter < kDYYArrayMaxCount; counter++) {
             if (NULL == DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter)) {
                 DYYArraySetValueAtCount(DYYPersonChildrenArray(parent), counter, child);
-                parent->_childrenCount++;
-                DYYObjectRetain(DYYPersonChildrenArray(parent));
+                DYYPersonIncrementChildrenCount(parent);
+                DYYObjectRetain(child);
                 
                 return true;
             }
@@ -208,6 +217,18 @@ bool DYYPersonMarriedStatus(DYYPerson *person) {
        }
     
     return false;
+}
+
+void DYYPersonIncrementChildrenCount(DYYPerson *person) {
+    if (NULL != person) {
+        person->_childrenCount++;
+    }
+}
+
+void DYYPersonDecrementChildrenCount(DYYPerson *person) {
+    if (NULL != person) {
+        person->_childrenCount--;
+    }
 }
 
 #pragma mark -
@@ -296,8 +317,8 @@ void DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child) {
     for (uint16_t counter = 0; counter < kDYYArrayMaxCount; counter++) {
         if (child == DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter)) {
             DYYArraySetValueAtCount(DYYPersonChildrenArray(parent), counter, NULL);
-            parent->_childrenCount--;
-            DYYObjectRelease(DYYPersonChildrenArray(parent));
+            DYYPersonDecrementChildrenCount(parent);
+            DYYObjectRelease(child);
             
             return;
             }
@@ -310,7 +331,7 @@ void DYYPersonRemoveAllChildren(DYYPerson *parent) {
             DYYPerson *child = DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter);
             DYYObjectRelease(child);
             DYYArraySetValueAtCount(DYYPersonChildrenArray(parent), counter, NULL);
-            parent->_childrenCount--;
+            DYYPersonDecrementChildrenCount(parent);
       
         }
     }

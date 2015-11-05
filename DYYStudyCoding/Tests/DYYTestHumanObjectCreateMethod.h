@@ -12,5 +12,6 @@
 #include <stdio.h>
 
 void DYYTestHumanObjectMethod(void);
+void DYYTestHumanObjectCreateMethod(void);
 
 #endif /* DYYTestHumanObjectCreateMethod_h */

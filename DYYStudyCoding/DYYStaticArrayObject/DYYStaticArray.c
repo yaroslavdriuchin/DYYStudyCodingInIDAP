@@ -6,7 +6,7 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#include "DYYStaticArrayObject.h"
+#include "DYYStaticArray.h"
 #include "DYYMacro.h"
 
 #pragma mark -

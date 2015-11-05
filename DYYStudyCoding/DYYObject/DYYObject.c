@@ -32,7 +32,7 @@ void *__DYYObjectCreate(size_t size, DYYObjectDeallocator deallocator) {
     return object;
 }
 
-uint64_t DYYObjectRetainCount(void *object) {
+uint DYYObjectRetainCount(void *object) {
     return object ? ((DYYObject *)object)->_retainCount : 0;
 }
 
