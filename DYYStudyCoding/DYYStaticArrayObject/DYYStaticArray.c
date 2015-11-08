@@ -52,6 +52,20 @@ void *DYYArrayValueAtCount(DYYArray *arrayObject, uint16_t count) {
     return NULL;
 }
 
+uint16_t DYYArrayCount(DYYArray *object) {
+    uint16_t childrenCount = 0;
+    
+    if (object != NULL) {
+        for (uint16_t counter = 0; counter < kDYYArrayMaxCount; counter++) {
+            if (NULL != DYYArrayValueAtCount(object, counter)) {
+                childrenCount++;
+            }
+        }
+    }
+    return childrenCount;
+}
+
+
 #pragma mark -
 #pragma mark Private Implementations
 

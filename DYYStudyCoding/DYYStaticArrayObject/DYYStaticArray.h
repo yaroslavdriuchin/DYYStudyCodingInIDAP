@@ -34,4 +34,7 @@ void DYYArraySetValueAtCount(DYYArray *object, uint16_t count, void *value);
 extern
 void *DYYArrayValueAtCount(DYYArray *object, uint16_t count);
 
+extern
+uint16_t DYYArrayCount(DYYArray *object);
+
 #endif /* DYYStaticArrayObject_h */

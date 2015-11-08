@@ -39,7 +39,7 @@ uint DYYObjectRetainCount(void *object) {
 void DYYObjectRelease(void *object) {
     if (NULL != object) {
         DYYObject *releasedObject = (DYYObject *)object;
-        if (0 == (releasedObject->_retainCount) - 1) {
+        if (0 == --(releasedObject->_retainCount)) {
             DYYObjectDeallocator deallocator = releasedObject->_deallocatorFunctionPointer;
             deallocator(object);
         }

@@ -28,10 +28,8 @@ struct DYYPersonData {
     DYYPerson *_father;
     DYYPerson *_mother;
     DYYArray *_childrenArray;
-    uint16_t _childrenCount;
     unsigned int _age;
     DYYGender _gender;
-    bool _marriedStatus;
 };
 
 extern void __DYYPersonDeallocate(void *person);
