@@ -20,7 +20,7 @@
 //struct DYYDynamicArray {
 //    DYYObject _super;
 //    void **_dynamicArray;
-//    uint64_t _elementsCount;
+////    uint64_t _elementsCount;
 //    uint64_t _capacity;
 //};
 //
@@ -31,12 +31,9 @@
 //DYYDynamicArray *DYYDynamicArrayCreate(void);
 //
 //extern
-//void DYYDynamicArraySetValueAtCount(DYYDynamicArray *object, uint8_t count, void *value);
+//void DYYDynamicArrayAddElement(DYYDynamicArray *arrayObject, void *elementPointer);
 //
 //extern
-//void *DYYDynamicArrayValueAtCount(DYYDynamicArray *object, uint8_t count);
-//
-//extern
-//void DYYDynamicArrayCountOfElement(DYYDynamicArray *object, void *value);
+//void DYYDynamicArrayRemoveElement(DYYDynamicArray *arrayObject, void *elementPointer);
 //
 //#endif /* DYYDynamicArrayObject_h */

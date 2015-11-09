@@ -31,7 +31,7 @@ DYYArray *DYYArrayCreate(void) {
 #pragma mark -
 #pragma mark Accessors
 
-void DYYArraySetValueAtCount(DYYArray *arrayObject, uint16_t count, void *value) {
+void DYYArraySetValueAtCount(DYYArray *arrayObject, uint16_t count, void *value) {    
     if (NULL != arrayObject && NULL != value) {
         DYYObjectRelease(arrayObject->_staticArray[count]);
         DYYObjectRetain(arrayObject->_staticArray[count]);

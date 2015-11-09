@@ -6,6 +6,8 @@
 ////  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 ////
 //
+//#include <stdlib.h>
+//#include <stdbool.h>
 //#include "DYYDynamicArray.h"
 //#include "DYYMacro.h"
 //
@@ -18,15 +20,39 @@
 //    kDYYArrayResizeDecrease
 //} DYYArrayResizeParameter;
 //
-//static void DYYDynamicArraySetAllArrayNull(DYYDynamicArray *object);
+//float kDYYArrayDecreaseThreshold = 0.5;
 //
-//static void DYYDynamicArrayMakeResize(DYYDynamicArray *object);
+//float kDYYArrayIncreaseRate = 1.5;
 //
-//static DYYArrayResizeParameter DYYDynamicArrayShouldResize(DYYDynamicArray *object);
+//float kDYYArrayDecreaseRate = 0.7;
 //
-//static uint64_t DYYDynamicArrayElementsCount(DYYDynamicArray *object);
+//static
+//void DYYDynamicArraySetCapacity(DYYDynamicArray *object, uint64_t proposedElementsCount);
 //
-//static uint64_t DYYDynamicArrayCapacity(DYYDynamicArray *object);
+//static
+//void DYYDynamicArrayResize(DYYDynamicArray *object, DYYArrayResizeParameter resizeParameter);
+//
+//static
+//uint64_t DYYDynamicArrayElementsCount(DYYDynamicArray *object);
+//
+//static
+//uint64_t DYYDynamicArrayCapacity(DYYDynamicArray *object);
+//
+//extern
+//void DYYDynamicArraySetValueAtCount(DYYDynamicArray *object, uint8_t count, void *elementPointer);
+//
+//extern
+//void *DYYDynamicArrayValueAtCount(DYYDynamicArray *object, uint8_t count);
+//
+//extern
+//void DYYDynamicArrayCountOfElement(DYYDynamicArray *object, void *elementPointer);
+//
+//extern
+//bool DYYDynamicArrayDetectElement(DYYDynamicArray *object, void *elementPointer);
+//
+//extern
+//void DYYDynamicArraySearchAndRemoveElement(DYYDynamicArray *object, void *elementPointer);
+//
 //
 //#pragma mark -
 //#pragma mark Initializations and Deallocators
@@ -37,14 +63,14 @@
 //}
 //
 //DYYDynamicArray *DYYDynamicArrayCreate(void) {
-//    
+//    return DYYObjectCreateOfType(DYYDynamicArray);
 //}
 //
 //
 //#pragma mark -
 //#pragma mark Accessors
 //
-//void DYYDynamicArraySetValueAtCount(DYYDynamicArray *object, uint8_t count, void *value) {
+//void DYYDynamicArraySetValueAtCount(DYYDynamicArray *object, uint8_t count, void *elementPointer) {
 //    
 //}
 //
@@ -52,25 +78,68 @@
 //    
 //}
 //
-//void DYYDynamicArrayCountOfElement(DYYDynamicArray *object, void *value) {
+//void DYYDynamicArrayCountOfElement(DYYDynamicArray *object, void *elementPointer) {
 //    
 //}
 //
-//static uint64_t DYYDynamicArrayElementsCount(DYYDynamicArray *object);
+//static uint64_t DYYDynamicArrayElementsCount(DYYDynamicArray *object) {
+//    
+//}
 //
-//static uint64_t DYYDynamicArrayCapacity(DYYDynamicArray *object);
+//static uint64_t DYYDynamicArrayCapacity(DYYDynamicArray *object) {
+//    
+//}
 //
 //#pragma mark -
 //#pragma mark Private Implemetations
 //
-//void DYYDynamicArraySetAllArrayNull(DYYDynamicArray *object) {
+//bool DYYDynamicArrayDetectElement(DYYDynamicArray *object, void *elementPointer) {
 //    
 //}
 //
-//void DYYDynamicArrayMakeResize(DYYDynamicArray *object) {
+//#pragma mark -
+//#pragma mark Private Implemetations
+//
+//void DYYDynamicArrayAddElement(DYYDynamicArray *arrayObject, void *elementPointer) {
+//if (NULL != arrayObject && DYYDynamicArrayDetectElement(arrayObject) == true)
+//    {
+//      return;
+//    }
+//if (NULL != arrayObject && NULL != elementPointer) {
+//    uint16_t proposedElementsCount = DYYDynamicArrayElementsCount(arrayObject)++;
+//    DYYDynamicArraySetCapacity(arrayObject, proposedElementsCount);
+//    DYYDynamicArraySetValueAtCount(arrayObject, proposedElementsCount, elementPointer);
+//    }
+//}
+//
+//void DYYDynamicArrayRemoveElement(DYYDynamicArray *arrayObject, void *elementPointer) {
+//if (NULL != arrayObject && NULL != elementPointer) {
+//    uint16_t proposedElementsCount = DYYDynamicArrayElementsCount(arrayObject)--;
+//    DYYDynamicArraySetCapacity(arrayObject, proposedElementsCount);
+//    DYYDynamicArraySearchAndRemoveElement(arrayObject, elementPointer);
+//    }
+//}
+//
+//void DYYDynamicArraySetCapacity(DYYDynamicArray *object, uint64_t proposedElementsCount)
+//{
+//    if (NULL!= object && NULL == proposedElementsCount) {
+//            DYYObjectRelease(object);
+//    }
 //    
+//    if (NULL != object && proposedElementsCount > DYYDynamicArrayCapacity(object)) {
+//            DYYDynamicArrayResize(object, kDYYArrayResizeIncrease);
+//    }
+//
+//    if (NULL != object
+//        && (kDYYArrayDecreaseThreshold * DYYDynamicArrayCapacity(object) <= proposedElementsCount <= DYYDynamicArrayCapacity(object))
+//        && proposedElementsCount < DYYDynamicArrayElementsCount(object)) {
+//            DYYDynamicArrayResize(object, kDYYArrayResizeNotNeeded);
+//    }
+//    
+//    if (NULL != object
+//        && proposedElementsCount < kDYYArrayDecreaseThreshold * DYYDynamicArrayCapacity(object)
+//        && proposedElementsCount < DYYDynamicArrayElementsCount(object)) {
+//            DYYDynamicArrayResize(object, kDYYArrayResizeDecrease);
+//    }
 //}
 //
-//DYYArrayResizeParameter DYYDynamicArrayShouldResize(DYYDynamicArray *object) {
-//
-//}

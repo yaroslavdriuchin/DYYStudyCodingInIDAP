@@ -167,6 +167,10 @@ void *DYYPersonPartner(DYYPerson *person) {
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {
     if (parent != NULL && parent != child) {
         for (uint16_t counter = 0; counter < kDYYArrayMaxCount; counter++) {
+            if (child == DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter)) {
+                return true;
+            }
+            
             if (NULL == DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter)) {
                 DYYArraySetValueAtCount(DYYPersonChildrenArray(parent), counter, child);
                 DYYObjectRetain(DYYPersonChildrenArray(parent));
