@@ -84,8 +84,11 @@ void DYYTestHumanObjectMethod(void) {
 //divorcing object 1 with its current partner, expected result of divorse = true = 1
     printf("Result of divorce %d\n", DYYPersonDivorce(testObjectRamzan));
     
+//trying to remove child of wrong parents, expecting result = 0
+    printf("Result of removing child of wrong father and mother is %d \n", DYYPersonRemoveChildOfFatherAndMother(testObjectBritney, testObjectMalvina, testObjectRamzan));
+    
 //removing child of 2 objects, expecting result =1, checking children count of mother of two after deleting one, expecting = 1
-    printf("Result of removing child of father and mother is %d \n", DYYPersonRemoveChildOfFatherAndMother(testObjectRamzan, testObjectMalvina, testObjectBritney));
+    printf("Result of removing child of correct father and mother is %d \n", DYYPersonRemoveChildOfFatherAndMother(testObjectRamzan, testObjectMalvina, testObjectBritney));
     printf("Children count of parent after deleting 1 child is: %u\n", DYYPersonCurrentChildrenCount(testObjectMalvina));
     
 //sending release message to object with RetainCount = 1, expected it to deallocate

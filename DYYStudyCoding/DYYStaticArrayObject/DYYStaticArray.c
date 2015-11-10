@@ -6,6 +6,7 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
+#include <assert.h>
 #include "DYYStaticArray.h"
 #include "DYYMacro.h"
 
@@ -31,7 +32,9 @@ DYYArray *DYYArrayCreate(void) {
 #pragma mark -
 #pragma mark Accessors
 
-void DYYArraySetValueAtCount(DYYArray *arrayObject, uint16_t count, void *value) {    
+void DYYArraySetValueAtCount(DYYArray *arrayObject, uint16_t count, void *value) {
+    assert(count < kDYYArrayMaxCount);
+    
     if (NULL != arrayObject && NULL != value) {
         DYYObjectRelease(arrayObject->_staticArray[count]);
         DYYObjectRetain(arrayObject->_staticArray[count]);
@@ -45,6 +48,8 @@ void DYYArraySetValueAtCount(DYYArray *arrayObject, uint16_t count, void *value)
 }
 
 void *DYYArrayValueAtCount(DYYArray *arrayObject, uint16_t count) {
+    assert(count < kDYYArrayMaxCount);
+    
     if (NULL != arrayObject) {
         return arrayObject->_staticArray[count];
      }
