@@ -71,14 +71,14 @@ static
 void DYYDynamicArrayResize(DYYDynamicArray *object, DYYArrayResizeParameter resizeParameter);
 
 extern
-void DYYDynamicArrayCleanOut(DYYDynamicArray *object);
+void DYYDynamicArrayClearArray(DYYDynamicArray *object);
 
 
 #pragma mark -
 #pragma mark Initializations and Deallocators
 
 void __DYYDynamicArrayDeallocate(DYYDynamicArray *object) {
-    DYYDynamicArrayCleanOut(object);
+    DYYDynamicArrayClearArray(object);
     __DYYObjectDeallocate(object);
 }
 
@@ -233,5 +233,13 @@ void DYYDynamicArrayResize(DYYDynamicArray *object, DYYArrayResizeParameter resi
             }
         
             else return;
+    }
+}
+
+void DYYDynamicArrayClearArray(DYYDynamicArray *object) {
+    if (NULL != object) {
+        for (uint16_t counter; counter <= DYYDynamicArrayAllElementsCount(object); counter++) {
+            DYYDynamicArraySetElementAtCount(object, counter, NULL);
+        }
     }
 }
