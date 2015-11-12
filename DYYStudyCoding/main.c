@@ -11,7 +11,8 @@
 //#include "DYYTestCheckNumbersAndReturnParentType.h"
 //#include "DYYStructureAlignment.h"
 //#include "DYYTestDecimalToBinaryOutput.h"
-#include "DYYTestHumanObjectCreateMethod.h"
+#include "DYYTestHumanWithStaticArray.h"
+#include "DYYTestHumanWithDynamicArray.h"
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -24,7 +25,10 @@ int main(int argc, const char * argv[]) {
 //    DYYReturnStructOffsetValue();
 //    DYYTestCheckNumbersAndReturnParentType();
 //    DYYTestDecimalToBinaryOutput();
-    DYYTestHumanObjectCreateMethod();
-    DYYTestHumanObjectMethod();
+//    DYYTestHumanObjectCreateMethod();
+//    DYYTestHumanObjectMethod();
+    
+    DYYTestHumanWithDynamicArrayCreate();
+    DYYTestHumanWithDynamicArray();
     return 0;
     }

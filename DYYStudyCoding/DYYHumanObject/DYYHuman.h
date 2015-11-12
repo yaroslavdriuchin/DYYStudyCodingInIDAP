@@ -13,6 +13,7 @@
 #include "DYYObject.h"
 #include "DYYString.h"
 #include "DYYStaticArray.h"
+#include "DYYDynamicArray.h"
 
 typedef enum {
     kDYYGenderMale,
@@ -27,7 +28,7 @@ struct DYYPersonData {
     DYYPerson *_partner;
     DYYPerson *_father;
     DYYPerson *_mother;
-    DYYArray *_childrenArray;
+    DYYDynamicArray *_childrenArray;
     unsigned int _age;
     DYYGender _gender;
 };

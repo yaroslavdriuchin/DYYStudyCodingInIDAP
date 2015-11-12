@@ -38,10 +38,10 @@ static
 void DYYPersonSetChildrenArray(DYYPerson *person);
 
 static
-DYYArray *DYYPersonChildrenArray(DYYPerson *person);
+DYYDynamicArray *DYYPersonChildrenArray(DYYPerson *person);
 
-static
-bool DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child);
+//static
+//bool DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child);
 
 static
 void DYYPersonRemoveAllChildren(DYYPerson *parent);
@@ -79,9 +79,7 @@ DYYPerson *DYYPersonCreateChildOfFatherAndMother(char *name,
 {
     if (NULL != father && NULL != mother
         && DYYPersonGender(father) == kDYYGenderMale
-        && DYYPersonGender(mother) == kDYYGenderFemale
-        && DYYPersonCurrentChildrenCount(mother) < kDYYArrayMaxCount
-        && DYYPersonCurrentChildrenCount(father) < kDYYArrayMaxCount)
+        && DYYPersonGender(mother) == kDYYGenderFemale)
     {
         DYYPerson *child = DYYPersonCreateWithNameAgeGender(name, age, gender);
         DYYPersonSetAsParent(father, child);
@@ -166,22 +164,21 @@ void *DYYPersonPartner(DYYPerson *person) {
 
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {
     if (parent != NULL && parent != child) {
-        for (uint16_t counter = 0; counter < kDYYArrayMaxCount; counter++) {
-            if (child == DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter)) {
-                return true;
-            }
+        if (true == DYYDynamicArrayDetectElement(DYYPersonChildrenArray(parent), child)) {
+            return true;
+        }
+        
+        if (false == DYYDynamicArrayDetectElement(DYYPersonChildrenArray(parent), child)) {
+            DYYDynamicArrayAddElement(parent->_childrenArray, child);
+            DYYObjectRetain(parent->_childrenArray);
             
-            if (NULL == DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter)) {
-                DYYArraySetValueAtCount(DYYPersonChildrenArray(parent), counter, child);
-                DYYObjectRetain(DYYPersonChildrenArray(parent));
-                
-                return true;
-            }
+            return true;
         }
     }
     
     return false;
 }
+
 
 bool DYYPersonSetParent(DYYPerson *child, DYYPerson *parent) {
     if (NULL != child) {
@@ -210,7 +207,7 @@ bool DYYPersonMarriedStatus(DYYPerson *person) {
 #pragma mark Public Implementations
 
 uint16_t DYYPersonCurrentChildrenCount(DYYPerson *parent) {
-               return DYYArrayCount(DYYPersonChildrenArray(parent));
+            return DYYDynamicArrayAllElementsCount(DYYPersonChildrenArray(parent));
 }
 
 bool DYYPersonMarry(DYYPerson *person, DYYPerson *partner) {
@@ -248,7 +245,8 @@ bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother,
       && NULL != mother
       && NULL != child
       && (father != child || mother != child || mother != father)) {
-      if (true == DYYPersonSearchAndRemoveChild(father, child) && DYYPersonSearchAndRemoveChild(mother, child)) {
+      if (true == DYYDynamicArrayRemoveElement(DYYPersonChildrenArray(father), child)
+          && DYYDynamicArrayRemoveElement(DYYPersonChildrenArray(mother), child)) {
               DYYPersonSetParent(child, NULL);
       
               return true;
@@ -263,13 +261,14 @@ bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother,
 
 void DYYPersonSetChildrenArray(DYYPerson *person) {
     if (person != NULL) {
-           person->_childrenArray = DYYArrayCreate();
+        DYYDynamicArray *dynamicArray = DYYDynamicArrayCreate();
+        person->_childrenArray = dynamicArray;
     }
 }
 
-DYYArray *DYYPersonChildrenArray(DYYPerson *person) {
+DYYDynamicArray *DYYPersonChildrenArray(DYYPerson *person) {
     if (person != NULL) {
-        DYYArray *childrenArray = person->_childrenArray;
+        DYYDynamicArray *childrenArray = person->_childrenArray;
         
         return childrenArray;
         }  else  {
@@ -277,27 +276,22 @@ DYYArray *DYYPersonChildrenArray(DYYPerson *person) {
                  }
 }
 
-
-bool DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child) {
-    for (uint16_t counter = 0; counter < kDYYArrayMaxCount; counter++) {
-        if (child == DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter)) {
-            DYYArraySetValueAtCount(DYYPersonChildrenArray(parent), counter, NULL);
-            DYYObjectRelease(DYYPersonChildrenArray(parent));
-            
-            return true;
-            }
-      }
-    
-            return false;
-}
+//
+//bool DYYPersonSearchAndRemoveChild(DYYPerson *parent, DYYPerson *child) {
+//    for (uint16_t counter = 0; counter < kDYYArrayMaxCount; counter++) {
+//        if (child == DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter)) {
+//            DYYArraySetValueAtCount(DYYPersonChildrenArray(parent), counter, NULL);
+//            DYYObjectRelease(DYYPersonChildrenArray(parent));
+//            
+//            return true;
+//            }
+//      }
+//    
+//            return false;
+//}
 
 void DYYPersonRemoveAllChildren(DYYPerson *parent) {
-    for (uint16_t counter = 0; counter < kDYYArrayMaxCount; counter++) {
-        if (DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter) != NULL) {
-            DYYPerson *child = DYYArrayValueAtCount(DYYPersonChildrenArray(parent), counter);
-            DYYObjectRelease(child);
-            DYYArraySetValueAtCount(DYYPersonChildrenArray(parent), counter, NULL);
-      
-        }
+    if (NULL != parent) {
+        DYYDynamicArrayClearArray(DYYPersonChildrenArray(parent));
     }
 }

@@ -20,7 +20,7 @@ typedef struct DYYDynamicArray DYYDynamicArray;
 struct DYYDynamicArray {
     DYYObject _super;
     void **_dynamicArrayObjects;
-//    uint64_t _elementsCount;
+    uint16_t _elementsCount;
     uint16_t _capacity;
 };
 
@@ -34,6 +34,16 @@ extern
 void DYYDynamicArrayAddElement(DYYDynamicArray *arrayObject, void *elementPointer);
 
 extern
-void DYYDynamicArrayRemoveElement(DYYDynamicArray *arrayObject, void *elementPointer);
+bool DYYDynamicArrayRemoveElement(DYYDynamicArray *arrayObject, void *elementPointer);
+
+extern
+bool DYYDynamicArrayDetectElement(DYYDynamicArray *object, void *elementPointer);
+
+extern
+uint16_t DYYDynamicArrayAllElementsCount(DYYDynamicArray *object);
+
+extern
+void DYYDynamicArrayClearArray(DYYDynamicArray *object);
+
 
 #endif /* DYYDynamicArrayObject_h */

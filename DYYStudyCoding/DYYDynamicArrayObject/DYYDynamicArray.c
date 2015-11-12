@@ -18,7 +18,7 @@
 #pragma mark Private Declarations
 
 typedef enum {
-    kDYYArrayResizeNotNeeded,
+    kDYYArrayResizeToInitialize,
     kDYYArrayResizeIncrease,
     kDYYArrayResizeDecrease
 } DYYArrayResizeParameter;
@@ -29,7 +29,7 @@ int kDYYArrayIncreaseRate = 2;
 
 int kDYYArrayDecreaseRate = 2;
 
-uint16_t kDYYArrayInitialCapacity = 4;
+uint16_t kDYYArrayInitialCapacity = 2;
 
 static
 void **DYYDynamicArrayObjects(DYYDynamicArray *object) {
@@ -55,12 +55,6 @@ void *DYYDynamicArrayElementAtCount(DYYDynamicArray *object, uint16_t count);
 extern
 uint16_t DYYDynamicArrayCountOfElement(DYYDynamicArray *object, void *elementPointer);
 
-static
-uint16_t DYYDynamicArrayAllElementsCount(DYYDynamicArray *object);
-
-extern
-bool DYYDynamicArrayDetectElement(DYYDynamicArray *object, void *elementPointer);
-
 extern
 void DYYDynamicArraySearchAndRemoveElement(DYYDynamicArray *object, void *elementPointer);
 
@@ -69,9 +63,9 @@ void DYYDynamicArrayRemoveElementAndShift(DYYDynamicArray *arrayObject, uint16_t
 
 static
 void DYYDynamicArrayResize(DYYDynamicArray *object, DYYArrayResizeParameter resizeParameter);
-
-extern
-void DYYDynamicArrayClearArray(DYYDynamicArray *object);
+//
+//static
+//void DYYDynamicArrayAllocateInitialSizeArray(DYYDynamicArray *object);
 
 
 #pragma mark -
@@ -83,24 +77,35 @@ void __DYYDynamicArrayDeallocate(DYYDynamicArray *object) {
 }
 
 DYYDynamicArray *DYYDynamicArrayCreate(void) {
-    return DYYObjectCreateOfType(DYYDynamicArray);
+    DYYDynamicArray *dynamicArray = DYYObjectCreateOfType(DYYDynamicArray);
+//    DYYDynamicArrayAllocateInitialSizeArray(dynamicArray);
+    DYYDynamicArraySetCapacity(dynamicArray, kDYYArrayInitialCapacity);
+    return dynamicArray;
 }
+
+//void DYYDynamicArrayAllocateInitialSizeArray(DYYDynamicArray *dynamicArray) {
+//    if (NULL != dynamicArray) {
+//        void *dynamicArrayAllocator = calloc(1, sizeof(dynamicArray->_dynamicArrayObjects));
+//        dynamicArray->_dynamicArrayObjects = dynamicArrayAllocator;
+//    }
+//}
 
 #pragma mark -
 #pragma mark Accessors
 
 void DYYDynamicArraySetElementAtCount(DYYDynamicArray *object, uint16_t count, void *elementPointer) {
     if (NULL != object) {
-        assert(count < DYYDynamicArrayCapacity(object));
+        assert(count <= DYYDynamicArrayCapacity(object));
+        object->_dynamicArrayObjects[count] = NULL;
         DYYObjectRelease(object->_dynamicArrayObjects[count]);
-        DYYDynamicArrayObjects(object)[count] = elementPointer;
+        object->_dynamicArrayObjects[count] = elementPointer;
         DYYObjectRetain(object->_dynamicArrayObjects[count]);
         }
 }
 
 void *DYYDynamicArrayElementAtCount(DYYDynamicArray *object, uint16_t count) {
-    if (NULL != object && count < DYYDynamicArrayCapacity(object)) {
-        assert(count > DYYDynamicArrayAllElementsCount(object));
+    if (NULL != object && count <= DYYDynamicArrayCapacity(object)) {
+        assert(count <= DYYDynamicArrayAllElementsCount(object));
         
         return DYYDynamicArrayObjects(object)[count];
         }
@@ -123,14 +128,11 @@ uint16_t DYYDynamicArrayCountOfElement(DYYDynamicArray *object, void *elementPoi
 }
 
 uint16_t DYYDynamicArrayAllElementsCount(DYYDynamicArray *object) {
-    uint16_t counter = 0;
-    
     if (NULL != object) {
-        while (NULL != DYYDynamicArrayElementAtCount(object, counter)) {
-            counter++;
-        }
+        return object->_elementsCount;
     }
-            return counter;
+    
+    return 0;
 }
 
 uint16_t DYYDynamicArrayCapacity(DYYDynamicArray *object) {
@@ -163,27 +165,40 @@ void DYYDynamicArrayAddElement(DYYDynamicArray *arrayObject, void *elementPointe
     {
         return;
     }
+    
     if (NULL != arrayObject && NULL != elementPointer) {
         uint16_t proposedElementsCount = DYYDynamicArrayAllElementsCount(arrayObject) + 1;
         DYYDynamicArraySetCapacity(arrayObject, proposedElementsCount);
         DYYDynamicArraySetElementAtCount(arrayObject, proposedElementsCount, elementPointer);
+        arrayObject->_elementsCount++;
     }
 }
 
-void DYYDynamicArrayRemoveElement(DYYDynamicArray *arrayObject, void *elementPointer) {
+bool DYYDynamicArrayRemoveElement(DYYDynamicArray *arrayObject, void *elementPointer) {
     if (NULL != arrayObject && NULL != elementPointer) {
         uint16_t proposedElementsCount = DYYDynamicArrayAllElementsCount(arrayObject) - 1;
         uint16_t elementToRemoveCount = DYYDynamicArrayCountOfElement(arrayObject, elementPointer);
         DYYDynamicArrayRemoveElementAndShift(arrayObject, elementToRemoveCount);
         DYYDynamicArraySetCapacity(arrayObject, proposedElementsCount);
+        arrayObject->_elementsCount--;
+        
+        return true;
     }
+    
+    return false;
 }
 
 void DYYDynamicArraySetCapacity(DYYDynamicArray *object, uint16_t proposedElementsCount)
 {
     if (NULL!= object && 0 == proposedElementsCount) {
-            DYYObjectRelease(object);
+        DYYDynamicArrayClearArray(object);
+        free(object);
     }
+    
+    if (NULL!= object && 1 == proposedElementsCount) {
+        DYYDynamicArrayResize(object, kDYYArrayResizeToInitialize);
+    }
+
     
     if (NULL != object && proposedElementsCount > DYYDynamicArrayCapacity(object)) {
             DYYDynamicArrayResize(object, kDYYArrayResizeIncrease);
@@ -192,7 +207,7 @@ void DYYDynamicArraySetCapacity(DYYDynamicArray *object, uint16_t proposedElemen
     if (NULL != object
         && (kDYYArrayDecreaseThreshold * DYYDynamicArrayCapacity(object) <= proposedElementsCount <= DYYDynamicArrayCapacity(object))
         && proposedElementsCount < DYYDynamicArrayAllElementsCount(object)) {
-            DYYDynamicArrayResize(object, kDYYArrayResizeNotNeeded);
+            DYYDynamicArrayResize(object, 0);
     }
     
     if (NULL != object
@@ -217,29 +232,38 @@ void DYYDynamicArrayResize(DYYDynamicArray *object, DYYArrayResizeParameter resi
     if (NULL != object) {
         void **dynamicArray = DYYDynamicArrayObjects(object);
         size_t elementSize = sizeof(dynamicArray);
-//        size_t dynamicArraySize = DYYDynamicArrayCapacity(object) * elementSize;
+        size_t dynamicArraySize = elementSize + DYYDynamicArrayCapacity(object) * elementSize;
         size_t allElementsSize = DYYDynamicArrayAllElementsCount(object) * elementSize;
         
+        if (resizeParameter == kDYYArrayResizeToInitialize) {
+            void *newCapacityArray = calloc(kDYYArrayInitialCapacity, elementSize);
+            object->_dynamicArrayObjects = newCapacityArray;
+            object->_capacity++;
+        }
+        
         if (resizeParameter == kDYYArrayResizeIncrease) {
-            void *newCapacityArray = realloc(dynamicArray, DYYDynamicArrayCapacity(object) * kDYYArrayIncreaseRate);
+            void *newCapacityArray = realloc(dynamicArray, elementSize + DYYDynamicArrayCapacity(object) * kDYYArrayIncreaseRate);
+            dynamicArray = newCapacityArray;
             memset(dynamicArray + allElementsSize,
                    0,
-                   elementSize * kDYYArrayIncreaseRate);
+                   dynamicArraySize - allElementsSize);
+            object->_capacity++;
+            
+        } else if (resizeParameter == kDYYArrayResizeDecrease) {
+            void *newCapacityArray = realloc(dynamicArray, DYYDynamicArrayCapacity(object) / kDYYArrayDecreaseRate);
             dynamicArray = newCapacityArray;
-        } else
-            if (resizeParameter == kDYYArrayResizeDecrease) {
-                void *newCapacityArray = realloc(dynamicArray, DYYDynamicArrayCapacity(object) / kDYYArrayDecreaseRate);
-                dynamicArray = newCapacityArray;
-            }
+            object->_capacity--;
+        }
         
-            else return;
+        else return;
     }
 }
 
 void DYYDynamicArrayClearArray(DYYDynamicArray *object) {
     if (NULL != object) {
-        for (uint16_t counter; counter <= DYYDynamicArrayAllElementsCount(object); counter++) {
+        for (uint16_t counter = 0; counter <= DYYDynamicArrayAllElementsCount(object); counter++) {
             DYYDynamicArraySetElementAtCount(object, counter, NULL);
+            DYYObjectRelease(DYYDynamicArrayObjects(object)[counter]);
         }
     }
 }
