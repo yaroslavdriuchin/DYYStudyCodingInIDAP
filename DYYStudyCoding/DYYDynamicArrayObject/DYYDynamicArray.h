@@ -13,8 +13,6 @@
 #include <stdlib.h>
 #include "DYYObject.h"
 
-//static const uint16_t kDYYDynamicArrayInitialCapacity = 3;
-
 typedef struct DYYDynamicArray DYYDynamicArray;
 
 struct DYYDynamicArray {
@@ -31,13 +29,16 @@ extern
 DYYDynamicArray *DYYDynamicArrayCreate(void);
 
 extern
-void DYYDynamicArrayAddElement(DYYDynamicArray *arrayObject, void *elementPointer);
+void DYYDynamicArraySetCount(DYYDynamicArray *object, uint16_t count);
 
 extern
-bool DYYDynamicArrayRemoveElement(DYYDynamicArray *arrayObject, void *elementPointer);
+void DYYDynamicArrayAddElement(DYYDynamicArray *arrayObject, void *element);
 
 extern
-bool DYYDynamicArrayDetectElement(DYYDynamicArray *object, void *elementPointer);
+bool DYYDynamicArrayRemoveElement(DYYDynamicArray *arrayObject, void *element);
+
+extern
+bool DYYDynamicArrayCheckArrayForElement(DYYDynamicArray *object, void *element);
 
 extern
 uint16_t DYYDynamicArrayAllElementsCount(DYYDynamicArray *object);
