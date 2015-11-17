@@ -7,8 +7,6 @@
 //
 
 #include "DYYTestHumanWithDynamicArray.h"
-
-
 #include "DYYTestHumanWithStaticArray.h"
 #include "DYYHuman.h"
 #include "DYYString.h"
@@ -39,7 +37,8 @@ void DYYTestHumanWithDynamicArrayCreate(void) {
 
 
 void DYYTestHumanWithDynamicArray(void) {
-//creating 2 test objects of different gender and parameters
+//creating 3 test objects of different gender and parameters
+    DYYPerson *testObjectRamzan = DYYPersonCreateWithNameAgeGender("Ramzan Abdurahmanov", 104, kDYYGenderMale);
     DYYPerson *testObjectMalvina = DYYPersonCreateWithNameAgeGender("Malvina Frankenstein", 16, kDYYGenderFemale);
     DYYPerson *testObjectVitalik = DYYPersonCreateWithNameAgeGender("Vitalik S Shulyavki", 24, kDYYGenderMale);
     
@@ -56,5 +55,35 @@ void DYYTestHumanWithDynamicArray(void) {
     assert(1 == DYYPersonCurrentChildrenCount(testObjectMalvina));
     printf("Assert test succeded, children count of parent is: %u\n", DYYPersonCurrentChildrenCount(testObjectMalvina));
 
+//Adding second child to mother array with different partner
+    DYYPerson *testObjectBritney = DYYPersonCreateChildOfFatherAndMother("Britney Spears",
+                                                                     1,
+                                                                     kDYYGenderFemale,
+                                                                     testObjectRamzan,
+                                                                     testObjectMalvina);
+
+//checking children count of parent with new child, expected 2, checking retain count of new child, expected 3
+    printf("Name of the child is %s\n", DYYPersonName(testObjectBritney));
+
+    assert(2 == DYYPersonCurrentChildrenCount(testObjectMalvina));
+    printf("Children count of parent is: %u\n", DYYPersonCurrentChildrenCount(testObjectMalvina));
+
+    assert(3 == DYYObjectRetainCount(testObjectMalvina->_childrenArray));
+    printf("Retain count of parent children array with 2nd child is %u\n", DYYObjectRetainCount(testObjectMalvina->_childrenArray));
+
+//divorcing object 1 with its current partner, expected result of divorse = true = 1
+    printf("Result of divorce %d\n", DYYPersonDivorce(testObjectRamzan));
+
+//trying to remove child of wrong parents, expecting result = 0
+    printf("Result of removing child of wrong father and mother is %d \n", DYYPersonRemoveChildOfFatherAndMother(testObjectBritney, testObjectMalvina, testObjectRamzan));
+
+//removing child of 2 objects, expecting result =1, checking children count of mother of two after deleting one, expecting = 1
+    printf("Result of removing child of correct father and mother is %d \n", DYYPersonRemoveChildOfFatherAndMother(testObjectRamzan, testObjectMalvina, testObjectBritney));
+    printf("Children count of parent after deleting 1 child is: %u\n", DYYPersonCurrentChildrenCount(testObjectMalvina));
+
+//sending release message to object with RetainCount = 1, expected it to deallocate
+    DYYObjectRelease(testObjectRamzan);
+    printf("Force Release and Deallocation of created object was successful\n");
+    
 }
 

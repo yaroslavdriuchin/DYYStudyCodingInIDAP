@@ -164,11 +164,11 @@ void *DYYPersonPartner(DYYPerson *person) {
 
 bool DYYPersonSetAsParent(DYYPerson *parent, DYYPerson *child) {
     if (parent != NULL && parent != child) {
-        if (true == DYYDynamicArrayDetectElement(DYYPersonChildrenArray(parent), child)) {
+        if (true == DYYDynamicArrayCheckArrayForElement(DYYPersonChildrenArray(parent), child)) {
             return true;
         }
         
-        if (false == DYYDynamicArrayDetectElement(DYYPersonChildrenArray(parent), child)) {
+        if (false == DYYDynamicArrayCheckArrayForElement(DYYPersonChildrenArray(parent), child)) {
             DYYDynamicArrayAddElement(parent->_childrenArray, child);
             DYYObjectRetain(parent->_childrenArray);
             

@@ -72,7 +72,7 @@ DYYDynamicArray *DYYDynamicArrayCreate(void) {
 static
 void **DYYDynamicArrayObjects(DYYDynamicArray *object) {
     if (NULL != object) {
-        return object->_dynamicArrayObjects;
+        return object->_data;
     }  else  {
                return NULL;
               }
@@ -80,10 +80,9 @@ void **DYYDynamicArrayObjects(DYYDynamicArray *object) {
 
 void DYYDynamicArraySetElementAtIndex(DYYDynamicArray *object, uint16_t index, void *element) {
     if (NULL != object) {
-        assert(index < DYYDynamicArrayAllElementsCount(object));
-        object->_dynamicArrayObjects[index] = NULL;
-        DYYObjectRelease(object->_dynamicArrayObjects[index]);
-        object->_dynamicArrayObjects[index] = DYYObjectRetain(element);
+        assert(index < DYYDynamicArrayCapacity(object));
+        DYYObjectRelease(object->_data[index]);
+        object->_data[index] = DYYObjectRetain(element);
     }
 }
 
@@ -156,7 +155,9 @@ void DYYDynamicArrayAddElement(DYYDynamicArray *arrayObject, void *element) {
         for (uint16_t index = 0; index < newCapacity; index++) {
             if (0 == DYYDynamicArrayElementAtIndex(arrayObject, index)) {
             DYYDynamicArraySetElementAtIndex(arrayObject, index, element);
-                break;
+            arrayObject->_elementsCount++;
+                
+            break;
             }
      }
 }
@@ -179,14 +180,14 @@ bool DYYDynamicArrayRemoveElement(DYYDynamicArray *arrayObject, void *element) {
 void DYYDynamicArraySetCapacity(DYYDynamicArray *object, uint16_t capacity) {
     if (NULL != object && object->_capacity != capacity) {
         if (0 == capacity) {
-            free(object->_dynamicArrayObjects);
-            object->_dynamicArrayObjects = NULL;
+            free(object->_data);
+            object->_data = NULL;
         }
         else {
-            object->_dynamicArrayObjects = realloc(object->_dynamicArrayObjects,
-                                                   capacity * sizeof(*object->_dynamicArrayObjects));
+            object->_data = realloc(object->_data,
+                                                   capacity * sizeof(*object->_data));
             if (0 == object->_capacity) {
-                memset(object->_dynamicArrayObjects, 0 , capacity * sizeof(*object->_dynamicArrayObjects));
+                memset(object->_data, 0 , capacity * sizeof(*object->_data));
             }
         }
         object->_capacity = capacity;
@@ -196,7 +197,7 @@ void DYYDynamicArraySetCapacity(DYYDynamicArray *object, uint16_t capacity) {
 void DYYDynamicArrayRemoveElementAndShift(DYYDynamicArray *arrayObject, uint16_t elementIndex) {
     if (NULL != arrayObject) {
         assert(elementIndex < DYYDynamicArrayAllElementsCount(arrayObject));
-        DYYObjectRelease(arrayObject->_dynamicArrayObjects[elementIndex]);
+        DYYObjectRelease(arrayObject->_data[elementIndex]);
         DYYDynamicArraySetElementAtIndex(arrayObject, elementIndex, NULL);
         void **dynamicArray = DYYDynamicArrayObjects(arrayObject);
         size_t shiftElementsSize = ((DYYDynamicArrayAllElementsCount(arrayObject) - elementIndex) * sizeof(dynamicArray));
@@ -216,7 +217,7 @@ uint16_t DYYDynamicArrayReturnNewCapacityForCount(DYYDynamicArray *object, uint1
         
         else  {
                 return newCapacity = DYYDynamicArrayCapacity(object);
-        }
+              }
     }
     
     return 0;

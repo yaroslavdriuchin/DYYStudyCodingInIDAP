@@ -17,7 +17,7 @@ typedef struct DYYDynamicArray DYYDynamicArray;
 
 struct DYYDynamicArray {
     DYYObject _super;
-    void **_dynamicArrayObjects;
+    void **_data;
     uint16_t _elementsCount;
     uint16_t _capacity;
 };
