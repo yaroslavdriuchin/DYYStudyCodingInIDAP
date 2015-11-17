@@ -246,7 +246,7 @@ bool DYYPersonRemoveChildOfFatherAndMother(DYYPerson *father, DYYPerson *mother,
       && NULL != child
       && (father != child || mother != child || mother != father)) {
       if (true == DYYDynamicArrayRemoveElement(DYYPersonChildrenArray(father), child)
-          && DYYDynamicArrayRemoveElement(DYYPersonChildrenArray(mother), child)) {
+               && DYYDynamicArrayRemoveElement(DYYPersonChildrenArray(mother), child)) {
               DYYPersonSetParent(child, NULL);
       
               return true;
