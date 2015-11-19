@@ -20,6 +20,9 @@
 		5CEE7D201BC6629200876585 /* DYYTestHumanWithStaticArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE7D1E1BC6629200876585 /* DYYTestHumanWithStaticArray.c */; };
 		CE1FCBA01BDE2FA3001DF4C8 /* DYYObject.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1FCB9E1BDE2FA3001DF4C8 /* DYYObject.c */; };
 		CE1FCBA41BDE6118001DF4C8 /* DYYString.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1FCBA21BDE6118001DF4C8 /* DYYString.c */; };
+		CE4099741BFDC1B00070530B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4099731BFDC1B00070530B /* main.m */; };
+		CE4099781BFDD1AB0070530B /* DYYCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40996A1BFDBEF00070530B /* DYYCreature.m */; };
+		CE40997B1BFDFD900070530B /* DYYCreatureArrayOfChildren.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40997A1BFDFD900070530B /* DYYCreatureArrayOfChildren.m */; };
 		CEB30E001BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEB30DFE1BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.c */; };
 		CEBB47751BE8E91300EBCEA2 /* DYYDynamicArray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBB47731BE8E91300EBCEA2 /* DYYDynamicArray.c */; };
 		CEC926F91BE25A9700F7B926 /* DYYStaticArray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEC926F71BE25A9700F7B926 /* DYYStaticArray.c */; };
@@ -27,6 +30,15 @@
 
 /* Begin PBXCopyFilesBuildPhase section */
 		5CE241C61BA94BF3003C1A08 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		CE40996F1BFDC1B00070530B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -65,6 +77,12 @@
 		CE1FCBA21BDE6118001DF4C8 /* DYYString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYString.c; path = DYYStudyCoding/DYYStringObject/DYYString.c; sourceTree = "<group>"; };
 		CE1FCBA31BDE6118001DF4C8 /* DYYString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYString.h; path = DYYStudyCoding/DYYStringObject/DYYString.h; sourceTree = "<group>"; };
 		CE1FCBA61BDE6A84001DF4C8 /* DYYMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYYMacro.h; sourceTree = "<group>"; };
+		CE4099691BFDBEF00070530B /* DYYCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCreature.h; path = DYYStudyCoding/DYYCreatureInObjectiveC/DYYCreature.h; sourceTree = "<group>"; };
+		CE40996A1BFDBEF00070530B /* DYYCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCreature.m; path = DYYStudyCoding/DYYCreatureInObjectiveC/DYYCreature.m; sourceTree = "<group>"; };
+		CE4099711BFDC1B00070530B /* DYYStudyObjectiveC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DYYStudyObjectiveC; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE4099731BFDC1B00070530B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CE4099791BFDFD900070530B /* DYYCreatureArrayOfChildren.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCreatureArrayOfChildren.h; path = DYYStudyCoding/DYYCreatureInObjectiveC/DYYCreatureArrayOfChildren.h; sourceTree = "<group>"; };
+		CE40997A1BFDFD900070530B /* DYYCreatureArrayOfChildren.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCreatureArrayOfChildren.m; path = DYYStudyCoding/DYYCreatureInObjectiveC/DYYCreatureArrayOfChildren.m; sourceTree = "<group>"; };
 		CEB30DFE1BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYTestHumanWithDynamicArray.c; path = DYYStudyCoding/Tests/DYYTestHumanWithDynamicArray.c; sourceTree = "<group>"; };
 		CEB30DFF1BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestHumanWithDynamicArray.h; path = DYYStudyCoding/Tests/DYYTestHumanWithDynamicArray.h; sourceTree = "<group>"; };
 		CEBB47731BE8E91300EBCEA2 /* DYYDynamicArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYDynamicArray.c; path = DYYStudyCoding/DYYDynamicArrayObject/DYYDynamicArray.c; sourceTree = "<group>"; };
@@ -75,6 +93,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		5CE241C51BA94BF3003C1A08 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE40996E1BFDC1B00070530B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -158,6 +183,7 @@
 			children = (
 				5C01F2AC1BAAAF2B00365F43 /* Tests */,
 				5CE241CA1BA94BF3003C1A08 /* DYYStudyCoding */,
+				CE4099721BFDC1B00070530B /* DYYStudyObjectiveC */,
 				5CE241C91BA94BF3003C1A08 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -166,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				5CE241C81BA94BF3003C1A08 /* DYYStudyCoding */,
+				CE4099711BFDC1B00070530B /* DYYStudyObjectiveC */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,6 +200,7 @@
 		5CE241CA1BA94BF3003C1A08 /* DYYStudyCoding */ = {
 			isa = PBXGroup;
 			children = (
+				CE40996C1BFDBEF60070530B /* DYYCreature_ObjectiveC */,
 				CE1FCBA61BDE6A84001DF4C8 /* DYYMacro.h */,
 				CE1FCBA11BDE2FBD001DF4C8 /* DYYObject */,
 				5C1556061BC3F51E00C69799 /* DYYHuman */,
@@ -207,6 +235,26 @@
 			);
 			name = DYYString;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		CE40996C1BFDBEF60070530B /* DYYCreature_ObjectiveC */ = {
+			isa = PBXGroup;
+			children = (
+				CE4099691BFDBEF00070530B /* DYYCreature.h */,
+				CE40996A1BFDBEF00070530B /* DYYCreature.m */,
+				CE4099791BFDFD900070530B /* DYYCreatureArrayOfChildren.h */,
+				CE40997A1BFDFD900070530B /* DYYCreatureArrayOfChildren.m */,
+			);
+			name = DYYCreature_ObjectiveC;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		CE4099721BFDC1B00070530B /* DYYStudyObjectiveC */ = {
+			isa = PBXGroup;
+			children = (
+				CE4099731BFDC1B00070530B /* main.m */,
+			);
+			path = DYYStudyObjectiveC;
 			sourceTree = "<group>";
 		};
 		CE45AAFF1BD8E15500460AF7 /* DYYTestCheckNumbersReturnParentType */ = {
@@ -287,6 +335,23 @@
 			productReference = 5CE241C81BA94BF3003C1A08 /* DYYStudyCoding */;
 			productType = "com.apple.product-type.tool";
 		};
+		CE4099701BFDC1B00070530B /* DYYStudyObjectiveC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE4099751BFDC1B00070530B /* Build configuration list for PBXNativeTarget "DYYStudyObjectiveC" */;
+			buildPhases = (
+				CE40996D1BFDC1B00070530B /* Sources */,
+				CE40996E1BFDC1B00070530B /* Frameworks */,
+				CE40996F1BFDC1B00070530B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DYYStudyObjectiveC;
+			productName = DYYStudyObjectiveC;
+			productReference = CE4099711BFDC1B00070530B /* DYYStudyObjectiveC */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -298,6 +363,9 @@
 				TargetAttributes = {
 					5CE241C71BA94BF3003C1A08 = {
 						CreatedOnToolsVersion = 6.4;
+					};
+					CE4099701BFDC1B00070530B = {
+						CreatedOnToolsVersion = 7.1;
 					};
 				};
 			};
@@ -314,6 +382,7 @@
 			projectRoot = "";
 			targets = (
 				5CE241C71BA94BF3003C1A08 /* DYYStudyCoding */,
+				CE4099701BFDC1B00070530B /* DYYStudyObjectiveC */,
 			);
 		};
 /* End PBXProject section */
@@ -339,6 +408,16 @@
 				5C1556051BC3F4DD00C69799 /* DYYHuman.c in Sources */,
 				CEB30E001BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.c in Sources */,
 				5CB43FC61BAAD7FD002CE815 /* DYYTestReturnParentTypeAssert.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE40996D1BFDC1B00070530B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE4099781BFDD1AB0070530B /* DYYCreature.m in Sources */,
+				CE40997B1BFDFD900070530B /* DYYCreatureArrayOfChildren.m in Sources */,
+				CE4099741BFDC1B00070530B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +515,27 @@
 			};
 			name = Release;
 		};
+		CE4099761BFDC1B00070530B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "-";
+				ENABLE_TESTABILITY = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CE4099771BFDC1B00070530B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "-";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -456,6 +556,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		CE4099751BFDC1B00070530B /* Build configuration list for PBXNativeTarget "DYYStudyObjectiveC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE4099761BFDC1B00070530B /* Debug */,
+				CE4099771BFDC1B00070530B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

@@ -28,7 +28,7 @@ int main(int argc, const char * argv[]) {
 //    DYYTestHumanObjectCreateMethod();
 //    DYYTestHumanObjectMethod();
     
-    DYYTestHumanWithDynamicArrayCreate();
-    DYYTestHumanWithDynamicArray();
+//    DYYTestHumanWithDynamicArrayCreate();
+//    DYYTestHumanWithDynamicArray();
     return 0;
     }
