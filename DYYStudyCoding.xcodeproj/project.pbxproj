@@ -23,6 +23,7 @@
 		CE4099741BFDC1B00070530B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4099731BFDC1B00070530B /* main.m */; };
 		CE4099781BFDD1AB0070530B /* DYYCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40996A1BFDBEF00070530B /* DYYCreature.m */; };
 		CE40997B1BFDFD900070530B /* DYYCreatureArrayOfChildren.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40997A1BFDFD900070530B /* DYYCreatureArrayOfChildren.m */; };
+		CE782BFC1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782BFB1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.m */; };
 		CEB30E001BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEB30DFE1BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.c */; };
 		CEBB47751BE8E91300EBCEA2 /* DYYDynamicArray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBB47731BE8E91300EBCEA2 /* DYYDynamicArray.c */; };
 		CEC926F91BE25A9700F7B926 /* DYYStaticArray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEC926F71BE25A9700F7B926 /* DYYStaticArray.c */; };
@@ -83,6 +84,8 @@
 		CE4099731BFDC1B00070530B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CE4099791BFDFD900070530B /* DYYCreatureArrayOfChildren.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCreatureArrayOfChildren.h; path = DYYStudyCoding/DYYCreatureInObjectiveC/DYYCreatureArrayOfChildren.h; sourceTree = "<group>"; };
 		CE40997A1BFDFD900070530B /* DYYCreatureArrayOfChildren.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCreatureArrayOfChildren.m; path = DYYStudyCoding/DYYCreatureInObjectiveC/DYYCreatureArrayOfChildren.m; sourceTree = "<group>"; };
+		CE782BFA1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestCreatureObjectiveC.h; path = DYYStudyCoding/Tests/DYYTestCreatureObjectiveC.h; sourceTree = "<group>"; };
+		CE782BFB1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYTestCreatureObjectiveC.m; path = DYYStudyCoding/Tests/DYYTestCreatureObjectiveC.m; sourceTree = "<group>"; };
 		CEB30DFE1BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYTestHumanWithDynamicArray.c; path = DYYStudyCoding/Tests/DYYTestHumanWithDynamicArray.c; sourceTree = "<group>"; };
 		CEB30DFF1BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestHumanWithDynamicArray.h; path = DYYStudyCoding/Tests/DYYTestHumanWithDynamicArray.h; sourceTree = "<group>"; };
 		CEBB47731BE8E91300EBCEA2 /* DYYDynamicArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYDynamicArray.c; path = DYYStudyCoding/DYYDynamicArrayObject/DYYDynamicArray.c; sourceTree = "<group>"; };
@@ -134,6 +137,7 @@
 				CE45AB001BD8E17300460AF7 /* DYYTestParentTypeAssert */,
 				CE45AB011BD8E19100460AF7 /* DYYTestDecimalToBinaryOutput */,
 				CE45AB021BD8E1A900460AF7 /* DYYTestHumanObject */,
+				CE782BFD1BFF493400C74AB4 /* DYYTestCreatureObjectiveC */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -295,6 +299,15 @@
 			name = DYYTestHumanObject;
 			sourceTree = "<group>";
 		};
+		CE782BFD1BFF493400C74AB4 /* DYYTestCreatureObjectiveC */ = {
+			isa = PBXGroup;
+			children = (
+				CE782BFA1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.h */,
+				CE782BFB1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.m */,
+			);
+			name = DYYTestCreatureObjectiveC;
+			sourceTree = "<group>";
+		};
 		CEBB47761BE8E91900EBCEA2 /* DYYDynamicArray */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE4099781BFDD1AB0070530B /* DYYCreature.m in Sources */,
+				CE782BFC1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.m in Sources */,
 				CE40997B1BFDFD900070530B /* DYYCreatureArrayOfChildren.m in Sources */,
 				CE4099741BFDC1B00070530B /* main.m in Sources */,
 			);
@@ -564,6 +578,7 @@
 				CE4099771BFDC1B00070530B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
