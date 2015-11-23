@@ -14,7 +14,7 @@
 + (void) DYYTestCreatureInit {
     @autoreleasepool {
         DYYCreature *objectOne = [DYYCreature createCreature];
-        DYYCreature *objectTwo = [DYYCreature createCreatureWithName: @"Vasya" andAge: 45 andWeight: 45];
+        DYYCreature *objectTwo = [DYYCreature creatureWithName: @"Vasya" age: 45 weight: 45];
         [objectOne sayHello];
     }
 }

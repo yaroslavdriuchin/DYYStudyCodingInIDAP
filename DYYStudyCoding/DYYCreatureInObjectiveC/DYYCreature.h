@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM (NSUInteger) {
-    kDYYCreatureGenderMale,
+typedef NS_ENUM (NSUInteger, DYYCreatureGender) {
+    kDYYCreatureGenderMale = 1,
     kDYYCreatureGenderFemale,
     kDYYCreatureGenderUndefined,
-} DYYCreatureGender;
+} ;
 
 @interface DYYCreature : NSObject
 
@@ -22,14 +22,14 @@ typedef NS_ENUM (NSUInteger) {
 @property (nonatomic, copy)   NSSet               *children;
 @property (nonatomic, assign) BOOL                creatureAtWar;
 
-+ (DYYCreature *) createCreature;
-+ (DYYCreature *) createCreatureWithName: (NSString *) inputName andAge: (uint16_t) inputAge andWeight: (uint16_t) inputWeight;
-- (instancetype) init;
-- (instancetype) initWithName:(NSString *) inputName andAge: (uint16_t) inputAge andWeight: (uint16_t) inputWeight;
-- (void) sayHello;
-- (BOOL) sendCreatureAtWar;
-//- (NSObject *)setChildrenArray;
-//- (BOOL)addChild: (DYYCreature *)object;
-//- (BOOL)removeChild: (DYYCreature *)object;
++ (DYYCreature *)createCreature;
++ (DYYCreature *)creatureWithName:(NSString *) inputName age:(uint16_t) inputAge weight:(uint16_t) inputWeight;
+- (instancetype)init;
+- (instancetype)initWithName:(NSString *) inputName age:(uint16_t) inputAge weight:(uint16_t) inputWeight;
+- (void)sayHello;
+- (BOOL)sendCreatureAtWar;
+- (NSSet *)children;
+- (BOOL)addChild: (DYYCreature *)object;
+- (BOOL)removeChild: (DYYCreature *)object;
 
 @end

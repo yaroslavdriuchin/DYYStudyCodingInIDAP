@@ -9,7 +9,7 @@
 #pragma mark Private Declarations
 
 #import "DYYCreature.h"
-#import "DYYCreatureArrayOfChildren.h"
+@class DYYCreatureArrayOfChildren;
 
 @interface DYYCreature()
 
@@ -19,44 +19,47 @@
 
 @implementation DYYCreature
 
-//@dynamic children;
+@dynamic children;
 
 #pragma mark -
 #pragma mark Class Methods
-+ (DYYCreature *) createCreature {
+
++ (DYYCreature *)createCreature {
     return [[[self alloc] init] autorelease];
 }
 
-+ (DYYCreature *) createCreatureWithName: (NSString *) inputName andAge: (uint16_t) inputAge andWeight: (uint16_t) inputWeight {
-    return [[[self alloc] initWithName: inputName andAge:inputAge andWeight:inputWeight] autorelease];
++ (DYYCreature *)creatureWithName:(NSString *) inputName age:(uint16_t) inputAge weight:(uint16_t) inputWeight {
+    return [[[self alloc] initWithName: inputName age:inputAge weight:inputWeight] autorelease];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocators
 
-- (void) dealloc {
-    self.name = nil;
-    self.children = nil;
+- (void)dealloc {
+    [_name release];
+    [_children release];
     
     [super dealloc];
 }
 
-- (instancetype) init {
+- (instancetype)init {
     self = [super init];
+    if (self) {
     _mutableChildren = [NSMutableSet set];
+    _name = [NSString init];
+        
+    }
     
     return self;
 }
 
-- (instancetype) initWithName:(NSString *) inputName andAge: (uint16_t) inputAge andWeight: (uint16_t) inputWeight {
-    self = [super init];
+- (instancetype)initWithName:(NSString *) inputName age:(uint16_t) inputAge weight:(uint16_t) inputWeight {
+    self = [self init];
     
-    if (self.name != inputName) {
-        self.name = [NSString stringWithString: inputName];
-    }
-    self.age    = inputAge;
-    self.weight = inputWeight;
+    _name = [NSString stringWithString: inputName];
     _mutableChildren = [NSMutableSet set];
+    _age    = inputAge;
+    _weight = inputWeight;
     
     return self;
 }
@@ -64,39 +67,35 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void) sayHello {
+- (void)sayHello {
     NSLog(@"Hello!");
     for (DYYCreature *child in self.children) {
         [child sayHello];
     }
 }
 
-
-- (BOOL) sendCreatureAtWar {
+- (BOOL)sendCreatureAtWar {
     self.creatureAtWar = YES;
     NSLog(@"Creature was sent to war");
     return self.creatureAtWar;
 }
 
-//- (NSObject *)setChildrenArray
-//{
-//    return children = [DYYCreatureArrayOfChildren initChildrenArrayObject];
-//}
+- (NSSet * )children {
+    return [[self.mutableChildren copy] autorelease];
+}
 
+- (BOOL)addChild: (DYYCreature *)object {
+    if (nil != object) {
+        [self.mutableChildren addObject: object];
+        [object retain];
+    }
+}
 
-//- (BOOL)addChild: (DYYCreature *)object
-//{
-//    if (nil != object) {
-//            [DYYCreatureArrayOfChildren addObject: object];
-//    }
-//}
-//
-//- (BOOL)removeChild: (DYYCreature *)object
-//{
-//    if (nil != object) {
-//        [DYYCreatureArrayOfChildren removeObject: object];
-//    }
-//}
-//
+- (BOOL)removeChild: (DYYCreature *)object {
+    if (nil != object) {
+        [self.mutableChildren removeObject: object];
+        [object release];
+    }
+}
 
 @end

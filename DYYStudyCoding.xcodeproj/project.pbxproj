@@ -137,7 +137,6 @@
 				CE45AB001BD8E17300460AF7 /* DYYTestParentTypeAssert */,
 				CE45AB011BD8E19100460AF7 /* DYYTestDecimalToBinaryOutput */,
 				CE45AB021BD8E1A900460AF7 /* DYYTestHumanObject */,
-				CE782BFD1BFF493400C74AB4 /* DYYTestCreatureObjectiveC */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -149,6 +148,26 @@
 				5C1556041BC3F4DD00C69799 /* DYYHuman.h */,
 			);
 			name = DYYHuman;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		5C2D46851C0315D1003C121C /* DYYCreatureChildrenArray */ = {
+			isa = PBXGroup;
+			children = (
+				CE4099791BFDFD900070530B /* DYYCreatureArrayOfChildren.h */,
+				CE40997A1BFDFD900070530B /* DYYCreatureArrayOfChildren.m */,
+			);
+			name = DYYCreatureChildrenArray;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		5C2D46861C0315FA003C121C /* DYYCreature */ = {
+			isa = PBXGroup;
+			children = (
+				CE4099691BFDBEF00070530B /* DYYCreature.h */,
+				CE40996A1BFDBEF00070530B /* DYYCreature.m */,
+			);
+			name = DYYCreature;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -204,7 +223,6 @@
 		5CE241CA1BA94BF3003C1A08 /* DYYStudyCoding */ = {
 			isa = PBXGroup;
 			children = (
-				CE40996C1BFDBEF60070530B /* DYYCreature_ObjectiveC */,
 				CE1FCBA61BDE6A84001DF4C8 /* DYYMacro.h */,
 				CE1FCBA11BDE2FBD001DF4C8 /* DYYObject */,
 				5C1556061BC3F51E00C69799 /* DYYHuman */,
@@ -241,21 +259,12 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		CE40996C1BFDBEF60070530B /* DYYCreature_ObjectiveC */ = {
-			isa = PBXGroup;
-			children = (
-				CE4099691BFDBEF00070530B /* DYYCreature.h */,
-				CE40996A1BFDBEF00070530B /* DYYCreature.m */,
-				CE4099791BFDFD900070530B /* DYYCreatureArrayOfChildren.h */,
-				CE40997A1BFDFD900070530B /* DYYCreatureArrayOfChildren.m */,
-			);
-			name = DYYCreature_ObjectiveC;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		CE4099721BFDC1B00070530B /* DYYStudyObjectiveC */ = {
 			isa = PBXGroup;
 			children = (
+				5C2D46851C0315D1003C121C /* DYYCreatureChildrenArray */,
+				5C2D46861C0315FA003C121C /* DYYCreature */,
+				CE782BFD1BFF493400C74AB4 /* DYYTestCreatureObjectiveC */,
 				CE4099731BFDC1B00070530B /* main.m */,
 			);
 			path = DYYStudyObjectiveC;
@@ -306,6 +315,7 @@
 				CE782BFB1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.m */,
 			);
 			name = DYYTestCreatureObjectiveC;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		CEBB47761BE8E91900EBCEA2 /* DYYDynamicArray */ = {

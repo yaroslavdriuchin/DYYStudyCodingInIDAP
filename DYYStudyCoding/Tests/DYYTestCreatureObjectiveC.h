@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DYYCreature.h"
+@class DYYCreature;
 
 @interface DYYTestCreatureObjectiveC : NSObject
 

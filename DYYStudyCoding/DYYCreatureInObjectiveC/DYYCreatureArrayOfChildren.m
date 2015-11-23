@@ -1,21 +1,18 @@
-//
-//  DYYArrayOfCreatureChildren.m
-//  DYYStudyCoding
-//
-//  Created by user on 11/19/15.
-//  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
-//
+////
+////  DYYArrayOfCreatureChildren.m
+////  DYYStudyCoding
+////
+////  Created by user on 11/19/15.
+////  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 //#import "DYYCreatureArrayOfChildren.h"
 //
-//@implementation DYYArrayOfCreatureChildren
+//@implementation DYYCreatureArrayOfChildren
 //
-//- (DYYCreatureArrayOfChildren *) initChildrenArray
-//{
-//    self = [[super alloc] init];
-//    
+//- (instancetype)init {
+//    self = [super init];
 //    if (self) {
-//        data = [[NSMutableArray alloc] init];
+//        _data = [[NSMutableArray alloc] init];
 //    }
 //    
 //    return self;
@@ -23,17 +20,17 @@
 //
 //- (uint16_t) countOfChildrenArray
 //{
-//    [data count];
+//    [_data count];
 //}
 //
 //- (void) addObject: (DYYCreature *) object
 //{
-//    [data addObject: object];
+//    [_data addObject: object];
 //}
 //
 //- (void) removeObject: (DYYCreature *) object
 //{
-//    [data removeObjectIdenticalTo: object];
+//    [_data removeObject: object];
 //}
 //
 //@end
