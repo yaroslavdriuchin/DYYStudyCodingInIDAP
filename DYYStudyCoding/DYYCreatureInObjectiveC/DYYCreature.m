@@ -19,7 +19,7 @@
 
 @implementation DYYCreature
 
-@dynamic children;
+//@dynamic children;
 
 #pragma mark -
 #pragma mark Class Methods
@@ -36,8 +36,8 @@
 #pragma mark Initializations and Deallocators
 
 - (void)dealloc {
-    [_name release];
-    [_children release];
+    self.name = nil;
+    self.children = nil;
     
     [super dealloc];
 }
@@ -45,8 +45,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-    _mutableChildren = [NSMutableSet set];
-    _name = [NSString init];
+        self.mutableChildren = [NSMutableSet set];
         
     }
     
@@ -56,10 +55,10 @@
 - (instancetype)initWithName:(NSString *) inputName age:(uint16_t) inputAge weight:(uint16_t) inputWeight {
     self = [self init];
     
-    _name = [NSString stringWithString: inputName];
-    _mutableChildren = [NSMutableSet set];
-    _age    = inputAge;
-    _weight = inputWeight;
+    self.name = [NSString stringWithString: inputName];
+    self.mutableChildren = [NSMutableSet set];
+    self.age    = inputAge;
+    self.weight = inputWeight;
     
     return self;
 }
@@ -87,15 +86,21 @@
 - (BOOL)addChild: (DYYCreature *)object {
     if (nil != object) {
         [self.mutableChildren addObject: object];
-        [object retain];
+        
+        return YES;
     }
+    
+    return NO;
 }
 
 - (BOOL)removeChild: (DYYCreature *)object {
     if (nil != object) {
         [self.mutableChildren removeObject: object];
-        [object release];
+        
+        return YES;
     }
+    
+    return NO;
 }
 
 @end

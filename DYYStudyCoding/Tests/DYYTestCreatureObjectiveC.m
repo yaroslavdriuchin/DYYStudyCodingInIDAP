@@ -16,6 +16,13 @@
         DYYCreature *objectOne = [DYYCreature createCreature];
         DYYCreature *objectTwo = [DYYCreature creatureWithName: @"Vasya" age: 45 weight: 45];
         [objectOne sayHello];
+        DYYCreature *objectThree = [DYYCreature creatureWithName: @"Petya" age: 55 weight: 75];
+        [objectTwo addChild: objectThree];
+        [objectTwo addChild: objectOne];
+        [objectTwo removeChild: objectThree];
+        [objectTwo removeChild: objectOne];
+//        NSSet *childrenToCheck = [[objectTwo children] autorelease];
+//        NSLog(childrenToCheck);
     }
 }
 
