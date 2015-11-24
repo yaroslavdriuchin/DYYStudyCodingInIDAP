@@ -12,6 +12,11 @@
 		5CA59D751BCBC6C700DC661E /* DYYTestDecimalToBinaryOutput.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CA59D731BCBC6C700DC661E /* DYYTestDecimalToBinaryOutput.c */; };
 		5CAE40571BB28DAD00F0D3BF /* DYYMacroMethodGenerator.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CAE40551BB28DAD00F0D3BF /* DYYMacroMethodGenerator.c */; };
 		5CAE405B1BB2B5DA00F0D3BF /* DYYStructureAlignment.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CAE40591BB2B5DA00F0D3BF /* DYYStructureAlignment.c */; };
+		5CB254ED1C0470E400FAAA3D /* DYYCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB254EC1C0470E400FAAA3D /* DYYCreature.m */; settings = {ASSET_TAGS = (); }; };
+		5CB254F01C0470F600FAAA3D /* DYYTestCreatureObjectiveC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB254EF1C0470F600FAAA3D /* DYYTestCreatureObjectiveC.m */; settings = {ASSET_TAGS = (); }; };
+		5CB254F41C04711700FAAA3D /* DYYCreatureArrayOfChildren.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB254F31C04711700FAAA3D /* DYYCreatureArrayOfChildren.m */; settings = {ASSET_TAGS = (); }; };
+		5CB254F71C0482E800FAAA3D /* DYYCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB254F61C0482E800FAAA3D /* DYYCreatureMale.m */; settings = {ASSET_TAGS = (); }; };
+		5CB254FB1C04832E00FAAA3D /* DYYCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB254FA1C04832E00FAAA3D /* DYYCreatureFemale.m */; settings = {ASSET_TAGS = (); }; };
 		5CB43FC61BAAD7FD002CE815 /* DYYTestReturnParentTypeAssert.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CB43FC41BAAD7FD002CE815 /* DYYTestReturnParentTypeAssert.c */; };
 		5CC56E801BB929090026FE13 /* DYYPrintDecimalToBinaryOutput.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CC56E7E1BB929090026FE13 /* DYYPrintDecimalToBinaryOutput.c */; };
 		5CE241CC1BA94BF3003C1A08 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CE241CB1BA94BF3003C1A08 /* main.c */; };
@@ -21,9 +26,6 @@
 		CE1FCBA01BDE2FA3001DF4C8 /* DYYObject.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1FCB9E1BDE2FA3001DF4C8 /* DYYObject.c */; };
 		CE1FCBA41BDE6118001DF4C8 /* DYYString.c in Sources */ = {isa = PBXBuildFile; fileRef = CE1FCBA21BDE6118001DF4C8 /* DYYString.c */; };
 		CE4099741BFDC1B00070530B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4099731BFDC1B00070530B /* main.m */; };
-		CE4099781BFDD1AB0070530B /* DYYCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40996A1BFDBEF00070530B /* DYYCreature.m */; };
-		CE40997B1BFDFD900070530B /* DYYCreatureArrayOfChildren.m in Sources */ = {isa = PBXBuildFile; fileRef = CE40997A1BFDFD900070530B /* DYYCreatureArrayOfChildren.m */; };
-		CE782BFC1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782BFB1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.m */; };
 		CEB30E001BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEB30DFE1BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.c */; };
 		CEBB47751BE8E91300EBCEA2 /* DYYDynamicArray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBB47731BE8E91300EBCEA2 /* DYYDynamicArray.c */; };
 		CEC926F91BE25A9700F7B926 /* DYYStaticArray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEC926F71BE25A9700F7B926 /* DYYStaticArray.c */; };
@@ -61,6 +63,17 @@
 		5CAE40561BB28DAD00F0D3BF /* DYYMacroMethodGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYMacroMethodGenerator.h; path = DYYStudyCoding/DYYMacroMethodGenerator/DYYMacroMethodGenerator.h; sourceTree = "<group>"; };
 		5CAE40591BB2B5DA00F0D3BF /* DYYStructureAlignment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYStructureAlignment.c; path = DYYStudyCoding/DYYStructureAlignment/DYYStructureAlignment.c; sourceTree = "<group>"; };
 		5CAE405A1BB2B5DA00F0D3BF /* DYYStructureAlignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYStructureAlignment.h; path = DYYStudyCoding/DYYStructureAlignment/DYYStructureAlignment.h; sourceTree = "<group>"; };
+		5CB254EB1C0470E400FAAA3D /* DYYCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCreature.h; path = DYYStudyObjectiveC/DYYCreatureInObjectiveC/DYYCreature.h; sourceTree = "<group>"; };
+		5CB254EC1C0470E400FAAA3D /* DYYCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCreature.m; path = DYYStudyObjectiveC/DYYCreatureInObjectiveC/DYYCreature.m; sourceTree = "<group>"; };
+		5CB254EE1C0470F600FAAA3D /* DYYTestCreatureObjectiveC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestCreatureObjectiveC.h; path = DYYStudyObjectiveC/DYYObjectiveCTests/DYYTestCreatureObjectiveC.h; sourceTree = "<group>"; };
+		5CB254EF1C0470F600FAAA3D /* DYYTestCreatureObjectiveC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYTestCreatureObjectiveC.m; path = DYYStudyObjectiveC/DYYObjectiveCTests/DYYTestCreatureObjectiveC.m; sourceTree = "<group>"; };
+		5CB254F11C04710B00FAAA3D /* DYYCreatureProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCreatureProtocol.h; path = DYYStudyObjectiveC/DYYCreatureInObjectiveC/DYYCreatureProtocol.h; sourceTree = "<group>"; };
+		5CB254F21C04711700FAAA3D /* DYYCreatureArrayOfChildren.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCreatureArrayOfChildren.h; path = DYYStudyObjectiveC/DYYCreatureInObjectiveC/DYYCreatureArrayOfChildren.h; sourceTree = "<group>"; };
+		5CB254F31C04711700FAAA3D /* DYYCreatureArrayOfChildren.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCreatureArrayOfChildren.m; path = DYYStudyObjectiveC/DYYCreatureInObjectiveC/DYYCreatureArrayOfChildren.m; sourceTree = "<group>"; };
+		5CB254F51C0482E800FAAA3D /* DYYCreatureMale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCreatureMale.h; path = DYYStudyObjectiveC/DYYCreatureMale/DYYCreatureMale.h; sourceTree = "<group>"; };
+		5CB254F61C0482E800FAAA3D /* DYYCreatureMale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCreatureMale.m; path = DYYStudyObjectiveC/DYYCreatureMale/DYYCreatureMale.m; sourceTree = "<group>"; };
+		5CB254F91C04832E00FAAA3D /* DYYCreatureFemale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCreatureFemale.h; path = DYYStudyObjectiveC/DYYCreatureFemale/DYYCreatureFemale.h; sourceTree = "<group>"; };
+		5CB254FA1C04832E00FAAA3D /* DYYCreatureFemale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCreatureFemale.m; path = DYYStudyObjectiveC/DYYCreatureFemale/DYYCreatureFemale.m; sourceTree = "<group>"; };
 		5CB43FC41BAAD7FD002CE815 /* DYYTestReturnParentTypeAssert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYTestReturnParentTypeAssert.c; path = DYYStudyCoding/Tests/DYYTestReturnParentTypeAssert.c; sourceTree = "<group>"; };
 		5CB43FC51BAAD7FD002CE815 /* DYYTestReturnParentTypeAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestReturnParentTypeAssert.h; path = DYYStudyCoding/Tests/DYYTestReturnParentTypeAssert.h; sourceTree = "<group>"; };
 		5CC56E7E1BB929090026FE13 /* DYYPrintDecimalToBinaryOutput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYPrintDecimalToBinaryOutput.c; path = DYYStudyCoding/DYYBinaryOutputTranslator/DYYPrintDecimalToBinaryOutput.c; sourceTree = "<group>"; };
@@ -78,14 +91,8 @@
 		CE1FCBA21BDE6118001DF4C8 /* DYYString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYString.c; path = DYYStudyCoding/DYYStringObject/DYYString.c; sourceTree = "<group>"; };
 		CE1FCBA31BDE6118001DF4C8 /* DYYString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYString.h; path = DYYStudyCoding/DYYStringObject/DYYString.h; sourceTree = "<group>"; };
 		CE1FCBA61BDE6A84001DF4C8 /* DYYMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYYMacro.h; sourceTree = "<group>"; };
-		CE4099691BFDBEF00070530B /* DYYCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCreature.h; path = DYYStudyCoding/DYYCreatureInObjectiveC/DYYCreature.h; sourceTree = "<group>"; };
-		CE40996A1BFDBEF00070530B /* DYYCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCreature.m; path = DYYStudyCoding/DYYCreatureInObjectiveC/DYYCreature.m; sourceTree = "<group>"; };
 		CE4099711BFDC1B00070530B /* DYYStudyObjectiveC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DYYStudyObjectiveC; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4099731BFDC1B00070530B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CE4099791BFDFD900070530B /* DYYCreatureArrayOfChildren.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCreatureArrayOfChildren.h; path = DYYStudyCoding/DYYCreatureInObjectiveC/DYYCreatureArrayOfChildren.h; sourceTree = "<group>"; };
-		CE40997A1BFDFD900070530B /* DYYCreatureArrayOfChildren.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCreatureArrayOfChildren.m; path = DYYStudyCoding/DYYCreatureInObjectiveC/DYYCreatureArrayOfChildren.m; sourceTree = "<group>"; };
-		CE782BFA1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestCreatureObjectiveC.h; path = DYYStudyCoding/Tests/DYYTestCreatureObjectiveC.h; sourceTree = "<group>"; };
-		CE782BFB1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYTestCreatureObjectiveC.m; path = DYYStudyCoding/Tests/DYYTestCreatureObjectiveC.m; sourceTree = "<group>"; };
 		CEB30DFE1BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYTestHumanWithDynamicArray.c; path = DYYStudyCoding/Tests/DYYTestHumanWithDynamicArray.c; sourceTree = "<group>"; };
 		CEB30DFF1BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestHumanWithDynamicArray.h; path = DYYStudyCoding/Tests/DYYTestHumanWithDynamicArray.h; sourceTree = "<group>"; };
 		CEBB47731BE8E91300EBCEA2 /* DYYDynamicArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYDynamicArray.c; path = DYYStudyCoding/DYYDynamicArrayObject/DYYDynamicArray.c; sourceTree = "<group>"; };
@@ -154,8 +161,8 @@
 		5C2D46851C0315D1003C121C /* DYYCreatureChildrenArray */ = {
 			isa = PBXGroup;
 			children = (
-				CE4099791BFDFD900070530B /* DYYCreatureArrayOfChildren.h */,
-				CE40997A1BFDFD900070530B /* DYYCreatureArrayOfChildren.m */,
+				5CB254F21C04711700FAAA3D /* DYYCreatureArrayOfChildren.h */,
+				5CB254F31C04711700FAAA3D /* DYYCreatureArrayOfChildren.m */,
 			);
 			name = DYYCreatureChildrenArray;
 			path = ..;
@@ -164,8 +171,9 @@
 		5C2D46861C0315FA003C121C /* DYYCreature */ = {
 			isa = PBXGroup;
 			children = (
-				CE4099691BFDBEF00070530B /* DYYCreature.h */,
-				CE40996A1BFDBEF00070530B /* DYYCreature.m */,
+				5CB254F11C04710B00FAAA3D /* DYYCreatureProtocol.h */,
+				5CB254EB1C0470E400FAAA3D /* DYYCreature.h */,
+				5CB254EC1C0470E400FAAA3D /* DYYCreature.m */,
 			);
 			name = DYYCreature;
 			path = ..;
@@ -188,6 +196,26 @@
 				5CAE405A1BB2B5DA00F0D3BF /* DYYStructureAlignment.h */,
 			);
 			name = DYYStructureAlignment;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		5CB254F81C0482EE00FAAA3D /* DYYCreatureMale */ = {
+			isa = PBXGroup;
+			children = (
+				5CB254F51C0482E800FAAA3D /* DYYCreatureMale.h */,
+				5CB254F61C0482E800FAAA3D /* DYYCreatureMale.m */,
+			);
+			name = DYYCreatureMale;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		5CB254FC1C04833500FAAA3D /* DYYCreatureFemale */ = {
+			isa = PBXGroup;
+			children = (
+				5CB254F91C04832E00FAAA3D /* DYYCreatureFemale.h */,
+				5CB254FA1C04832E00FAAA3D /* DYYCreatureFemale.m */,
+			);
+			name = DYYCreatureFemale;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -262,8 +290,10 @@
 		CE4099721BFDC1B00070530B /* DYYStudyObjectiveC */ = {
 			isa = PBXGroup;
 			children = (
-				5C2D46851C0315D1003C121C /* DYYCreatureChildrenArray */,
 				5C2D46861C0315FA003C121C /* DYYCreature */,
+				5CB254FC1C04833500FAAA3D /* DYYCreatureFemale */,
+				5CB254F81C0482EE00FAAA3D /* DYYCreatureMale */,
+				5C2D46851C0315D1003C121C /* DYYCreatureChildrenArray */,
 				CE782BFD1BFF493400C74AB4 /* DYYTestCreatureObjectiveC */,
 				CE4099731BFDC1B00070530B /* main.m */,
 			);
@@ -311,8 +341,8 @@
 		CE782BFD1BFF493400C74AB4 /* DYYTestCreatureObjectiveC */ = {
 			isa = PBXGroup;
 			children = (
-				CE782BFA1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.h */,
-				CE782BFB1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.m */,
+				5CB254EE1C0470F600FAAA3D /* DYYTestCreatureObjectiveC.h */,
+				5CB254EF1C0470F600FAAA3D /* DYYTestCreatureObjectiveC.m */,
 			);
 			name = DYYTestCreatureObjectiveC;
 			path = ..;
@@ -438,10 +468,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE4099781BFDD1AB0070530B /* DYYCreature.m in Sources */,
-				CE782BFC1BFF492C00C74AB4 /* DYYTestCreatureObjectiveC.m in Sources */,
-				CE40997B1BFDFD900070530B /* DYYCreatureArrayOfChildren.m in Sources */,
+				5CB254F01C0470F600FAAA3D /* DYYTestCreatureObjectiveC.m in Sources */,
+				5CB254F71C0482E800FAAA3D /* DYYCreatureMale.m in Sources */,
+				5CB254F41C04711700FAAA3D /* DYYCreatureArrayOfChildren.m in Sources */,
 				CE4099741BFDC1B00070530B /* main.m in Sources */,
+				5CB254ED1C0470E400FAAA3D /* DYYCreature.m in Sources */,
+				5CB254FB1C04832E00FAAA3D /* DYYCreatureFemale.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
