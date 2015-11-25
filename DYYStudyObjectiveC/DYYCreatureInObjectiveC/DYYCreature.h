@@ -11,12 +11,10 @@
 
 @interface DYYCreature : NSObject <DYYCreatureProtocol>
 
-@property (nonatomic, readonly, assign) DYYCreatureGender   gender;
 @property (nonatomic, assign)           uint16_t            age, weight;
 @property (nonatomic, copy)             NSString            *name;
 @property (nonatomic, copy)             NSSet               *children;
 
-+ (DYYCreature *)createCreature;
 + (DYYCreature *)creatureWithName:(NSString *) inputName
                              age:(uint16_t) inputAge
                              weight:(uint16_t) inputWeight
@@ -30,8 +28,6 @@
 - (BOOL)addChild:(id<DYYCreatureProtocol>)object;
 - (BOOL)removeChild:(id<DYYCreatureProtocol>)object;
 - (void)performGenderSpecificOperation;
-- (void)sendCreatureAtWar;
-- (void)sendCreatureToGiveBirth;
 - (void)sayHello;
 
 @end

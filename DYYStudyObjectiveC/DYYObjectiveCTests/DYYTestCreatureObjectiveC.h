@@ -11,6 +11,8 @@
 
 @interface DYYTestCreatureObjectiveC : NSObject
 
-+ (void) DYYTestCreatureInit;
+@property (nonatomic, retain) NSArray *creatures;
+
++ (void) DYYTestCreature;
 
 @end

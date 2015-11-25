@@ -28,14 +28,8 @@
 
 @implementation DYYCreature
 
-@dynamic gender;
-
 #pragma mark -
 #pragma mark Class Methods
-
-+ (DYYCreature *)createCreature {
-    return [[[self alloc] init] autorelease];
-}
 
 + (DYYCreature *)creatureWithName:(NSString *) inputName
                              age:(uint16_t) inputAge
@@ -68,7 +62,7 @@
     Class result = nil;
     if (gender == kDYYCreatureGenderMale) {
         result = [DYYCreatureMale class];
-        }
+        } else
     if (gender == kDYYCreatureGenderFemale) {
         result = [DYYCreatureFemale class];
     }
@@ -103,18 +97,10 @@
 #pragma mark Public Methods
 
 - (void)sayHello {
-    NSLog(@"Hello!");
+    NSLog(@"Hello from %@!", self.name);
     for (DYYCreature *child in self.children) {
         [child sayHello];
     }
-}
-
-- (void)sendCreatureToGiveBirth {
-    NSLog(@"Creature was sent to give birth to beautiful babies");
-}
-
-- (void)sendCreatureAtWar {
-    NSLog(@"Creature was sent to war");
 }
 
 - (NSSet * )children {

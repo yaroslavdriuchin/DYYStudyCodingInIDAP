@@ -14,9 +14,9 @@
 @class DYYCreature;
 
 typedef NS_ENUM (NSUInteger, DYYCreatureGender) {
-    kDYYCreatureGenderMale = 1,
+    kDYYCreatureGenderUndefined = 0,
+    kDYYCreatureGenderMale,
     kDYYCreatureGenderFemale,
-    kDYYCreatureGenderUndefined,
 };
 
 @protocol DYYCreatureProtocol <NSObject>
