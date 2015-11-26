@@ -14,4 +14,7 @@
     [self sendCreatureAtWar];
 }
 
+- (void)sendCreatureAtWar {
+    NSLog(@"Male creature was sent to war to kill other creatures");
+}
 @end

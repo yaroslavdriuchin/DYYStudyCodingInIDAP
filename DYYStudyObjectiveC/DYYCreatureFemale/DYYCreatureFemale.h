@@ -12,5 +12,6 @@
 @interface DYYCreatureFemale : DYYCreature
 
 - (void)performGenderSpecificOperation;
+- (void)sendCreatureToGiveBirth;
 
 @end

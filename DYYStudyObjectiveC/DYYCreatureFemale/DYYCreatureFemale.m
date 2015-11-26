@@ -14,4 +14,8 @@
     [self sendCreatureToGiveBirth];
 }
 
+- (void)sendCreatureToGiveBirth {
+    NSLog(@"Female creature was was sent to give birth to new creatures");
+}
+
 @end

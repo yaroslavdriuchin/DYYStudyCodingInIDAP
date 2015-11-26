@@ -7,7 +7,10 @@
 //
 
 #import "DYYTestCreatureObjectiveC.h"
+@class DYYCreatureMale;
+@class DYYCreatureFemale;
 
+//@dynamic creatures;
 
 @implementation DYYTestCreatureObjectiveC
 
@@ -17,6 +20,14 @@
         //initializing object 1 without properties and performing assertion test
         DYYCreature *objectOne = [DYYCreature creatureWithName: @"Mr. Babaykin" age: 45 weight: 100 gender: kDYYCreatureGenderMale];
         NSAssert(nil != objectOne, @"Object One sucks");
+        
+        //Performing assertion test on test object's data fields
+        NSAssert(nil != objectOne.name, @"Name is null, it sucks");
+        NSAssert(0 != objectOne.age,  @"Age is null, it sucks");
+        NSAssert(0 != objectOne.weight, @"Weight is null, it sucks");
+        
+        //checking if class of created creature is DYYCreatureMale as expected
+        NSAssert([DYYCreatureMale class] == [objectOne class], @"Object class is fucked up");
         
         //initializing object 2 with properties and performing assertion test
         DYYCreature *objectTwo = [DYYCreature creatureWithName: @"Olya" age: 30 weight: 45 gender: kDYYCreatureGenderFemale];
@@ -41,6 +52,13 @@
         NSAssert(YES == [objectTwo removeChild: objectThree], @"Object Two child was not successfully replaced");
         NSAssert(YES == [objectTwo removeChild: objectOne], @"Object Two child was not successfully replaced");
         
+        //adding 3 creatures to an array of object
+        NSArray *creatures = [NSArray arrayWithObjects:objectOne, objectTwo, objectThree, nil];
+        
+        //performing gender-specific operation on all objects in array, expecting different response from Male and Femaloe creatures 
+        for(DYYCreature *creature in creatures) {
+            [creature performGenderSpecificOperation];
+        }
     }
 }
 
