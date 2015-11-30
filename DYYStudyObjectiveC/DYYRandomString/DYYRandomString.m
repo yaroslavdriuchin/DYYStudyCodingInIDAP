@@ -10,14 +10,15 @@
 
 @implementation DYYRandomString
 
-+ (NSString *)initRandomStringWithMaxCapacity:(uint16_t)capacity encoding:(NSStringEncoding)encoding {
++ (NSString *)randomStringWithMaxCapacity:(uint16_t)capacity
+                                   alphabet:(NSString *)alphabet {
     NSMutableString *string = [NSMutableString stringWithCapacity:capacity];
     for (uint16_t index = 0; index < capacity; index++) {
-        [string appendFormat:@"%C", (unichar)('a' + arc4random_uniform(36))];
+        [string appendFormat:@"%C", (unichar)([alphabet characterAtIndex:(NSUInteger)arc4random_uniform(alphabet.length)])];
         }
-    NSString *outputString = [NSString stringWithCString:(char *)string encoding:encoding];
+//    NSString *outputString = [NSString stringWithCString:(char *)string encoding:encoding];
     
-    return outputString;
+    return string;
 }
 
 @end

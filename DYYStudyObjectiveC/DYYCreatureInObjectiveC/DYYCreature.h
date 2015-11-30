@@ -11,9 +11,9 @@
 
 @interface DYYCreature : NSObject <DYYCreatureProtocol>
 
-@property (nonatomic, assign)           uint16_t            age, weight;
-@property (nonatomic, copy)             NSString            *name;
-@property (nonatomic, copy)             NSSet               *children;
+@property (nonatomic, assign)      uint16_t          age, weight;
+@property (nonatomic, copy)        NSString          *name;
+@property (nonatomic, copy)        NSSet             *children;
 
 + (DYYCreature *)creatureWithName:(NSString *) inputName
                              age:(uint16_t) inputAge

@@ -10,6 +10,7 @@
 
 @interface DYYRandomString : NSMutableString
 
-+ (NSString *)initRandomStringWithMaxCapacity:(uint16_t)capacity encoding:(NSStringEncoding)encoding;
++ (NSString *)randomStringWithMaxCapacity:(uint16_t)capacity
+                                alphabet:(NSString *)alphabet;
 
 @end

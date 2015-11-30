@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "DYYTestCreatureObjectiveC.h"
+#import "DYYTestRandomString.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         [DYYTestCreatureObjectiveC DYYTestCreature];
+        [DYYTestRandomString DYYTestRandomStringOutput];
+        
     }
     return 0;
 }

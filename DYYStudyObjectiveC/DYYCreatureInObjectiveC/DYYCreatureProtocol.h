@@ -32,8 +32,6 @@ typedef NS_ENUM (NSUInteger, DYYCreatureGender) {
 @optional
 
 - (void)sayHello;
-- (void)sendCreatureToGiveBirth;
-- (void)sendCreatureAtWar;
 
 @end
 

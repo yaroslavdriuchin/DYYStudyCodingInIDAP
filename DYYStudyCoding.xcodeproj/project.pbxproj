@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5C01F2AB1BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnParentType.c in Sources */ = {isa = PBXBuildFile; fileRef = 5C01F2A91BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnParentType.c */; };
 		5C1556051BC3F4DD00C69799 /* DYYHuman.c in Sources */ = {isa = PBXBuildFile; fileRef = 5C1556031BC3F4DD00C69799 /* DYYHuman.c */; };
+		5C36F0AF1C0C595400991B03 /* DYYTestRandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C36F0AE1C0C595400991B03 /* DYYTestRandomString.m */; settings = {ASSET_TAGS = (); }; };
+		5C36F0B21C0C82FC00991B03 /* DYYAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C36F0B11C0C82FC00991B03 /* DYYAlphabet.m */; settings = {ASSET_TAGS = (); }; };
 		5C4C561B1C0736F200112BF8 /* DYYRandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4C561A1C0736F200112BF8 /* DYYRandomString.m */; settings = {ASSET_TAGS = (); }; };
 		5CA59D751BCBC6C700DC661E /* DYYTestDecimalToBinaryOutput.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CA59D731BCBC6C700DC661E /* DYYTestDecimalToBinaryOutput.c */; };
 		5CAE40571BB28DAD00F0D3BF /* DYYMacroMethodGenerator.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CAE40551BB28DAD00F0D3BF /* DYYMacroMethodGenerator.c */; };
@@ -58,6 +60,10 @@
 		5C01F2AA1BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnParentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestCheckNumbersAndReturnParentType.h; path = DYYStudyCoding/Tests/DYYTestCheckNumbersAndReturnParentType.h; sourceTree = "<group>"; };
 		5C1556031BC3F4DD00C69799 /* DYYHuman.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYHuman.c; path = DYYStudyCoding/DYYHumanObject/DYYHuman.c; sourceTree = "<group>"; };
 		5C1556041BC3F4DD00C69799 /* DYYHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYHuman.h; path = DYYStudyCoding/DYYHumanObject/DYYHuman.h; sourceTree = "<group>"; };
+		5C36F0AD1C0C595400991B03 /* DYYTestRandomString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestRandomString.h; path = DYYStudyObjectiveC/DYYObjectiveCTests/DYYTestRandomString.h; sourceTree = "<group>"; };
+		5C36F0AE1C0C595400991B03 /* DYYTestRandomString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYTestRandomString.m; path = DYYStudyObjectiveC/DYYObjectiveCTests/DYYTestRandomString.m; sourceTree = "<group>"; };
+		5C36F0B01C0C82FC00991B03 /* DYYAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYAlphabet.h; path = DYYStudyObjectiveC/DYYAlphabet/DYYAlphabet.h; sourceTree = "<group>"; };
+		5C36F0B11C0C82FC00991B03 /* DYYAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYAlphabet.m; path = DYYStudyObjectiveC/DYYAlphabet/DYYAlphabet.m; sourceTree = "<group>"; };
 		5C4C56191C0736F200112BF8 /* DYYRandomString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYRandomString.h; path = DYYStudyObjectiveC/DYYRandomString/DYYRandomString.h; sourceTree = "<group>"; };
 		5C4C561A1C0736F200112BF8 /* DYYRandomString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYRandomString.m; path = DYYStudyObjectiveC/DYYRandomString/DYYRandomString.m; sourceTree = "<group>"; };
 		5CA59D731BCBC6C700DC661E /* DYYTestDecimalToBinaryOutput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYTestDecimalToBinaryOutput.c; path = DYYStudyCoding/Tests/DYYTestDecimalToBinaryOutput.c; sourceTree = "<group>"; };
@@ -182,6 +188,16 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		5C36F0B31C0C830500991B03 /* DYYAlphabet */ = {
+			isa = PBXGroup;
+			children = (
+				5C36F0B01C0C82FC00991B03 /* DYYAlphabet.h */,
+				5C36F0B11C0C82FC00991B03 /* DYYAlphabet.m */,
+			);
+			name = DYYAlphabet;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		5C4C561C1C0736F600112BF8 /* DYYRandomString */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,12 +319,13 @@
 		CE4099721BFDC1B00070530B /* DYYStudyObjectiveC */ = {
 			isa = PBXGroup;
 			children = (
+				5C36F0B31C0C830500991B03 /* DYYAlphabet */,
 				5C4C561C1C0736F600112BF8 /* DYYRandomString */,
 				5C2D46861C0315FA003C121C /* DYYCreature */,
 				5CB254FC1C04833500FAAA3D /* DYYCreatureFemale */,
 				5CB254F81C0482EE00FAAA3D /* DYYCreatureMale */,
 				5C2D46851C0315D1003C121C /* DYYCreatureChildrenArray */,
-				CE782BFD1BFF493400C74AB4 /* DYYTestCreatureObjectiveC */,
+				CE782BFD1BFF493400C74AB4 /* DYYTestsInObjectiveC */,
 				CE4099731BFDC1B00070530B /* main.m */,
 			);
 			path = DYYStudyObjectiveC;
@@ -352,13 +369,15 @@
 			name = DYYTestHumanObject;
 			sourceTree = "<group>";
 		};
-		CE782BFD1BFF493400C74AB4 /* DYYTestCreatureObjectiveC */ = {
+		CE782BFD1BFF493400C74AB4 /* DYYTestsInObjectiveC */ = {
 			isa = PBXGroup;
 			children = (
+				5C36F0AD1C0C595400991B03 /* DYYTestRandomString.h */,
+				5C36F0AE1C0C595400991B03 /* DYYTestRandomString.m */,
 				5CB254EE1C0470F600FAAA3D /* DYYTestCreatureObjectiveC.h */,
 				5CB254EF1C0470F600FAAA3D /* DYYTestCreatureObjectiveC.m */,
 			);
-			name = DYYTestCreatureObjectiveC;
+			name = DYYTestsInObjectiveC;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -484,10 +503,12 @@
 			files = (
 				5C4C561B1C0736F200112BF8 /* DYYRandomString.m in Sources */,
 				5CB254F01C0470F600FAAA3D /* DYYTestCreatureObjectiveC.m in Sources */,
+				5C36F0B21C0C82FC00991B03 /* DYYAlphabet.m in Sources */,
 				5CB254F71C0482E800FAAA3D /* DYYCreatureMale.m in Sources */,
 				5CB254F41C04711700FAAA3D /* DYYCreatureArrayOfChildren.m in Sources */,
 				CE4099741BFDC1B00070530B /* main.m in Sources */,
 				5CB254ED1C0470E400FAAA3D /* DYYCreature.m in Sources */,
+				5C36F0AF1C0C595400991B03 /* DYYTestRandomString.m in Sources */,
 				5CB254FB1C04832E00FAAA3D /* DYYCreatureFemale.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -103,7 +103,7 @@
     }
 }
 
-- (NSSet * )children {
+- (NSSet *)children {
     return [[self.mutableChildren copy] autorelease];
 }
 
