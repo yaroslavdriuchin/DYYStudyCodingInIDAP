@@ -7,7 +7,7 @@
 //
 
 #import "DYYTestRandomString.h"
-#import "DYYRandomString.h"
+#import "NSString+DYYExtensions.h"
 
 @implementation DYYTestRandomString
 

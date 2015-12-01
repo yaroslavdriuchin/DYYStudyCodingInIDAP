@@ -11,7 +11,7 @@
 		5C1556051BC3F4DD00C69799 /* DYYHuman.c in Sources */ = {isa = PBXBuildFile; fileRef = 5C1556031BC3F4DD00C69799 /* DYYHuman.c */; };
 		5C36F0AF1C0C595400991B03 /* DYYTestRandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C36F0AE1C0C595400991B03 /* DYYTestRandomString.m */; settings = {ASSET_TAGS = (); }; };
 		5C36F0B21C0C82FC00991B03 /* DYYAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C36F0B11C0C82FC00991B03 /* DYYAlphabet.m */; settings = {ASSET_TAGS = (); }; };
-		5C4C561B1C0736F200112BF8 /* DYYRandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4C561A1C0736F200112BF8 /* DYYRandomString.m */; settings = {ASSET_TAGS = (); }; };
+		5C4C561B1C0736F200112BF8 /* NSString+DYYExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4C561A1C0736F200112BF8 /* NSString+DYYExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		5CA59D751BCBC6C700DC661E /* DYYTestDecimalToBinaryOutput.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CA59D731BCBC6C700DC661E /* DYYTestDecimalToBinaryOutput.c */; };
 		5CAE40571BB28DAD00F0D3BF /* DYYMacroMethodGenerator.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CAE40551BB28DAD00F0D3BF /* DYYMacroMethodGenerator.c */; };
 		5CAE405B1BB2B5DA00F0D3BF /* DYYStructureAlignment.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CAE40591BB2B5DA00F0D3BF /* DYYStructureAlignment.c */; };
@@ -64,8 +64,8 @@
 		5C36F0AE1C0C595400991B03 /* DYYTestRandomString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYTestRandomString.m; path = DYYStudyObjectiveC/DYYObjectiveCTests/DYYTestRandomString.m; sourceTree = "<group>"; };
 		5C36F0B01C0C82FC00991B03 /* DYYAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYAlphabet.h; path = DYYStudyObjectiveC/DYYAlphabet/DYYAlphabet.h; sourceTree = "<group>"; };
 		5C36F0B11C0C82FC00991B03 /* DYYAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYAlphabet.m; path = DYYStudyObjectiveC/DYYAlphabet/DYYAlphabet.m; sourceTree = "<group>"; };
-		5C4C56191C0736F200112BF8 /* DYYRandomString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYRandomString.h; path = DYYStudyObjectiveC/DYYRandomString/DYYRandomString.h; sourceTree = "<group>"; };
-		5C4C561A1C0736F200112BF8 /* DYYRandomString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYRandomString.m; path = DYYStudyObjectiveC/DYYRandomString/DYYRandomString.m; sourceTree = "<group>"; };
+		5C4C56191C0736F200112BF8 /* NSString+DYYExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+DYYExtensions.h"; path = "DYYStudyObjectiveC/DYYRandomString/NSString+DYYExtensions.h"; sourceTree = "<group>"; };
+		5C4C561A1C0736F200112BF8 /* NSString+DYYExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+DYYExtensions.m"; path = "DYYStudyObjectiveC/DYYRandomString/NSString+DYYExtensions.m"; sourceTree = "<group>"; };
 		5CA59D731BCBC6C700DC661E /* DYYTestDecimalToBinaryOutput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYTestDecimalToBinaryOutput.c; path = DYYStudyCoding/Tests/DYYTestDecimalToBinaryOutput.c; sourceTree = "<group>"; };
 		5CA59D741BCBC6C700DC661E /* DYYTestDecimalToBinaryOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestDecimalToBinaryOutput.h; path = DYYStudyCoding/Tests/DYYTestDecimalToBinaryOutput.h; sourceTree = "<group>"; };
 		5CAE40551BB28DAD00F0D3BF /* DYYMacroMethodGenerator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYMacroMethodGenerator.c; path = DYYStudyCoding/DYYMacroMethodGenerator/DYYMacroMethodGenerator.c; sourceTree = "<group>"; };
@@ -201,8 +201,8 @@
 		5C4C561C1C0736F600112BF8 /* DYYRandomString */ = {
 			isa = PBXGroup;
 			children = (
-				5C4C56191C0736F200112BF8 /* DYYRandomString.h */,
-				5C4C561A1C0736F200112BF8 /* DYYRandomString.m */,
+				5C4C56191C0736F200112BF8 /* NSString+DYYExtensions.h */,
+				5C4C561A1C0736F200112BF8 /* NSString+DYYExtensions.m */,
 			);
 			name = DYYRandomString;
 			path = ..;
@@ -501,7 +501,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C4C561B1C0736F200112BF8 /* DYYRandomString.m in Sources */,
+				5C4C561B1C0736F200112BF8 /* NSString+DYYExtensions.m in Sources */,
 				5CB254F01C0470F600FAAA3D /* DYYTestCreatureObjectiveC.m in Sources */,
 				5C36F0B21C0C82FC00991B03 /* DYYAlphabet.m in Sources */,
 				5CB254F71C0482E800FAAA3D /* DYYCreatureMale.m in Sources */,
