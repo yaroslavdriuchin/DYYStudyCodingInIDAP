@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "DYYCreature.h"
 
 @interface DYYCreatureFemale : DYYCreature

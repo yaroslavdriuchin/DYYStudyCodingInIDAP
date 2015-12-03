@@ -1,13 +1,13 @@
 //
-//  DYYAlphabet.m
+//  IDPClusterAlphabet.m
 //  DYYStudyCoding
 //
 //  Created by Yar on 12/2/15.
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYAlphabet.h"
+#import "IDPClusterAlphabet.h"
 
-@implementation DYYAlphabet
+@implementation IDPClusterAlphabet
 
 @end

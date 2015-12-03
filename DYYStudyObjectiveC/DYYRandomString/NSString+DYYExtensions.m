@@ -10,38 +10,43 @@
 
 @implementation NSString (DYYExtensions)
 
-+ (id)alphanumericAlphabet {
++ (instancetype)alphanumericAlphabet {
     NSMutableString *result = [NSMutableString stringWithString:[self allLettersAlphabet]];
     [result appendString:[self numericAlphabet]];
      
      return [self stringWithString:result];
 }
-//     
-//+ (id)numericAlphabet {
-//    
-//}
-//+ (id)lowercaseAlphabet {
-//    
-//}
-//+ (id)capitalsAlphabet {
-//    
-//}
-//
-//+ (id)allLettersAlphabet {
-//         
-//}
+     
++ (instancetype)numericAlphabet {
+    return [self alphabetWithUnicodeRange:NSMakeRange('0', '9' - '0' + 1)];
+}
++ (instancetype)lowercaseAlphabet {
+    return [self alphabetWithUnicodeRange:NSMakeRange('a', 'z' - 'a' + 1)];
+}
++ (instancetype)capitalsAlphabet {
+    return [self alphabetWithUnicodeRange:NSMakeRange('A', 'Z' - 'A' + 1)];
+}
+
++ (instancetype)allLettersAlphabet {
+    NSMutableString *result = [NSMutableString stringWithString:[self lowercaseAlphabet]];
+    [result appendString:[self capitalsAlphabet]];
+    
+    return [self stringWithString:result];
+         
+}
 
 + (NSString *)randomStringWithMaxCapacity:(NSUInteger)capacity
                                  alphabet:(NSString *)alphabet {
     NSMutableString *string = [NSMutableString stringWithCapacity:capacity];
     for (uint16_t index = 0; index < capacity; index++) {
-        [string appendFormat:@"%C", (unichar)([alphabet characterAtIndex:(NSUInteger)arc4random_uniform(alphabet.length)])];
+        unichar resultChar = [alphabet characterAtIndex:(NSUInteger)arc4random_uniform((uint32_t)alphabet.length)];
+        [string appendFormat:@"%c", resultChar];
         }
     
     return [self stringWithString:string];
 }
 
-+ (id)alphabetWithUnicodeRange:(NSRange)range {
++ (instancetype)alphabetWithUnicodeRange:(NSRange)range {
     NSMutableString *result = [NSMutableString string];
     for (unichar character = range.location; character < NSMaxRange(range); character++) {
         [result appendFormat:@"%c", character];

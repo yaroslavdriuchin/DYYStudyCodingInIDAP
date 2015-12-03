@@ -10,13 +10,12 @@
 
 @interface NSString (DYYExtensions)
 
-+ (id)alphanumericAlphabet;
-+ (id)numericAlphabet;
-+ (id)lowercaseAlphabet;
-+ (id)capitalsAlphabet;
-+ (id)allLettersAlphabet;
-
-+(id)alphabetWithUnicodeRange:(NSRange)range;
++ (instancetype)alphanumericAlphabet;
++ (instancetype)numericAlphabet;
++ (instancetype)lowercaseAlphabet;
++ (instancetype)capitalsAlphabet;
++ (instancetype)allLettersAlphabet;
++ (instancetype)alphabetWithUnicodeRange:(NSRange)range;
 
 + (NSString *)randomStringWithMaxCapacity:(NSUInteger)capacity
                                 alphabet:(NSString *)alphabet;

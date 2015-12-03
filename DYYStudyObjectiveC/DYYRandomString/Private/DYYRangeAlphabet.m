@@ -1,13 +1,13 @@
 //
-//  DYYAlphabet.m
+//  DYYRangeAlphabet.m
 //  DYYStudyCoding
 //
 //  Created by Yar on 12/2/15.
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYAlphabet.h"
+#import "DYYRangeAlphabet.h"
 
-@implementation DYYAlphabet
+@implementation DYYRangeAlphabet
 
 @end

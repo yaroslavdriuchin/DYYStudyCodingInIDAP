@@ -59,7 +59,9 @@
 }
 
 - (Class)classForGender:(DYYCreatureGender)gender {
+    NSAssert(kDYYCreatureGenderUndefined != gender, @"Object gender is undefined value");
     Class result = nil;
+    
     if (gender == kDYYCreatureGenderMale) {
         result = [DYYCreatureMale class];
         } else

@@ -1,5 +1,5 @@
 //
-//  DYYAlphabet.m
+//  DYYStringsAlphabet.h
 //  DYYStudyCoding
 //
 //  Created by Yar on 12/2/15.
@@ -8,6 +8,6 @@
 
 #import "DYYAlphabet.h"
 
-@implementation DYYAlphabet
+@interface DYYStringsAlphabet : DYYAlphabet
 
 @end

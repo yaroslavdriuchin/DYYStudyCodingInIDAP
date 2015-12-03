@@ -8,6 +8,9 @@
 
 #import "DYYCreatureFemale.h"
 
+#import "NSString+DYYExtensions.h"
+#import "DYYCreatureProtocol.h"
+
 @implementation DYYCreatureFemale
 
 - (void)performGenderSpecificOperation {
@@ -15,7 +18,16 @@
 }
 
 - (void)sendCreatureToGiveBirth {
-    NSLog(@"Female creature was was sent to give birth to new creatures");
+    NSString *name = [NSString randomStringWithMaxCapacity:10 alphabet:[NSString allLettersAlphabet]];
+    uint32_t maxAge = 150;
+    uint32_t maxWeight = 150;
+    DYYCreatureGender randomGender = (DYYCreatureGender)(arc4random_uniform((int)(kDYYCreatureGenderUndefined)));
+    DYYCreature *child = [DYYCreature creatureWithName:name
+                                                   age:arc4random_uniform(maxAge)
+                                                   weight:arc4random_uniform(maxWeight)
+                                                   gender:randomGender];
+    [self addChild:child];
+    NSLog(@"Female creature gave birth to new creature. Congratulations!!!");
 }
 
 @end
