@@ -18,6 +18,6 @@
 + (instancetype)alphabetWithUnicodeRange:(NSRange)range;
 
 + (NSString *)randomStringWithMaxCapacity:(NSUInteger)capacity
-                                alphabet:(NSString *)alphabet;
+                                 alphabet:(NSString *)alphabet;
 
 @end

@@ -13,14 +13,17 @@
 
 @implementation DYYCreatureFemale
 
+#pragma mark
+#pragma mark - Public Methods
+
 - (void)performGenderSpecificOperation {
     [self sendCreatureToGiveBirth];
 }
 
 - (void)sendCreatureToGiveBirth {
     NSString *name = [NSString randomStringWithMaxCapacity:10 alphabet:[NSString allLettersAlphabet]];
-    uint32_t maxAge = 150;
-    uint32_t maxWeight = 150;
+    static const uint32_t maxAge = 150;
+    static const uint32_t maxWeight = 150;
     DYYCreatureGender randomGender = (DYYCreatureGender)(arc4random_uniform((int)(kDYYCreatureGenderUndefined)));
     DYYCreature *child = [DYYCreature creatureWithName:name
                                                    age:arc4random_uniform(maxAge)

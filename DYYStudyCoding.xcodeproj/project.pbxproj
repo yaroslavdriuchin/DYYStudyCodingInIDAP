@@ -24,6 +24,7 @@
 		5CB254F71C0482E800FAAA3D /* DYYCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB254F61C0482E800FAAA3D /* DYYCreatureMale.m */; settings = {ASSET_TAGS = (); }; };
 		5CB254FB1C04832E00FAAA3D /* DYYCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB254FA1C04832E00FAAA3D /* DYYCreatureFemale.m */; settings = {ASSET_TAGS = (); }; };
 		5CB43FC61BAAD7FD002CE815 /* DYYTestReturnParentTypeAssert.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CB43FC41BAAD7FD002CE815 /* DYYTestReturnParentTypeAssert.c */; };
+		5CB8F0CA1C107B4D00DE3134 /* DYYCreatureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8F0C91C107B4D00DE3134 /* DYYCreatureTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5CC56E801BB929090026FE13 /* DYYPrintDecimalToBinaryOutput.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CC56E7E1BB929090026FE13 /* DYYPrintDecimalToBinaryOutput.c */; };
 		5CE241CC1BA94BF3003C1A08 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CE241CB1BA94BF3003C1A08 /* main.c */; };
 		5CE241D41BA94FD4003C1A08 /* DYYCheckNumbersAndReturnParentType.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CE241D21BA94FD4003C1A08 /* DYYCheckNumbersAndReturnParentType.c */; };
@@ -94,6 +95,9 @@
 		5CB254FA1C04832E00FAAA3D /* DYYCreatureFemale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCreatureFemale.m; path = DYYStudyObjectiveC/DYYCreatureFemale/DYYCreatureFemale.m; sourceTree = "<group>"; };
 		5CB43FC41BAAD7FD002CE815 /* DYYTestReturnParentTypeAssert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYTestReturnParentTypeAssert.c; path = DYYStudyCoding/Tests/DYYTestReturnParentTypeAssert.c; sourceTree = "<group>"; };
 		5CB43FC51BAAD7FD002CE815 /* DYYTestReturnParentTypeAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestReturnParentTypeAssert.h; path = DYYStudyCoding/Tests/DYYTestReturnParentTypeAssert.h; sourceTree = "<group>"; };
+		5CB8F0C71C107B4D00DE3134 /* DYYCreatureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DYYCreatureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CB8F0C91C107B4D00DE3134 /* DYYCreatureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYYCreatureTests.m; sourceTree = "<group>"; };
+		5CB8F0CB1C107B4D00DE3134 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CC56E7E1BB929090026FE13 /* DYYPrintDecimalToBinaryOutput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYPrintDecimalToBinaryOutput.c; path = DYYStudyCoding/DYYBinaryOutputTranslator/DYYPrintDecimalToBinaryOutput.c; sourceTree = "<group>"; };
 		5CC56E7F1BB929090026FE13 /* DYYPrintDecimalToBinaryOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYPrintDecimalToBinaryOutput.h; path = DYYStudyCoding/DYYBinaryOutputTranslator/DYYPrintDecimalToBinaryOutput.h; sourceTree = "<group>"; };
 		5CE241C81BA94BF3003C1A08 /* DYYStudyCoding */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DYYStudyCoding; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +124,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5CB8F0C41C107B4D00DE3134 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5CE241C51BA94BF3003C1A08 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -271,6 +282,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		5CB8F0C81C107B4D00DE3134 /* DYYCreatureTests */ = {
+			isa = PBXGroup;
+			children = (
+				5CB8F0C91C107B4D00DE3134 /* DYYCreatureTests.m */,
+				5CB8F0CB1C107B4D00DE3134 /* Info.plist */,
+			);
+			path = DYYCreatureTests;
+			sourceTree = "<group>";
+		};
 		5CC56E811BB929110026FE13 /* DYYPrintDecimalToBinaryOutput */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +307,7 @@
 				5C01F2AC1BAAAF2B00365F43 /* Tests */,
 				5CE241CA1BA94BF3003C1A08 /* DYYStudyCoding */,
 				CE4099721BFDC1B00070530B /* DYYStudyObjectiveC */,
+				5CB8F0C81C107B4D00DE3134 /* DYYCreatureTests */,
 				5CE241C91BA94BF3003C1A08 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -296,6 +317,7 @@
 			children = (
 				5CE241C81BA94BF3003C1A08 /* DYYStudyCoding */,
 				CE4099711BFDC1B00070530B /* DYYStudyObjectiveC */,
+				5CB8F0C71C107B4D00DE3134 /* DYYCreatureTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -427,6 +449,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5CB8F0C61C107B4D00DE3134 /* DYYCreatureTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5CB8F0CE1C107B4D00DE3134 /* Build configuration list for PBXNativeTarget "DYYCreatureTests" */;
+			buildPhases = (
+				5CB8F0C31C107B4D00DE3134 /* Sources */,
+				5CB8F0C41C107B4D00DE3134 /* Frameworks */,
+				5CB8F0C51C107B4D00DE3134 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DYYCreatureTests;
+			productName = DYYCreatureTests;
+			productReference = 5CB8F0C71C107B4D00DE3134 /* DYYCreatureTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		5CE241C71BA94BF3003C1A08 /* DYYStudyCoding */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5CE241CF1BA94BF3003C1A08 /* Build configuration list for PBXNativeTarget "DYYStudyCoding" */;
@@ -470,6 +509,9 @@
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Yaroslav Driuchin";
 				TargetAttributes = {
+					5CB8F0C61C107B4D00DE3134 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
 					5CE241C71BA94BF3003C1A08 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -492,11 +534,30 @@
 			targets = (
 				5CE241C71BA94BF3003C1A08 /* DYYStudyCoding */,
 				CE4099701BFDC1B00070530B /* DYYStudyObjectiveC */,
+				5CB8F0C61C107B4D00DE3134 /* DYYCreatureTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		5CB8F0C51C107B4D00DE3134 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		5CB8F0C31C107B4D00DE3134 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5CB8F0CA1C107B4D00DE3134 /* DYYCreatureTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5CE241C41BA94BF3003C1A08 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -542,6 +603,31 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		5CB8F0CC1C107B4D00DE3134 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = DYYCreatureTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = DYY.DYYCreatureTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5CB8F0CD1C107B4D00DE3134 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DYYCreatureTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = DYY.DYYCreatureTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		5CE241CD1BA94BF3003C1A08 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -657,6 +743,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5CB8F0CE1C107B4D00DE3134 /* Build configuration list for PBXNativeTarget "DYYCreatureTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5CB8F0CC1C107B4D00DE3134 /* Debug */,
+				5CB8F0CD1C107B4D00DE3134 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		5CE241C31BA94BF3003C1A08 /* Build configuration list for PBXProject "DYYStudyCoding" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

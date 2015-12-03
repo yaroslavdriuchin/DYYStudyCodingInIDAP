@@ -10,13 +10,16 @@
 
 @implementation NSString (DYYExtensions)
 
+#pragma mark
+#pragma mark - Public Methods
+
 + (instancetype)alphanumericAlphabet {
     NSMutableString *result = [NSMutableString stringWithString:[self allLettersAlphabet]];
     [result appendString:[self numericAlphabet]];
-     
-     return [self stringWithString:result];
+    
+    return [self stringWithString:result];
 }
-     
+
 + (instancetype)numericAlphabet {
     return [self alphabetWithUnicodeRange:NSMakeRange('0', '9' - '0' + 1)];
 }
