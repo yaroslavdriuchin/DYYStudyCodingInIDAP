@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		5C01F2AB1BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnParentType.c in Sources */ = {isa = PBXBuildFile; fileRef = 5C01F2A91BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnParentType.c */; };
 		5C07EA401C0F1BA40008C2BA /* DYYAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C07EA3F1C0F1BA40008C2BA /* DYYAlphabet.m */; settings = {ASSET_TAGS = (); }; };
-		5C07EA441C0F1CE80008C2BA /* DYYRangeAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C07EA431C0F1CE80008C2BA /* DYYRangeAlphabet.m */; settings = {ASSET_TAGS = (); }; };
-		5C07EA481C0F1D350008C2BA /* IDPClusterAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C07EA471C0F1D350008C2BA /* IDPClusterAlphabet.m */; settings = {ASSET_TAGS = (); }; };
-		5C07EA4B1C0F1D520008C2BA /* DYYStringsAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C07EA4A1C0F1D520008C2BA /* DYYStringsAlphabet.m */; settings = {ASSET_TAGS = (); }; };
 		5C1556051BC3F4DD00C69799 /* DYYHuman.c in Sources */ = {isa = PBXBuildFile; fileRef = 5C1556031BC3F4DD00C69799 /* DYYHuman.c */; };
 		5C36F0AF1C0C595400991B03 /* DYYTestRandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C36F0AE1C0C595400991B03 /* DYYTestRandomString.m */; settings = {ASSET_TAGS = (); }; };
 		5C4C561B1C0736F200112BF8 /* NSString+DYYExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4C561A1C0736F200112BF8 /* NSString+DYYExtensions.m */; settings = {ASSET_TAGS = (); }; };
@@ -64,12 +61,6 @@
 		5C01F2AA1BAAAF1C00365F43 /* DYYTestCheckNumbersAndReturnParentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestCheckNumbersAndReturnParentType.h; path = DYYStudyCoding/Tests/DYYTestCheckNumbersAndReturnParentType.h; sourceTree = "<group>"; };
 		5C07EA3E1C0F1BA40008C2BA /* DYYAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYAlphabet.h; path = DYYStudyObjectiveC/DYYAlphabet/DYYAlphabet.h; sourceTree = "<group>"; };
 		5C07EA3F1C0F1BA40008C2BA /* DYYAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYAlphabet.m; path = DYYStudyObjectiveC/DYYAlphabet/DYYAlphabet.m; sourceTree = "<group>"; };
-		5C07EA421C0F1CE80008C2BA /* DYYRangeAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYRangeAlphabet.h; path = DYYStudyObjectiveC/DYYRandomString/Private/DYYRangeAlphabet.h; sourceTree = "<group>"; };
-		5C07EA431C0F1CE80008C2BA /* DYYRangeAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYRangeAlphabet.m; path = DYYStudyObjectiveC/DYYRandomString/Private/DYYRangeAlphabet.m; sourceTree = "<group>"; };
-		5C07EA461C0F1D350008C2BA /* IDPClusterAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPClusterAlphabet.h; path = DYYStudyObjectiveC/DYYRandomString/Private/IDPClusterAlphabet.h; sourceTree = "<group>"; };
-		5C07EA471C0F1D350008C2BA /* IDPClusterAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDPClusterAlphabet.m; path = DYYStudyObjectiveC/DYYRandomString/Private/IDPClusterAlphabet.m; sourceTree = "<group>"; };
-		5C07EA491C0F1D520008C2BA /* DYYStringsAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYStringsAlphabet.h; path = DYYStudyObjectiveC/DYYRandomString/Private/DYYStringsAlphabet.h; sourceTree = "<group>"; };
-		5C07EA4A1C0F1D520008C2BA /* DYYStringsAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYStringsAlphabet.m; path = DYYStudyObjectiveC/DYYRandomString/Private/DYYStringsAlphabet.m; sourceTree = "<group>"; };
 		5C1556031BC3F4DD00C69799 /* DYYHuman.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYHuman.c; path = DYYStudyCoding/DYYHumanObject/DYYHuman.c; sourceTree = "<group>"; };
 		5C1556041BC3F4DD00C69799 /* DYYHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYHuman.h; path = DYYStudyCoding/DYYHumanObject/DYYHuman.h; sourceTree = "<group>"; };
 		5C36F0AD1C0C595400991B03 /* DYYTestRandomString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestRandomString.h; path = DYYStudyObjectiveC/DYYObjectiveCTests/DYYTestRandomString.h; sourceTree = "<group>"; };
@@ -180,25 +171,11 @@
 		5C07EA411C0F1BAA0008C2BA /* DYYAlphabet */ = {
 			isa = PBXGroup;
 			children = (
-				5C07EA451C0F1CED0008C2BA /* Private */,
 				5C07EA3E1C0F1BA40008C2BA /* DYYAlphabet.h */,
 				5C07EA3F1C0F1BA40008C2BA /* DYYAlphabet.m */,
 			);
 			name = DYYAlphabet;
 			path = ..;
-			sourceTree = "<group>";
-		};
-		5C07EA451C0F1CED0008C2BA /* Private */ = {
-			isa = PBXGroup;
-			children = (
-				5C07EA421C0F1CE80008C2BA /* DYYRangeAlphabet.h */,
-				5C07EA431C0F1CE80008C2BA /* DYYRangeAlphabet.m */,
-				5C07EA461C0F1D350008C2BA /* IDPClusterAlphabet.h */,
-				5C07EA471C0F1D350008C2BA /* IDPClusterAlphabet.m */,
-				5C07EA491C0F1D520008C2BA /* DYYStringsAlphabet.h */,
-				5C07EA4A1C0F1D520008C2BA /* DYYStringsAlphabet.m */,
-			);
-			name = Private;
 			sourceTree = "<group>";
 		};
 		5C1556061BC3F51E00C69799 /* DYYHuman */ = {
@@ -586,14 +563,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C4C561B1C0736F200112BF8 /* NSString+DYYExtensions.m in Sources */,
-				5C07EA481C0F1D350008C2BA /* IDPClusterAlphabet.m in Sources */,
-				5C07EA441C0F1CE80008C2BA /* DYYRangeAlphabet.m in Sources */,
 				5CB254F01C0470F600FAAA3D /* DYYTestCreatureObjectiveC.m in Sources */,
 				5C07EA401C0F1BA40008C2BA /* DYYAlphabet.m in Sources */,
 				5CB254F71C0482E800FAAA3D /* DYYCreatureMale.m in Sources */,
 				5CB254F41C04711700FAAA3D /* DYYCreatureArrayOfChildren.m in Sources */,
 				CE4099741BFDC1B00070530B /* main.m in Sources */,
-				5C07EA4B1C0F1D520008C2BA /* DYYStringsAlphabet.m in Sources */,
 				5CB254ED1C0470E400FAAA3D /* DYYCreature.m in Sources */,
 				5C36F0AF1C0C595400991B03 /* DYYTestRandomString.m in Sources */,
 				5CB254FB1C04832E00FAAA3D /* DYYCreatureFemale.m in Sources */,
@@ -750,6 +724,7 @@
 				5CB8F0CD1C107B4D00DE3134 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5CE241C31BA94BF3003C1A08 /* Build configuration list for PBXProject "DYYStudyCoding" */ = {
 			isa = XCConfigurationList;

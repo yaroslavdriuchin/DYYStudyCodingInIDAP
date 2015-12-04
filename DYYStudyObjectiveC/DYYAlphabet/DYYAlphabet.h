@@ -7,7 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSString+DYYExtensions.h"
 
-@interface DYYAlphabet : NSArray
+@interface DYYAlphabet : NSObject <NSFastEnumeration>
+
++ (instancetype)rangeAlphabet:    (NSRange)   range;
++ (instancetype)stringsAlphabet:  (NSArray  *)strings;
++ (instancetype)alphabetsAlphabet:(NSArray  *)alphabets;
++ (instancetype)symbolsAlphabet:  (NSString *)string;
+
+- (instancetype)initRangeAlphabet:    (NSRange)   range;
+- (instancetype)initStringsAlphabet:  (NSArray  *)strings;
+- (instancetype)initAlphabetsAlphabet:(NSArray  *)alphabets;
+- (instancetype)initSymbolsAlphabet:  (NSString *)string;
 
 @end
