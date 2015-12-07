@@ -25,28 +25,46 @@
     return nil;
     
 }
-+ (instancetype)symbolsAlphabet:  (NSString *)string {
-    return nil;
-    
-}
 
 #pragma mark
-#pragma mark - Instance Methods
+#pragma mark - Iitializations And Deallocations
+
+- (void)dealloc  {
+    self.strings   = nil;
+    self.alphabets = nil;
+    
+    [super dealloc];
+}
+
 
 - (instancetype)initRangeAlphabet:    (NSRange)   range {
-    return nil;
+    self = [super init];
     
+    if (self) {
+        self.range = range;
+    }
+    
+    return self;
 }
+
 - (instancetype)initStringsAlphabet:  (NSArray  *)strings {
-    return nil;
+     self = [super init];
     
+    if (self) {
+        self.strings = strings;
+    }
+    
+    return self;
 }
+
 - (instancetype)initAlphabetsAlphabet:(NSArray  *)alphabets {
-    return nil;
+    self = [super init];
     
-}
-- (instancetype)initSymbolsAlphabet:  (NSString *)string {
-    return nil;
+    if (self) {
+        self.alphabets = alphabets;
+    }
+    
+    return self;
 }
 
 #pragma mark
@@ -58,4 +76,5 @@
     return 0;
     }
 
+    
 @end

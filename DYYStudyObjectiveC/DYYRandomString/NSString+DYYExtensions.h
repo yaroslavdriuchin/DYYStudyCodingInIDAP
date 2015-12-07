@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (DYYExtensions)
+@interface NSString (DYYExtensions) <NSFastEnumeration>
 
 + (instancetype)alphanumericAlphabet;
 + (instancetype)numericAlphabet;

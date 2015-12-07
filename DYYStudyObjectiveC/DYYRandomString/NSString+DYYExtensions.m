@@ -58,4 +58,23 @@
     return [self stringWithString:result];
 }
 
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+                                  objects:(id[])stackbuf
+                                    count:(NSUInteger)len
+{
+    state->mutationsPtr = (unsigned long *)self;
+    
+    NSUInteger length = MIN(state->state + len, self.length);
+    NSUInteger resultLength = length - state->state;
+    
+    if (0 != resultLength) {
+        for (NSUInteger index = 0; index < resultLength; index++) {
+            stackbuf[index] = [self characterAtIndex:index];
+        }
+    }
+    state->itemsPtr = stackbuf;
+    state->state +=resultLength;
+    
+    return resultLength;
+}
 @end
