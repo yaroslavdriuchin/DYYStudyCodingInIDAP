@@ -33,6 +33,7 @@
 		CEB30E001BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEB30DFE1BF3737400CF9BA6 /* DYYTestHumanWithDynamicArray.c */; };
 		CEBB47751BE8E91300EBCEA2 /* DYYDynamicArray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEBB47731BE8E91300EBCEA2 /* DYYDynamicArray.c */; };
 		CEC926F91BE25A9700F7B926 /* DYYStaticArray.c in Sources */ = {isa = PBXBuildFile; fileRef = CEC926F71BE25A9700F7B926 /* DYYStaticArray.c */; };
+		E97155EC7A306B1CE4850270 /* libPods-DYYCreatureTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BCB767A7F0B1B3A32819428 /* libPods-DYYCreatureTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -99,6 +100,9 @@
 		5CE241D61BA96134003C1A08 /* DYYSizeOfCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYSizeOfCheck.h; path = DYYSizeofCheck/DYYSizeOfCheck.h; sourceTree = "<group>"; };
 		5CEE7D1E1BC6629200876585 /* DYYTestHumanWithStaticArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYTestHumanWithStaticArray.c; path = DYYStudyCoding/Tests/DYYTestHumanWithStaticArray.c; sourceTree = "<group>"; };
 		5CEE7D1F1BC6629200876585 /* DYYTestHumanWithStaticArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestHumanWithStaticArray.h; path = DYYStudyCoding/Tests/DYYTestHumanWithStaticArray.h; sourceTree = "<group>"; };
+		6BCB767A7F0B1B3A32819428 /* libPods-DYYCreatureTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DYYCreatureTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0E6BC83EFD0DDC872253998 /* Pods-DYYCreatureTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DYYCreatureTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DYYCreatureTests/Pods-DYYCreatureTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C4D5431D76E69196F952F0AA /* Pods-DYYCreatureTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DYYCreatureTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DYYCreatureTests/Pods-DYYCreatureTests.release.xcconfig"; sourceTree = "<group>"; };
 		CE1FCB9E1BDE2FA3001DF4C8 /* DYYObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYObject.c; path = DYYStudyCoding/DYYObject/DYYObject.c; sourceTree = "<group>"; };
 		CE1FCB9F1BDE2FA3001DF4C8 /* DYYObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYObject.h; path = DYYStudyCoding/DYYObject/DYYObject.h; sourceTree = "<group>"; };
 		CE1FCBA21BDE6118001DF4C8 /* DYYString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DYYString.c; path = DYYStudyCoding/DYYStringObject/DYYString.c; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E97155EC7A306B1CE4850270 /* libPods-DYYCreatureTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +291,8 @@
 				CE4099721BFDC1B00070530B /* DYYStudyObjectiveC */,
 				5CB8F0C81C107B4D00DE3134 /* DYYCreatureTests */,
 				5CE241C91BA94BF3003C1A08 /* Products */,
+				9D5DDC4A1EDBA325C0C3110B /* Pods */,
+				7AD2BD5409E6976306324597 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -316,6 +323,23 @@
 				5C01F2A81BAA98C300365F43 /* DYYCheckNumbersAndReturnParentType */,
 			);
 			path = DYYStudyCoding;
+			sourceTree = "<group>";
+		};
+		7AD2BD5409E6976306324597 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6BCB767A7F0B1B3A32819428 /* libPods-DYYCreatureTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D5DDC4A1EDBA325C0C3110B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B0E6BC83EFD0DDC872253998 /* Pods-DYYCreatureTests.debug.xcconfig */,
+				C4D5431D76E69196F952F0AA /* Pods-DYYCreatureTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		CE1FCBA11BDE2FBD001DF4C8 /* DYYObject */ = {
@@ -430,9 +454,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5CB8F0CE1C107B4D00DE3134 /* Build configuration list for PBXNativeTarget "DYYCreatureTests" */;
 			buildPhases = (
+				44FF390301F2E05A02066E0C /* Check Pods Manifest.lock */,
 				5CB8F0C31C107B4D00DE3134 /* Sources */,
 				5CB8F0C41C107B4D00DE3134 /* Frameworks */,
 				5CB8F0C51C107B4D00DE3134 /* Resources */,
+				5F30614BDB20017BF4DE60FD /* Embed Pods Frameworks */,
+				2D224104ADC4E10CB67F69C1 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -526,6 +553,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2D224104ADC4E10CB67F69C1 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DYYCreatureTests/Pods-DYYCreatureTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		44FF390301F2E05A02066E0C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5F30614BDB20017BF4DE60FD /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DYYCreatureTests/Pods-DYYCreatureTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5CB8F0C31C107B4D00DE3134 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -579,6 +654,7 @@
 /* Begin XCBuildConfiguration section */
 		5CB8F0CC1C107B4D00DE3134 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0E6BC83EFD0DDC872253998 /* Pods-DYYCreatureTests.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_TESTABILITY = YES;
@@ -592,6 +668,7 @@
 		};
 		5CB8F0CD1C107B4D00DE3134 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4D5431D76E69196F952F0AA /* Pods-DYYCreatureTests.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DYYCreatureTests/Info.plist;
