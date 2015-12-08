@@ -13,9 +13,8 @@
 #pragma mark
 #pragma mark - Class Methods
 
-+ (instancetype)rangeAlphabet:    (NSRange)   range {
-    return nil;
-    
++ (instancetype)rangeAlphabet:(NSRange)range {
+   return nil;
 }
 + (instancetype)stringsAlphabet:  (NSArray  *)strings {
     return nil;
@@ -27,7 +26,7 @@
 }
 
 #pragma mark
-#pragma mark - Iitializations And Deallocations
+#pragma mark - Initializations And Deallocations
 
 - (void)dealloc  {
     self.strings   = nil;

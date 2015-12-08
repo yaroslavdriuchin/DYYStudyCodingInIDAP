@@ -12,17 +12,17 @@
 @interface DYYAlphabet : NSObject <NSFastEnumeration>
 
 @property (nonatomic, assign) NSRange range;
-@property (nonatomic, copy)   NSArray *alphabets;
 @property (nonatomic, copy)   NSArray *strings;
+@property (nonatomic, copy)   NSArray *alphabets;
 
-+ (instancetype)rangeAlphabet:    (NSRange)   range;
-+ (instancetype)stringsAlphabet:  (NSArray  *)strings;
-+ (instancetype)alphabetsAlphabet:(NSArray  *)alphabets;
++ (instancetype)rangeAlphabet:    (NSRange)  range;
++ (instancetype)stringsAlphabet:  (NSArray *)strings;
++ (instancetype)alphabetsAlphabet:(NSArray *)alphabets;
 
 - (void)dealloc;
-- (instancetype)initRangeAlphabet:    (NSRange)   range;
-- (instancetype)initStringsAlphabet:  (NSArray  *)strings;
-- (instancetype)initAlphabetsAlphabet:(NSArray  *)alphabets;
+- (instancetype)initRangeAlphabet:    (NSRange)  range;
+- (instancetype)initStringsAlphabet:  (NSArray *)strings;
+- (instancetype)initAlphabetsAlphabet:(NSArray *)alphabets;
 
 
 @end
