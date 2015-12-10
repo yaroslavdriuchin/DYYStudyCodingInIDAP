@@ -1,13 +1,13 @@
 //
-//  DYYCarwashBuildingTechnical.m
+//  DYYCarwashRoom.m
 //  DYYStudyCoding
 //
 //  Created by Yar on 12/8/15.
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYCarwashBuildingTechnical.h"
+#import "DYYCarwashOfficeRoom.h"
 
-@implementation DYYCarwashBuildingTechnical
+@implementation DYYCarwashOfficeRoom
 
 @end

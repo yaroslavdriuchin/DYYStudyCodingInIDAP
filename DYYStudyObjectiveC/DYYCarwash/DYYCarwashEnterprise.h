@@ -36,13 +36,19 @@
 #import <Foundation/Foundation.h>
 
 @class DYYCarwashCar;
+@class DYYCarwashBuilding;
+@class DYYCarwashEmployee;
+@class DYYCarwashOfficeRoom;
 
 @interface DYYCarwashEnterprise : NSObject
 
-@property (nonatomic, assign) NSUInteger carsToWashCapacity;
+@property (nonatomic, assign) NSArray *employees;
 
-- (void)     performInitialEnterpriseSetup;
-- (void)     addCarToWash:(DYYCarwashCar *)carToWash;
-- (int32_t)  calculateIncomeInDollars;
+- (void)buildCarwashOfficeWithRooms:(NSUInteger) rooms;
+- (void)buildCarwashBuildingWithRooms:(NSUInteger) rooms;
+- (void)addEmployee:(DYYCarwashEmployee *)employee
+             toRoom:(DYYCarwashOfficeRoom *)room
+         atBuilding:(DYYCarwashBuilding *)building;
+- (void)performCarWash:(DYYCarwashCar *)car;
 
 @end

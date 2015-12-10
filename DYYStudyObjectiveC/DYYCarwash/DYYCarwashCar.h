@@ -11,12 +11,13 @@
 @interface DYYCarwashCar : NSObject
 
 //Cleaniness of car: NO = dirty, YES = clean, money is calculated in Cents
-@property (nonatomic, assign) BOOL     cleaniness;
+@property (nonatomic, assign) BOOL     isClean;
 @property (nonatomic, assign) uint32_t money;
 
 //All cars are dirty by default, money is calculated in Cents
-+ (instancetype)createCarWithAmountofMoney:(uint32_t)money;
-- (instancetype)initCarWithAmountofMoney  :(uint32_t)money;
-- (void)makeCarClean:(DYYCarwashCar *)car;
++ (instancetype)carWithAmountofMoney:(uint32_t)money;
+- (instancetype)initCarWithAmountofMoney:(uint32_t)money;
+- (BOOL)isCar:(DYYCarwashCar *)car ableToPay:(uint32_t)price;
+- (void)washCar:(DYYCarwashCar *)car;
 
 @end

@@ -7,22 +7,29 @@
 //
 
 #import <Foundation/Foundation.h>
-@class DYYCarwashRoom;
 
 typedef NS_ENUM (NSUInteger, DYYCarwashBuildingType) {
-    kDYYCarwashBuildingBox = 0,
-    kDYYCarwashBuildingOffice,
-    dDYYCarwashBuildingUndefined
+    kDYYCarwashBuilding = 0,
+    kDYYCarwashTechnicalBuilding,
+    kDYYCarwashBuildingUndefined
 };
+
+//@protocol DYYCarwashBuildingDelegate <NSObject>
+//
+//- (void)
+//
+//@end
+
 
 @interface DYYCarwashBuilding : NSObject
 
 @property (nonatomic, readonly, assign) NSUInteger roomsCapacity;
-@property (nonatomic, readonly, retain) NSArray    *rooms;
+@property (nonatomic, readonly, retain) NSArray    *officeRooms;
+//@property (nonatomic, assign) id<DYYCarwashBuildingDelegate> delegate;
 
-+ (instancetype)createBuildingOfType:(DYYCarwashBuildingType)buildingType;
-- (instancetype)initWithBuildingType:(DYYCarwashBuildingType)buildingType;
-- addRoomToBuilding:     (DYYCarwashBuilding *)building;
++ (instancetype)buildingOfType:(DYYCarwashBuildingType)buildingType;
+- (instancetype)initBuildingOfType:(DYYCarwashBuildingType)buildingType;
+- addRoomToBuilding:(DYYCarwashBuilding *)building;
 - removeRoomFromBuilding:(DYYCarwashBuilding *)building;
 
 @end

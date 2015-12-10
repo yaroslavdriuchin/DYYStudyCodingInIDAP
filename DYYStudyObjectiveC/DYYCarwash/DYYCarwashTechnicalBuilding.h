@@ -8,6 +8,8 @@
 
 #import "DYYCarwashBuilding.h"
 
-@interface DYYCarwashBuildingTechnical : DYYCarwashBuilding
+@interface DYYCarwashTechnicalBuilding : DYYCarwashBuilding
+
+@property (nonatomic, readonly, retain)   NSArray   *technicalRooms;
 
 @end
