@@ -6,8 +6,8 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYCarwashOfficeRoom.h"
+#import "DYYCarwashRoom.h"
 
-@implementation DYYCarwashOfficeRoom
+@implementation DYYCarwashRoom
 
 @end

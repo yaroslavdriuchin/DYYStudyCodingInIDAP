@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DYYCarwashOfficeRoom.h"
+#import "DYYCarwashRoom.h"
 
-@interface DYYCarwashTechnicalRoom : DYYCarwashOfficeRoom
+@interface DYYCarwashTechnicalRoom : DYYCarwashRoom
 
 @property (nonatomic, readonly, assign) NSUInteger carsCapacity;
 @property (nonatomic, retain)           NSArray    *cars;

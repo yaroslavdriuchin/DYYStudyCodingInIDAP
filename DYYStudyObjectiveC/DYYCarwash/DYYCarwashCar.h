@@ -7,16 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DYYCarwashMoneyTransferProtocol.h"
 
-@interface DYYCarwashCar : NSObject
+@interface DYYCarwashCar : NSObject <DYYCarwashMoneyTransferProtocol>
 
-//Cleaniness of car: NO = dirty, YES = clean, money is calculated in Cents
-@property (nonatomic, assign) BOOL     isClean;
-@property (nonatomic, assign) uint32_t money;
+@property (nonatomic, assign)               BOOL        isClean;
+@property (nonatomic, readwrite, assign)    uint32_t    money;
 
-//All cars are dirty by default, money is calculated in Cents
 + (instancetype)carWithAmountofMoney:(uint32_t)money;
 - (instancetype)initCarWithAmountofMoney:(uint32_t)money;
+- (void) giveMoneyAmount:(uint32_t)money toReciever:(id)reciever;
 - (BOOL)isCar:(DYYCarwashCar *)car ableToPay:(uint32_t)price;
 - (void)washCar:(DYYCarwashCar *)car;
 

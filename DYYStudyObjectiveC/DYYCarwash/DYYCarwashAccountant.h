@@ -11,7 +11,6 @@
 
 @interface DYYCarwashAccountant : DYYCarwashEmployee
 
-- (int32_t)calculateCurrentEnterpriseMoneyInDollars;
-- (void)giveAllMoneyToDirector:(DYYCarwashDirector *)director;
+- (int32_t)calculateMoneyInDollars;
 
 @end

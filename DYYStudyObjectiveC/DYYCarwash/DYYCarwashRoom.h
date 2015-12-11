@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DYYCarwashOfficeRoom : NSObject
+@interface DYYCarwashRoom : NSObject
 
 @property (nonatomic, readonly, assign)  NSUInteger   employeesCapacity;
 @property (nonatomic, retain)            NSArray      *employees;

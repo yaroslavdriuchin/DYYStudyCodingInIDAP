@@ -38,17 +38,20 @@
 @class DYYCarwashCar;
 @class DYYCarwashBuilding;
 @class DYYCarwashEmployee;
-@class DYYCarwashOfficeRoom;
+@class DYYCarwashRoom;
 
 @interface DYYCarwashEnterprise : NSObject
 
-@property (nonatomic, assign) NSArray *employees;
+@property (nonatomic, retain) NSArray *carsQueue;
+@property (nonatomic, retain) NSArray *employees;
 
-- (void)buildCarwashOfficeWithRooms:(NSUInteger) rooms;
-- (void)buildCarwashBuildingWithRooms:(NSUInteger) rooms;
-- (void)addEmployee:(DYYCarwashEmployee *)employee
-             toRoom:(DYYCarwashOfficeRoom *)room
-         atBuilding:(DYYCarwashBuilding *)building;
+@property (nonatomic, readonly, assign) NSUInteger queueLimit;
+
+- (instancetype)buildCarwashBuilding;
+- (void)hireEmployee:(DYYCarwashEmployee *)employee;
+- (BOOL)sendEmployee:(DYYCarwashEmployee *)employee
+          toBuilding:(DYYCarwashBuilding *)building;
+- (void)addCarToQueue:(DYYCarwashCar *)car;
 - (void)performCarWash:(DYYCarwashCar *)car;
 
 @end

@@ -7,12 +7,19 @@
 //
 
 #import "DYYCarwashEmployee.h"
+
 @class DYYCarwashCar;
 @class DYYCarwashAccountant;
 
 @interface DYYCarwashWorker : DYYCarwashEmployee
+@property (nonatomic, readonly)    NSArray    *observers;
 
 - (void)washCar:(DYYCarwashCar *)car;
-- (void)giveAllMoneyToAccountant:(DYYCarwashAccountant *)accountant;
+- (BOOL)isWorkerFree;
+- (void)transferAllMoneyToAccountant:(DYYCarwashAccountant *)accountant
+                  ifLimitExceeded:(uint32_t)moneyLimit;
+- (void)addObserver:(id)observer;
+- (void)removeObserver:(id)observer;
+- (void)notifyObserversWorkerIsFree;
 
 @end

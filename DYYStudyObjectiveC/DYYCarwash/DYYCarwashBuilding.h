@@ -8,12 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM (NSUInteger, DYYCarwashBuildingType) {
-    kDYYCarwashBuilding = 0,
-    kDYYCarwashTechnicalBuilding,
-    kDYYCarwashBuildingUndefined
-};
-
 //@protocol DYYCarwashBuildingDelegate <NSObject>
 //
 //- (void)
@@ -23,12 +17,12 @@ typedef NS_ENUM (NSUInteger, DYYCarwashBuildingType) {
 
 @interface DYYCarwashBuilding : NSObject
 
-@property (nonatomic, readonly, assign) NSUInteger roomsCapacity;
-@property (nonatomic, readonly, retain) NSArray    *officeRooms;
+@property (nonatomic, readonly, assign)    NSUInteger   roomsCapacity;
+@property (nonatomic, readonly, retain)    NSArray      *rooms;
 //@property (nonatomic, assign) id<DYYCarwashBuildingDelegate> delegate;
 
-+ (instancetype)buildingOfType:(DYYCarwashBuildingType)buildingType;
-- (instancetype)initBuildingOfType:(DYYCarwashBuildingType)buildingType;
++ (instancetype)buildingWithRoom;
+- (instancetype)initBuildingWithRoom;
 - addRoomToBuilding:(DYYCarwashBuilding *)building;
 - removeRoomFromBuilding:(DYYCarwashBuilding *)building;
 
