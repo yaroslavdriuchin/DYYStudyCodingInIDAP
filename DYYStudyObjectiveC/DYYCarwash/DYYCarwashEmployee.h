@@ -16,6 +16,8 @@
 @property (nonatomic, assign) uint32_t salary;
 @property (nonatomic, assign) uint8_t  experienceYears;
 
-+ (void) giveMoneyAmount:(uint32_t)money toReciever:(id)reciever;
++ (void) giveMoneyAmount:(uint32_t)value toReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever;
+- (uint32_t)money;
+- (void)setMoney:(uint32_t)value;
 
 @end
