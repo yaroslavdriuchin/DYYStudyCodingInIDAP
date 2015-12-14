@@ -10,4 +10,25 @@
 
 @implementation DYYCarwashEnterprise
 
+#pragma mark
+#pragma mark - Public Methods
+
+- (instancetype)buildCarwashBuilding {
+    DYYCarwashBuilding *building = [[DYYCarwashBuilding alloc] initBuildingWithRoom];
+    return building;
+}
+
+
+#pragma mark
+#pragma mark - DYYCarwashWorker observer
+
+- (void)setObservableWorker:(DYYCarwashWorker *)worker {
+    if (_observableWorker != worker) {
+        [_observableWorker removeObserver:self];
+        [worker release];
+        _observableWorker = [worker retain];
+        [worker addObserver:self];
+    }
+}
+
 @end

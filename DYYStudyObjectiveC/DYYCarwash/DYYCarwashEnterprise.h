@@ -34,16 +34,18 @@
 */
 
 #import <Foundation/Foundation.h>
+#import "DYYCarwashWorker.h"
+#import "DYYCarwashBuilding.h"
 
 @class DYYCarwashCar;
-@class DYYCarwashBuilding;
 @class DYYCarwashEmployee;
 @class DYYCarwashRoom;
 
 @interface DYYCarwashEnterprise : NSObject
 
-@property (nonatomic, retain) NSArray *carsQueue;
-@property (nonatomic, retain) NSArray *employees;
+@property (nonatomic, retain)      NSArray              *carsQueue;
+@property (nonatomic, retain)      NSArray              *employees;
+@property (nonatomic, retain)      DYYCarwashWorker     *observableWorker;
 
 @property (nonatomic, readonly, assign) NSUInteger queueLimit;
 
@@ -53,5 +55,6 @@
           toBuilding:(DYYCarwashBuilding *)building;
 - (void)addCarToQueue:(DYYCarwashCar *)car;
 - (void)performCarWash:(DYYCarwashCar *)car;
+- (void)setObservableWorker:(DYYCarwashWorker *)worker;
 
 @end

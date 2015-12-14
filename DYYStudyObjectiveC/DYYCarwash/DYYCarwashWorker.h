@@ -19,7 +19,8 @@
 @property (nonatomic, assign)      BOOL                   isWorkerFree;
 
 - (void)washCar:(DYYCarwashCar *)car;
-//- (BOOL)isWorkerFree;
+- (void)workerIsFree:(DYYCarwashWorker *)worker;
+- (void)workerIsBusy:(DYYCarwashWorker *)worker;
 - (void)transferMoneyToAccountant:(DYYCarwashAccountant *)accountant
                   ifLimitExceeded:(uint32_t)money;
 - (void)addObserver:(id)observer;

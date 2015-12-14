@@ -10,6 +10,7 @@
 #import "DYYCarwashCar.h"
 
 @interface DYYCarwashWorker ()
+
 @property (nonatomic, retain)    NSMutableSet    *mutableObservers;
 
 @end
@@ -61,9 +62,13 @@
     }
 }
 
-//- (BOOL)isWorkerFree {
-//    return YES;
-//}
+- (void)workerIsFree:(DYYCarwashWorker *)worker {
+    return;
+}
+
+- (void)workerIsBusy:(DYYCarwashWorker *)worker {
+    return;
+}
 
 - (void)notifyObserversWorkerIsFree:(SEL)selector withObject:(id)object {
     NSArray *observers = self.observers;
