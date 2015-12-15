@@ -45,11 +45,12 @@
 
 @property (nonatomic, retain)      NSArray              *carsQueue;
 @property (nonatomic, retain)      NSArray              *employees;
+@property (nonatomic, retain)      NSArray              *buildings;
 @property (nonatomic, retain)      DYYCarwashWorker     *observableWorker;
 
 @property (nonatomic, readonly, assign) NSUInteger queueLimit;
 
-- (instancetype)buildCarwashBuilding;
+- (DYYCarwashBuilding *)buildCarwashBuilding;
 - (void)hireEmployee:(DYYCarwashEmployee *)employee;
 - (BOOL)sendEmployee:(DYYCarwashEmployee *)employee
           toBuilding:(DYYCarwashBuilding *)building;

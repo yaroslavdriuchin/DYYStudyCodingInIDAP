@@ -12,7 +12,6 @@
 @class DYYCarwashAccountant;
 
 @interface DYYCarwashWorker : DYYCarwashEmployee
-@property (nonatomic, readonly)    NSArray                *observers;
 @property (nonatomic, assign)      uint32_t               moneyLimit;
 @property (nonatomic, assign)      DYYCarwashAccountant   *accountant;
 @property (nonatomic, assign)      uint32_t               washPrice;
@@ -23,8 +22,5 @@
 - (void)workerIsBusy:(DYYCarwashWorker *)worker;
 - (void)transferMoneyToAccountant:(DYYCarwashAccountant *)accountant
                   ifLimitExceeded:(uint32_t)money;
-- (void)addObserver:(id)observer;
-- (void)removeObserver:(id)observer;
-- (void)notifyObserversWorkerIsFree:(SEL)selector withObject:(id)object;
 
 @end

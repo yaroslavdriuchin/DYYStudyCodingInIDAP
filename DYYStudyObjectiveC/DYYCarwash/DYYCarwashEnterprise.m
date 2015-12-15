@@ -13,9 +13,10 @@
 #pragma mark
 #pragma mark - Public Methods
 
-- (instancetype)buildCarwashBuilding {
-    DYYCarwashBuilding *building = [[DYYCarwashBuilding alloc] initBuildingWithRoom];
-    return building;
+- (DYYCarwashBuilding *)buildCarwashBuilding {
+     DYYCarwashBuilding *building = [[[DYYCarwashBuilding alloc] initBuildingWithRoom] autorelease];
+    
+     return building;
 }
 
 

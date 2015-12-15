@@ -8,22 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
+@class DYYCarwashRoom;
+
 //@protocol DYYCarwashBuildingDelegate <NSObject>
 //
 //- (void)
 //
 //@end
 
-
 @interface DYYCarwashBuilding : NSObject
 
 @property (nonatomic, readonly, assign)    NSUInteger   roomsCapacity;
-@property (nonatomic, readonly, retain)    NSArray      *rooms;
+@property (nonatomic, retain)              NSArray      *rooms;
 //@property (nonatomic, assign) id<DYYCarwashBuildingDelegate> delegate;
 
 + (instancetype)buildingWithRoom;
 - (instancetype)initBuildingWithRoom;
-- addRoomToBuilding:(DYYCarwashBuilding *)building;
-- removeRoomFromBuilding:(DYYCarwashBuilding *)building;
+- (NSArray *)rooms;
+- (void)addRoomToBuilding:(DYYCarwashBuilding *)building;
+- (instancetype)findFreeRoomOfClass:(Class)roomClass;
 
 @end

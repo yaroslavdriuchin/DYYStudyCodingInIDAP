@@ -16,7 +16,7 @@
 
 + (instancetype)carWithAmountofMoney:(uint32_t)money;
 - (instancetype)initCarWithAmountofMoney:(uint32_t)money;
-- (void) giveMoneyAmount:(uint32_t)money toReciever:(id)reciever;
+- (void) giveMoneyAmount:(uint32_t)money toReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever;
 - (BOOL)isCar:(DYYCarwashCar *)car ableToPay:(uint32_t)price;
 - (void)washCar:(DYYCarwashCar *)car;
 

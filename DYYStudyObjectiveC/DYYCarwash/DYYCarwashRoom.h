@@ -10,10 +10,15 @@
 
 @interface DYYCarwashRoom : NSObject
 
-@property (nonatomic, readonly, assign)  NSUInteger   employeesCapacity;
-@property (nonatomic, retain)            NSArray      *employees;
+@property (nonatomic, readonly, assign)    NSUInteger    employeesCapacity;
+@property (nonatomic, retain)              NSArray       *employees;
+@property (nonatomic, readonly, assign)    BOOL          isFull;
 
++ (instancetype)carwashRoom;
+- (instancetype)init;
 - (void)addItem:(id)item;
 - (void)removeItem:(id)item;
+
+
 
 @end
