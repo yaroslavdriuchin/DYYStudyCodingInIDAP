@@ -9,5 +9,11 @@
 #ifndef DYYCarwashObservingProtocol_h
 #define DYYCarwashObservingProtocol_h
 
+#import <Foundation/Foundation.h>
 
+@protocol DYYCarwashObservingProtocol <NSObject>
+
+- (BOOL)itemIsFree:(id<DYYCarwashObservingProtocol>)employee;
+
+@end
 #endif /* DYYCarwashObservingProtocol_h */

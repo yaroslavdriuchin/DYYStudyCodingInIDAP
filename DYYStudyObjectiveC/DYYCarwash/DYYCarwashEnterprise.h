@@ -36,26 +36,31 @@
 #import <Foundation/Foundation.h>
 #import "DYYCarwashWorker.h"
 #import "DYYCarwashBuilding.h"
+#import "DYYCarwashRoom.h"
+#import "DYYCarwashTechnicalRoom.h"
 
 @class DYYCarwashCar;
 @class DYYCarwashEmployee;
-@class DYYCarwashRoom;
 
 @interface DYYCarwashEnterprise : NSObject
 
-@property (nonatomic, retain)      NSArray              *carsQueue;
-@property (nonatomic, retain)      NSArray              *employees;
-@property (nonatomic, retain)      NSArray              *buildings;
-@property (nonatomic, retain)      DYYCarwashWorker     *observableWorker;
+@property (nonatomic, retain)              NSArray              *carsQueue;
+@property (nonatomic, retain)              NSArray              *employees;
+@property (nonatomic, retain)              NSArray              *buildings;
+@property (nonatomic, retain)              id                   observableEmployee;
+@property (nonatomic, readwrite, assign)   NSUInteger           carsQueueLimit;
+@property (nonatomic, readwrite, assign)   NSUInteger           employeesLimit;
+@property (nonatomic, readwrite, assign)   NSUInteger           buildingsLimit;
+@property (nonatomic, readwrite, assign)   uint32_t             washPrice;
 
-@property (nonatomic, readonly, assign) NSUInteger queueLimit;
-
-- (DYYCarwashBuilding *)buildCarwashBuilding;
-- (void)hireEmployee:(DYYCarwashEmployee *)employee;
-- (BOOL)sendEmployee:(DYYCarwashEmployee *)employee
+- (DYYCarwashBuilding *)buildCarwashBuildingWithOfficeRooms:(NSUInteger)officeRooms
+                                             technicalRooms:(NSUInteger)technicalRooms;
+- (void)removeCarwashBuilding:(DYYCarwashBuilding *)building;
+- (void)hireEmployee:(id)employee;
+- (BOOL)sendEmployee:(id)employee
           toBuilding:(DYYCarwashBuilding *)building;
 - (void)addCarToQueue:(DYYCarwashCar *)car;
-- (void)performCarWash:(DYYCarwashCar *)car;
-- (void)setObservableWorker:(DYYCarwashWorker *)worker;
+- (void)performCarQueueWash:(DYYCarwashCar *)car;
+- (void)setObservableEmployee:(id)employee;
 
 @end

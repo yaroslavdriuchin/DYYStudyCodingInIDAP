@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class DYYCarwashRoom;
+#import "DYYCarwashRoom.h"
+#import "DYYCarwashTechnicalRoom.h"
 
 //@protocol DYYCarwashBuildingDelegate <NSObject>
 //
@@ -22,10 +22,12 @@
 @property (nonatomic, retain)              NSArray      *rooms;
 //@property (nonatomic, assign) id<DYYCarwashBuildingDelegate> delegate;
 
-+ (instancetype)buildingWithRoom;
-- (instancetype)initBuildingWithRoom;
-- (NSArray *)rooms;
-- (void)addRoomToBuilding:(DYYCarwashBuilding *)building;
-- (instancetype)findFreeRoomOfClass:(Class)roomClass;
++ (instancetype)buildingWithRooms;
+- (instancetype)initBuildingWithRooms;
+- (void)removeBuilding:(DYYCarwashBuilding *)building;
+- (void)addRoomOfClass:(Class)roomClass;
+- (NSArray *)findRoomsOfClass:(Class)roomClass;
+- (DYYCarwashTechnicalRoom *)findFreeTechnicalRoom;
+- (DYYCarwashRoom *)findFreeRoom;
 
 @end

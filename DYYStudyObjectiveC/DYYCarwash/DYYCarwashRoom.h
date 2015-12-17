@@ -14,11 +14,9 @@
 @property (nonatomic, retain)              NSArray       *employees;
 @property (nonatomic, readonly, assign)    BOOL          isFull;
 
-+ (instancetype)carwashRoom;
-- (instancetype)init;
-- (void)addItem:(id)item;
-- (void)removeItem:(id)item;
-
-
++ (instancetype)carwashRoomWithEmployeesCapacity:(NSUInteger)employeesCapacity;
+- (instancetype)initRoomWithEmployeesCapacity:(NSUInteger)employeesCapacity;
+- (void)addEmployee:(id)employee;
+- (void)removeEmployee:(id)employee;
 
 @end

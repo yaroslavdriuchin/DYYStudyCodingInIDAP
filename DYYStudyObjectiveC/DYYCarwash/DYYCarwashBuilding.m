@@ -25,11 +25,11 @@
     [super dealloc];
 }
 
-+ (instancetype)buildingWithRoom {
-    return [[[self alloc] initBuildingWithRoom] autorelease];
++ (instancetype)buildingWithRooms {
+    return [[[self alloc] initBuildingWithRooms] autorelease];
 }
 
-- (instancetype)initBuildingWithRoom {
+- (instancetype)initBuildingWithRooms {
     self = [super init];
     if (self) {
     self.mutableRooms = [NSMutableArray array];
@@ -38,15 +38,60 @@
     return self;
 }
 
+- (void)removeBuilding:(DYYCarwashBuilding *)building {
+    [self.mutableRooms removeAllObjects];
+    [self dealloc];
+}
+
+#pragma mark -
+#pragma mark Public Methods
+
 - (NSArray *)rooms {
     return [[self.mutableRooms copy] autorelease];
 }
 
-- (void)addRoomToBuilding:(DYYCarwashBuilding *)building {
-    if (nil != building) {
-        DYYCarwashRoom *newRoom = [[[DYYCarwashRoom alloc] init] autorelease];
+- (void)addRoomOfClass:(Class)roomClass {
+    if ([self.mutableRooms count] < self.roomsCapacity) {
+        id newRoom = [[[roomClass alloc] init] autorelease];
         [self.mutableRooms addObject:newRoom];
     }
+}
+
+- (NSArray *)findRoomsOfClass:(Class)roomClass {
+    NSMutableArray *roomsOfClass = [NSMutableArray array];
+    for (id room in self.mutableRooms) {
+        if ([room isMemberOfClass:roomClass]) {
+            [roomsOfClass addObject:room];
+        }
+    }
+    
+    return [[roomsOfClass copy] autorelease];
+}
+
+- (DYYCarwashTechnicalRoom *)findFreeTechnicalRoom {
+    NSArray *technicalRooms = [self findRoomsOfClass:[DYYCarwashTechnicalRoom class]];
+    for (DYYCarwashTechnicalRoom *room in technicalRooms) {
+        if (room.isFull == NO) {
+            return room;
+            
+            break;
+        }
+    }
+    
+    return nil;
+}
+
+- (DYYCarwashRoom *)findFreeRoom {
+    NSArray *rooms = [self findRoomsOfClass:[DYYCarwashRoom class]];
+    for (DYYCarwashRoom *room in rooms) {
+        if (room.isFull == NO) {
+            return room;
+            
+            break;
+        }
+    }
+    
+    return nil;
 }
 
 @end

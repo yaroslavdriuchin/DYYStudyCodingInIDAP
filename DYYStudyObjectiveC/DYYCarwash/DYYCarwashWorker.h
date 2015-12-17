@@ -13,14 +13,12 @@
 
 @interface DYYCarwashWorker : DYYCarwashEmployee
 @property (nonatomic, assign)      uint32_t               moneyLimit;
-@property (nonatomic, assign)      DYYCarwashAccountant   *accountant;
+@property (nonatomic, assign)      id                     moneyReciever;
 @property (nonatomic, assign)      uint32_t               washPrice;
 @property (nonatomic, assign)      BOOL                   isWorkerFree;
 
 - (void)washCar:(DYYCarwashCar *)car;
-- (void)workerIsFree:(DYYCarwashWorker *)worker;
-- (void)workerIsBusy:(DYYCarwashWorker *)worker;
-- (void)transferMoneyToAccountant:(DYYCarwashAccountant *)accountant
-                  ifLimitExceeded:(uint32_t)money;
+- (void)transferMoneyToReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever
+                ifLimitExceeded:(uint32_t)money;
 
 @end

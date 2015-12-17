@@ -15,7 +15,7 @@
 
 @property (nonatomic, readwrite, assign) uint32_t money;
 
-- (void)giveMoneyAmount:(uint32_t)money toReciever:(id)reciever;
+- (void)giveMoneyAmount:(uint32_t)money toReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever;
 
 @end
 #endif /* DYYCarwashMoneyTransferProtocol_h */

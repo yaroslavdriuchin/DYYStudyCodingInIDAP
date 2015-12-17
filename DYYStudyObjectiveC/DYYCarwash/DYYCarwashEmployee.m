@@ -78,6 +78,13 @@
     }
 }
 
+- (void)itemIsFree {
+    return;
+}
+
+- (void)itemIsBusy {
+    return;
+}
 
 //- (uint32_t)money {
 //    return self.money;
