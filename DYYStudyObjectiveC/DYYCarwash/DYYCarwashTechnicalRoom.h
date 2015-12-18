@@ -13,13 +13,12 @@
 
 @interface DYYCarwashTechnicalRoom : DYYCarwashRoom
 
-@property (nonatomic, readonly, assign) NSUInteger carsCapacity;
-@property (nonatomic, retain)           NSArray    *cars;
+@property (nonatomic, assign)             NSUInteger    carsCapacity;
+@property (nonatomic, retain)             NSArray       *cars;
+@property (nonatomic, readonly, assign)   BOOL          isFullWithCars;
 
-+ (instancetype)carwashTechnicalRoomWithCarsCapacity:(NSUInteger)carsCapacity
-                                   employeesCapacity:(NSUInteger)employeesCapacity;
-- (instancetype)initTechnicalRoomWithCarsCapacity:(NSUInteger)carsCapacity
-                                employeesCapacity:(NSUInteger)employeesCapacity;
++ (instancetype)carwashTechnicalRoomWithCars;
+- (instancetype)initTechnicalRoomWithCars;
 - (void)addCar:(DYYCarwashCar *)car;
 - (void)removeCar:(DYYCarwashCar *)car;
 

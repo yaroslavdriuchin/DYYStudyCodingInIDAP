@@ -8,6 +8,47 @@
 
 #import "DYYCarwashRoom.h"
 
+@interface DYYCarwashRoom()
+
+@property (nonatomic, retain) NSMutableArray *mutableEmployees;
+
+@end
+
 @implementation DYYCarwashRoom
+
+#pragma mark -
+#pragma mark Initializations and Deallocators
+
++ (instancetype)carwashRoomWithEmployees {
+    return [[[self alloc] initCarwashRoomWithEmployees] autorelease];
+}
+
+- (instancetype)initCarwashRoomWithEmployees {
+    self = [super init];
+    if (self) {
+        self.mutableEmployees = [NSMutableArray array];
+        }
+    
+    return self;
+}
+
+- (void)removeRoom:(DYYCarwashRoom *)room {
+    [self.mutableEmployees removeAllObjects];
+    [self dealloc];
+}
+
+- (void)addEmployee:(id)employee {
+    if (nil != employee && [self.mutableEmployees count] < self.employeesCapacity) {
+        [self.mutableEmployees addObject:employee];
+        
+    }
+}
+
+- (void)removeEmployee:(id)employee {
+    if (nil != employee) {
+        [self.mutableEmployees removeObject:employee];
+    }
+}
+
 
 @end

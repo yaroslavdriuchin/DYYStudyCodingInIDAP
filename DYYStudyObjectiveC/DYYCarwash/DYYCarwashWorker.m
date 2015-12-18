@@ -15,16 +15,20 @@
 #pragma mark Public Methods
 
 
-- (void)washCar:(DYYCarwashCar *)car {
-    if (!car) {
+- (BOOL)washCar:(DYYCarwashCar *)car {
+    if (car) {
         self.isWorkerFree = NO;
-        [self notifyObserversWithSelector:@selector(itemIsBusy:) withObject:self];
+        [self notifyObserversWithSelector:@selector(itemIsBusy) withObject:self];
         [car giveMoneyAmount:self.washPrice toReciever:self];
         car.isClean = YES;
         [self transferMoneyToReciever:self.moneyReciever ifLimitExceeded:self.money];
         self.isWorkerFree = YES;
-        [self notifyObserversWithSelector:@selector(itemIsFree:) withObject:self];
+        [self notifyObserversWithSelector:@selector(itemIsFree) withObject:self];
+        
+        return YES;
     }
+    
+    return NO;
 }
 
 - (void)transferMoneyToReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever

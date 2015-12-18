@@ -196,6 +196,7 @@
 		5C01F2AC1BAAAF2B00365F43 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				5CB8F0C81C107B4D00DE3134 /* DYYCreatureTests */,
 				CE45AAFF1BD8E15500460AF7 /* DYYTestCheckNumbersReturnParentType */,
 				CE45AB001BD8E17300460AF7 /* DYYTestParentTypeAssert */,
 				CE45AB011BD8E19100460AF7 /* DYYTestDecimalToBinaryOutput */,
@@ -420,7 +421,6 @@
 				5C01F2AC1BAAAF2B00365F43 /* Tests */,
 				5CE241CA1BA94BF3003C1A08 /* DYYStudyCoding */,
 				CE4099721BFDC1B00070530B /* DYYStudyObjectiveC */,
-				5CB8F0C81C107B4D00DE3134 /* DYYCreatureTests */,
 				5CE241C91BA94BF3003C1A08 /* Products */,
 				9D5DDC4A1EDBA325C0C3110B /* Pods */,
 				7AD2BD5409E6976306324597 /* Frameworks */,

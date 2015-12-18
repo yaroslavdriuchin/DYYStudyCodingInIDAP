@@ -14,10 +14,6 @@
 
 @end
 
-//@dynamic observers;
-//
-//@dynamic money;
-
 @implementation DYYCarwashEmployee
 
 #pragma mark -
@@ -48,10 +44,21 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (void)giveMoneyAmount:(uint32_t)value toReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever {
-    if (!reciever) {
+- (void)giveMoneyAmount:(uint32_t)value toReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever {
+    if (reciever) {
+        self.money = self.money - value;
+        reciever.money = reciever.money + value;
     }
 }
+
++ (BOOL)itemIsFree {
+    return YES;
+}
+
++ (BOOL)itemIsBusy {
+    return YES;
+}
+
 
 #pragma mark -
 #pragma mark DYYCarwashEmployee observer
@@ -77,21 +84,5 @@
         [observer performSelector:selector withObject:object];
     }
 }
-
-- (void)itemIsFree {
-    return;
-}
-
-- (void)itemIsBusy {
-    return;
-}
-
-//- (uint32_t)money {
-//    return self.money;
-//}
-//
-//- (void)setMoney:(uint32_t)value {
-//    self.money = value;
-//}
 
 @end

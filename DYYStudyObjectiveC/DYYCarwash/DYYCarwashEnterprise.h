@@ -38,29 +38,28 @@
 #import "DYYCarwashBuilding.h"
 #import "DYYCarwashRoom.h"
 #import "DYYCarwashTechnicalRoom.h"
+#import "DYYCarwashCar.h"
+#import "DYYCarwashEmployee.h"
 
-@class DYYCarwashCar;
-@class DYYCarwashEmployee;
+@interface DYYCarwashEnterprise : NSObject <DYYCarwashObservingProtocol>
 
-@interface DYYCarwashEnterprise : NSObject
-
-@property (nonatomic, retain)              NSArray              *carsQueue;
-@property (nonatomic, retain)              NSArray              *employees;
-@property (nonatomic, retain)              NSArray              *buildings;
-@property (nonatomic, retain)              id                   observableEmployee;
-@property (nonatomic, readwrite, assign)   NSUInteger           carsQueueLimit;
-@property (nonatomic, readwrite, assign)   NSUInteger           employeesLimit;
-@property (nonatomic, readwrite, assign)   NSUInteger           buildingsLimit;
-@property (nonatomic, readwrite, assign)   uint32_t             washPrice;
+@property (nonatomic, retain)     NSArray              *carsQueue;
+@property (nonatomic, retain)     NSArray              *employees;
+@property (nonatomic, retain)     NSArray              *buildings;
+@property (nonatomic, retain)     id                   observableEmployee;
+@property (nonatomic, assign)     NSUInteger           carsQueueLimit;
+@property (nonatomic, assign)     NSUInteger           employeesLimit;
+@property (nonatomic, assign)     NSUInteger           buildingsLimit;
+@property (nonatomic, assign)     uint32_t             washPrice;
 
 - (DYYCarwashBuilding *)buildCarwashBuildingWithOfficeRooms:(NSUInteger)officeRooms
                                              technicalRooms:(NSUInteger)technicalRooms;
 - (void)removeCarwashBuilding:(DYYCarwashBuilding *)building;
-- (void)hireEmployee:(id)employee;
+- (BOOL)hireEmployee:(id)employee;
 - (BOOL)sendEmployee:(id)employee
           toBuilding:(DYYCarwashBuilding *)building;
-- (void)addCarToQueue:(DYYCarwashCar *)car;
-- (void)performCarQueueWash:(DYYCarwashCar *)car;
+- (BOOL)addCarToQueue:(DYYCarwashCar *)car;
+- (void)performCarQueueWas;
 - (void)setObservableEmployee:(id)employee;
 
 @end

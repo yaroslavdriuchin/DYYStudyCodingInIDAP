@@ -17,7 +17,7 @@
 @property (nonatomic, assign)      uint32_t               washPrice;
 @property (nonatomic, assign)      BOOL                   isWorkerFree;
 
-- (void)washCar:(DYYCarwashCar *)car;
+- (BOOL)washCar:(DYYCarwashCar *)car;
 - (void)transferMoneyToReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever
                 ifLimitExceeded:(uint32_t)money;
 

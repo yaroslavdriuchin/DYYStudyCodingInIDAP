@@ -13,7 +13,9 @@
 
 @protocol DYYCarwashObservingProtocol <NSObject>
 
-- (BOOL)itemIsFree:(id<DYYCarwashObservingProtocol>)employee;
+- (BOOL)itemIsFree;
+
+- (BOOL)itemIsBusy;
 
 @end
 #endif /* DYYCarwashObservingProtocol_h */
