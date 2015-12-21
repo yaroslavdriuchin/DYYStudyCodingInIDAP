@@ -18,7 +18,7 @@
 
 @interface DYYCarwashBuilding : NSObject
 
-@property (nonatomic, readonly, assign)    NSUInteger   roomsCapacity;
+@property (nonatomic, assign)              NSUInteger   roomsCapacity;
 @property (nonatomic, retain)              NSArray      *rooms;
 //@property (nonatomic, assign) id<DYYCarwashBuildingDelegate> delegate;
 

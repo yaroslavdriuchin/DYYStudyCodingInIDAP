@@ -22,6 +22,31 @@
 @implementation DYYCarwashEnterprise
 
 #pragma mark -
+#pragma mark Initializations and Deallocators
+
+- (void)dealloc {
+    self.mutableEmployees = nil;
+    self.mutableBuildings = nil;
+    self.mutableCarsQueue = nil;
+    [super dealloc];
+}
+
++ (instancetype)enterpriseWithAttributes {
+    return [[[self alloc] initWithAttributes] autorelease];
+}
+
+- (instancetype)initWithAttributes {
+    self = [super init];
+    if (self) {
+        self.mutableEmployees = [NSMutableArray array];
+        self.mutableBuildings = [NSMutableArray array];
+        self.mutableCarsQueue = [NSMutableArray array];
+    }
+    
+    return self;
+}
+
+#pragma mark -
 #pragma mark Accesors
 
 - (NSArray *)carsQueue {
@@ -41,15 +66,20 @@
 
 - (DYYCarwashBuilding *)buildCarwashBuildingWithOfficeRooms:(NSUInteger)officeRooms
                                              technicalRooms:(NSUInteger)technicalRooms
+                                         totalRoomsCapacity:(NSUInteger)roomsCapacity
 {
     if (officeRooms + technicalRooms < self.buildingsLimit) {
-    DYYCarwashBuilding *building = [[[DYYCarwashBuilding alloc] initBuildingWithRooms] autorelease];
-    for (NSUInteger count = 0; count < officeRooms; count++) {
-        [building addRoomOfClass:[DYYCarwashRoom class]];
-    }
-    for (NSUInteger count = 0; count < technicalRooms; count++) {
-        [building addRoomOfClass:[DYYCarwashTechnicalRoom class]];
-       }
+        DYYCarwashBuilding *building = [[[DYYCarwashBuilding alloc] initBuildingWithRooms] autorelease];
+        building.roomsCapacity = roomsCapacity;
+        [self.mutableBuildings addObject:building];
+        
+        for (NSUInteger count = 0; count < officeRooms; count++) {
+            [building addRoomOfClass:[DYYCarwashRoom class]];
+        }
+        
+        for (NSUInteger count = 0; count < technicalRooms; count++) {
+            [building addRoomOfClass:[DYYCarwashTechnicalRoom class]];
+        }
         
         return building;
     }
@@ -71,9 +101,9 @@
 }
 
 - (BOOL)addCarToQueue:(DYYCarwashCar *)car {
-    if ([self.mutableCarsQueue count] < self.carsQueueLimit) {
+    if ([self.mutableCarsQueue count] <= self.carsQueueLimit) {
         [self.mutableCarsQueue addObject:car];
-        if (self.mutableCarsQueue > self.carsQueueLimit) {
+        if ([self.mutableCarsQueue count] > self.carsQueueLimit) {
             [self performCarQueueWash];
         }
         
@@ -135,7 +165,6 @@
 - (BOOL)itemIsBusy {
         return YES;
     }
-    
     
 #pragma mark
 #pragma mark - DYYCarwashWorker observer

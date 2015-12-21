@@ -52,14 +52,17 @@
 @property (nonatomic, assign)     NSUInteger           buildingsLimit;
 @property (nonatomic, assign)     uint32_t             washPrice;
 
++ (instancetype)enterpriseWithAttributes;
+- (instancetype)initWithAttributes;
 - (DYYCarwashBuilding *)buildCarwashBuildingWithOfficeRooms:(NSUInteger)officeRooms
-                                             technicalRooms:(NSUInteger)technicalRooms;
+                                             technicalRooms:(NSUInteger)technicalRooms
+                                         totalRoomsCapacity:(NSUInteger)roomsCapacity;
 - (void)removeCarwashBuilding:(DYYCarwashBuilding *)building;
 - (BOOL)hireEmployee:(id)employee;
 - (BOOL)sendEmployee:(id)employee
           toBuilding:(DYYCarwashBuilding *)building;
 - (BOOL)addCarToQueue:(DYYCarwashCar *)car;
-- (void)performCarQueueWas;
+- (void)performCarQueueWash;
 - (void)setObservableEmployee:(id)employee;
 
 @end
