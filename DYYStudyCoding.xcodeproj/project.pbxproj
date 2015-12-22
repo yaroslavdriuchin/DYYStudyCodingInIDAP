@@ -32,6 +32,7 @@
 		5C16D44D1C2825FA00865DD5 /* DYYCarwashMoneyTransferProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = 5C26D6831C1ADDE300B4B2B5 /* DYYCarwashMoneyTransferProtocol.h */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C16D44E1C2825FD00865DD5 /* DYYCarwashEnterprise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C649A6F1C16D7C5008A4583 /* DYYCarwashEnterprise.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C16D44F1C28260400865DD5 /* DYYCarwashEnterprise.h in Sources */ = {isa = PBXBuildFile; fileRef = 5C649A6E1C16D7C5008A4583 /* DYYCarwashEnterprise.h */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5C327A1A1C29884200AB6528 /* DYYCarwashBasicTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C327A191C29884200AB6528 /* DYYCarwashBasicTest.m */; settings = {ASSET_TAGS = (); }; };
 		5C36F0AF1C0C595400991B03 /* DYYTestRandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C36F0AE1C0C595400991B03 /* DYYTestRandomString.m */; settings = {ASSET_TAGS = (); }; };
 		5C4C561B1C0736F200112BF8 /* NSString+DYYExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4C561A1C0736F200112BF8 /* NSString+DYYExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		5C5FD7A41C19AA3400E04480 /* DYYCarwashTechnicalRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5FD7A31C19AA3400E04480 /* DYYCarwashTechnicalRoom.m */; settings = {ASSET_TAGS = (); }; };
@@ -100,6 +101,8 @@
 		5C16D4361C28108B00865DD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C16D43A1C28256100865DD5 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = Pods/../build/Debug/libKiwi.a; sourceTree = "<group>"; };
 		5C26D6831C1ADDE300B4B2B5 /* DYYCarwashMoneyTransferProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCarwashMoneyTransferProtocol.h; path = DYYCarwash/DYYCarwashMoneyTransferProtocol.h; sourceTree = "<group>"; };
+		5C327A181C29884200AB6528 /* DYYCarwashBasicTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCarwashBasicTest.h; path = ../DYYStudyObjectiveC/DYYObjectiveCTests/DYYCarwashBasicTest.h; sourceTree = "<group>"; };
+		5C327A191C29884200AB6528 /* DYYCarwashBasicTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCarwashBasicTest.m; path = ../DYYStudyObjectiveC/DYYObjectiveCTests/DYYCarwashBasicTest.m; sourceTree = "<group>"; };
 		5C36F0AD1C0C595400991B03 /* DYYTestRandomString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYTestRandomString.h; path = DYYStudyObjectiveC/DYYObjectiveCTests/DYYTestRandomString.h; sourceTree = "<group>"; };
 		5C36F0AE1C0C595400991B03 /* DYYTestRandomString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYTestRandomString.m; path = DYYStudyObjectiveC/DYYObjectiveCTests/DYYTestRandomString.m; sourceTree = "<group>"; };
 		5C4C56191C0736F200112BF8 /* NSString+DYYExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+DYYExtensions.h"; path = "DYYStudyObjectiveC/DYYRandomString/NSString+DYYExtensions.h"; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 		5C16D4331C28108B00865DD5 /* DYYCarwashTest */ = {
 			isa = PBXGroup;
 			children = (
+				5C327A181C29884200AB6528 /* DYYCarwashBasicTest.h */,
+				5C327A191C29884200AB6528 /* DYYCarwashBasicTest.m */,
 				5C16D4341C28108B00865DD5 /* DYYCarwashTest.m */,
 				5C16D4361C28108B00865DD5 /* Info.plist */,
 			);
@@ -822,6 +827,7 @@
 				5C649A751C16DA04008A4583 /* DYYCarwashBuilding.m in Sources */,
 				5C07EA401C0F1BA40008C2BA /* DYYAlphabet.m in Sources */,
 				5CB254F71C0482E800FAAA3D /* DYYCreatureMale.m in Sources */,
+				5C327A1A1C29884200AB6528 /* DYYCarwashBasicTest.m in Sources */,
 				5CB254F41C04711700FAAA3D /* DYYCreatureArrayOfChildren.m in Sources */,
 				5C76EA221C170929006C007F /* DYYCarwashAccountant.m in Sources */,
 				CE4099741BFDC1B00070530B /* main.m in Sources */,

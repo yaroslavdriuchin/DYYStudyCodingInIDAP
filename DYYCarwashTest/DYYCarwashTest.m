@@ -24,13 +24,16 @@ SPEC_BEGIN(DYYCarwashTest)
 describe(@"testing DYYCarwash", ^{
     context(@"Creating DYYCarwash enterprise", ^{
         DYYCarwashEnterprise *testEnterprise = [[DYYCarwashEnterprise alloc] initWithAttributes];
+        testEnterprise.buildingsLimit = 5;
+        [testEnterprise buildCarwashBuildingWithOfficeRooms:1 technicalRooms:0 totalRoomsCapacity:5];
+        [testEnterprise buildCarwashBuildingWithOfficeRooms:0 technicalRooms:1 totalRoomsCapacity:5];
+        
         it(@"test object should be member of class DYYCarwashEnterprise and not nil", ^{
         [[testEnterprise should] beMemberOfClass:[DYYCarwashEnterprise class]];
         [testEnterprise shouldNotBeNil];
         });
-        [testEnterprise buildCarwashBuildingWithOfficeRooms:1 technicalRooms:0 totalRoomsCapacity:5];
-        [testEnterprise buildCarwashBuildingWithOfficeRooms:0 technicalRooms:1 totalRoomsCapacity:5];
-        [[testEnterprise.buildings should] haveCountOf:98];
+        NSArray *buildings = testEnterprise.buildings;
+        [[buildings should] haveCountOf:98];
     });
 });
 

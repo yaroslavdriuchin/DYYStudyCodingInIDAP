@@ -64,5 +64,8 @@
 - (BOOL)addCarToQueue:(DYYCarwashCar *)car;
 - (void)performCarQueueWash;
 - (void)setObservableEmployee:(id)employee;
+- (NSArray *)carsQueue;
+- (NSArray *)buildings;
+- (NSArray *)employees;
 
 @end

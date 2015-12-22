@@ -159,6 +159,7 @@
 #pragma mark - Private Methods
 
 - (BOOL)itemIsFree {
+    [self performCarQueueWash];
         return YES;
     }
     
