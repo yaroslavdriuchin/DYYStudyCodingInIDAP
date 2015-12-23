@@ -10,5 +10,9 @@
 
 @implementation DYYCarwashAccountant
 
+- (uint32_t)calculateMoneyInDollars {
+    NSLog(@"Accountant reports %u dollars", self.money);
+    return self.money;
+}
 
 @end

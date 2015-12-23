@@ -158,14 +158,17 @@
 #pragma mark
 #pragma mark - Private Methods
 
-- (BOOL)itemIsFree {
+- (void)itemIsFreeToWork:(id)item {
+    @synchronized(item) {
     [self performCarQueueWash];
-        return YES;
     }
+}
+- (void)itemIsStandBy:(id)item {
+        
+    }
+- (void)itemIsBusy:(id)item {
     
-- (BOOL)itemIsBusy {
-        return YES;
-    }
+}
     
 #pragma mark
 #pragma mark - DYYCarwashWorker observer

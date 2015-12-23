@@ -42,25 +42,6 @@
 }
 
 #pragma mark -
-#pragma mark Class Methods
-
-- (void)giveMoneyAmount:(uint32_t)value toReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever {
-    if (reciever) {
-        self.money = self.money - value;
-        reciever.money = reciever.money + value;
-    }
-}
-
-+ (BOOL)itemIsFree {
-    return YES;
-}
-
-+ (BOOL)itemIsBusy {
-    return YES;
-}
-
-
-#pragma mark -
 #pragma mark DYYCarwashEmployee observer
 
 - (void)addObserver:(id)observer {
@@ -78,10 +59,37 @@
     }
 }
 
+- (void)itemIsFreeToWork:(id)item {
+    [self performPersonalFunctionWithObject:(id)item];
+}
+
+- (void)itemIsStandBy:(id)item {
+    [self performPersonalFunctionWithObject:(id)item];
+}
+
+- (void)itemIsBusy:(id)item {
+    return;
+}
+
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object {
     NSArray *observers = self.observers;
     for (id observer in observers) {
         [observer performSelector:selector withObject:object];
+    }
+}
+
+
+#pragma mark -
+#pragma mark Public Methods
+
+- (void)performPersonalFunctionWithObject:(id)object {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
+- (void)giveMoneyAmount:(uint32_t)value toReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever {
+    if (reciever) {
+        self.money = self.money - value;
+        reciever.money = reciever.money + value;
     }
 }
 

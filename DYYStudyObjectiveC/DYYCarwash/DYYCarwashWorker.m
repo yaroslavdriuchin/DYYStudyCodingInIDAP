@@ -14,16 +14,17 @@
 #pragma mark -
 #pragma mark Public Methods
 
-
 - (BOOL)washCar:(DYYCarwashCar *)car {
     if (car) {
         self.isWorkerFree = NO;
-        [self notifyObserversWithSelector:@selector(itemIsBusy) withObject:self];
+        [self notifyObserversWithSelector:@selector(itemIsBusy:) withObject:self];
         [car giveMoneyAmount:self.washPrice toReciever:self];
         car.isClean = YES;
-        [self transferMoneyToReciever:self.moneyReciever ifLimitExceeded:self.money];
         self.isWorkerFree = YES;
-        [self notifyObserversWithSelector:@selector(itemIsFree) withObject:self];
+        if (YES == [self transferMoneyToReciever:self.moneyReciever ifLimitExceeded:self.money]) {
+            [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
+        }
+        [self notifyObserversWithSelector:@selector(itemIsStandBy:) withObject:self];
         
         return YES;
     }
@@ -31,12 +32,20 @@
     return NO;
 }
 
-- (void)transferMoneyToReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever
+- (void)performPersonalFunctionWithObject:(id)object {
+    [self washCar:(DYYCarwashCar *)object];
+}
+
+- (BOOL)transferMoneyToReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever
                 ifLimitExceeded:(uint32_t)money
 {
     if (self.money > self.moneyLimit) {
         [self giveMoneyAmount:money toReciever:reciever];
+   
+        return YES;
     }
+    
+    return NO;
 }
 
 @end

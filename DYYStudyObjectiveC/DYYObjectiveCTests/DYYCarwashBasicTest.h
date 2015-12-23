@@ -10,6 +10,6 @@
 
 @interface DYYCarwashBasicTest : NSObject
 
-- (void)runCarwashBasicTest;
++ (void)runCarwashBasicTest;
 
 @end

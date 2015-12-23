@@ -27,6 +27,8 @@
     self = [super init];
     if (self) {
         self.mutableEmployees = [NSMutableArray array];
+        self.employeesCapacity = arc4random_uniform(50);
+        self.isFull = NO;
         }
     
     return self;

@@ -11,6 +11,6 @@
 
 @interface DYYCarwashAccountant : DYYCarwashEmployee
 
-- (int32_t)calculateMoneyInDollars;
+- (uint32_t)calculateMoneyInDollars;
 
 @end

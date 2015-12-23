@@ -18,7 +18,8 @@
 @property (nonatomic, assign)      BOOL                   isWorkerFree;
 
 - (BOOL)washCar:(DYYCarwashCar *)car;
-- (void)transferMoneyToReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever
+- (BOOL)transferMoneyToReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever
                 ifLimitExceeded:(uint32_t)money;
+- (void)performPersonalFunctionWithObject:(id)object;
 
 @end

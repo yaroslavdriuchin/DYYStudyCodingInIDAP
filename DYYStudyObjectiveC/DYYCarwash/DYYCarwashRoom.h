@@ -12,7 +12,7 @@
 
 @property (nonatomic, assign)              NSUInteger    employeesCapacity;
 @property (nonatomic, retain)              NSArray       *employees;
-@property (nonatomic, readonly, assign)    BOOL          isFull;
+@property (nonatomic, assign)              BOOL          isFull;
 
 + (instancetype)carwashRoomWithEmployees;
 - (instancetype)initCarwashRoomWithEmployees;

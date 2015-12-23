@@ -15,7 +15,7 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
 //        [DYYTestCreatureObjectiveC DYYTestCreature];
 //        [DYYTestRandomString DYYTestRandomStringOutput];
-        
+        [DYYCarwashBasicTest runCarwashBasicTest];
         
     }
     return 0;

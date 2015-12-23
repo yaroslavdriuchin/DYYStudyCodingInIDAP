@@ -17,11 +17,15 @@
 @property (nonatomic, assign)      uint8_t          experienceYears;
 @property (nonatomic, readonly)    NSArray          *observers;
 
+- (void)dealloc;
+- (instancetype)init;
 - (void)giveMoneyAmount:(uint32_t)value toReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever;
+- (void)performPersonalFunctionWithObject:(id)object;
 - (void)addObserver:(id)observer;
 - (void)removeObserver:(id)observer;
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object;
-- (BOOL)itemIsFree;
-- (BOOL)itemIsBusy;
+- (void)itemIsFreeToWork:(id)item ;
+- (void)itemIsStandBy:(id)item;
+- (void)itemIsBusy:(id)item;
 
 @end

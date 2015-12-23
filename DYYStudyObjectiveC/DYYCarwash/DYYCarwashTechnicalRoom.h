@@ -15,7 +15,7 @@
 
 @property (nonatomic, assign)             NSUInteger    carsCapacity;
 @property (nonatomic, retain)             NSArray       *cars;
-@property (nonatomic, readonly, assign)   BOOL          isFullWithCars;
+@property (nonatomic, assign)             BOOL          isFullWithCars;
 
 + (instancetype)carwashTechnicalRoomWithCars;
 - (instancetype)initTechnicalRoomWithCars;
