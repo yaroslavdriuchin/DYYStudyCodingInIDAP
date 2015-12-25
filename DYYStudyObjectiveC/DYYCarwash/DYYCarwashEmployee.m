@@ -11,6 +11,7 @@
 @interface DYYCarwashEmployee ()
 
 @property (nonatomic, retain)    NSMutableSet    *mutableObservers;
+@property (nonatomic, assign)    uint32_t        mutableMoney;
 
 @end
 
@@ -39,6 +40,10 @@
 
 - (NSArray *)observers {
     return [self.mutableObservers allObjects];
+}
+
+- (uint32_t)money {
+    return self.mutableMoney;
 }
 
 #pragma mark -
@@ -86,11 +91,15 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
-- (void)giveMoneyAmount:(uint32_t)value toReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever {
-    if (reciever) {
-        self.money = self.money - value;
-        reciever.money = reciever.money + value;
+#pragma mark -
+#pragma mark DYYCarwashMoneyTransferProtocol
+
+- (void)payMoneyAmount:(uint32_t)amount {
+        self.mutableMoney = self.mutableMoney - amount;
     }
+
+- (void)addMoneyAmount:(uint32_t)amount {
+        self.mutableMoney = self.mutableMoney + amount;
 }
 
 @end

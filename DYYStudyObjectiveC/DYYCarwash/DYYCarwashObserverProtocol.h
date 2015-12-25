@@ -11,7 +11,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol DYYCarwashObservingProtocol <NSObject>
+@protocol DYYCarwashObserverProtocol <NSObject>
 
 - (void)itemIsFreeToWork:(id)item;
 - (void)itemIsStandBy:(id)item;

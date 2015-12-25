@@ -7,15 +7,20 @@
 //
 
 #import "DYYCarwashEnterprise.h"
+#import "DYYCarwashRoom.h"
+#import "DYYCarwashTechnicalRoom.h"
+#import "DYYCarwashEmployee.h"
+#import "DYYCarwashWorker.h"
+#import "DYYCarwashDirector.h"
+#import "DYYCarwashAccountant.h"
+#import "DYYCarwashBuilding.h"
+
 
 @interface DYYCarwashEnterprise()
 
 @property (nonatomic, retain)   NSMutableArray   *mutableEmployees;
 @property (nonatomic, retain)   NSMutableArray   *mutableBuildings;
 @property (nonatomic, retain)   NSMutableArray   *mutableCarsQueue;
-
-- (BOOL)itemIsFree;
-- (BOOL)itemIsBusy;
 
 @end
 
@@ -144,7 +149,8 @@
                     for (DYYCarwashWorker *worker in freeTechnicalRoom.employees) {
                         if (worker.isWorkerFree == YES) {
                             if ([worker washCar:car] == YES) {
-                                [car giveMoneyAmount:self.washPrice toReciever:worker];
+                                [car payMoneyAmount:self.washPrice];
+                                [worker addMoneyAmount:self.washPrice];
                             }
                         }
                     }

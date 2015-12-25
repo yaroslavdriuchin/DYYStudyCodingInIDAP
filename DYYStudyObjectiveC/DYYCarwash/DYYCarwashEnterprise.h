@@ -34,14 +34,13 @@
 */
 
 #import <Foundation/Foundation.h>
-#import "DYYCarwashWorker.h"
-#import "DYYCarwashBuilding.h"
-#import "DYYCarwashRoom.h"
-#import "DYYCarwashTechnicalRoom.h"
+#import "DYYCarwashObserverProtocol.h"
 #import "DYYCarwashCar.h"
-#import "DYYCarwashEmployee.h"
+@class DYYCarwashBuilding;
 
-@interface DYYCarwashEnterprise : NSObject <DYYCarwashObservingProtocol>
+
+
+@interface DYYCarwashEnterprise : NSObject <DYYCarwashObserverProtocol>
 
 @property (nonatomic, retain)     NSArray              *carsQueue;
 @property (nonatomic, retain)     NSArray              *employees;

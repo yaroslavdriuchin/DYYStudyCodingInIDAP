@@ -8,6 +8,12 @@
 
 #import "DYYCarwashCar.h"
 
+@interface DYYCarwashCar()
+
+@property (nonatomic, assign)    uint32_t    mutableMoney;
+
+@end
+
 @implementation DYYCarwashCar
 
 #pragma mark -
@@ -20,21 +26,33 @@
 - (instancetype)initCarWithAmountofMoney:(uint32_t)money {
         self = [super init];
         if (self) {
-            self.money = money;
+            self.mutableMoney = money;
         }
         
         return self;
     }
 
 #pragma mark -
-#pragma mark Public methods
+#pragma mark Accessors
 
-- (void) giveMoneyAmount:(uint32_t)value toReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever {
-    if (reciever) {
-        self.money = self.money - value;
-        reciever.money = reciever.money + value;
-    }
+- (uint32_t)money {
+    return self.mutableMoney;
 }
+
+
+#pragma mark -
+#pragma mark DYYCarwashMoneyTransferProtocol
+
+- (void)payMoneyAmount:(uint32_t)amount {
+    self.mutableMoney = self.mutableMoney - amount;
+}
+
+- (void)addMoneyAmount:(uint32_t)amount {
+    self.mutableMoney = self.mutableMoney + amount;
+}
+
+#pragma mark -
+#pragma mark Public methods
 
 - (BOOL)isCarAbleToPay:(uint32_t)price {
     if (self.money > price) {

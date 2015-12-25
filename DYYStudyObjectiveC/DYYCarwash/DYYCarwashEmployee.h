@@ -8,18 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "DYYCarwashMoneyTransferProtocol.h"
-#import "DYYCarwashObservingProtocol.h"
+#import "DYYCarwashObserverProtocol.h"
 
-@interface DYYCarwashEmployee : NSObject <DYYCarwashMoneyTransferProtocol>
+@interface DYYCarwashEmployee : NSObject <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
 
-@property (nonatomic, assign)      uint32_t         money;
 @property (nonatomic, assign)      uint32_t         salary;
 @property (nonatomic, assign)      uint8_t          experienceYears;
 @property (nonatomic, readonly)    NSArray          *observers;
 
-- (void)dealloc;
-- (instancetype)init;
-- (void)giveMoneyAmount:(uint32_t)value toReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever;
 - (void)performPersonalFunctionWithObject:(id)object;
 - (void)addObserver:(id)observer;
 - (void)removeObserver:(id)observer;

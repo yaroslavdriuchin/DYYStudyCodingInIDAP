@@ -12,11 +12,9 @@
 @interface DYYCarwashCar : NSObject <DYYCarwashMoneyTransferProtocol>
 
 @property (nonatomic, assign)               BOOL        isClean;
-@property (nonatomic, readwrite, assign)    uint32_t    money;
 
 + (instancetype)carWithAmountofMoney:(uint32_t)money;
 - (instancetype)initCarWithAmountofMoney:(uint32_t)money;
-- (void) giveMoneyAmount:(uint32_t)value toReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever;
 - (BOOL)isCarAbleToPay:(uint32_t)price;
 
 @end

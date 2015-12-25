@@ -18,13 +18,13 @@
     if (car) {
         self.isWorkerFree = NO;
         [self notifyObserversWithSelector:@selector(itemIsBusy:) withObject:self];
-        [car giveMoneyAmount:self.washPrice toReciever:self];
         car.isClean = YES;
-        self.isWorkerFree = YES;
+        [self notifyObserversWithSelector:@selector(itemIsStandBy:) withObject:self];
         if (YES == [self transferMoneyToReciever:self.moneyReciever ifLimitExceeded:self.money]) {
             [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
+            self.isWorkerFree = YES;
         }
-        [self notifyObserversWithSelector:@selector(itemIsStandBy:) withObject:self];
+        
         
         return YES;
     }
@@ -40,8 +40,9 @@
                 ifLimitExceeded:(uint32_t)money
 {
     if (self.money > self.moneyLimit) {
-        [self giveMoneyAmount:money toReciever:reciever];
-   
+        [self payMoneyAmount:money];
+        [reciever addMoneyAmount:money];
+        
         return YES;
     }
     
