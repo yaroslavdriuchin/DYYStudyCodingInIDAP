@@ -56,10 +56,10 @@
 
 - (BOOL)isCarAbleToPay:(uint32_t)price {
     if (self.money > price) {
-        return NO;
+        return YES;
         }
     
-    return YES;
+    return NO;
 }
 
 @end

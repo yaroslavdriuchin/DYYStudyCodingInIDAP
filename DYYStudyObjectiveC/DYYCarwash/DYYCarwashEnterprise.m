@@ -124,30 +124,31 @@
         DYYCarwashTechnicalRoom *technicalRoom = [building findFreeTechnicalRoom];
         if (technicalRoom) {
             [technicalRoom addEmployee:employee];
+            
             return YES;
         }
-            return NO;
-        
+    }
+    
     if (nil != employee && nil != building && [employee class] != [DYYCarwashWorker class]) {
         DYYCarwashRoom *room = [building findFreeRoom];
         if (room) {
             [room addEmployee:employee];
+            
             return YES;
           }
        }
-    }
+
     return NO;
 }
 
 - (void)performCarQueueWash {
-    for (DYYCarwashCar *car in self.carsQueue) {
+    for (DYYCarwashCar *car in self.mutableCarsQueue) {
         if (car.isClean == NO && [car isCarAbleToPay:self.washPrice]) {
-            for (DYYCarwashBuilding *building in self.buildings) {
+            for (DYYCarwashBuilding *building in self.mutableBuildings) {
                 DYYCarwashTechnicalRoom *freeTechnicalRoom = [building findFreeTechnicalRoom];
-                if (freeTechnicalRoom != nil
-                    && freeTechnicalRoom.isFullWithCars == NO) {
-                    for (DYYCarwashWorker *worker in freeTechnicalRoom.employees) {
-                        if (worker.isWorkerFree == YES) {
+                if (freeTechnicalRoom.isFullWithCars == NO) {
+                    for (DYYCarwashWorker *worker in [freeTechnicalRoom employees]) {
+                        if (worker.employeeStatus == kDYYEmployeeFree) {
                             if ([worker washCar:car] == YES) {
                                 [car payMoneyAmount:self.washPrice];
                                 [worker addMoneyAmount:self.washPrice];

@@ -16,13 +16,14 @@
 
 - (BOOL)washCar:(DYYCarwashCar *)car {
     if (car) {
-        self.isWorkerFree = NO;
+        self.employeeStatus = kDYYEmployeeBusy;
         [self notifyObserversWithSelector:@selector(itemIsBusy:) withObject:self];
         car.isClean = YES;
+        self.employeeStatus = kDYYEmployeeStandby;
         [self notifyObserversWithSelector:@selector(itemIsStandBy:) withObject:self];
         if (YES == [self transferMoneyToReciever:self.moneyReciever ifLimitExceeded:self.money]) {
             [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
-            self.isWorkerFree = YES;
+            self.employeeStatus = kDYYEmployeeFree;
         }
         
         

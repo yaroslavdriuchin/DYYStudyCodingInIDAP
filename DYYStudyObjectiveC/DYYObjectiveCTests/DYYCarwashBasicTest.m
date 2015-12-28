@@ -28,6 +28,7 @@
     testEnterprise.buildingsLimit = 5;
     testEnterprise.employeesLimit = 100;
     testEnterprise.carsQueueLimit = 1000;
+    testEnterprise.washPrice = 5;
     
     NSAssert(testEnterprise != nil, @"It's equal to nil, sucks");
     
@@ -55,6 +56,13 @@
     [testEnterprise sendEmployee:accountant toBuilding:buildingOffice];
     [testEnterprise sendEmployee:director toBuilding:buildingOffice];
     
-}
+    DYYCarwashCar *testCarOne   = [[[DYYCarwashCar alloc] initCarWithAmountofMoney:100] autorelease];
+    DYYCarwashCar *testCarTwo   = [[[DYYCarwashCar alloc] initCarWithAmountofMoney:100] autorelease];
+    DYYCarwashCar *testCarThree = [[[DYYCarwashCar alloc] initCarWithAmountofMoney:100] autorelease];
+    [testEnterprise addCarToQueue:testCarOne];
+    [testEnterprise addCarToQueue:testCarTwo];
+    [testEnterprise addCarToQueue:testCarThree];
+    [testEnterprise performCarQueueWash];
 
+}
 @end

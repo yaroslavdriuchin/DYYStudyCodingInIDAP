@@ -15,7 +15,6 @@
 @property (nonatomic, assign)              BOOL          isFull;
 
 + (instancetype)carwashRoomWithEmployees;
-- (instancetype)initCarwashRoomWithEmployees;
 - (void)addEmployee:(id)employee;
 - (void)removeEmployee:(id)employee;
 

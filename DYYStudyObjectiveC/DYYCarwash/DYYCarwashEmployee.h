@@ -10,11 +10,18 @@
 #import "DYYCarwashMoneyTransferProtocol.h"
 #import "DYYCarwashObserverProtocol.h"
 
+typedef NS_ENUM (NSUInteger, DYYEmployeeStatus) {
+    kDYYEmployeeBusy = 0,
+    kDYYEmployeeStandby,
+    kDYYEmployeeFree,
+};
+
 @interface DYYCarwashEmployee : NSObject <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
 
-@property (nonatomic, assign)      uint32_t         salary;
-@property (nonatomic, assign)      uint8_t          experienceYears;
-@property (nonatomic, readonly)    NSArray          *observers;
+@property (nonatomic, assign)       uint32_t            salary;
+@property (nonatomic, assign)       uint8_t             experienceYears;
+@property (nonatomic, readonly)     NSArray             *observers;
+@property (nonatomic, assign)       DYYEmployeeStatus   employeeStatus;
 
 - (void)performPersonalFunctionWithObject:(id)object;
 - (void)addObserver:(id)observer;

@@ -15,8 +15,6 @@
 
 @property (nonatomic, assign)      uint32_t               moneyLimit;
 @property (nonatomic, assign)      id                     moneyReciever;
-//@property (nonatomic, assign)      uint32_t               washPrice;
-@property (nonatomic, assign)      BOOL                   isWorkerFree;
 
 - (BOOL)washCar:(DYYCarwashCar *)car;
 - (BOOL)transferMoneyToReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever

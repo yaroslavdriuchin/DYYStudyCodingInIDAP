@@ -17,10 +17,14 @@
 @implementation DYYCarwashTechnicalRoom
 
 + (instancetype)carwashTechnicalRoomWithCars {
-    return [[[self alloc] initTechnicalRoomWithCars] autorelease];
+    return [[[self alloc] init] autorelease];
 }
 
-- (instancetype)initTechnicalRoomWithCars{
+- (NSArray *)cars {
+    return [[self.mutableCars copy] autorelease];
+}
+
+- (instancetype)init{
     self = [super init];
     if (self) {
         self.mutableCars = [NSMutableArray array];
@@ -29,6 +33,17 @@
     }
     
     return self;
+}
+
+- (void)addCar:(DYYCarwashCar *)car {
+    if (nil != car && [self.mutableCars count] < self.carsCapacity)
+        [self.mutableCars addObject:car];
+}
+
+- (void)removeCar:(DYYCarwashCar *)car {
+    if (nil != car) {
+        [self.mutableCars removeObject:car];
+    }
 }
 
 @end

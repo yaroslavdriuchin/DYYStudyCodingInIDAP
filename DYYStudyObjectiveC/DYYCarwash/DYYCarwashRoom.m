@@ -20,10 +20,10 @@
 #pragma mark Initializations and Deallocators
 
 + (instancetype)carwashRoomWithEmployees {
-    return [[[self alloc] initCarwashRoomWithEmployees] autorelease];
+    return [[[self alloc] init] autorelease];
 }
 
-- (instancetype)initCarwashRoomWithEmployees {
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.mutableEmployees = [NSMutableArray array];
@@ -32,6 +32,10 @@
         }
     
     return self;
+}
+
+- (NSArray *)employees {
+    return [[self.mutableEmployees copy] autorelease];
 }
 
 - (void)removeRoom:(DYYCarwashRoom *)room {

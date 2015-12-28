@@ -18,7 +18,6 @@
 @property (nonatomic, assign)             BOOL          isFullWithCars;
 
 + (instancetype)carwashTechnicalRoomWithCars;
-- (instancetype)initTechnicalRoomWithCars;
 - (void)addCar:(DYYCarwashCar *)car;
 - (void)removeCar:(DYYCarwashCar *)car;
 
