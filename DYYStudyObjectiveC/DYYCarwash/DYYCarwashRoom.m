@@ -19,6 +19,12 @@
 #pragma mark -
 #pragma mark Initializations and Deallocators
 
+- (void)dealloc {
+    self.mutableEmployees = nil;
+
+    [super dealloc];
+}
+
 + (instancetype)carwashRoomWithEmployees {
     return [[[self alloc] init] autorelease];
 }

@@ -19,7 +19,7 @@
 @interface DYYCarwashEnterprise()
 
 @property (nonatomic, retain)   NSMutableArray   *mutableEmployees;
-@property (nonatomic, retain)   NSMutableArray   *mutableBuildings;
+@property (nonatomic, retain)   NSMutableArray   *mutableRooms;
 @property (nonatomic, retain)   NSMutableArray   *mutableCarsQueue;
 
 @end
@@ -31,7 +31,7 @@
 
 - (void)dealloc {
     self.mutableEmployees = nil;
-    self.mutableBuildings = nil;
+    self.mutableRooms     = nil;
     self.mutableCarsQueue = nil;
     [super dealloc];
 }
@@ -44,7 +44,7 @@
     self = [super init];
     if (self) {
         self.mutableEmployees = [NSMutableArray array];
-        self.mutableBuildings = [NSMutableArray array];
+        self.mutableRooms     = [NSMutableArray array];
         self.mutableCarsQueue = [NSMutableArray array];
     }
     
@@ -58,8 +58,8 @@
     return [[self.mutableCarsQueue copy] autorelease];
 }
 
-- (NSArray *)buildings {
-    return [[self.mutableBuildings copy] autorelease];
+- (NSArray *)rooms {
+    return [[self.mutableRooms copy] autorelease];
 }
 
 - (NSArray *)employees {
@@ -69,31 +69,26 @@
 #pragma mark
 #pragma mark - Public Methods
 
-- (DYYCarwashBuilding *)buildCarwashBuildingWithOfficeRooms:(NSUInteger)officeRooms
-                                             technicalRooms:(NSUInteger)technicalRooms
-                                         totalRoomsCapacity:(NSUInteger)roomsCapacity
+- (DYYCarwashEnterprise *)buildCarwashWithOfficeRooms:(NSUInteger)officeRooms
+                                     technicalRooms:(NSUInteger)technicalRooms
+                                 totalRoomsCapacity:(NSUInteger)roomsCapacity
 {
-    if (officeRooms + technicalRooms < self.buildingsLimit) {
-        DYYCarwashBuilding *building = [[[DYYCarwashBuilding alloc] initBuildingWithRooms] autorelease];
-        building.roomsCapacity = roomsCapacity;
-        [self.mutableBuildings addObject:building];
-        
+    DYYCarwashEnterprise *carwash = [[[DYYCarwashEnterprise alloc] init] autorelease];
+    if (officeRooms + technicalRooms < self.roomsLimit) {
         for (NSUInteger count = 0; count < officeRooms; count++) {
-            [building addRoomOfClass:[DYYCarwashRoom class]];
+            DYYCarwashRoom *newRoom = [[[DYYCarwashRoom alloc] init] autorelease];
+            [self.mutableRooms addObject:newRoom];
         }
         
         for (NSUInteger count = 0; count < technicalRooms; count++) {
-            [building addRoomOfClass:[DYYCarwashTechnicalRoom class]];
+            DYYCarwashRoom *newTechnicalRoom = [[[DYYCarwashTechnicalRoom alloc] init] autorelease];
+            [self.mutableRooms addObject:newTechnicalRoom];
         }
         
-        return building;
+        return carwash;
     }
     
     return nil;
-}
-
-- (void)removeCarwashBuilding:(DYYCarwashBuilding *)building {
-    [building removeBuilding:building];
 }
 
 - (BOOL)hireEmployee:(id)employee {
@@ -105,7 +100,7 @@
     return NO;
 }
 
-- (BOOL)addCarToQueue:(DYYCarwashCar *)car {
+- (BOOL)addCarToCarwash:(DYYCarwashCar *)car {
     if ([self.mutableCarsQueue count] <= self.carsQueueLimit) {
         [self.mutableCarsQueue addObject:car];
         if ([self.mutableCarsQueue count] > self.carsQueueLimit) {
@@ -118,34 +113,21 @@
     return NO;
 }
 
-- (BOOL)sendEmployee:(id)employee
-          toBuilding:(DYYCarwashBuilding *)building {
-    if (nil != employee && nil != building && [employee class] == [DYYCarwashWorker class]) {
-        DYYCarwashTechnicalRoom *technicalRoom = [building findFreeTechnicalRoom];
-        if (technicalRoom) {
-            [technicalRoom addEmployee:employee];
-            
-            return YES;
+- (NSArray *)findRoomsOfClass:(Class)roomClass {
+    NSMutableArray *roomsOfClass = [NSMutableArray array];
+    for (id room in self.mutableRooms) {
+        if ([room isMemberOfClass:roomClass]) {
+            [roomsOfClass addObject:room];
         }
     }
-    
-    if (nil != employee && nil != building && [employee class] != [DYYCarwashWorker class]) {
-        DYYCarwashRoom *room = [building findFreeRoom];
-        if (room) {
-            [room addEmployee:employee];
-            
-            return YES;
-          }
-       }
 
-    return NO;
+    return [[roomsOfClass copy] autorelease];
 }
 
 - (void)performCarQueueWash {
     for (DYYCarwashCar *car in self.mutableCarsQueue) {
         if (car.isClean == NO && [car isCarAbleToPay:self.washPrice]) {
-            for (DYYCarwashBuilding *building in self.mutableBuildings) {
-                DYYCarwashTechnicalRoom *freeTechnicalRoom = [building findFreeTechnicalRoom];
+            for (DYYCarwashTechnicalRoom *freeTechnicalRoom in self.mutableRooms) {
                 if (freeTechnicalRoom.isFullWithCars == NO) {
                     for (DYYCarwashWorker *worker in [freeTechnicalRoom employees]) {
                         if (worker.employeeStatus == kDYYEmployeeFree) {
