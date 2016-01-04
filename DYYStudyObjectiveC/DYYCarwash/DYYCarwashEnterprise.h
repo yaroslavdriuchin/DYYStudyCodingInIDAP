@@ -36,8 +36,7 @@
 #import <Foundation/Foundation.h>
 #import "DYYCarwashObserverProtocol.h"
 #import "DYYCarwashCar.h"
-@class DYYCarwashBuilding;
-
+@class DYYCarwashWorker;
 
 
 @interface DYYCarwashEnterprise : NSObject <DYYCarwashObserverProtocol>
@@ -52,13 +51,12 @@
 @property (nonatomic, assign)     uint32_t             washPrice;
 
 + (instancetype)enterpriseWithAttributes;
-- (instancetype)initWithAttributes;
-- (DYYCarwashEnterprise *)buildCarwashWithOfficeRooms:(NSUInteger)officeRooms
++ (DYYCarwashEnterprise *)buildCarwashWithOfficeRooms:(NSUInteger)officeRooms
                                        technicalRooms:(NSUInteger)technicalRooms
                                    totalRoomsCapacity:(NSUInteger)roomsCapacity;
 - (BOOL)hireEmployee:(id)employee;
-- (BOOL)addCarToCarwash:(DYYCarwashCar *)car;
-- (void)performCarQueueWash;
+- (void)addCarToCarwash:(DYYCarwashCar *)car;
+- (void)washCarQueueWithWorker:(DYYCarwashWorker *)worker;
 - (void)setObservableEmployee:(id)employee;
 - (NSArray *)carsQueue;
 - (NSArray *)rooms;

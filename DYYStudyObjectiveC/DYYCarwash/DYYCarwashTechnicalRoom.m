@@ -36,13 +36,21 @@
 }
 
 - (void)addCar:(DYYCarwashCar *)car {
-    if (nil != car && [self.mutableCars count] < self.carsCapacity)
+    if (nil != car && [self.mutableCars count] < self.carsCapacity) {
         [self.mutableCars addObject:car];
+    }
+    
+    else  {
+            self.isFullWithCars = YES;
+    }
 }
 
 - (void)removeCar:(DYYCarwashCar *)car {
     if (nil != car) {
         [self.mutableCars removeObject:car];
+        if ([self.mutableCars count] < self.carsCapacity) {
+            self.isFullWithCars = NO;
+        }
     }
 }
 

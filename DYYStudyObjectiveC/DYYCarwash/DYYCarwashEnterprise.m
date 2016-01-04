@@ -37,10 +37,10 @@
 }
 
 + (instancetype)enterpriseWithAttributes {
-    return [[[self alloc] initWithAttributes] autorelease];
+    return [[[self alloc] init] autorelease];
 }
 
-- (instancetype)initWithAttributes {
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.mutableEmployees = [NSMutableArray array];
@@ -69,20 +69,21 @@
 #pragma mark
 #pragma mark - Public Methods
 
-- (DYYCarwashEnterprise *)buildCarwashWithOfficeRooms:(NSUInteger)officeRooms
-                                     technicalRooms:(NSUInteger)technicalRooms
-                                 totalRoomsCapacity:(NSUInteger)roomsCapacity
++ (DYYCarwashEnterprise *)buildCarwashWithOfficeRooms:(NSUInteger)officeRooms
+                                       technicalRooms:(NSUInteger)technicalRooms
+                                   totalRoomsCapacity:(NSUInteger)roomsCapacity
 {
     DYYCarwashEnterprise *carwash = [[[DYYCarwashEnterprise alloc] init] autorelease];
-    if (officeRooms + technicalRooms < self.roomsLimit) {
+    if (officeRooms + technicalRooms < roomsCapacity) {
+        carwash.roomsLimit = roomsCapacity;
         for (NSUInteger count = 0; count < officeRooms; count++) {
             DYYCarwashRoom *newRoom = [[[DYYCarwashRoom alloc] init] autorelease];
-            [self.mutableRooms addObject:newRoom];
+            [carwash.mutableRooms addObject:newRoom];
         }
         
         for (NSUInteger count = 0; count < technicalRooms; count++) {
             DYYCarwashRoom *newTechnicalRoom = [[[DYYCarwashTechnicalRoom alloc] init] autorelease];
-            [self.mutableRooms addObject:newTechnicalRoom];
+            [carwash.mutableRooms addObject:newTechnicalRoom];
         }
         
         return carwash;
@@ -100,56 +101,58 @@
     return NO;
 }
 
-- (BOOL)addCarToCarwash:(DYYCarwashCar *)car {
-    if ([self.mutableCarsQueue count] <= self.carsQueueLimit) {
-        [self.mutableCarsQueue addObject:car];
-        if ([self.mutableCarsQueue count] > self.carsQueueLimit) {
-            [self performCarQueueWash];
-        }
-        
-        return YES;
-    }
-    
-    return NO;
-}
-
-- (NSArray *)findRoomsOfClass:(Class)roomClass {
-    NSMutableArray *roomsOfClass = [NSMutableArray array];
-    for (id room in self.mutableRooms) {
-        if ([room isMemberOfClass:roomClass]) {
-            [roomsOfClass addObject:room];
-        }
-    }
-
-    return [[roomsOfClass copy] autorelease];
-}
-
-- (void)performCarQueueWash {
-    for (DYYCarwashCar *car in self.mutableCarsQueue) {
-        if (car.isClean == NO && [car isCarAbleToPay:self.washPrice]) {
-            for (DYYCarwashTechnicalRoom *freeTechnicalRoom in self.mutableRooms) {
-                if (freeTechnicalRoom.isFullWithCars == NO) {
-                    for (DYYCarwashWorker *worker in [freeTechnicalRoom employees]) {
-                        if (worker.employeeStatus == kDYYEmployeeFree) {
-                            if ([worker washCar:car] == YES) {
-                                [car payMoneyAmount:self.washPrice];
-                                [worker addMoneyAmount:self.washPrice];
-                            }
-                        }
-                    }
-                    
+- (void)addCarToCarwash:(DYYCarwashCar *)car {
+    if ([self.mutableCarsQueue count] < self.carsQueueLimit) {
+        @synchronized(self) {
+            [self.mutableCarsQueue addObject:car];
+            for (DYYCarwashWorker *freeWorker in self.mutableEmployees) {
+                if (freeWorker.employeeStatus == kDYYEmployeeFree
+                    && [freeWorker class] == [DYYCarwashWorker class]) {
+                    [self performSelectorInBackground:@selector(washCarQueueWithWorker:) withObject:freeWorker];
                 }
             }
         }
     }
 }
 
+- (void)washCarQueueWithWorker:(DYYCarwashWorker *)worker {
+    for (DYYCarwashCar *car in self.mutableCarsQueue) {
+        if (car.isClean == NO && [car isCarAbleToPay:self.washPrice]) {
+            for (DYYCarwashTechnicalRoom *freeTechnicalRoom in self.mutableRooms) {
+                if (freeTechnicalRoom.isFullWithCars == NO
+                    && [freeTechnicalRoom class] == [DYYCarwashTechnicalRoom class]) {
+                    [freeTechnicalRoom addCar:car];
+                    if ([worker washCar:car] == YES) {
+                        [car payMoneyAmount:self.washPrice];
+                        [worker addMoneyAmount:self.washPrice];
+                        [freeTechnicalRoom removeCar:car];
+                        [self.mutableCarsQueue removeObject:car];
+                        
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//- (NSArray *)findRoomsOfClass:(Class)roomClass {
+//    NSMutableArray *roomsOfClass = [NSMutableArray array];
+//    for (id room in self.mutableRooms) {
+//        if ([room isMemberOfClass:roomClass]) {
+//            [roomsOfClass addObject:room];
+//        }
+//    }
+//    
+//    return [[roomsOfClass copy] autorelease];
+//}
+
 #pragma mark
 #pragma mark - Private Methods
 
 - (void)itemIsFreeToWork:(id)item {
     @synchronized(item) {
-    [self performCarQueueWash];
+        [self performSelectorInBackground:@selector(washCarQueueWithWorker:) withObject:item];
     }
 }
 - (void)itemIsStandBy:(id)item {

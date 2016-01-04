@@ -22,47 +22,43 @@
 @implementation DYYCarwashBasicTest
 
 + (void)runCarwashBasicTest {
-    //creating test Enterprise class
-    DYYCarwashEnterprise *testEnterprise = [[[DYYCarwashEnterprise alloc] initWithAttributes] autorelease];
-    
-    testEnterprise.buildingsLimit = 5;
-    testEnterprise.employeesLimit = 100;
-    testEnterprise.carsQueueLimit = 1000;
-    testEnterprise.washPrice = 5;
-    
-    NSAssert(testEnterprise != nil, @"It's equal to nil, sucks");
-    
-    //creating buildings with different type of rooms
-    DYYCarwashBuilding *buildingOffice = [testEnterprise buildCarwashBuildingWithOfficeRooms:1
-                                                                           technicalRooms:0
+    //creating test Carwash with different type of rooms
+    DYYCarwashEnterprise *testCarwash = [DYYCarwashEnterprise buildCarwashWithOfficeRooms:1
+                                                                           technicalRooms:1
                                                                        totalRoomsCapacity:5];
-    DYYCarwashBuilding *buildingTechnical = [testEnterprise buildCarwashBuildingWithOfficeRooms:0
-                                                                                 technicalRooms:1
-                                                                             totalRoomsCapacity:5];
     
-    //checking tottal number of buildings in enterprise 2
-    NSAssert([testEnterprise.buildings count] == 2, @"It's not as expected, it sucks");
+    //Checking test Carwash is not nil
+    NSAssert(testCarwash != nil, @"It's equal to nil, sucks");
     
-    //creating different type of employeees and sending them to corresponding buildings
+    //defining basic Carwash parameters
+    testCarwash.employeesLimit = 100;
+    testCarwash.carsQueueLimit = 1000;
+    testCarwash.washPrice = 5;
+    
+    //checking total number of available rooms in enterprise
+    NSAssert([testCarwash.rooms count] == 2, @"It's not as expected, it sucks");
+    
+    //creating different type of employees and adding them to employees array
     DYYCarwashWorker     *worker      =  [[[DYYCarwashWorker alloc] init] autorelease];
     DYYCarwashAccountant *accountant  =  [[[DYYCarwashAccountant alloc] init] autorelease];
     DYYCarwashDirector   *director    =  [[[DYYCarwashDirector alloc] init] autorelease];
+    [testCarwash hireEmployee:worker];
+    [testCarwash hireEmployee:accountant];
+    [testCarwash hireEmployee:director];
     
-    [testEnterprise hireEmployee:worker];
-    [testEnterprise hireEmployee:accountant];
-    [testEnterprise hireEmployee:director];
+    //setting observable worker for current carwash and adding carwash as observer
+    [testCarwash setObservableEmployee:worker];
+    [worker addObserver:testCarwash];
     
-    [testEnterprise sendEmployee:worker toBuilding:buildingTechnical];
-    [testEnterprise sendEmployee:accountant toBuilding:buildingOffice];
-    [testEnterprise sendEmployee:director toBuilding:buildingOffice];
-    
+    //generating 3 test cars with initial amount of money
     DYYCarwashCar *testCarOne   = [[[DYYCarwashCar alloc] initCarWithAmountofMoney:100] autorelease];
     DYYCarwashCar *testCarTwo   = [[[DYYCarwashCar alloc] initCarWithAmountofMoney:100] autorelease];
     DYYCarwashCar *testCarThree = [[[DYYCarwashCar alloc] initCarWithAmountofMoney:100] autorelease];
-    [testEnterprise addCarToQueue:testCarOne];
-    [testEnterprise addCarToQueue:testCarTwo];
-    [testEnterprise addCarToQueue:testCarThree];
-    [testEnterprise performCarQueueWash];
+    
+    //adding cars to carwash queue
+    [testCarwash addCarToCarwash:testCarOne];
+    [testCarwash addCarToCarwash:testCarTwo];
+    [testCarwash addCarToCarwash:testCarThree];
 
 }
 @end
