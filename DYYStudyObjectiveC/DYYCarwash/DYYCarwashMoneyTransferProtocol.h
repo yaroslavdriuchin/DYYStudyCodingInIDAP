@@ -15,8 +15,8 @@
 
 @property (nonatomic, readonly, assign) uint32_t money;
 
-- (void)payMoneyAmount:(uint32_t)amount;
-- (void)addMoneyAmount:(uint32_t)amount;
+- (void)payMoneyAmount :(uint32_t)amount;
+- (void)takeMoneyAmount:(uint32_t)amount;
 
 @end
 #endif /* DYYCarwashMoneyTransferProtocol_h */

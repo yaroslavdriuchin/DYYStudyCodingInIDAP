@@ -44,18 +44,22 @@
 #pragma mark DYYCarwashMoneyTransferProtocol
 
 - (void)payMoneyAmount:(uint32_t)amount {
-    self.mutableMoney = self.mutableMoney - amount;
+    @synchronized(self) {
+        self.mutableMoney = self.mutableMoney - amount;
+    }
 }
 
-- (void)addMoneyAmount:(uint32_t)amount {
-    self.mutableMoney = self.mutableMoney + amount;
+- (void)takeMoneyAmount:(uint32_t)amount {
+    @synchronized(self) {
+        self.mutableMoney = self.mutableMoney + amount;
+    }
 }
 
 #pragma mark -
 #pragma mark Public methods
 
 - (BOOL)isCarAbleToPay:(uint32_t)price {
-    if (self.money > price) {
+    if (self.money >= price) {
         return YES;
         }
     

@@ -10,9 +10,6 @@
 
 #import "DYYCarwashEnterprise.h"
 #import "DYYCarwashMoneyTransferProtocol.h"
-#import "DYYCarwashRoom.h"
-#import "DYYCarwashTechnicalRoom.h"
-#import "DYYCarwashBuilding.h"
 #import "DYYCarwashCar.h"
 #import "DYYCarwashEmployee.h"
 #import "DYYCarwashWorker.h"
@@ -34,9 +31,6 @@
     testCarwash.employeesLimit = 100;
     testCarwash.carsQueueLimit = 1000;
     testCarwash.washPrice = 5;
-    
-    //checking total number of available rooms in enterprise
-    NSAssert([testCarwash.rooms count] == 2, @"It's not as expected, it sucks");
     
     //creating different type of employees and adding them to employees array
     DYYCarwashWorker     *worker      =  [[[DYYCarwashWorker alloc] init] autorelease];

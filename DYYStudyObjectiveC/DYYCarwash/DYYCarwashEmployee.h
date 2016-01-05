@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DYYCarwashMoneyTransferProtocol.h"
 #import "DYYCarwashObserverProtocol.h"
+#import "DYYCarwashObservableItem.h"
 
 typedef NS_ENUM (NSUInteger, DYYEmployeeStatus) {
     kDYYEmployeeBusy = 0,
@@ -16,17 +17,14 @@ typedef NS_ENUM (NSUInteger, DYYEmployeeStatus) {
     kDYYEmployeeFree,
 };
 
-@interface DYYCarwashEmployee : NSObject <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
+@interface DYYCarwashEmployee : DYYCarwashObservableItem <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
 
 @property (nonatomic, assign)       uint32_t            salary;
 @property (nonatomic, assign)       uint8_t             experienceYears;
-@property (nonatomic, readonly)     NSArray             *observers;
 @property (nonatomic, assign)       DYYEmployeeStatus   employeeStatus;
 
 - (void)performPersonalFunctionWithObject:(id)object;
-- (void)addObserver:(id)observer;
-- (void)removeObserver:(id)observer;
-- (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object;
+
 - (void)itemIsFreeToWork:(id)item ;
 - (void)itemIsStandBy:(id)item;
 - (void)itemIsBusy:(id)item;

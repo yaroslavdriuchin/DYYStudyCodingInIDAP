@@ -43,23 +43,17 @@
 
 @property (nonatomic, retain)     NSArray              *carsQueue;
 @property (nonatomic, retain)     NSArray              *employees;
-@property (nonatomic, retain)     NSArray              *rooms;
 @property (nonatomic, retain)     id                   observableEmployee;
 @property (nonatomic, assign)     NSUInteger           carsQueueLimit;
 @property (nonatomic, assign)     NSUInteger           employeesLimit;
-@property (nonatomic, assign)     NSUInteger           roomsLimit;
 @property (nonatomic, assign)     uint32_t             washPrice;
 
 + (instancetype)enterpriseWithAttributes;
-+ (DYYCarwashEnterprise *)buildCarwashWithOfficeRooms:(NSUInteger)officeRooms
-                                       technicalRooms:(NSUInteger)technicalRooms
-                                   totalRoomsCapacity:(NSUInteger)roomsCapacity;
 - (BOOL)hireEmployee:(id)employee;
 - (void)addCarToCarwash:(DYYCarwashCar *)car;
 - (void)washCarQueueWithWorker:(DYYCarwashWorker *)worker;
 - (void)setObservableEmployee:(id)employee;
 - (NSArray *)carsQueue;
-- (NSArray *)rooms;
 - (NSArray *)employees;
 
 
