@@ -6,15 +6,15 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYCarwashCar.h"
+#import "DYYCar.h"
 
-@interface DYYCarwashCar()
+@interface DYYCar()
 
 @property (nonatomic, assign)    NSUInteger    mutableMoney;
 
 @end
 
-@implementation DYYCarwashCar
+@implementation DYYCar
 
 #pragma mark -
 #pragma mark Initializations and Deallocators

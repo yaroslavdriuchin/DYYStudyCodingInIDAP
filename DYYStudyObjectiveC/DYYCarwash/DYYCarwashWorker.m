@@ -7,7 +7,7 @@
 //
 
 #import "DYYCarwashWorker.h"
-#import "DYYCarwashCar.h"
+#import "DYYCar.h"
 
 @interface DYYCarwashWorker ()
 
@@ -32,7 +32,7 @@
     }
 }
 
-- (void)washCar:(DYYCarwashCar *)car {
+- (void)washCar:(DYYCar *)car {
     if (car) {
         self.employeeStatus = kDYYEmployeeBusy;
         [self notifyObserversWithSelector:@selector(itemIsBusy:) withObject:self];
@@ -46,7 +46,7 @@
 }
 
 - (void)performPersonalFunctionWithObject:(id)object {
-    [self washCar:(DYYCarwashCar *)object];
+    [self washCar:(DYYCar *)object];
 }
 
 @end

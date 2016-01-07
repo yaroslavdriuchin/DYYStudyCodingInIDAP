@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DYYCarwashMoneyTransferProtocol.h"
 
-@interface DYYCarwashCar : NSObject <DYYCarwashMoneyTransferProtocol>
+@interface DYYCar : NSObject <DYYCarwashMoneyTransferProtocol>
 
 @property (nonatomic, assign)         BOOL        isClean;
 

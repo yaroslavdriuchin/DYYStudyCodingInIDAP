@@ -16,6 +16,7 @@
 
 @property (nonatomic, retain)   NSMutableArray   *mutableEmployees;
 @property (nonatomic, retain)   NSMutableArray   *mutableCarsQueue;
+@property (nonatomic, assign)   NSUInteger       employeesLimit;
 
 - (void)hireEmployee:(id)employee;
 - (void)washCarQueueWithWorker:(DYYCarwashWorker *)worker;
@@ -34,8 +35,11 @@
     [super dealloc];
 }
 
-+ (DYYCarwashEnterprise *)enterpriseWithWorkers:(NSUInteger)workersQuantity {
++ (DYYCarwashEnterprise *)enterpriseWithWorkers:(NSUInteger)workersQuantity
+                            totalEmployeesLimit:(NSUInteger)employeesLimit
+{
     DYYCarwashEnterprise *enterprise = [[[self alloc] init] autorelease];
+    enterprise.employeesLimit = employeesLimit;
     
     DYYCarwashAccountant *newAccountant = [[[DYYCarwashAccountant alloc] init] autorelease];
     [enterprise hireEmployee:newAccountant];
@@ -77,8 +81,8 @@
     }
 }
 
-- (void)addCarToCarwash:(DYYCarwashCar *)car {
-    if ([self.mutableCarsQueue count] < self.carsQueueLimit) {
+- (void)addCarToCarwash:(DYYCar *)car {
+    if (car != nil && [self.mutableCarsQueue count] < self.carsQueueLimit) {
         @synchronized(self) {
             [self.mutableCarsQueue addObject:car];
             for (DYYCarwashWorker *freeWorker in self.mutableEmployees) {
@@ -92,7 +96,7 @@
 }
 
 - (void)washCarQueueWithWorker:(DYYCarwashWorker *)worker {
-    for (DYYCarwashCar *car in self.mutableCarsQueue) {
+    for (DYYCar *car in self.mutableCarsQueue) {
         if (car.isClean == NO && [car isCarAbleToPay:self.washPrice]) {
             [worker addObjectToProcess:car];
             [car payMoneyAmount:self.washPrice];

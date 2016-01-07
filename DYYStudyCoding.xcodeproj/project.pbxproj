@@ -20,8 +20,8 @@
 		5C16D4411C2825C100865DD5 /* DYYCarwashWorker.h in Sources */ = {isa = PBXBuildFile; fileRef = 5C76EA241C170957006C007F /* DYYCarwashWorker.h */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C16D4421C2825C600865DD5 /* DYYEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C649A8B1C16E56A008A4583 /* DYYEmployee.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C16D4431C2825CA00865DD5 /* DYYEmployee.h in Sources */ = {isa = PBXBuildFile; fileRef = 5C649A8A1C16E56A008A4583 /* DYYEmployee.h */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		5C16D4441C2825CF00865DD5 /* DYYCarwashCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C649A871C16E33F008A4583 /* DYYCarwashCar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		5C16D4451C2825D300865DD5 /* DYYCarwashCar.h in Sources */ = {isa = PBXBuildFile; fileRef = 5C649A861C16E33F008A4583 /* DYYCarwashCar.h */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5C16D4441C2825CF00865DD5 /* DYYCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C649A871C16E33F008A4583 /* DYYCar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5C16D4451C2825D300865DD5 /* DYYCar.h in Sources */ = {isa = PBXBuildFile; fileRef = 5C649A861C16E33F008A4583 /* DYYCar.h */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C16D44C1C2825F400865DD5 /* DYYCarwashObserverProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = 5C79B6A91C201E30001432DB /* DYYCarwashObserverProtocol.h */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C16D44D1C2825FA00865DD5 /* DYYCarwashMoneyTransferProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = 5C26D6831C1ADDE300B4B2B5 /* DYYCarwashMoneyTransferProtocol.h */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C16D44E1C2825FD00865DD5 /* DYYCarwashEnterprise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C649A6F1C16D7C5008A4583 /* DYYCarwashEnterprise.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -31,7 +31,7 @@
 		5C4C561B1C0736F200112BF8 /* NSString+DYYExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4C561A1C0736F200112BF8 /* NSString+DYYExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C52B2361C3C0FD000203250 /* DYYCarwashObservableItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C52B2351C3C0FD000203250 /* DYYCarwashObservableItem.m */; settings = {ASSET_TAGS = (); }; };
 		5C649A701C16D7C5008A4583 /* DYYCarwashEnterprise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C649A6F1C16D7C5008A4583 /* DYYCarwashEnterprise.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		5C649A881C16E33F008A4583 /* DYYCarwashCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C649A871C16E33F008A4583 /* DYYCarwashCar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5C649A881C16E33F008A4583 /* DYYCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C649A871C16E33F008A4583 /* DYYCar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C649A8C1C16E56A008A4583 /* DYYEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C649A8B1C16E56A008A4583 /* DYYEmployee.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C76EA1E1C170901006C007F /* DYYCarwashDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C76EA1D1C170901006C007F /* DYYCarwashDirector.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C76EA221C170929006C007F /* DYYCarwashAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C76EA211C170929006C007F /* DYYCarwashAccountant.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -103,8 +103,8 @@
 		5C52B2351C3C0FD000203250 /* DYYCarwashObservableItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCarwashObservableItem.m; path = DYYCarwash/DYYCarwashObservableItem.m; sourceTree = "<group>"; };
 		5C649A6E1C16D7C5008A4583 /* DYYCarwashEnterprise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCarwashEnterprise.h; path = DYYCarwash/DYYCarwashEnterprise.h; sourceTree = "<group>"; };
 		5C649A6F1C16D7C5008A4583 /* DYYCarwashEnterprise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCarwashEnterprise.m; path = DYYCarwash/DYYCarwashEnterprise.m; sourceTree = "<group>"; };
-		5C649A861C16E33F008A4583 /* DYYCarwashCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCarwashCar.h; path = DYYCarwash/DYYCarwashCar.h; sourceTree = "<group>"; };
-		5C649A871C16E33F008A4583 /* DYYCarwashCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCarwashCar.m; path = DYYCarwash/DYYCarwashCar.m; sourceTree = "<group>"; };
+		5C649A861C16E33F008A4583 /* DYYCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCar.h; path = DYYCarwash/DYYCar.h; sourceTree = "<group>"; };
+		5C649A871C16E33F008A4583 /* DYYCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYCar.m; path = DYYCarwash/DYYCar.m; sourceTree = "<group>"; };
 		5C649A8A1C16E56A008A4583 /* DYYEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYEmployee.h; path = DYYCarwash/DYYEmployee.h; sourceTree = "<group>"; };
 		5C649A8B1C16E56A008A4583 /* DYYEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DYYEmployee.m; path = DYYCarwash/DYYEmployee.m; sourceTree = "<group>"; };
 		5C76EA1C1C170901006C007F /* DYYCarwashDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DYYCarwashDirector.h; path = DYYCarwash/DYYCarwashDirector.h; sourceTree = "<group>"; };
@@ -296,7 +296,7 @@
 			children = (
 				5C52B2371C3C0FD500203250 /* DYYCarwashObservableItem */,
 				5C649A721C16D7E4008A4583 /* DYYCarwashEnterprise */,
-				5C649A891C16E344008A4583 /* DYYCarwashCar */,
+				5C649A891C16E344008A4583 /* DYYCar */,
 				5C649A8D1C16E56F008A4583 /* DYYCarwashEmployee */,
 			);
 			name = DYYCarwash;
@@ -313,13 +313,13 @@
 			name = DYYCarwashEnterprise;
 			sourceTree = "<group>";
 		};
-		5C649A891C16E344008A4583 /* DYYCarwashCar */ = {
+		5C649A891C16E344008A4583 /* DYYCar */ = {
 			isa = PBXGroup;
 			children = (
-				5C649A861C16E33F008A4583 /* DYYCarwashCar.h */,
-				5C649A871C16E33F008A4583 /* DYYCarwashCar.m */,
+				5C649A861C16E33F008A4583 /* DYYCar.h */,
+				5C649A871C16E33F008A4583 /* DYYCar.m */,
 			);
-			name = DYYCarwashCar;
+			name = DYYCar;
 			sourceTree = "<group>";
 		};
 		5C649A8D1C16E56F008A4583 /* DYYCarwashEmployee */ = {
@@ -742,8 +742,8 @@
 				5C16D44E1C2825FD00865DD5 /* DYYCarwashEnterprise.m in Sources */,
 				5C16D44D1C2825FA00865DD5 /* DYYCarwashMoneyTransferProtocol.h in Sources */,
 				5C16D44C1C2825F400865DD5 /* DYYCarwashObserverProtocol.h in Sources */,
-				5C16D4451C2825D300865DD5 /* DYYCarwashCar.h in Sources */,
-				5C16D4441C2825CF00865DD5 /* DYYCarwashCar.m in Sources */,
+				5C16D4451C2825D300865DD5 /* DYYCar.h in Sources */,
+				5C16D4441C2825CF00865DD5 /* DYYCar.m in Sources */,
 				5C16D4431C2825CA00865DD5 /* DYYEmployee.h in Sources */,
 				5C16D4421C2825C600865DD5 /* DYYEmployee.m in Sources */,
 				5C16D4411C2825C100865DD5 /* DYYCarwashWorker.h in Sources */,
@@ -792,7 +792,7 @@
 				5CB254F41C04711700FAAA3D /* DYYCreatureArrayOfChildren.m in Sources */,
 				5C76EA221C170929006C007F /* DYYCarwashAccountant.m in Sources */,
 				CE4099741BFDC1B00070530B /* main.m in Sources */,
-				5C649A881C16E33F008A4583 /* DYYCarwashCar.m in Sources */,
+				5C649A881C16E33F008A4583 /* DYYCar.m in Sources */,
 				5C52B2361C3C0FD000203250 /* DYYCarwashObservableItem.m in Sources */,
 				5C76EA261C170957006C007F /* DYYCarwashWorker.m in Sources */,
 				5CB254ED1C0470E400FAAA3D /* DYYCreature.m in Sources */,

@@ -8,13 +8,13 @@
 
 #import "DYYEmployee.h"
 
-@class DYYCarwashCar;
+@class DYYCar;
 @class DYYCarwashAccountant;
 
 @interface DYYCarwashWorker: DYYEmployee
 
 - (void)addObjectToProcess:(id)object;
-- (void)washCar:(DYYCarwashCar *)car;
+- (void)washCar:(DYYCar *)car;
 - (void)performPersonalFunctionWithObject:(id)object;
 
 @end
