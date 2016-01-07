@@ -6,19 +6,15 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYCarwashEmployee.h"
+#import "DYYEmployee.h"
 
 @class DYYCarwashCar;
 @class DYYCarwashAccountant;
 
-@interface DYYCarwashWorker: DYYCarwashEmployee
+@interface DYYCarwashWorker: DYYEmployee
 
-@property (nonatomic, assign)      uint32_t               moneyLimit;
-@property (nonatomic, assign)      id                     moneyReciever;
-
-- (BOOL)washCar:(DYYCarwashCar *)car;
-- (BOOL)transferMoneyToReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever
-                ifLimitExceeded:(uint32_t)money;
+- (void)addObjectToProcess:(id)object;
+- (void)washCar:(DYYCarwashCar *)car;
 - (void)performPersonalFunctionWithObject:(id)object;
 
 @end

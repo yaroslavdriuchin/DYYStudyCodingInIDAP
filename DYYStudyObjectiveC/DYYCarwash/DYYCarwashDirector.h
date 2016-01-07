@@ -6,10 +6,10 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYCarwashEmployee.h"
+#import "DYYEmployee.h"
 
-@interface DYYCarwashDirector : DYYCarwashEmployee
+@interface DYYCarwashDirector : DYYEmployee
 
-- (int32_t)calculateEnterpriseIncomeInDollars;
+- (NSUInteger)calculateEnterpriseIncomeInDollars;
 
 @end

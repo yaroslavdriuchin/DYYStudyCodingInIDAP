@@ -6,15 +6,16 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYCarwashEmployee.h"
+#import "DYYEmployee.h"
 
-@interface DYYCarwashEmployee ()
+@interface DYYEmployee ()
 
-@property (nonatomic, assign)    uint32_t     mutableMoney;
+@property (nonatomic, assign)    NSUInteger         mutableMoney;
+@property (nonatomic, retain)    NSMutableArray     *itemsToProcessMutableQueue;
 
 @end
 
-@implementation DYYCarwashEmployee
+@implementation DYYEmployee
 
 #pragma mark -
 #pragma mark Initializations and Deallocators
@@ -35,7 +36,7 @@
 #pragma mark -
 #pragma mark Accesors
 
-- (uint32_t)money {
+- (NSUInteger)money {
     return self.mutableMoney;
 }
 
@@ -43,15 +44,29 @@
 #pragma mark DYYCarwashObserverProtocol
 
 - (void)itemIsFreeToWork:(id)item {
-    [self performPersonalFunctionWithObject:(id)item];
+   return;
 }
 
 - (void)itemIsStandBy:(id)item {
-    [self performPersonalFunctionWithObject:(id)item];
+   return;
 }
 
 - (void)itemIsBusy:(id)item {
     return;
+}
+
+#pragma mark
+#pragma mark - DYYCarwashWorker observer
+
+- (void)setObservableEmployee:(id)employee {
+    if (_observableEmployee != employee) {
+        @synchronized(employee) {
+            [_observableEmployee removeObserver:self];
+            [employee release];
+            _observableEmployee = [employee retain];
+            [employee addObserver:self];
+        }
+    }
 }
 
 #pragma mark -
@@ -61,15 +76,19 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
+- (void)addObjectToProcess:(id)object {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
 #pragma mark -
 #pragma mark DYYCarwashMoneyTransferProtocol
 
-- (void)payMoneyAmount:(uint32_t)amount {
+- (void)payMoneyAmount:(NSUInteger)amount {
     @synchronized(self) {
         self.mutableMoney = self.mutableMoney - amount;
     }
 }
-- (void)takeMoneyAmount:(uint32_t)amount {
+- (void)takeMoneyAmount:(NSUInteger)amount {
     @synchronized(self) {
         self.mutableMoney = self.mutableMoney + amount;
     }

@@ -6,11 +6,11 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYCarwashEmployee.h"
+#import "DYYEmployee.h"
 @class DYYCarwashDirector;
 
-@interface DYYCarwashAccountant : DYYCarwashEmployee
+@interface DYYCarwashAccountant : DYYEmployee
 
-- (uint32_t)calculateMoneyInDollars;
+- (NSUInteger)calculateMoneyInDollars;
 
 @end

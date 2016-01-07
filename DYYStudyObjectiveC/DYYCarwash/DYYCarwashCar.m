@@ -10,7 +10,7 @@
 
 @interface DYYCarwashCar()
 
-@property (nonatomic, assign)    uint32_t    mutableMoney;
+@property (nonatomic, assign)    NSUInteger    mutableMoney;
 
 @end
 
@@ -19,11 +19,11 @@
 #pragma mark -
 #pragma mark Initializations and Deallocators
 
-+ (instancetype)carWithAmountofMoney:(uint32_t)money {
++ (instancetype)carWithAmountofMoney:(NSUInteger)money {
     return [[[self alloc] initCarWithAmountofMoney:money] autorelease];
 }
 
-- (instancetype)initCarWithAmountofMoney:(uint32_t)money {
+- (instancetype)initCarWithAmountofMoney:(NSUInteger)money {
         self = [super init];
         if (self) {
             self.mutableMoney = money;
@@ -35,7 +35,7 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (uint32_t)money {
+- (NSUInteger)money {
     return self.mutableMoney;
 }
 
@@ -43,13 +43,13 @@
 #pragma mark -
 #pragma mark DYYCarwashMoneyTransferProtocol
 
-- (void)payMoneyAmount:(uint32_t)amount {
+- (void)payMoneyAmount:(NSUInteger)amount {
     @synchronized(self) {
         self.mutableMoney = self.mutableMoney - amount;
     }
 }
 
-- (void)takeMoneyAmount:(uint32_t)amount {
+- (void)takeMoneyAmount:(NSUInteger)amount {
     @synchronized(self) {
         self.mutableMoney = self.mutableMoney + amount;
     }
@@ -58,7 +58,7 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (BOOL)isCarAbleToPay:(uint32_t)price {
+- (BOOL)isCarAbleToPay:(NSUInteger)price {
     if (self.money >= price) {
         return YES;
         }

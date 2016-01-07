@@ -13,10 +13,10 @@
 
 @protocol DYYCarwashMoneyTransferProtocol <NSObject>
 
-@property (nonatomic, readonly, assign) uint32_t money;
+@property (nonatomic, readonly, assign) NSUInteger money;
 
-- (void)payMoneyAmount :(uint32_t)amount;
-- (void)takeMoneyAmount:(uint32_t)amount;
+- (void)payMoneyAmount :(NSUInteger)amount;
+- (void)takeMoneyAmount:(NSUInteger)amount;
 
 @end
 #endif /* DYYCarwashMoneyTransferProtocol_h */

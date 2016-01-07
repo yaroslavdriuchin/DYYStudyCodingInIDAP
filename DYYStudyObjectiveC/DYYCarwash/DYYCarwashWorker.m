@@ -9,45 +9,44 @@
 #import "DYYCarwashWorker.h"
 #import "DYYCarwashCar.h"
 
+@interface DYYCarwashWorker ()
+
+@property (nonatomic, retain)    NSMutableArray     *mutableObjectsProcessQueue;
+
+@end
+
 @implementation DYYCarwashWorker
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (BOOL)washCar:(DYYCarwashCar *)car {
+- (void)addObjectToProcess:(id)object {
+    if (object) {
+        @synchronized(object) {
+            if (self.employeeStatus == kDYYEmployeeBusy) {
+                [self.mutableObjectsProcessQueue addObject:object];
+            } else {
+                    [self performPersonalFunctionWithObject:object];
+                    }
+        }
+    }
+}
+
+- (void)washCar:(DYYCarwashCar *)car {
     if (car) {
         self.employeeStatus = kDYYEmployeeBusy;
         [self notifyObserversWithSelector:@selector(itemIsBusy:) withObject:self];
         car.isClean = YES;
         self.employeeStatus = kDYYEmployeeStandby;
         [self notifyObserversWithSelector:@selector(itemIsStandBy:) withObject:self];
-        if (YES == [self transferMoneyToReciever:self.moneyReciever ifLimitExceeded:self.money]) {
-            [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
-            self.employeeStatus = kDYYEmployeeFree;
-        }
         
-        
-        return YES;
+        [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
+        self.employeeStatus = kDYYEmployeeFree;
     }
-    
-    return NO;
 }
 
 - (void)performPersonalFunctionWithObject:(id)object {
     [self washCar:(DYYCarwashCar *)object];
-}
-
-- (BOOL)transferMoneyToReciever:(id<DYYCarwashMoneyTransferProtocol>)reciever
-                ifLimitExceeded:(uint32_t)money
-{
-    if (self.money > self.moneyLimit) {
-        [self payMoneyAmount:money];
-        [reciever addMoneyAmount:money];
-        
-        return YES;
-    }
-    
-    return NO;
 }
 
 @end

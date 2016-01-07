@@ -17,16 +17,19 @@ typedef NS_ENUM (NSUInteger, DYYEmployeeStatus) {
     kDYYEmployeeFree,
 };
 
-@interface DYYCarwashEmployee : DYYCarwashObservableItem <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
+@interface DYYEmployee : DYYCarwashObservableItem <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
 
-@property (nonatomic, assign)       uint32_t            salary;
-@property (nonatomic, assign)       uint8_t             experienceYears;
-@property (nonatomic, assign)       DYYEmployeeStatus   employeeStatus;
+@property (nonatomic, assign)       NSUInteger             salary;
+@property (nonatomic, assign)       NSUInteger             experienceYears;
+@property (nonatomic, assign)       DYYEmployeeStatus      employeeStatus;
+@property (nonatomic, retain)       NSArray                *objectsProcessQueue;
+@property (nonatomic, retain)       id                     observableEmployee;
 
 - (void)performPersonalFunctionWithObject:(id)object;
-
 - (void)itemIsFreeToWork:(id)item ;
 - (void)itemIsStandBy:(id)item;
 - (void)itemIsBusy:(id)item;
+- (void)setObservableEmployee:(id)employee;
+- (void)addObjectToProcess:(id)object;
 
 @end

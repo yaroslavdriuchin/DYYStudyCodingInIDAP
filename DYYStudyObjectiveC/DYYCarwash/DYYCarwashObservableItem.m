@@ -9,7 +9,7 @@
 #import "DYYCarwashObservableItem.h"
 @interface DYYCarwashObservableItem ()
 
-@property (nonatomic, retain)    NSMutableSet    *mutableObservers;
+@property (nonatomic, retain)    NSHashTable   *mutableObservers;
 
 @end
 
@@ -27,7 +27,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.mutableObservers = [NSMutableSet set];
+        self.mutableObservers = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
     }
     
     return self;
@@ -47,15 +47,14 @@
 
 - (void)addObserver:(id)observer {
     @synchronized(self) {
-        NSValue *reference = [[NSValue valueWithNonretainedObject:observer] autorelease];
-        [self.mutableObservers addObject:reference];
+        [self.mutableObservers addObject:observer];
     }
 }
 
 - (void)removeObserver:(id)observer {
     @synchronized(self) {
         NSArray *observers = self.observers;
-        for (NSValue *reference in observers) {
+        for (id reference in observers) {
             if (reference == observer) {
                 [self.mutableObservers removeObject:reference];
                 break;

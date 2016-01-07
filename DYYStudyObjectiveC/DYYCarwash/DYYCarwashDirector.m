@@ -10,7 +10,7 @@
 
 @implementation DYYCarwashDirector
 
-- (int32_t)calculateEnterpriseIncomeInDollars {
+- (NSUInteger)calculateEnterpriseIncomeInDollars {
     NSLog(@"Director reports %u dollars", self.money % 100);
     
     return self.money;

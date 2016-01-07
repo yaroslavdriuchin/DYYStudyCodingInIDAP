@@ -7,7 +7,7 @@
 //
 
 #import "DYYCarwashEnterprise.h"
-#import "DYYCarwashEmployee.h"
+#import "DYYEmployee.h"
 #import "DYYCarwashWorker.h"
 #import "DYYCarwashDirector.h"
 #import "DYYCarwashAccountant.h"
@@ -16,6 +16,10 @@
 
 @property (nonatomic, retain)   NSMutableArray   *mutableEmployees;
 @property (nonatomic, retain)   NSMutableArray   *mutableCarsQueue;
+
+- (void)hireEmployee:(id)employee;
+- (void)washCarQueueWithWorker:(DYYCarwashWorker *)worker;
+- (void)setObservableEmployee:(id)employee;
 
 @end
 
@@ -30,8 +34,26 @@
     [super dealloc];
 }
 
-+ (instancetype)enterpriseWithAttributes {
-    return [[[self alloc] init] autorelease];
++ (DYYCarwashEnterprise *)enterpriseWithWorkers:(NSUInteger)workersQuantity {
+    DYYCarwashEnterprise *enterprise = [[[self alloc] init] autorelease];
+    
+    DYYCarwashAccountant *newAccountant = [[[DYYCarwashAccountant alloc] init] autorelease];
+    [enterprise hireEmployee:newAccountant];
+    
+    DYYCarwashDirector *newDirector = [[[DYYCarwashDirector alloc] init] autorelease];
+    [enterprise hireEmployee:newDirector];
+    [newDirector setObservableEmployee:newAccountant];
+    
+    for (NSUInteger index = 0; index < workersQuantity; index++) {
+        DYYCarwashWorker *newWorker = [[[DYYCarwashWorker alloc] init] autorelease];
+        if (newWorker) {
+            [enterprise hireEmployee:newWorker];
+            [enterprise setObservableEmployee:newWorker];
+            [newAccountant setObservableEmployee:newWorker];
+        }
+    }
+    
+    return enterprise;
 }
 
 - (instancetype)init {
@@ -44,32 +66,20 @@
     return self;
 }
 
-#pragma mark -
-#pragma mark Accesors
-
-- (NSArray *)carsQueue {
-    return [[self.mutableCarsQueue copy] autorelease];
-}
-
-- (NSArray *)employees {
-    return [[self.mutableEmployees copy] autorelease];
-}
-
 #pragma mark
 #pragma mark - Public Methods
 
-- (BOOL)hireEmployee:(id)employee {
+- (void)hireEmployee:(id)employee {
+    @synchronized(self) {
     if ([self.mutableEmployees count] < self.employeesLimit) {
         [self.mutableEmployees addObject:employee];
-        return YES;
+        }
     }
-    
-    return NO;
 }
 
 - (void)addCarToCarwash:(DYYCarwashCar *)car {
     if ([self.mutableCarsQueue count] < self.carsQueueLimit) {
-        @synchronized(car) {
+        @synchronized(self) {
             [self.mutableCarsQueue addObject:car];
             for (DYYCarwashWorker *freeWorker in self.mutableEmployees) {
                 if (freeWorker.employeeStatus == kDYYEmployeeFree
@@ -84,18 +94,16 @@
 - (void)washCarQueueWithWorker:(DYYCarwashWorker *)worker {
     for (DYYCarwashCar *car in self.mutableCarsQueue) {
         if (car.isClean == NO && [car isCarAbleToPay:self.washPrice]) {
-
-                    [worker addCar:car];
-                    if ([worker washCar:car] == YES) {
-                        [car payMoneyAmount:self.washPrice];
-                        [worker takeMoneyAmount:self.washPrice];
-                        [self.mutableCarsQueue removeObject:car];
-                        
-                        break;
-                    }
-                }
-            }
+            [worker addObjectToProcess:car];
+            [car payMoneyAmount:self.washPrice];
+            [worker takeMoneyAmount:self.washPrice];
+            [self.mutableCarsQueue removeObject:car];
+            
+            break;
         }
+    }
+}
+
 
 #pragma mark
 #pragma mark - Private Methods
