@@ -37,6 +37,7 @@
 
 + (DYYCarwashEnterprise *)enterpriseWithWorkers:(NSUInteger)workersQuantity
                             totalEmployeesLimit:(NSUInteger)employeesLimit
+                                      washPrice:(NSUInteger)washPrice
 {
     DYYCarwashEnterprise *enterprise = [[[self alloc] init] autorelease];
     enterprise.employeesLimit = employeesLimit;
@@ -51,6 +52,7 @@
     for (NSUInteger index = 0; index < workersQuantity; index++) {
         DYYCarwashWorker *newWorker = [[[DYYCarwashWorker alloc] init] autorelease];
         if (newWorker) {
+            newWorker.washPrice = washPrice;
             [enterprise hireEmployee:newWorker];
             [enterprise setObservableEmployee:newWorker];
             [newAccountant setObservableEmployee:newWorker];
@@ -98,10 +100,8 @@
 
 - (void)washCarQueueWithWorker:(DYYCarwashWorker *)worker {
     for (DYYCar *car in self.mutableCarsQueue) {
-        if (car.isClean == NO && [car isCarAbleToPay:self.washPrice]) {
+        if (car.isClean == NO && [car isCarAbleToPay:worker.washPrice]) {
             [worker addObjectToProcess:car];
-            [car payMoneyAmount:self.washPrice];
-            [worker takeMoneyAmount:self.washPrice];
             [self.mutableCarsQueue removeObject:car];
             NSLog(@"Enterprise reports: car is clean, worker money = %lu, car money = %lu", worker.money, car.money);
             

@@ -13,7 +13,8 @@
 
 @interface DYYCarwashWorker: DYYEmployee
 
-- (void)addObjectToProcess:(id)object;
+@property (nonatomic, assign)   NSUInteger   washPrice;
+
 - (void)washCar:(DYYCar *)car;
 - (void)performPersonalFunctionWithObject:(id)object;
 

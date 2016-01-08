@@ -9,37 +9,21 @@
 #import "DYYCarwashWorker.h"
 #import "DYYCar.h"
 
-@interface DYYCarwashWorker ()
-
-@property (nonatomic, retain)    NSMutableArray     *mutableObjectsProcessQueue;
-
-@end
-
 @implementation DYYCarwashWorker
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)addObjectToProcess:(id)object {
-    if (object) {
-        @synchronized(object) {
-            if (self.employeeStatus == kDYYEmployeeBusy) {
-                [self.mutableObjectsProcessQueue addObject:object];
-            } else {
-                    [self performPersonalFunctionWithObject:object];
-                    }
-        }
-    }
-}
-
 - (void)washCar:(DYYCar *)car {
     if (car) {
         self.employeeStatus = kDYYEmployeeBusy;
         [self notifyObserversWithSelector:@selector(itemIsBusy:) withObject:self];
+        [car payMoneyAmount:self.washPrice];
         car.isClean = YES;
+        [self takeMoneyAmount:self.washPrice];
         self.employeeStatus = kDYYEmployeeStandby;
         [self notifyObserversWithSelector:@selector(itemIsStandBy:) withObject:self];
-        
+//        sleep(2);
         [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
         self.employeeStatus = kDYYEmployeeFree;
         NSLog(@"Worker reports - Car wash was completed");

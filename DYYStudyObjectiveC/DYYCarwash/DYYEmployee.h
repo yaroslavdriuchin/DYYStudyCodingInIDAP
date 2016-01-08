@@ -26,10 +26,11 @@ typedef NS_ENUM (NSUInteger, DYYEmployeeStatus) {
 @property (nonatomic, retain)       id                     observableEmployee;
 
 - (void)performPersonalFunctionWithObject:(id)object;
-- (void)itemIsFreeToWork:(id)item ;
+- (void)addObjectToProcess:(id)object;
+- (void)itemIsFreeToWork:(id)item;
 - (void)itemIsStandBy:(id)item;
 - (void)itemIsBusy:(id)item;
 - (void)setObservableEmployee:(id)employee;
-- (void)addObjectToProcess:(id)object;
+
 
 @end

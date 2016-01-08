@@ -11,7 +11,7 @@
 @interface DYYEmployee ()
 
 @property (nonatomic, assign)    NSUInteger         mutableMoney;
-@property (nonatomic, retain)    NSMutableArray     *itemsToProcessMutableQueue;
+@property (nonatomic, retain)    NSMutableArray     *mutableObjectsProcessQueue;
 
 @end
 
@@ -77,8 +77,17 @@
 }
 
 - (void)addObjectToProcess:(id)object {
-    [self doesNotRecognizeSelector:_cmd];
+    if (object) {
+        @synchronized(object) {
+            if (self.employeeStatus == kDYYEmployeeBusy) {
+                [self.mutableObjectsProcessQueue addObject:object];
+            } else {
+                    [self performPersonalFunctionWithObject:object];
+            }
+        }
+    }
 }
+
 
 #pragma mark -
 #pragma mark DYYCarwashMoneyTransferProtocol

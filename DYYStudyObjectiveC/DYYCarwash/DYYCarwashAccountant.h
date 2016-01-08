@@ -8,9 +8,12 @@
 
 #import "DYYEmployee.h"
 @class DYYCarwashDirector;
+@class DYYCarwashWorker;
 
 @interface DYYCarwashAccountant : DYYEmployee
 
-- (NSUInteger)calculateMoneyInDollars;
+- (void)performPersonalFunctionWithObject:(id<DYYCarwashMoneyTransferProtocol>)object;
+- (void)takeWorkerMoneyAndReport:(DYYCarwashWorker *)worker;
+- (void)itemIsStandBy:(id)item;
 
 @end

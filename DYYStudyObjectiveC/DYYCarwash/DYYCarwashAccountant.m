@@ -7,12 +7,26 @@
 //
 
 #import "DYYCarwashAccountant.h"
+@class DYYCarwashWorker;
 
 @implementation DYYCarwashAccountant
 
-- (uint32_t)calculateMoneyInDollars {
-    NSLog(@"Accountant reports %u dollars", self.money);
-    return self.money;
+- (void)performPersonalFunctionWithObject:(id)object {
+    [self takeWorkerMoneyAndReport:(DYYCarwashWorker *)object];
+}
+
+- (void)takeWorkerMoneyAndReport:(DYYCarwashWorker *)worker {
+    NSUInteger allWorkerMoney = [worker money];
+    [worker payMoneyAmount:allWorkerMoney];
+    [self takeMoneyAmount:allWorkerMoney];
+    self.employeeStatus = kDYYEmployeeFree;
+    NSLog(@"Money amount of %lu was transferred from worker to accountant", allWorkerMoney);
+    NSLog(@"Accountant money is %lu", self.money);
+}
+
+- (void)itemIsStandBy:(id)item    {
+    self.employeeStatus = kDYYEmployeeBusy;
+    [self addObjectToProcess:item];
 }
 
 @end

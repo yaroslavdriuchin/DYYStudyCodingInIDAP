@@ -16,10 +16,10 @@
 
 @property (nonatomic, retain)     id                   observableEmployee;
 @property (nonatomic, assign)     NSUInteger           carsQueueLimit;
-@property (nonatomic, assign)     NSUInteger           washPrice;
 
 + (DYYCarwashEnterprise *)enterpriseWithWorkers:(NSUInteger)workersQuantity
-                            totalEmployeesLimit:(NSUInteger)employeesLimit;
+                            totalEmployeesLimit:(NSUInteger)employeesLimit
+                                      washPrice:(NSUInteger)washPrice;
 - (void)addCarToCarwash:(DYYCar *)car;
 
 @end
