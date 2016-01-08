@@ -11,6 +11,9 @@
 
 @implementation DYYCarwashAccountant
 
+#pragma mark -
+#pragma mark Public Methods
+
 - (void)performPersonalFunctionWithObject:(id)object {
     [self takeWorkerMoneyAndReport:(DYYCarwashWorker *)object];
 }
