@@ -89,6 +89,7 @@
                 if (freeWorker.employeeStatus == kDYYEmployeeFree
                     && [freeWorker class] == [DYYCarwashWorker class]) {
                     [self performSelectorInBackground:@selector(washCarQueueWithWorker:) withObject:freeWorker];
+                    break;
                 }
             }
         }
@@ -102,6 +103,7 @@
             [car payMoneyAmount:self.washPrice];
             [worker takeMoneyAmount:self.washPrice];
             [self.mutableCarsQueue removeObject:car];
+            NSLog(@"Enterprise reports: car is clean, worker money = %lu, car money = %lu", worker.money, car.money);
             
             break;
         }

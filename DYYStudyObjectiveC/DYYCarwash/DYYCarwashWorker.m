@@ -42,6 +42,7 @@
         
         [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
         self.employeeStatus = kDYYEmployeeFree;
+        NSLog(@"Worker reports - Car wash was completed");
     }
 }
 

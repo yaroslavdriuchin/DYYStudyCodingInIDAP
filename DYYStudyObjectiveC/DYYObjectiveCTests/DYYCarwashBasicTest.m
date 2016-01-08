@@ -37,8 +37,11 @@
     
     //adding cars to carwash queue
     [testCarwash addCarToCarwash:testCarOne];
+    sleep(1);
     [testCarwash addCarToCarwash:testCarTwo];
+    sleep(1);
     [testCarwash addCarToCarwash:testCarThree];
+    sleep(1);
 
 }
 @end
