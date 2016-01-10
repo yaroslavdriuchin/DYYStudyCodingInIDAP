@@ -70,4 +70,16 @@
     }
 }
 
+- (void)setObservableEmployee:(id)employee {
+    if (_observableEmployee != employee) {
+        @synchronized(employee) {
+            [_observableEmployee removeObserver:self];
+            [employee release];
+            _observableEmployee = [employee retain];
+            [employee addObserver:self];
+        }
+    }
+}
+
+
 @end

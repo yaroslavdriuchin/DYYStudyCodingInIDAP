@@ -30,7 +30,7 @@
     }
 }
 
-- (void)performPersonalFunctionWithObject:(id)object {
+- (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object {
     [self washCar:(DYYCar *)object];
 }
 

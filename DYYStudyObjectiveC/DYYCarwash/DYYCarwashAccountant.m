@@ -14,7 +14,7 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)performPersonalFunctionWithObject:(id)object {
+- (void)processObject:(id)object {
     [self takeWorkerMoneyAndReport:(DYYCarwashWorker *)object];
 }
 

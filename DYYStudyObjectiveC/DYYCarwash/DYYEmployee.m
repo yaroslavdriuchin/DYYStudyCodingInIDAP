@@ -55,24 +55,10 @@
     return;
 }
 
-#pragma mark
-#pragma mark - DYYCarwashWorker observer
-
-- (void)setObservableEmployee:(id)employee {
-    if (_observableEmployee != employee) {
-        @synchronized(employee) {
-            [_observableEmployee removeObserver:self];
-            [employee release];
-            _observableEmployee = [employee retain];
-            [employee addObserver:self];
-        }
-    }
-}
-
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)performPersonalFunctionWithObject:(id)object {
+- (void)processObject:(id)object {
     [self doesNotRecognizeSelector:_cmd];
 }
 
@@ -82,7 +68,7 @@
             if (self.employeeStatus == kDYYEmployeeBusy) {
                 [self.mutableObjectsProcessQueue addObject:object];
             } else {
-                    [self performPersonalFunctionWithObject:object];
+                    [self processObject:object];
             }
         }
     }

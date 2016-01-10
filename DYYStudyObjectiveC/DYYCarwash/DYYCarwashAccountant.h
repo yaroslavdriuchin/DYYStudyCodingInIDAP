@@ -12,7 +12,6 @@
 
 @interface DYYCarwashAccountant : DYYEmployee
 
-- (void)performPersonalFunctionWithObject:(id<DYYCarwashMoneyTransferProtocol>)object;
 - (void)takeWorkerMoneyAndReport:(DYYCarwashWorker *)worker;
 - (void)itemIsStandBy:(id)item;
 

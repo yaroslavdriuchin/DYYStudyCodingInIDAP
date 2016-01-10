@@ -23,14 +23,11 @@ typedef NS_ENUM (NSUInteger, DYYEmployeeStatus) {
 @property (nonatomic, assign)       NSUInteger             experienceYears;
 @property (nonatomic, assign)       DYYEmployeeStatus      employeeStatus;
 @property (nonatomic, retain)       NSArray                *objectsProcessQueue;
-@property (nonatomic, retain)       id                     observableEmployee;
 
-- (void)performPersonalFunctionWithObject:(id)object;
+- (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object;
 - (void)addObjectToProcess:(id)object;
 - (void)itemIsFreeToWork:(id)item;
 - (void)itemIsStandBy:(id)item;
 - (void)itemIsBusy:(id)item;
-- (void)setObservableEmployee:(id)employee;
-
 
 @end

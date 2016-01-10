@@ -11,9 +11,11 @@
 @interface DYYCarwashObservableItem : NSObject
 
 @property (nonatomic, readonly)     NSArray    *observers;
+@property (nonatomic, retain)       id         observableEmployee;
 
 - (void)addObserver:(id)observer;
 - (void)removeObserver:(id)observer;
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object;
+- (void)setObservableEmployee:(id)employee;
 
 @end

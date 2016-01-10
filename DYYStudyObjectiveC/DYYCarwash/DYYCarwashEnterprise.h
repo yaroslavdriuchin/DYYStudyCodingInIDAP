@@ -11,10 +11,8 @@
 #import "DYYCar.h"
 @class DYYCarwashWorker;
 
-
 @interface DYYCarwashEnterprise : NSObject <DYYCarwashObserverProtocol>
 
-@property (nonatomic, retain)     id                   observableEmployee;
 @property (nonatomic, assign)     NSUInteger           carsQueueLimit;
 
 + (DYYCarwashEnterprise *)enterpriseWithWorkers:(NSUInteger)workersQuantity

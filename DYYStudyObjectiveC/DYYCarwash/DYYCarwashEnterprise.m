@@ -17,6 +17,7 @@
 @property (nonatomic, retain)   NSMutableArray   *mutableEmployees;
 @property (nonatomic, retain)   NSMutableArray   *mutableCarsQueue;
 @property (nonatomic, assign)   NSUInteger       employeesLimit;
+@property (nonatomic, retain)   id               observableEmployee;
 
 - (void)hireEmployee:(id)employee;
 - (void)washCarQueueWithWorker:(DYYCarwashWorker *)worker;
