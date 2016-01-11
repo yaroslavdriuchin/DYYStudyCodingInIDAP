@@ -20,9 +20,10 @@
 
 + (void)runCarwashBasicTest {
     //creating test Carwash with number of workers = 3, 1 accountant, 1 director
-    DYYCarwashEnterprise *testCarwash = [DYYCarwashEnterprise enterpriseWithWorkers:3
-                                                                totalEmployeesLimit:50
-                                                                          washPrice:5];
+    DYYCarwashEnterprise *testCarwash = [[[DYYCarwashEnterprise alloc] init] autorelease];
+    [testCarwash configureEnterpriseWorkersQuantity:3
+                                totalEmployeesLimit:50
+                                          washPrice:5];
     
     //Checking test Carwash is not nil
     NSAssert(testCarwash != nil, @"It's equal to nil, sucks");
@@ -34,16 +35,16 @@
     DYYCar *testCarOne   = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
     DYYCar *testCarTwo   = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
     DYYCar *testCarThree = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
-    DYYCar *testCarFour = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
-    DYYCar *testCarFive = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
+    DYYCar *testCarFour  = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
+    DYYCar *testCarFive  = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
     
     //adding cars to carwash queue
     [testCarwash addCarToCarwash:testCarOne];
     sleep(1);
     [testCarwash addCarToCarwash:testCarTwo];
-    sleep(1);
+//    sleep(1);
     [testCarwash addCarToCarwash:testCarThree];
-    sleep(1);
+//    sleep(1);
     [testCarwash addCarToCarwash:testCarFour];
     sleep(1);
     [testCarwash addCarToCarwash:testCarFive];

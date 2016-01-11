@@ -33,6 +33,10 @@
     return self;
 }
 
+- (NSArray *)objectsProcessQueue {
+    return [[self.mutableObjectsProcessQueue copy] autorelease];
+}
+
 #pragma mark -
 #pragma mark Accesors
 
@@ -68,12 +72,20 @@
             if (self.employeeStatus == kDYYEmployeeBusy) {
                 [self.mutableObjectsProcessQueue addObject:object];
             } else {
-                    [self processObject:object];
+                    [self performSelectorInBackground:@selector(processObject:) withObject:object];
             }
         }
     }
 }
 
+- (void)checkQueueAndProcess {
+    @synchronized(self) {
+    for (id object in self.mutableObjectsProcessQueue) {
+        [self performSelectorInBackground:@selector(processObject:) withObject:object];
+        [self.mutableObjectsProcessQueue removeObjectIdenticalTo:object];
+        }
+    }
+}
 
 #pragma mark -
 #pragma mark DYYCarwashMoneyTransferProtocol

@@ -13,7 +13,6 @@
 #import "DYYCarwashAccountant.h"
 
 @interface DYYCarwashEnterprise()
-
 @property (nonatomic, retain)   NSMutableArray   *mutableEmployees;
 @property (nonatomic, retain)   NSMutableArray   *mutableCarsQueue;
 @property (nonatomic, assign)   NSUInteger       employeesLimit;
@@ -36,31 +35,32 @@
     [super dealloc];
 }
 
-+ (DYYCarwashEnterprise *)enterpriseWithWorkers:(NSUInteger)workersQuantity
-                            totalEmployeesLimit:(NSUInteger)employeesLimit
-                                      washPrice:(NSUInteger)washPrice
+- (void)configureEnterpriseWorkersQuantity:(NSUInteger)workersQuantity
+                       totalEmployeesLimit:(NSUInteger)employeesLimit
+                                 washPrice:(NSUInteger)washPrice
 {
-    DYYCarwashEnterprise *enterprise = [[[self alloc] init] autorelease];
-    enterprise.employeesLimit = employeesLimit;
+    self.employeesLimit = employeesLimit;
     
     DYYCarwashAccountant *newAccountant = [[[DYYCarwashAccountant alloc] init] autorelease];
-    [enterprise hireEmployee:newAccountant];
+    [self hireEmployee:newAccountant];
     
     DYYCarwashDirector *newDirector = [[[DYYCarwashDirector alloc] init] autorelease];
-    [enterprise hireEmployee:newDirector];
+    [self hireEmployee:newDirector];
     [newDirector setObservableEmployee:newAccountant];
+    [newAccountant addObserver:newDirector];
     
     for (NSUInteger index = 0; index < workersQuantity; index++) {
         DYYCarwashWorker *newWorker = [[[DYYCarwashWorker alloc] init] autorelease];
         if (newWorker) {
             newWorker.washPrice = washPrice;
-            [enterprise hireEmployee:newWorker];
-            [enterprise setObservableEmployee:newWorker];
+            [self hireEmployee:newWorker];
+            [self setObservableEmployee:newWorker];
+            [newWorker addObserver:self];
             [newAccountant setObservableEmployee:newWorker];
+            [newWorker addObserver:newAccountant];
+            
         }
     }
-    
-    return enterprise;
 }
 
 - (instancetype)init {
@@ -91,7 +91,7 @@
             for (DYYCarwashWorker *freeWorker in self.mutableEmployees) {
                 if (freeWorker.employeeStatus == kDYYEmployeeFree
                     && [freeWorker class] == [DYYCarwashWorker class]) {
-                    [self performSelectorInBackground:@selector(washCarQueueWithWorker:) withObject:freeWorker];
+                    [self washCarQueueWithWorker:freeWorker];
                     break;
                 }
             }
@@ -104,7 +104,7 @@
         if (car.isClean == NO && [car isCarAbleToPay:worker.washPrice]) {
             [worker addObjectToProcess:car];
             [self.mutableCarsQueue removeObject:car];
-            NSLog(@"Enterprise reports: car is clean, worker money = %lu, car money = %lu", worker.money, car.money);
+            NSLog(@"Enterprise reports: car was transferred to worker's processing queue...");
             
             break;
         }
@@ -121,10 +121,10 @@
     }
 }
 - (void)itemIsStandBy:(id)item {
-        
+    return;
     }
 - (void)itemIsBusy:(id)item {
-    
+    return;
 }
     
 #pragma mark

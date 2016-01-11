@@ -10,8 +10,8 @@
 
 @interface DYYCarwashObservableItem : NSObject
 
-@property (nonatomic, readonly)     NSArray    *observers;
-@property (nonatomic, retain)       id         observableEmployee;
+@property (nonatomic, readonly)     NSHashTable    *observers;
+@property (nonatomic, retain)       id             observableEmployee;
 
 - (void)addObserver:(id)observer;
 - (void)removeObserver:(id)observer;

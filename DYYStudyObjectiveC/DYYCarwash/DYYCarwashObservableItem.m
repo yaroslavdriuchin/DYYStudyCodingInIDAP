@@ -36,9 +36,9 @@
 #pragma mark -
 #pragma mark Accesors
 
-- (NSArray *)observers {
+- (NSHashTable *)observers {
     @synchronized(self) {
-        return [self.mutableObservers allObjects];
+        return [[[self.mutableObservers allObjects] copy] autorelease];
     }
 }
 
@@ -53,7 +53,7 @@
 
 - (void)removeObserver:(id)observer {
     @synchronized(self) {
-        NSArray *observers = self.observers;
+        NSHashTable *observers = self.observers;
         for (id reference in observers) {
             if (reference == observer) {
                 [self.mutableObservers removeObject:reference];
@@ -64,9 +64,11 @@
 }
 
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object {
-    NSArray *observers = self.observers;
+    NSHashTable *observers = self.mutableObservers;
     for (id observer in observers) {
-        [observer performSelectorInBackground:selector withObject:self];
+        [observer performSelectorOnMainThread:selector
+                                   withObject:object
+                                waitUntilDone:YES];
     }
 }
 

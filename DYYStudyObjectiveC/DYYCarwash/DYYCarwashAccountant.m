@@ -27,7 +27,7 @@
     NSLog(@"Accountant money is %lu", self.money);
 }
 
-- (void)itemIsStandBy:(id)item    {
+- (void)itemIsStandBy:(id)item  {
     self.employeeStatus = kDYYEmployeeBusy;
     [self addObjectToProcess:item];
 }
