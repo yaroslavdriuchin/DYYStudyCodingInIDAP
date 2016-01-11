@@ -42,9 +42,9 @@
     [testCarwash addCarToCarwash:testCarOne];
     sleep(1);
     [testCarwash addCarToCarwash:testCarTwo];
-//    sleep(1);
+    sleep(1);
     [testCarwash addCarToCarwash:testCarThree];
-//    sleep(1);
+    sleep(1);
     [testCarwash addCarToCarwash:testCarFour];
     sleep(1);
     [testCarwash addCarToCarwash:testCarFive];
