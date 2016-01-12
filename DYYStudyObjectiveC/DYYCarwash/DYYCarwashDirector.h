@@ -7,9 +7,11 @@
 //
 
 #import "DYYEmployee.h"
+@class DYYCarwashAccountant;
 
 @interface DYYCarwashDirector : DYYEmployee
 
-- (NSUInteger)calculateEnterpriseIncomeInDollars;
+- (void)takeAccountantMoneyAndReport:(DYYCarwashAccountant *)object;
+- (void)itemIsFreeToWork:(id)item;
 
 @end

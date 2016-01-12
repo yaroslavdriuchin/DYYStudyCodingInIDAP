@@ -20,11 +20,13 @@
 
 - (void)takeWorkerMoneyAndReport:(DYYCarwashWorker *)worker {
     self.employeeStatus = kDYYEmployeeBusy;
-    NSUInteger allWorkerMoney = [worker money];
-    [worker payMoneyAmount:allWorkerMoney];
-    [self takeMoneyAmount:allWorkerMoney];
+    [self notifyObserversWithSelector:@selector(itemIsBusy:) withObject:self];
+    NSUInteger workerMoney = [worker money];
+    [worker payMoneyAmount:workerMoney];
+    [self takeMoneyAmount:workerMoney];
     self.employeeStatus = kDYYEmployeeFree;
-    NSLog(@"Money amount of %lu was transferred from worker to accountant", allWorkerMoney);
+    [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
+    NSLog(@"Money amount of %lu was transferred from worker to accountant", workerMoney);
     NSLog(@"Accountant money is %lu", self.money);
 }
 

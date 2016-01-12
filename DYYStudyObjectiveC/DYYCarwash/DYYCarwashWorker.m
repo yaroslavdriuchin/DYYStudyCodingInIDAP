@@ -23,10 +23,11 @@
         [self takeMoneyAmount:self.washPrice];
         self.employeeStatus = kDYYEmployeeStandby;
         [self notifyObserversWithSelector:@selector(itemIsStandBy:) withObject:self];
+//        sleep(4);
         [self checkQueueAndProcess];
-        sleep(2);
-        [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
+//        sleep(1);
         self.employeeStatus = kDYYEmployeeFree;
+        [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
         NSLog(@"Worker reports - Car wash was completed");
         NSLog(@"Worker money is %lu, car money is %lu", self.money, car.money);
     }

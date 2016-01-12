@@ -282,19 +282,19 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		5C52B2371C3C0FD500203250 /* DYYCarwashObservableItem */ = {
+		5C52B2371C3C0FD500203250 /* DYYCarwashObservable */ = {
 			isa = PBXGroup;
 			children = (
 				5C52B2341C3C0FD000203250 /* DYYCarwashObservable.h */,
 				5C52B2351C3C0FD000203250 /* DYYCarwashObservable.m */,
 			);
-			name = DYYCarwashObservableItem;
+			name = DYYCarwashObservable;
 			sourceTree = "<group>";
 		};
 		5C649A711C16D7D0008A4583 /* DYYCarwash */ = {
 			isa = PBXGroup;
 			children = (
-				5C52B2371C3C0FD500203250 /* DYYCarwashObservableItem */,
+				5C52B2371C3C0FD500203250 /* DYYCarwashObservable */,
 				5C649A721C16D7E4008A4583 /* DYYCarwashEnterprise */,
 				5C649A891C16E344008A4583 /* DYYCar */,
 				5C649A8D1C16E56F008A4583 /* DYYCarwashEmployee */,

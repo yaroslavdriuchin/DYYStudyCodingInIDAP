@@ -92,12 +92,12 @@
 
 - (void)payMoneyAmount:(NSUInteger)amount {
     @synchronized(self) {
-        self.mutableMoney = self.mutableMoney - amount;
+        self.mutableMoney -= amount;
     }
 }
 - (void)takeMoneyAmount:(NSUInteger)amount {
     @synchronized(self) {
-        self.mutableMoney = self.mutableMoney + amount;
+        self.mutableMoney += amount;
     }
 }
 

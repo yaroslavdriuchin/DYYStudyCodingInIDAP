@@ -49,5 +49,10 @@
     sleep(1);
     [testCarwash addCarToCarwash:testCarFive];
     sleep(1);
+    
+    while (true) {
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
+    }
 }
+
 @end

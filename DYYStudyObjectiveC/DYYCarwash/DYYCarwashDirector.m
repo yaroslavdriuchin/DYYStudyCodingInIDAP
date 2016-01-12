@@ -10,10 +10,22 @@
 
 @implementation DYYCarwashDirector
 
-- (NSUInteger)calculateEnterpriseIncomeInDollars {
-    NSLog(@"Director reports %u dollars", self.money % 100);
-    
-    return self.money;
+- (void)processObject:(id)object {
+    [self takeAccountantMoneyAndReport:object];
+}
+
+- (void)takeAccountantMoneyAndReport:(DYYCarwashAccountant *)accountant {
+    self.employeeStatus = kDYYEmployeeBusy;
+    NSUInteger accountantMoney = [accountant money];
+    [accountant payMoneyAmount:accountantMoney];
+    [self takeMoneyAmount:accountantMoney];
+    self.employeeStatus = kDYYEmployeeFree;
+    NSLog(@"Money amount of %lu was transferred from accountant to director", accountantMoney);
+    NSLog(@"Director reports money amount is %lu", self.money);
+}
+
+- (void)itemIsFreeToWork:(id)item  {
+    [self addObjectToProcess:item];
 }
 
 @end

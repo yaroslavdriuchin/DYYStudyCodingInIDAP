@@ -41,13 +41,13 @@
 {
     self.employeesLimit = employeesLimit;
     
-    DYYCarwashAccountant *newAccountant = [[[DYYCarwashAccountant alloc] init] autorelease];
-    [self hireEmployee:newAccountant];
+    DYYCarwashAccountant *accountant = [[[DYYCarwashAccountant alloc] init] autorelease];
+    [self hireEmployee:accountant];
     
-    DYYCarwashDirector *newDirector = [[[DYYCarwashDirector alloc] init] autorelease];
-    [self hireEmployee:newDirector];
-    [newDirector setObservableEmployee:newAccountant];
-    [newAccountant addObserver:newDirector];
+    DYYCarwashDirector *director = [[[DYYCarwashDirector alloc] init] autorelease];
+    [self hireEmployee:director];
+    [director setObservableEmployee:accountant];
+//    [newAccountant addObserver:newDirector];
     
     for (NSUInteger index = 0; index < workersQuantity; index++) {
         DYYCarwashWorker *newWorker = [[[DYYCarwashWorker alloc] init] autorelease];
@@ -55,9 +55,9 @@
             newWorker.washPrice = washPrice;
             [self hireEmployee:newWorker];
             [self setObservableEmployee:newWorker];
-            [newWorker addObserver:self];
-            [newAccountant setObservableEmployee:newWorker];
-            [newWorker addObserver:newAccountant];
+//            [newWorker addObserver:self];
+            [accountant setObservableEmployee:newWorker];
+//            [newWorker addObserver:newAccountant];
             
         }
     }

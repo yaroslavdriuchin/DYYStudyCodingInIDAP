@@ -8,7 +8,6 @@
 
 #import "DYYCarwashObservable.h"
 @interface DYYCarwashObservable ()
-
 @property (nonatomic, retain)    NSHashTable   *mutableObservers;
 
 @end
