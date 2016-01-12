@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DYYCarwashObservableItem : NSObject
+@interface DYYCarwashObservable : NSObject
 
 @property (nonatomic, readonly)     NSHashTable    *observers;
 @property (nonatomic, retain)       id             observableEmployee;

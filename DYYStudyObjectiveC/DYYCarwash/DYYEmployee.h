@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DYYCarwashMoneyTransferProtocol.h"
 #import "DYYCarwashObserverProtocol.h"
-#import "DYYCarwashObservableItem.h"
+#import "DYYCarwashObservable.h"
 
 typedef NS_ENUM (NSUInteger, DYYEmployeeStatus) {
     kDYYEmployeeBusy = 0,
@@ -17,7 +17,7 @@ typedef NS_ENUM (NSUInteger, DYYEmployeeStatus) {
     kDYYEmployeeFree,
 };
 
-@interface DYYEmployee : DYYCarwashObservableItem <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
+@interface DYYEmployee : DYYCarwashObservable <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
 
 @property (nonatomic, assign)       NSUInteger             salary;
 @property (nonatomic, assign)       NSUInteger             experienceYears;

@@ -6,14 +6,14 @@
 //  Copyright © 2016 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYCarwashObservableItem.h"
-@interface DYYCarwashObservableItem ()
+#import "DYYCarwashObservable.h"
+@interface DYYCarwashObservable ()
 
 @property (nonatomic, retain)    NSHashTable   *mutableObservers;
 
 @end
 
-@implementation DYYCarwashObservableItem
+@implementation DYYCarwashObservable
 
 #pragma mark -
 #pragma mark Initializations and Deallocators
@@ -27,7 +27,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.mutableObservers = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
+        self.mutableObservers = [NSHashTable weakObjectsHashTable];
     }
     
     return self;
@@ -66,9 +66,7 @@
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object {
     NSHashTable *observers = self.mutableObservers;
     for (id observer in observers) {
-        [observer performSelectorOnMainThread:selector
-                                   withObject:object
-                                waitUntilDone:YES];
+        [observer performSelector:selector withObject:object];
     }
 }
 

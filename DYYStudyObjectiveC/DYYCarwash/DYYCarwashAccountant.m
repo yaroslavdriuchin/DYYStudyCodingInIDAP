@@ -19,6 +19,7 @@
 }
 
 - (void)takeWorkerMoneyAndReport:(DYYCarwashWorker *)worker {
+    self.employeeStatus = kDYYEmployeeBusy;
     NSUInteger allWorkerMoney = [worker money];
     [worker payMoneyAmount:allWorkerMoney];
     [self takeMoneyAmount:allWorkerMoney];
@@ -28,7 +29,6 @@
 }
 
 - (void)itemIsStandBy:(id)item  {
-    self.employeeStatus = kDYYEmployeeBusy;
     [self addObjectToProcess:item];
 }
 

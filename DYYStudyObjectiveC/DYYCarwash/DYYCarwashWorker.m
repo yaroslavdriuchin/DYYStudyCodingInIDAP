@@ -24,7 +24,7 @@
         self.employeeStatus = kDYYEmployeeStandby;
         [self notifyObserversWithSelector:@selector(itemIsStandBy:) withObject:self];
         [self checkQueueAndProcess];
-//        sleep(2);
+        sleep(2);
         [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
         self.employeeStatus = kDYYEmployeeFree;
         NSLog(@"Worker reports - Car wash was completed");
