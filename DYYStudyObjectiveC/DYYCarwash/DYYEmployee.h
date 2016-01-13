@@ -26,6 +26,7 @@ typedef NS_ENUM (NSUInteger, DYYEmployeeStatus) {
 
 - (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object;
 - (void)addObjectToProcess:(id)object;
+- (void)setState:(DYYEmployeeStatus)state;
 - (void)checkQueueAndProcess;
 - (void)itemIsFreeToWork:(id)item;
 - (void)itemIsStandBy:(id)item;

@@ -58,12 +58,4 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (BOOL)isCarAbleToPay:(NSUInteger)price {
-    if (self.money >= price) {
-        return YES;
-        }
-    
-    return NO;
-}
-
 @end

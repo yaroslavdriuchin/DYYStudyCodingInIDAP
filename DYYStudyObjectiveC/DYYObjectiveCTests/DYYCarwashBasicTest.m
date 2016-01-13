@@ -42,17 +42,17 @@
     [testCarwash addCarToCarwash:testCarOne];
     sleep(1);
     [testCarwash addCarToCarwash:testCarTwo];
-    sleep(1);
+    sleep(2);
     [testCarwash addCarToCarwash:testCarThree];
     sleep(1);
     [testCarwash addCarToCarwash:testCarFour];
-    sleep(1);
+    sleep(2);
     [testCarwash addCarToCarwash:testCarFive];
     sleep(1);
-    
-    while (true) {
-        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
-    }
+//    
+//    while (true) {
+//        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
+//    }
 }
 
 @end

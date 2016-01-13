@@ -63,16 +63,16 @@
 #pragma mark Public Methods
 
 - (void)processObject:(id)object {
-    [self doesNotRecognizeSelector:_cmd];
+    return;
 }
 
 - (void)addObjectToProcess:(id)object {
     if (object) {
         @synchronized(object) {
-            if (self.employeeStatus == kDYYEmployeeBusy) {
-                [self.mutableObjectsProcessQueue addObject:object];
+            if (self.employeeStatus == kDYYEmployeeFree) {
+                [self performSelectorInBackground:@selector(processObject:) withObject:object];
             } else {
-                    [self performSelectorInBackground:@selector(processObject:) withObject:object];
+                    [self.mutableObjectsProcessQueue addObject:object];
             }
         }
     }
@@ -82,7 +82,29 @@
     @synchronized(self) {
     for (id object in self.mutableObjectsProcessQueue) {
         [self performSelectorInBackground:@selector(processObject:) withObject:object];
-        [self.mutableObjectsProcessQueue removeObjectIdenticalTo:object];
+        [self.mutableObjectsProcessQueue removeObject:object];
+        }
+    }
+}
+
+- (void)setState:(DYYEmployeeStatus)state {
+    @synchronized(self) {
+    switch (state) {
+        case kDYYEmployeeBusy:
+            self.employeeStatus = kDYYEmployeeBusy;
+            [self notifyObserversWithSelector:@selector(itemIsBusy:) withObject:self];
+            break;
+        case kDYYEmployeeStandby:
+            self.employeeStatus = kDYYEmployeeStandby;
+            [self notifyObserversWithSelector:@selector(itemIsStandBy:) withObject:self];
+            break;
+        case kDYYEmployeeFree:
+            self.employeeStatus = kDYYEmployeeFree;
+            [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
+            break;
+            
+        default:
+            break;
         }
     }
 }

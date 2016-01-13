@@ -7,7 +7,6 @@
 //
 
 #import "DYYEmployee.h"
-
 @class DYYCar;
 @class DYYCarwashAccountant;
 

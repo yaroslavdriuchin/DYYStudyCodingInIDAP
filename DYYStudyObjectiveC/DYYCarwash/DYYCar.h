@@ -15,6 +15,5 @@
 
 + (instancetype)carWithAmountofMoney:(NSUInteger)money;
 - (instancetype)initCarWithAmountofMoney:(NSUInteger)money;
-- (BOOL)isCarAbleToPay:(NSUInteger)price;
 
 @end

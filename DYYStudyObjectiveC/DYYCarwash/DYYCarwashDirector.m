@@ -19,9 +19,10 @@
     NSUInteger accountantMoney = [accountant money];
     [accountant payMoneyAmount:accountantMoney];
     [self takeMoneyAmount:accountantMoney];
-    self.employeeStatus = kDYYEmployeeFree;
     NSLog(@"Money amount of %lu was transferred from accountant to director", accountantMoney);
     NSLog(@"Director reports money amount is %lu", self.money);
+    [self checkQueueAndProcess];
+    self.employeeStatus = kDYYEmployeeFree;
 }
 
 - (void)itemIsFreeToWork:(id)item  {

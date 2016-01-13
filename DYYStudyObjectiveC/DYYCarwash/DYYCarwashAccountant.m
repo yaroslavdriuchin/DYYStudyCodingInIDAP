@@ -14,20 +14,19 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)processObject:(id)object {
+- (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object {
     [self takeWorkerMoneyAndReport:(DYYCarwashWorker *)object];
 }
 
 - (void)takeWorkerMoneyAndReport:(DYYCarwashWorker *)worker {
-    self.employeeStatus = kDYYEmployeeBusy;
-    [self notifyObserversWithSelector:@selector(itemIsBusy:) withObject:self];
+    [self setState:kDYYEmployeeBusy];
     NSUInteger workerMoney = [worker money];
     [worker payMoneyAmount:workerMoney];
     [self takeMoneyAmount:workerMoney];
-    self.employeeStatus = kDYYEmployeeFree;
-    [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
     NSLog(@"Money amount of %lu was transferred from worker to accountant", workerMoney);
     NSLog(@"Accountant money is %lu", self.money);
+    [self checkQueueAndProcess];
+    [self setState:kDYYEmployeeFree];
 }
 
 - (void)itemIsStandBy:(id)item  {

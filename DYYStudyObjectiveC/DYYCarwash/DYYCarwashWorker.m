@@ -16,27 +16,22 @@
 
 - (void)washCar:(DYYCar *)car {
     if (car) {
-        self.employeeStatus = kDYYEmployeeBusy;
-        [self notifyObserversWithSelector:@selector(itemIsBusy:) withObject:self];
+        [self setState:kDYYEmployeeBusy];
         [car payMoneyAmount:self.washPrice];
         car.isClean = YES;
         [self takeMoneyAmount:self.washPrice];
-        self.employeeStatus = kDYYEmployeeStandby;
-        [self notifyObserversWithSelector:@selector(itemIsStandBy:) withObject:self];
-//        sleep(4);
-        [self checkQueueAndProcess];
-//        sleep(1);
-        self.employeeStatus = kDYYEmployeeFree;
-        [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
+        [self setState:kDYYEmployeeStandby];
         NSLog(@"Worker reports - Car wash was completed");
         NSLog(@"Worker money is %lu, car money is %lu", self.money, car.money);
+        sleep(3);
+        [self checkQueueAndProcess];
+//        sleep(2);
+        [self setState:kDYYEmployeeFree];
     }
 }
 
 - (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object {
     [self washCar:(DYYCar *)object];
 }
-
-
 
 @end

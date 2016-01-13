@@ -47,7 +47,6 @@
     DYYCarwashDirector *director = [[[DYYCarwashDirector alloc] init] autorelease];
     [self hireEmployee:director];
     [director setObservableEmployee:accountant];
-//    [newAccountant addObserver:newDirector];
     
     for (NSUInteger index = 0; index < workersQuantity; index++) {
         DYYCarwashWorker *newWorker = [[[DYYCarwashWorker alloc] init] autorelease];
@@ -55,9 +54,7 @@
             newWorker.washPrice = washPrice;
             [self hireEmployee:newWorker];
             [self setObservableEmployee:newWorker];
-//            [newWorker addObserver:self];
             [accountant setObservableEmployee:newWorker];
-//            [newWorker addObserver:newAccountant];
             
         }
     }
@@ -100,13 +97,15 @@
 }
 
 - (void)washCarQueueWithWorker:(DYYCarwashWorker *)worker {
+    @synchronized(self) {
     for (DYYCar *car in self.mutableCarsQueue) {
-        if (car.isClean == NO && [car isCarAbleToPay:worker.washPrice]) {
+        if (car.isClean == NO) {
             [worker addObjectToProcess:car];
             [self.mutableCarsQueue removeObject:car];
             NSLog(@"Enterprise reports: car was transferred to worker's processing queue...");
             
             break;
+            }
         }
     }
 }
