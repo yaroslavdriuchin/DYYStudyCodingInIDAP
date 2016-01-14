@@ -40,16 +40,16 @@
     
     //adding cars to carwash queue
     [testCarwash addCarToCarwash:testCarOne];
-    sleep(1);
+//    sleep(1);
     [testCarwash addCarToCarwash:testCarTwo];
     sleep(2);
     [testCarwash addCarToCarwash:testCarThree];
-    sleep(1);
+//    sleep(1);
     [testCarwash addCarToCarwash:testCarFour];
     sleep(2);
     [testCarwash addCarToCarwash:testCarFive];
-    sleep(1);
-//    
+    sleep(3);
+//
 //    while (true) {
 //        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
 //    }

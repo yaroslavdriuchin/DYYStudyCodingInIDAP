@@ -23,7 +23,7 @@
         [self setState:kDYYEmployeeStandby];
         NSLog(@"Worker reports - Car wash was completed");
         NSLog(@"Worker money is %lu, car money is %lu", self.money, car.money);
-        sleep(3);
+        sleep(2);
         [self checkQueueAndProcess];
 //        sleep(2);
         [self setState:kDYYEmployeeFree];

@@ -68,7 +68,7 @@
 
 - (void)addObjectToProcess:(id)object {
     if (object) {
-        @synchronized(object) {
+        @synchronized(self) {
             if (self.employeeStatus == kDYYEmployeeFree) {
                 [self performSelectorInBackground:@selector(processObject:) withObject:object];
             } else {
