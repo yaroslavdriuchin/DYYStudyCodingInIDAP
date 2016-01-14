@@ -37,18 +37,23 @@
     DYYCar *testCarThree = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
     DYYCar *testCarFour  = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
     DYYCar *testCarFive  = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
+    DYYCar *testCarSix  = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
+    DYYCar *testCarSeven  = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
     
     //adding cars to carwash queue
     [testCarwash addCarToCarwash:testCarOne];
-//    sleep(1);
+    sleep(1);
     [testCarwash addCarToCarwash:testCarTwo];
-    sleep(2);
+//    sleep(2);
     [testCarwash addCarToCarwash:testCarThree];
 //    sleep(1);
     [testCarwash addCarToCarwash:testCarFour];
     sleep(2);
     [testCarwash addCarToCarwash:testCarFive];
-    sleep(3);
+    sleep(1);
+    [testCarwash addCarToCarwash:testCarSix];
+    sleep(2);
+    [testCarwash addCarToCarwash:testCarSeven];
 //
 //    while (true) {
 //        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];

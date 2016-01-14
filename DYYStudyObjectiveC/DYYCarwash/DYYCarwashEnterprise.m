@@ -16,7 +16,6 @@
 @property (nonatomic, retain)   NSMutableArray   *mutableEmployees;
 @property (nonatomic, retain)   NSMutableArray   *mutableCarsQueue;
 @property (nonatomic, assign)   NSUInteger       employeesLimit;
-@property (nonatomic, retain)   id               observableEmployee;
 
 - (void)hireEmployee:(id)employee;
 - (void)washCarQueueWithWorker:(DYYCarwashWorker *)worker;
@@ -49,13 +48,12 @@
     [director setObservableEmployee:accountant];
     
     for (NSUInteger index = 0; index < workersQuantity; index++) {
-        DYYCarwashWorker *newWorker = [[[DYYCarwashWorker alloc] init] autorelease];
-        if (newWorker) {
-            newWorker.washPrice = washPrice;
-            [self hireEmployee:newWorker];
-            [self setObservableEmployee:newWorker];
-            [accountant setObservableEmployee:newWorker];
-            
+        DYYCarwashWorker *worker = [[[DYYCarwashWorker alloc] init] autorelease];
+        if (worker) {
+            worker.washPrice = washPrice;
+            [self hireEmployee:worker];
+            [self setObservableEmployee:worker];
+            [accountant setObservableEmployee:worker];
         }
     }
 }
@@ -85,10 +83,10 @@
     if (car != nil && [self.mutableCarsQueue count] < self.carsQueueLimit) {
         @synchronized(self) {
             [self.mutableCarsQueue addObject:car];
-            for (DYYCarwashWorker *freeWorker in self.mutableEmployees) {
-                if (freeWorker.employeeStatus == kDYYEmployeeFree
-                    && [freeWorker class] == [DYYCarwashWorker class]) {
-                    [self washCarQueueWithWorker:freeWorker];
+            for (DYYCarwashWorker *worker in self.mutableEmployees) {
+                if (worker.employeeStatus == kDYYEmployeeFree
+                    && [worker class] == [DYYCarwashWorker class]) {
+                    [self washCarQueueWithWorker:worker];
                     break;
                 }
             }
@@ -130,13 +128,11 @@
 #pragma mark - DYYCarwashWorker observer
 
 - (void)setObservableEmployee:(id)employee {
-    if (_observableEmployee != employee) {
-        @synchronized(employee) {
-        [_observableEmployee removeObserver:self];
+    @synchronized(employee) {
+        [employee removeObserver:self];
         [employee release];
-        _observableEmployee = [employee retain];
+        [employee retain];
         [employee addObserver:self];
-        }
     }
 }
 

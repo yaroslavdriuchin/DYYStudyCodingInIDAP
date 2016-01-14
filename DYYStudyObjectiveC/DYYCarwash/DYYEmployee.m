@@ -88,7 +88,6 @@
 }
 
 - (void)setState:(DYYEmployeeStatus)state {
-    @synchronized(self) {
     switch (state) {
         case kDYYEmployeeBusy:
             self.employeeStatus = kDYYEmployeeBusy;
@@ -105,7 +104,6 @@
             
         default:
             break;
-        }
     }
 }
 
