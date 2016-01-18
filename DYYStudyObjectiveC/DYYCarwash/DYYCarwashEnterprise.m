@@ -79,32 +79,42 @@
     }
 }
 
-- (void)addCarToCarwash:(DYYCar *)car {
-    if (car != nil && [self.mutableCarsQueue count] < self.carsQueueLimit) {
+
+- (void)addCarsToCarwash:(NSArray *)cars {
+    if (cars != nil && [self.mutableCarsQueue count] < self.carsQueueLimit) {
         @synchronized(self) {
-            [self.mutableCarsQueue addObject:car];
-            for (DYYCarwashWorker *worker in self.mutableEmployees) {
-                if (worker.employeeStatus == kDYYEmployeeFree
-                    && [worker class] == [DYYCarwashWorker class]) {
-                    [self washCarQueueWithWorker:worker];
-                    break;
-                }
+            self.mutableCarsQueue = [[cars copy] autorelease];
+            DYYCarwashWorker *worker = [self returnFreeWorker];
+            [self washCarQueueWithWorker:worker];
+        }
+    }
+}
+
+- (DYYCarwashWorker *)returnFreeWorker {
+    @synchronized(self) {
+    for (DYYCarwashWorker *worker in self.mutableEmployees) {
+        if (worker.employeeStatus == kDYYEmployeeFree
+            && [worker class] == [DYYCarwashWorker class]) {
+            return worker;
+            
+            break;
             }
         }
     }
+    
+    return nil;
 }
 
 - (void)washCarQueueWithWorker:(DYYCarwashWorker *)worker {
     @synchronized(self) {
     for (DYYCar *car in self.mutableCarsQueue) {
-        if (car.isClean == NO) {
             [worker addObjectToProcess:car];
-            [self.mutableCarsQueue removeObject:car];
+//            [self.mutableCarsQueue removeObject:car];
             NSLog(@"Enterprise reports: car was transferred to worker's processing queue...");
             
             break;
-            }
         }
+        
     }
 }
 
@@ -114,12 +124,14 @@
 
 - (void)itemIsFreeToWork:(id)item {
     @synchronized(item) {
-        [self performSelectorInBackground:@selector(washCarQueueWithWorker:) withObject:item];
+        [self performSelector:@selector(washCarQueueWithWorker:) withObject:item];
     }
 }
+
 - (void)itemIsStandBy:(id)item {
     return;
     }
+
 - (void)itemIsBusy:(id)item {
     return;
 }

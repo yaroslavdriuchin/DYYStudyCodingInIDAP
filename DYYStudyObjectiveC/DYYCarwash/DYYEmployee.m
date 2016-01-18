@@ -68,7 +68,7 @@
 
 - (void)addObjectToProcess:(id)object {
     if (object) {
-        @synchronized(self) {
+        @synchronized(object) {
             if (self.employeeStatus == kDYYEmployeeFree) {
                 [self performSelectorInBackground:@selector(processObject:) withObject:object];
             } else {
@@ -87,23 +87,29 @@
     }
 }
 
-- (void)setState:(DYYEmployeeStatus)state {
+- (SEL)selectorForState:(DYYEmployeeStatus)state {
     switch (state) {
         case kDYYEmployeeBusy:
-            self.employeeStatus = kDYYEmployeeBusy;
-            [self notifyObserversWithSelector:@selector(itemIsBusy:) withObject:self];
-            break;
+            return @selector(itemIsBusy:);
+            
         case kDYYEmployeeStandby:
-            self.employeeStatus = kDYYEmployeeStandby;
-            [self notifyObserversWithSelector:@selector(itemIsStandBy:) withObject:self];
-            break;
+            return @selector(itemIsStandBy:);
+            
         case kDYYEmployeeFree:
-            self.employeeStatus = kDYYEmployeeFree;
-            [self notifyObserversWithSelector:@selector(itemIsFreeToWork:) withObject:self];
-            break;
+            return @selector(itemIsFreeToWork:);
             
         default:
-            break;
+            return nil;
+    }
+}
+
+- (void)setState:(DYYEmployeeStatus)state {
+    if (self.employeeStatus != state) {
+        _employeeStatus = state;
+        SEL selector = [self selectorForState:state];
+        if (selector) {
+            [self notifyObserversWithSelector:selector withObject:self];
+        }
     }
 }
 

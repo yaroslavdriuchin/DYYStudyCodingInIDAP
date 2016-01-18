@@ -17,6 +17,6 @@
 - (void)configureEnterpriseWorkersQuantity:(NSUInteger)workersQuantity
                        totalEmployeesLimit:(NSUInteger)employeesLimit
                                  washPrice:(NSUInteger)washPrice;
-- (void)addCarToCarwash:(DYYCar *)car;
+- (void)addCarsToCarwash:(NSArray *)cars;
 
 @end

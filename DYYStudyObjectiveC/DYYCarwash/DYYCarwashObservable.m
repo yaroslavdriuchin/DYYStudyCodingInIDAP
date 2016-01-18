@@ -65,7 +65,7 @@
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object {
     NSHashTable *observers = self.mutableObservers;
     for (id observer in observers) {
-        [observer performSelector:selector withObject:object];
+        [observer performSelectorInBackground:selector withObject:object];
     }
 }
 
@@ -79,6 +79,5 @@
         }
     }
 }
-
 
 @end

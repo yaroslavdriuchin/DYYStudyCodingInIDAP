@@ -18,6 +18,9 @@
 
 @implementation DYYCarwashBasicTest
 
+NSUInteger const kDYYCarsArrayOneLenght = 50;
+NSUInteger const kDYYCarsArrayTwoLenght = 100;
+
 + (void)runCarwashBasicTest {
     //creating test Carwash with number of workers = 3, 1 accountant, 1 director
     DYYCarwashEnterprise *testCarwash = [[[DYYCarwashEnterprise alloc] init] autorelease];
@@ -31,33 +34,21 @@
     //defining basic Carwash parameters
     testCarwash.carsQueueLimit = 1000;
     
-    //generating 3 test cars with initial amount of money
-    DYYCar *testCarOne   = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
-    DYYCar *testCarTwo   = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
-    DYYCar *testCarThree = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
-    DYYCar *testCarFour  = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
-    DYYCar *testCarFive  = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
-    DYYCar *testCarSix  = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
-    DYYCar *testCarSeven  = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
+    NSMutableArray *carsOne = [NSMutableArray arrayWithCapacity:kDYYCarsArrayOneLenght];
+//    NSMutableArray *carsTwo = [NSMutableArray arrayWithCapacity:kDYYCarsArrayTwoLenght];
+    
+    for (NSUInteger index = 0; index < kDYYCarsArrayOneLenght; index++) {
+        DYYCar *car = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
+        [carsOne addObject:car];
+    }
     
     //adding cars to carwash queue
-    [testCarwash addCarToCarwash:testCarOne];
-    sleep(1);
-    [testCarwash addCarToCarwash:testCarTwo];
-//    sleep(2);
-    [testCarwash addCarToCarwash:testCarThree];
-//    sleep(1);
-    [testCarwash addCarToCarwash:testCarFour];
-    sleep(2);
-    [testCarwash addCarToCarwash:testCarFive];
-    sleep(1);
-    [testCarwash addCarToCarwash:testCarSix];
-    sleep(2);
-    [testCarwash addCarToCarwash:testCarSeven];
-//
-//    while (true) {
-//        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
-//    }
+    [testCarwash addCarsToCarwash:carsOne];
+//    [testCarwash addCarsToCarwash:carsTwo];
+    
+    while (true) {
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
+    }
 }
 
 @end
