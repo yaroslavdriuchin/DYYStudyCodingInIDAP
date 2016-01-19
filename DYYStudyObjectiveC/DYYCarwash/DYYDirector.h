@@ -7,11 +7,11 @@
 //
 
 #import "DYYEmployee.h"
-@class DYYCarwashAccountant;
+@class DYYAccountant;
 
-@interface DYYCarwashDirector : DYYEmployee
+@interface DYYDirector : DYYEmployee
 
-- (void)takeAccountantMoneyAndReport:(DYYCarwashAccountant *)object;
+- (void)takeAccountantMoneyAndReport:(DYYAccountant *)object;
 - (void)itemIsFreeToWork:(id)item;
 
 @end

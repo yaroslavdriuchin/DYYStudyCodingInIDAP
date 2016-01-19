@@ -6,13 +6,13 @@
 //  Copyright © 2016 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYCarwashObservable.h"
-@interface DYYCarwashObservable ()
+#import "DYYObservableObject.h"
+@interface DYYObservableObject ()
 @property (nonatomic, retain)    NSHashTable   *mutableObservers;
 
 @end
 
-@implementation DYYCarwashObservable
+@implementation DYYObservableObject
 
 #pragma mark -
 #pragma mark Initializations and Deallocators
@@ -36,28 +36,22 @@
 #pragma mark Accesors
 
 - (NSHashTable *)observers {
-    @synchronized(self) {
         return [[[self.mutableObservers allObjects] copy] autorelease];
-    }
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
 - (void)addObserver:(id)observer {
-    @synchronized(self) {
         [self.mutableObservers addObject:observer];
-    }
 }
 
 - (void)removeObserver:(id)observer {
-    @synchronized(self) {
         NSHashTable *observers = self.observers;
         for (id reference in observers) {
             if (reference == observer) {
                 [self.mutableObservers removeObject:reference];
                 break;
-            }
         }
     }
 }
@@ -71,12 +65,10 @@
 
 - (void)setObservableEmployee:(id)employee {
     if (_observableEmployee != employee) {
-        @synchronized(employee) {
             [_observableEmployee removeObserver:self];
             [employee release];
             _observableEmployee = [employee retain];
             [employee addObserver:self];
-        }
     }
 }
 

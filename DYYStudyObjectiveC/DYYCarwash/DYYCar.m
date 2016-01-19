@@ -39,20 +39,15 @@
     return self.mutableMoney;
 }
 
-
 #pragma mark -
 #pragma mark DYYCarwashMoneyTransferProtocol
 
 - (void)payMoneyAmount:(NSUInteger)amount {
-    @synchronized(self) {
-        self.mutableMoney = self.mutableMoney - amount;
-    }
+    self.mutableMoney -= amount;
 }
 
 - (void)takeMoneyAmount:(NSUInteger)amount {
-    @synchronized(self) {
-        self.mutableMoney = self.mutableMoney + amount;
-    }
+    self.mutableMoney += amount;
 }
 
 #pragma mark -

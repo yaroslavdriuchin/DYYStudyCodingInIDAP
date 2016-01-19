@@ -9,27 +9,24 @@
 #import <Foundation/Foundation.h>
 #import "DYYCarwashMoneyTransferProtocol.h"
 #import "DYYCarwashObserverProtocol.h"
-#import "DYYCarwashObservable.h"
+#import "DYYObservableObject.h"
 
-typedef NS_ENUM (NSUInteger, DYYEmployeeStatus) {
+typedef NS_ENUM (NSUInteger, DYYEmployeeState) {
     kDYYEmployeeBusy = 0,
     kDYYEmployeeStandby,
     kDYYEmployeeFree,
 };
 
-@interface DYYEmployee : DYYCarwashObservable <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
+@interface DYYEmployee : DYYObservableObject <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
 
 @property (nonatomic, assign)       NSUInteger             salary;
 @property (nonatomic, assign)       NSUInteger             experienceYears;
-@property (nonatomic, assign)       DYYEmployeeStatus      employeeStatus;
+@property (nonatomic, assign)       DYYEmployeeState       employeeState;
 @property (nonatomic, readonly)     NSArray                *objectsProcessQueue;
 
 - (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object;
 - (void)addObjectToProcess:(id)object;
-- (void)setState:(DYYEmployeeStatus)state;
+- (void)setState:(DYYEmployeeState)state;
 - (void)checkQueueAndProcess;
-- (void)itemIsFreeToWork:(id)item;
-- (void)itemIsStandBy:(id)item;
-- (void)itemIsBusy:(id)item;
 
 @end

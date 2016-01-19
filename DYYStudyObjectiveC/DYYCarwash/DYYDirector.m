@@ -6,23 +6,23 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYCarwashDirector.h"
+#import "DYYDirector.h"
 
-@implementation DYYCarwashDirector
+@implementation DYYDirector
 
 - (void)processObject:(id)object {
     [self takeAccountantMoneyAndReport:object];
 }
 
-- (void)takeAccountantMoneyAndReport:(DYYCarwashAccountant *)accountant {
-    self.employeeStatus = kDYYEmployeeBusy;
+- (void)takeAccountantMoneyAndReport:(DYYAccountant *)accountant {
+    self.employeeState = kDYYEmployeeBusy;
     NSUInteger accountantMoney = [accountant money];
     [accountant payMoneyAmount:accountantMoney];
     [self takeMoneyAmount:accountantMoney];
     NSLog(@"Money amount of %lu was transferred from accountant to director", accountantMoney);
     NSLog(@"Director reports money amount is %lu", self.money);
     [self checkQueueAndProcess];
-    self.employeeStatus = kDYYEmployeeFree;
+    self.employeeState = kDYYEmployeeFree;
 }
 
 - (void)itemIsFreeToWork:(id)item  {

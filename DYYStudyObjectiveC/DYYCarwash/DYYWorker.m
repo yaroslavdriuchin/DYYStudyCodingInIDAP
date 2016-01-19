@@ -6,10 +6,10 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYCarwashWorker.h"
+#import "DYYWorker.h"
 #import "DYYCar.h"
 
-@implementation DYYCarwashWorker
+@implementation DYYWorker
 
 #pragma mark -
 #pragma mark Public Methods

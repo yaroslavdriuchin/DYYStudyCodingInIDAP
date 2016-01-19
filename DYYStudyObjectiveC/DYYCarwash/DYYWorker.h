@@ -8,9 +8,9 @@
 
 #import "DYYEmployee.h"
 @class DYYCar;
-@class DYYCarwashAccountant;
+@class DYYAccountant;
 
-@interface DYYCarwashWorker: DYYEmployee
+@interface DYYWorker: DYYEmployee
 @property (nonatomic, assign)   NSUInteger   washPrice;
 
 - (void)washCar:(DYYCar *)car;

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DYYCarwashObserverProtocol.h"
 #import "DYYCar.h"
-@class DYYCarwashWorker;
+@class DYYWorker;
 
 @interface DYYCarwashEnterprise : NSObject <DYYCarwashObserverProtocol>
 @property (nonatomic, assign)     NSUInteger     carsQueueLimit;

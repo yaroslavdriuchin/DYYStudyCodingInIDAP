@@ -13,9 +13,9 @@
 
 @protocol DYYCarwashObserverProtocol <NSObject>
 
-- (void)itemIsFreeToWork:(id)item;
-- (void)itemIsStandBy:(id)item;
-- (void)itemIsBusy:(id)item;
+- (void)employeeStartedWork:(id)employee;
+- (void)employeeBecameStandBy:(id)employee;
+- (void)employeeBecameBusy:(id)employee;
 
 @end
 #endif /* DYYCarwashObservingProtocol_h */

@@ -6,19 +6,19 @@
 //  Copyright © 2015 Yaroslav Driuchin. All rights reserved.
 //
 
-#import "DYYCarwashAccountant.h"
-@class DYYCarwashWorker;
+#import "DYYAccountant.h"
+@class DYYWorker;
 
-@implementation DYYCarwashAccountant
+@implementation DYYAccountant
 
 #pragma mark -
 #pragma mark Public Methods
 
 - (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object {
-    [self takeWorkerMoneyAndReport:(DYYCarwashWorker *)object];
+    [self takeWorkerMoneyAndReport:(DYYWorker *)object];
 }
 
-- (void)takeWorkerMoneyAndReport:(DYYCarwashWorker *)worker {
+- (void)takeWorkerMoneyAndReport:(DYYWorker *)worker {
     [self setState:kDYYEmployeeBusy];
     NSUInteger workerMoney = [worker money];
     [worker payMoneyAmount:workerMoney];

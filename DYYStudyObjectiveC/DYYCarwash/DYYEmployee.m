@@ -27,7 +27,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.employeeStatus = kDYYEmployeeFree;
+        self.employeeState = kDYYEmployeeFree;
     }
     
     return self;
@@ -47,16 +47,13 @@
 #pragma mark -
 #pragma mark DYYCarwashObserverProtocol
 
-- (void)itemIsFreeToWork:(id)item {
-   return;
+- (void)employeeStartedWork:(id)employee {
 }
 
-- (void)itemIsStandBy:(id)item {
-   return;
+- (void)employeeBecameStandBy:(id)employee {
 }
 
-- (void)itemIsBusy:(id)item {
-    return;
+- (void)employeeBecameBusy:(id)employee {
 }
 
 #pragma mark -
@@ -68,44 +65,40 @@
 
 - (void)addObjectToProcess:(id)object {
     if (object) {
-        @synchronized(object) {
-            if (self.employeeStatus == kDYYEmployeeFree) {
+            if (self.employeeState == kDYYEmployeeFree) {
                 [self performSelectorInBackground:@selector(processObject:) withObject:object];
             } else {
                     [self.mutableObjectsProcessQueue addObject:object];
-            }
         }
     }
 }
 
 - (void)checkQueueAndProcess {
-    @synchronized(self) {
     for (id object in self.mutableObjectsProcessQueue) {
         [self performSelectorInBackground:@selector(processObject:) withObject:object];
         [self.mutableObjectsProcessQueue removeObject:object];
-        }
     }
 }
 
-- (SEL)selectorForState:(DYYEmployeeStatus)state {
+- (SEL)selectorForState:(DYYEmployeeState)state {
     switch (state) {
         case kDYYEmployeeBusy:
-            return @selector(itemIsBusy:);
+            return @selector(employeeStartedWork:);
             
         case kDYYEmployeeStandby:
-            return @selector(itemIsStandBy:);
+            return @selector(employeeBecameStandBy:);
             
         case kDYYEmployeeFree:
-            return @selector(itemIsFreeToWork:);
+            return @selector(employeeBecameBusy:);
             
         default:
             return nil;
     }
 }
 
-- (void)setState:(DYYEmployeeStatus)state {
-    if (self.employeeStatus != state) {
-        _employeeStatus = state;
+- (void)setState:(DYYEmployeeState)state {
+    if (self.employeeState != state) {
+        _employeeState = state;
         SEL selector = [self selectorForState:state];
         if (selector) {
             [self notifyObserversWithSelector:selector withObject:self];
@@ -117,14 +110,11 @@
 #pragma mark DYYCarwashMoneyTransferProtocol
 
 - (void)payMoneyAmount:(NSUInteger)amount {
-    @synchronized(self) {
         self.mutableMoney -= amount;
-    }
 }
+
 - (void)takeMoneyAmount:(NSUInteger)amount {
-    @synchronized(self) {
         self.mutableMoney += amount;
-    }
 }
 
 @end
