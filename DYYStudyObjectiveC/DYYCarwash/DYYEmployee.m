@@ -75,12 +75,12 @@
     }
 }
 
-- (void)checkQueueAndProcess {
-    for (id object in self.mutableObjectsProcessQueue) {
-        [self performSelector:@selector(processObject:) withObject:object];
-        [self.mutableObjectsProcessQueue removeObject:object];
-    }
-}
+//- (void)checkQueueAndProcess {
+//    for (id object in self.mutableObjectsProcessQueue) {
+//        [self performSelector:@selector(processObject:) withObject:object];
+//        [self.mutableObjectsProcessQueue removeObject:object];
+//    }
+//}
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {

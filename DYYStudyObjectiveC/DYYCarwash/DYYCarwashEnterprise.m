@@ -55,15 +55,6 @@
     }
 }
 
-
-- (void)addCarsToCarwash:(NSArray *)cars {
-    if (cars != nil && [self.mutableCarsQueue count] < self.carsQueueLimit) {
-            self.mutableCarsQueue = [[cars copy] autorelease];
-            DYYWorker *worker = [self returnFreeEmployeeOfClass:[DYYWorker class]];
-            [self washCarQueueWithWorker:worker];
-    }
-}
-
 - (id)returnFreeEmployeeOfClass:(Class)class {
     for (DYYEmployee *employee in self.mutableEmployees) {
         if (employee.objectState == kDYYEmployeeFree
@@ -134,6 +125,14 @@
             [worker addObserver:self];
             [worker addObserver:accountant];
         }
+    }
+}
+
+- (void)addCarsToCarwash:(NSArray *)cars {
+    if (cars != nil && [self.mutableCarsQueue count] < self.carsQueueLimit) {
+        self.mutableCarsQueue = [[cars copy] autorelease];
+        DYYWorker *worker = [self returnFreeEmployeeOfClass:[DYYWorker class]];
+        [self washCarQueueWithWorker:worker];
     }
 }
 

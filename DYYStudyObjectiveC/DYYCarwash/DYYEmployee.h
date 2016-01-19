@@ -21,7 +21,6 @@ typedef NS_ENUM (NSUInteger, DYYEmployeeState) {
 
 @interface DYYEmployee : DYYObservableObject <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
 
-//@property (nonatomic, assign)       DYYEmployeeState       employeeState;
 @property (nonatomic, readonly)     NSArray                *objectsProcessQueue;
 
 - (void)addObjectToProcess:(id)object;
