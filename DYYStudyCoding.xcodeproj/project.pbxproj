@@ -282,22 +282,22 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		5C52B2371C3C0FD500203250 /* DYYCarwashObservable */ = {
+		5C52B2371C3C0FD500203250 /* DYYObservableObject */ = {
 			isa = PBXGroup;
 			children = (
 				5C52B2341C3C0FD000203250 /* DYYObservableObject.h */,
 				5C52B2351C3C0FD000203250 /* DYYObservableObject.m */,
 			);
-			name = DYYCarwashObservable;
+			name = DYYObservableObject;
 			sourceTree = "<group>";
 		};
 		5C649A711C16D7D0008A4583 /* DYYCarwash */ = {
 			isa = PBXGroup;
 			children = (
-				5C52B2371C3C0FD500203250 /* DYYCarwashObservable */,
+				5C52B2371C3C0FD500203250 /* DYYObservableObject */,
 				5C649A721C16D7E4008A4583 /* DYYCarwashEnterprise */,
 				5C649A891C16E344008A4583 /* DYYCar */,
-				5C649A8D1C16E56F008A4583 /* DYYCarwashEmployee */,
+				5C649A8D1C16E56F008A4583 /* DYYEmployee */,
 			);
 			name = DYYCarwash;
 			sourceTree = "<group>";
@@ -322,25 +322,25 @@
 			name = DYYCar;
 			sourceTree = "<group>";
 		};
-		5C649A8D1C16E56F008A4583 /* DYYCarwashEmployee */ = {
+		5C649A8D1C16E56F008A4583 /* DYYEmployee */ = {
 			isa = PBXGroup;
 			children = (
 				5C649A8A1C16E56A008A4583 /* DYYEmployee.h */,
 				5C649A8B1C16E56A008A4583 /* DYYEmployee.m */,
 				5C76EA271C17095B006C007F /* DYYWorker */,
 				5C76EA231C17092E006C007F /* DYYAccountant */,
-				5C76EA1F1C170905006C007F /* DYYCarwashDirector */,
+				5C76EA1F1C170905006C007F /* DYYDirector */,
 			);
-			name = DYYCarwashEmployee;
+			name = DYYEmployee;
 			sourceTree = "<group>";
 		};
-		5C76EA1F1C170905006C007F /* DYYCarwashDirector */ = {
+		5C76EA1F1C170905006C007F /* DYYDirector */ = {
 			isa = PBXGroup;
 			children = (
 				5C76EA1C1C170901006C007F /* DYYDirector.h */,
 				5C76EA1D1C170901006C007F /* DYYDirector.m */,
 			);
-			name = DYYCarwashDirector;
+			name = DYYDirector;
 			sourceTree = "<group>";
 		};
 		5C76EA231C17092E006C007F /* DYYAccountant */ = {

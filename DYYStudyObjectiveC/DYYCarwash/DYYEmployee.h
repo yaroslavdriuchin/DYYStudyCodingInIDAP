@@ -12,21 +12,19 @@
 #import "DYYObservableObject.h"
 
 typedef NS_ENUM (NSUInteger, DYYEmployeeState) {
-    kDYYEmployeeBusy = 0,
+    kDYYEmployeeBegin = 0,
+    kDYYEmployeeBusy,
     kDYYEmployeeStandby,
     kDYYEmployeeFree,
+    kDYYEmployeeEnd
 };
 
 @interface DYYEmployee : DYYObservableObject <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
 
-@property (nonatomic, assign)       NSUInteger             salary;
-@property (nonatomic, assign)       NSUInteger             experienceYears;
-@property (nonatomic, assign)       DYYEmployeeState       employeeState;
+//@property (nonatomic, assign)       DYYEmployeeState       employeeState;
 @property (nonatomic, readonly)     NSArray                *objectsProcessQueue;
 
-- (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object;
 - (void)addObjectToProcess:(id)object;
-- (void)setState:(DYYEmployeeState)state;
 - (void)checkQueueAndProcess;
 
 @end

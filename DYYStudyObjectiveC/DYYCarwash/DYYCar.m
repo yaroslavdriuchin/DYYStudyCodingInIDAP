@@ -30,7 +30,7 @@
         }
         
         return self;
-    }
+}
 
 #pragma mark -
 #pragma mark Accessors
@@ -49,8 +49,5 @@
 - (void)takeMoneyAmount:(NSUInteger)amount {
     self.mutableMoney += amount;
 }
-
-#pragma mark -
-#pragma mark Public methods
 
 @end

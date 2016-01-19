@@ -12,9 +12,9 @@
 #import "DYYCarwashMoneyTransferProtocol.h"
 #import "DYYCar.h"
 #import "DYYEmployee.h"
-#import "DYYCarwashWorker.h"
-#import "DYYCarwashAccountant.h"
-#import "DYYCarwashDirector.h"
+#import "DYYWorker.h"
+#import "DYYAccountant.h"
+#import "DYYDirector.h"
 
 @implementation DYYCarwashBasicTest
 

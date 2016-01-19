@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface DYYObservableObject : NSObject
-@property (nonatomic, readonly)     NSHashTable    *observers;
-@property (nonatomic, retain)       id             observableEmployee;
+@property (nonatomic, readonly)  NSHashTable    *observers;
+@property (nonatomic, assign)    NSUInteger    objectState;
 
 - (void)addObserver:(id)observer;
 - (void)removeObserver:(id)observer;
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object;
-- (void)setObservableEmployee:(id)employee;
+
+- (void)setState:(NSUInteger)state;
+- (SEL)selectorForState:(NSUInteger)state;
 
 @end

@@ -7,8 +7,11 @@
 //
 
 #import "DYYObservableObject.h"
+
 @interface DYYObservableObject ()
 @property (nonatomic, retain)    NSHashTable   *mutableObservers;
+
+- (SEL)selectorForState:(NSUInteger)state;
 
 @end
 
@@ -42,6 +45,16 @@
 #pragma mark -
 #pragma mark Public Methods
 
+- (void)setState:(NSUInteger)state {
+    if (self.objectState != state) {
+        _objectState = state;
+        SEL selector = [self selectorForState:state];
+        if (selector) {
+            [self notifyObserversWithSelector:selector withObject:self];
+        }
+    }
+}
+
 - (void)addObserver:(id)observer {
         [self.mutableObservers addObject:observer];
 }
@@ -63,13 +76,8 @@
     }
 }
 
-- (void)setObservableEmployee:(id)employee {
-    if (_observableEmployee != employee) {
-            [_observableEmployee removeObserver:self];
-            [employee release];
-            _observableEmployee = [employee retain];
-            [employee addObserver:self];
-    }
+- (SEL)selectorForState:(NSUInteger)state {
+    return nil;
 }
 
 @end

@@ -19,8 +19,8 @@
 
 - (void)hireEmployee:(id)employee;
 - (void)washCarQueueWithWorker:(DYYWorker *)worker;
-//- (void)setObservableEmployee:(id)employee;
 - (id)new:(Class)objectClass;
+- (void)resignEmployees;
 
 @end
 
@@ -30,10 +30,88 @@
 #pragma mark Initializations and Deallocators
 
 - (void)dealloc {
-    self.mutableEmployees = nil;
+    [self resignEmployees];
     self.mutableCarsQueue = nil;
+    
     [super dealloc];
 }
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.mutableEmployees = [NSMutableArray array];
+        self.mutableCarsQueue = [NSMutableArray array];
+    }
+    
+    return self;
+}
+
+#pragma mark
+#pragma mark - Private Methods
+
+- (void)hireEmployee:(id)employee {
+    if ([self.mutableEmployees count] < self.employeesLimit) {
+        [self.mutableEmployees addObject:employee];
+    }
+}
+
+
+- (void)addCarsToCarwash:(NSArray *)cars {
+    if (cars != nil && [self.mutableCarsQueue count] < self.carsQueueLimit) {
+            self.mutableCarsQueue = [[cars copy] autorelease];
+            DYYWorker *worker = [self returnFreeEmployeeOfClass:[DYYWorker class]];
+            [self washCarQueueWithWorker:worker];
+    }
+}
+
+- (id)returnFreeEmployeeOfClass:(Class)class {
+    for (DYYEmployee *employee in self.mutableEmployees) {
+        if (employee.objectState == kDYYEmployeeFree
+            && [employee isMemberOfClass:class])
+        {
+            return employee;
+        }
+    }
+    
+    return nil;
+}
+
+- (void)washCarQueueWithWorker:(DYYWorker *)worker {
+    NSArray *cars = self.mutableCarsQueue;
+    for (DYYCar *car in cars) {
+            [worker addObjectToProcess:car];
+//            [cars removeObject:car];
+            NSLog(@"Enterprise reports: car was transferred to worker's processing queue...");
+    }
+}
+
+- (id)new:(Class)objectClass {
+    return [[[[objectClass class] alloc] init] autorelease];
+}
+
+- (void)resignEmployees {
+    id employees = self.mutableEmployees;
+    NSUInteger count = [employees count];
+    for (NSUInteger index = 0; index < count; index++) {
+        DYYEmployee *employee = [employees objectAtIndex:index];
+        for (id observer in employee.observers) {
+            [employee removeObserver:observer];
+        }
+    }
+}
+
+- (void)employeeStartedWork:(id)employee {
+        [self performSelector:@selector(washCarQueueWithWorker:) withObject:employee];
+}
+
+- (void)employeeBecameStandBy:(id)employee {
+}
+
+- (void)employeeBecameBusy:(id)employee {
+}
+
+#pragma mark
+#pragma mark - Public Methods
 
 - (void)configureEnterpriseWorkersQuantity:(NSUInteger)workersQuantity
                        totalEmployeesLimit:(NSUInteger)employeesLimit
@@ -57,74 +135,6 @@
             [worker addObserver:accountant];
         }
     }
-}
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.mutableEmployees = [NSMutableArray array];
-        self.mutableCarsQueue = [NSMutableArray array];
-    }
-    
-    return self;
-}
-
-#pragma mark
-#pragma mark - Public Methods
-
-- (void)hireEmployee:(id)employee {
-    if ([self.mutableEmployees count] < self.employeesLimit) {
-        [self.mutableEmployees addObject:employee];
-    }
-}
-
-
-- (void)addCarsToCarwash:(NSArray *)cars {
-    if (cars != nil && [self.mutableCarsQueue count] < self.carsQueueLimit) {
-            self.mutableCarsQueue = [[cars copy] autorelease];
-            DYYWorker *worker = [self returnFreeWorker];
-            [self washCarQueueWithWorker:worker];
-    }
-}
-
-- (DYYWorker *)returnFreeWorker {
-    for (DYYWorker *worker in self.mutableEmployees) {
-        if (worker.employeeState == kDYYEmployeeFree
-            && [worker class] == [DYYWorker class]) {
-            return worker;
-            
-            break;
-            }
-        }
-    
-    return nil;
-}
-
-- (void)washCarQueueWithWorker:(DYYWorker *)worker {
-    for (DYYCar *car in self.mutableCarsQueue) {
-            [worker addObjectToProcess:car];
-//            [self.mutableCarsQueue removeObject:car];
-            NSLog(@"Enterprise reports: car was transferred to worker's processing queue...");
-            
-            break;
-    }
-}
-
-#pragma mark
-#pragma mark - Private Methods
-
-- (void)employeeStartedWork:(id)employee {
-        [self performSelector:@selector(washCarQueueWithWorker:) withObject:employee];
-}
-
-- (void)employeeBecameStandBy:(id)employee {
-}
-
-- (void)employeeBecameBusy:(id)employee {
-}
-
-- (id)new:(Class)objectClass {
-    return [[[[objectClass class] alloc] init] autorelease];
 }
 
 @end

@@ -13,6 +13,8 @@
 @property (nonatomic, assign)    NSUInteger         mutableMoney;
 @property (nonatomic, retain)    NSMutableArray     *mutableObjectsProcessQueue;
 
+- (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object;
+
 @end
 
 @implementation DYYEmployee
@@ -27,7 +29,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.employeeState = kDYYEmployeeFree;
+        self.objectState = kDYYEmployeeFree;
     }
     
     return self;
@@ -65,22 +67,22 @@
 
 - (void)addObjectToProcess:(id)object {
     if (object) {
-            if (self.employeeState == kDYYEmployeeFree) {
-                [self performSelectorInBackground:@selector(processObject:) withObject:object];
+            if (self.objectState == kDYYEmployeeFree) {
+                [self performSelector:@selector(processObject:) withObject:object];
             } else {
                     [self.mutableObjectsProcessQueue addObject:object];
-        }
+                   }
     }
 }
 
 - (void)checkQueueAndProcess {
     for (id object in self.mutableObjectsProcessQueue) {
-        [self performSelectorInBackground:@selector(processObject:) withObject:object];
+        [self performSelector:@selector(processObject:) withObject:object];
         [self.mutableObjectsProcessQueue removeObject:object];
     }
 }
 
-- (SEL)selectorForState:(DYYEmployeeState)state {
+- (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case kDYYEmployeeBusy:
             return @selector(employeeStartedWork:);
@@ -93,16 +95,6 @@
             
         default:
             return nil;
-    }
-}
-
-- (void)setState:(DYYEmployeeState)state {
-    if (self.employeeState != state) {
-        _employeeState = state;
-        SEL selector = [self selectorForState:state];
-        if (selector) {
-            [self notifyObserversWithSelector:selector withObject:self];
-        }
     }
 }
 
