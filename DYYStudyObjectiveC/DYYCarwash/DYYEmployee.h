@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "DYYCarwashMoneyTransferProtocol.h"
 #import "DYYCarwashObserverProtocol.h"
 #import "DYYObservableObject.h"
@@ -16,14 +17,14 @@ typedef NS_ENUM (NSUInteger, DYYEmployeeState) {
     kDYYEmployeeBusy,
     kDYYEmployeeStandby,
     kDYYEmployeeFree,
-    kDYYEmployeeEnd
+    kDYYEmployeeEnd,
+    kDYYEmployeeCount = kDYYEmployeeEnd - kDYYEmployeeBegin - 1
 };
 
 @interface DYYEmployee : DYYObservableObject <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
 
-@property (nonatomic, readonly)     NSArray                *objectsProcessQueue;
+@property (nonatomic, readonly)     NSArray   *processingQueue;
 
-- (void)addObjectToProcess:(id)object;
-- (void)checkQueueAndProcess;
+- (void)performWorkWithObject:(id)object;
 
 @end

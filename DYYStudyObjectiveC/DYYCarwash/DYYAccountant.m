@@ -25,12 +25,11 @@
     [self takeMoneyAmount:workerMoney];
     NSLog(@"Money amount of %lu was transferred from worker to accountant", workerMoney);
     NSLog(@"Accountant money is %lu", self.money);
-    [self checkQueueAndProcess];
     [self setState:kDYYEmployeeFree];
 }
 
 - (void)itemIsStandBy:(id)item  {
-    [self addObjectToProcess:item];
+    [self performWorkWithObject:item];
 }
 
 @end

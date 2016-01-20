@@ -14,9 +14,6 @@
 @interface DYYCarwashEnterprise : NSObject <DYYCarwashObserverProtocol>
 @property (nonatomic, assign)     NSUInteger     carsQueueLimit;
 
-- (void)configureEnterpriseWorkersQuantity:(NSUInteger)workersQuantity
-                       totalEmployeesLimit:(NSUInteger)employeesLimit
-                                 washPrice:(NSUInteger)washPrice;
-- (void)addCarsToCarwash:(NSArray *)cars;
+- (void)washCars:(NSArray *)cars;
 
 @end

@@ -24,9 +24,6 @@ NSUInteger const kDYYCarsArrayTwoLenght = 100;
 + (void)runCarwashBasicTest {
     //creating test Carwash with number of workers = 3, 1 accountant, 1 director
     DYYCarwashEnterprise *testCarwash = [[[DYYCarwashEnterprise alloc] init] autorelease];
-    [testCarwash configureEnterpriseWorkersQuantity:3
-                                totalEmployeesLimit:50
-                                          washPrice:5];
     
     //Checking test Carwash is not nil
     NSAssert(testCarwash != nil, @"It's equal to nil, sucks");
@@ -43,7 +40,7 @@ NSUInteger const kDYYCarsArrayTwoLenght = 100;
     }
     
     //adding cars to carwash queue
-    [testCarwash addCarsToCarwash:carsOne];
+    [testCarwash washCars:carsOne];
 //    [testCarwash addCarsToCarwash:carsTwo];
     
     while (true) {

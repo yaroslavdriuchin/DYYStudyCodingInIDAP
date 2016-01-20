@@ -11,7 +11,7 @@
 @interface DYYEmployee ()
 
 @property (nonatomic, assign)    NSUInteger         mutableMoney;
-@property (nonatomic, retain)    NSMutableArray     *mutableObjectsProcessQueue;
+@property (nonatomic, retain)    NSMutableArray     *mutableProcessingQueue;
 
 - (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object;
 
@@ -35,8 +35,8 @@
     return self;
 }
 
-- (NSArray *)objectsProcessQueue {
-    return [[self.mutableObjectsProcessQueue copy] autorelease];
+- (NSArray *)processingQueue {
+    return [[self.mutableProcessingQueue copy] autorelease];
 }
 
 #pragma mark -
@@ -52,10 +52,10 @@
 - (void)employeeStartedWork:(id)employee {
 }
 
-- (void)employeeBecameStandBy:(id)employee {
+- (void)employeeDidBecomeStandBy:(id)employee {
 }
 
-- (void)employeeBecameBusy:(id)employee {
+- (void)employeeDidBecomeBusy:(id)employee {
 }
 
 #pragma mark -
@@ -65,22 +65,15 @@
     return;
 }
 
-- (void)addObjectToProcess:(id)object {
+- (void)performWorkWithObject:(id)object {
     if (object) {
-            if (self.objectState == kDYYEmployeeFree) {
-                [self performSelector:@selector(processObject:) withObject:object];
-            } else {
-                    [self.mutableObjectsProcessQueue addObject:object];
-                   }
+        if (self.objectState == kDYYEmployeeFree) {
+            [self performSelector:@selector(processObject:) withObject:object];
+        } else {
+            [self.mutableProcessingQueue addObject:object];
+        }
     }
 }
-
-//- (void)checkQueueAndProcess {
-//    for (id object in self.mutableObjectsProcessQueue) {
-//        [self performSelector:@selector(processObject:) withObject:object];
-//        [self.mutableObjectsProcessQueue removeObject:object];
-//    }
-//}
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
@@ -88,10 +81,10 @@
             return @selector(employeeStartedWork:);
             
         case kDYYEmployeeStandby:
-            return @selector(employeeBecameStandBy:);
+            return @selector(employeeDidBecomeStandBy:);
             
         case kDYYEmployeeFree:
-            return @selector(employeeBecameBusy:);
+            return @selector(employeeDidBecomeBusy:);
             
         default:
             return nil;

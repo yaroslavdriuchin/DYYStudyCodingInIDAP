@@ -7,6 +7,7 @@
 //
 
 #import "DYYCarwashEnterprise.h"
+#import "NSObject+DYYExtensions.h"
 #import "DYYEmployee.h"
 #import "DYYWorker.h"
 #import "DYYDirector.h"
@@ -15,16 +16,18 @@
 @interface DYYCarwashEnterprise()
 @property (nonatomic, retain)   NSMutableArray   *mutableEmployees;
 @property (nonatomic, retain)   NSMutableArray   *mutableCarsQueue;
-@property (nonatomic, assign)   NSUInteger       employeesLimit;
 
-- (void)hireEmployee:(id)employee;
+- (void)hireWorkers:(NSUInteger)workers withWashPrice:(NSUInteger)washPrice;
+- (void)addEmployee:(DYYEmployee *)employee withObservers:(NSArray *)observers;
 - (void)washCarQueueWithWorker:(DYYWorker *)worker;
-- (id)new:(Class)objectClass;
 - (void)resignEmployees;
 
 @end
 
 @implementation DYYCarwashEnterprise
+
+static const NSUInteger kDYYWorkersCount = 5;
+static const NSUInteger kDYYWashPrice = 5;
 
 #pragma mark -
 #pragma mark Initializations and Deallocators
@@ -41,6 +44,7 @@
     if (self) {
         self.mutableEmployees = [NSMutableArray array];
         self.mutableCarsQueue = [NSMutableArray array];
+        [self hireWorkers:kDYYWorkersCount withWashPrice:kDYYWashPrice];
     }
     
     return self;
@@ -49,13 +53,7 @@
 #pragma mark
 #pragma mark - Private Methods
 
-- (void)hireEmployee:(id)employee {
-    if ([self.mutableEmployees count] < self.employeesLimit) {
-        [self.mutableEmployees addObject:employee];
-    }
-}
-
-- (id)returnFreeEmployeeOfClass:(Class)class {
+- (id)freeEmployeeOfClass:(Class)class {
     for (DYYEmployee *employee in self.mutableEmployees) {
         if (employee.objectState == kDYYEmployeeFree
             && [employee isMemberOfClass:class])
@@ -70,14 +68,18 @@
 - (void)washCarQueueWithWorker:(DYYWorker *)worker {
     NSArray *cars = self.mutableCarsQueue;
     for (DYYCar *car in cars) {
-            [worker addObjectToProcess:car];
+            [worker performWorkWithObject:car];
 //            [cars removeObject:car];
             NSLog(@"Enterprise reports: car was transferred to worker's processing queue...");
     }
 }
 
-- (id)new:(Class)objectClass {
-    return [[[[objectClass class] alloc] init] autorelease];
+- (void)addEmployee:(DYYEmployee *)employee withObservers:(NSArray *)observers {
+    for (id observer in observers) {
+        [employee addObserver:observer];
+    }
+    
+    [self.mutableEmployees addObject:employee];
 }
 
 - (void)resignEmployees {
@@ -95,43 +97,36 @@
         [self performSelector:@selector(washCarQueueWithWorker:) withObject:employee];
 }
 
-- (void)employeeBecameStandBy:(id)employee {
+- (void)employeeDidBecomeStandBy:(id)employee {
 }
 
-- (void)employeeBecameBusy:(id)employee {
+- (void)employeeDidBecomeBusy:(id)employee {
 }
 
 #pragma mark
 #pragma mark - Public Methods
 
-- (void)configureEnterpriseWorkersQuantity:(NSUInteger)workersQuantity
-                       totalEmployeesLimit:(NSUInteger)employeesLimit
-                                 washPrice:(NSUInteger)washPrice
+- (void)hireWorkers:(NSUInteger)workers withWashPrice:(NSUInteger)washPrice
 {
-    self.employeesLimit = employeesLimit;
+    DYYAccountant *accountant = [DYYAccountant object];
+    DYYDirector *director = [DYYDirector object];
     
-    DYYAccountant *accountant = [DYYAccountant new];
-    [self hireEmployee:accountant];
+    [self addEmployee:accountant withObservers:@[director]];
+    [self addEmployee:director withObservers:@[self]];
     
-    DYYDirector *director = [DYYDirector new];
-    [self hireEmployee:director];
-    [accountant addObserver:director];
-    
-    for (NSUInteger index = 0; index < workersQuantity; index++) {
-        DYYWorker *worker = [DYYWorker new];
+    for (NSUInteger index = 0; index < workers; index++) {
+        DYYWorker *worker = [DYYWorker object];
         if (worker) {
             worker.washPrice = washPrice;
-            [self hireEmployee:worker];
-            [worker addObserver:self];
-            [worker addObserver:accountant];
+            [self addEmployee:worker withObservers:@[self, accountant]];
         }
     }
 }
 
-- (void)addCarsToCarwash:(NSArray *)cars {
+- (void)washCars:(NSArray *)cars {
     if (cars != nil && [self.mutableCarsQueue count] < self.carsQueueLimit) {
         self.mutableCarsQueue = [[cars copy] autorelease];
-        DYYWorker *worker = [self returnFreeEmployeeOfClass:[DYYWorker class]];
+        DYYWorker *worker = [self freeEmployeeOfClass:[DYYWorker class]];
         [self washCarQueueWithWorker:worker];
     }
 }
