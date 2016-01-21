@@ -12,8 +12,7 @@
 @class DYYWorker;
 
 @interface DYYCarwashEnterprise : NSObject <DYYCarwashObserverProtocol>
-@property (nonatomic, assign)     NSUInteger     carsQueueLimit;
 
-- (void)washCars:(NSArray *)cars;
+- (void)washCar:(DYYCar *)car;
 
 @end

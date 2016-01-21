@@ -19,17 +19,12 @@
 }
 
 - (void)takeWorkerMoneyAndReport:(DYYWorker *)worker {
-    [self setState:kDYYEmployeeBusy];
-    NSUInteger workerMoney = [worker money];
-    [worker payMoneyAmount:workerMoney];
-    [self takeMoneyAmount:workerMoney];
-    NSLog(@"Money amount of %lu was transferred from worker to accountant", workerMoney);
+    [self takeObjectMoneyAndReport:(id)worker];
     NSLog(@"Accountant money is %lu", self.money);
-    [self setState:kDYYEmployeeFree];
 }
 
-- (void)itemIsStandBy:(id)item  {
-    [self performWorkWithObject:item];
+- (void)employeeDidBecomeStandBy:(id)employee {
+    [self performWorkWithObject:employee];
 }
 
 @end

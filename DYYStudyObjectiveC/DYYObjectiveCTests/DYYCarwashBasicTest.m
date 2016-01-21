@@ -28,20 +28,22 @@ NSUInteger const kDYYCarsArrayTwoLenght = 100;
     //Checking test Carwash is not nil
     NSAssert(testCarwash != nil, @"It's equal to nil, sucks");
     
-    //defining basic Carwash parameters
-    testCarwash.carsQueueLimit = 1000;
-    
-    NSMutableArray *carsOne = [NSMutableArray arrayWithCapacity:kDYYCarsArrayOneLenght];
+//    NSMutableArray *carsOne = [NSMutableArray arrayWithCapacity:kDYYCarsArrayOneLenght];
 //    NSMutableArray *carsTwo = [NSMutableArray arrayWithCapacity:kDYYCarsArrayTwoLenght];
     
     for (NSUInteger index = 0; index < kDYYCarsArrayOneLenght; index++) {
         DYYCar *car = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
-        [carsOne addObject:car];
+        [testCarwash washCar:car];
     }
     
-    //adding cars to carwash queue
-    [testCarwash washCars:carsOne];
-//    [testCarwash addCarsToCarwash:carsTwo];
+    sleep(1);
+    
+    for (NSUInteger index = 0; index < kDYYCarsArrayTwoLenght; index++) {
+        DYYCar *car = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
+        [testCarwash washCar:car];
+    }
+    
+    sleep(1);
     
     while (true) {
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];

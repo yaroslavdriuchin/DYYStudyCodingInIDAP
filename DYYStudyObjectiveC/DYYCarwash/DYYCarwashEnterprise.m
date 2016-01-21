@@ -7,7 +7,10 @@
 //
 
 #import "DYYCarwashEnterprise.h"
+
 #import "NSObject+DYYExtensions.h"
+#import "DYYQueue.h"
+
 #import "DYYEmployee.h"
 #import "DYYWorker.h"
 #import "DYYDirector.h"
@@ -15,11 +18,10 @@
 
 @interface DYYCarwashEnterprise()
 @property (nonatomic, retain)   NSMutableArray   *mutableEmployees;
-@property (nonatomic, retain)   NSMutableArray   *mutableCarsQueue;
+@property (nonatomic, retain)   DYYQueue         *mutableCarsQueue;
 
 - (void)hireWorkers:(NSUInteger)workers withWashPrice:(NSUInteger)washPrice;
 - (void)addEmployee:(DYYEmployee *)employee withObservers:(NSArray *)observers;
-- (void)washCarQueueWithWorker:(DYYWorker *)worker;
 - (void)resignEmployees;
 
 @end
@@ -43,7 +45,7 @@ static const NSUInteger kDYYWashPrice = 5;
     self = [super init];
     if (self) {
         self.mutableEmployees = [NSMutableArray array];
-        self.mutableCarsQueue = [NSMutableArray array];
+        self.mutableCarsQueue = [DYYQueue object];
         [self hireWorkers:kDYYWorkersCount withWashPrice:kDYYWashPrice];
     }
     
@@ -65,15 +67,6 @@ static const NSUInteger kDYYWashPrice = 5;
     return nil;
 }
 
-- (void)washCarQueueWithWorker:(DYYWorker *)worker {
-    NSArray *cars = self.mutableCarsQueue;
-    for (DYYCar *car in cars) {
-            [worker performWorkWithObject:car];
-//            [cars removeObject:car];
-            NSLog(@"Enterprise reports: car was transferred to worker's processing queue...");
-    }
-}
-
 - (void)addEmployee:(DYYEmployee *)employee withObservers:(NSArray *)observers {
     for (id observer in observers) {
         [employee addObserver:observer];
@@ -93,14 +86,13 @@ static const NSUInteger kDYYWashPrice = 5;
     }
 }
 
-- (void)employeeStartedWork:(id)employee {
-        [self performSelector:@selector(washCarQueueWithWorker:) withObject:employee];
+- (void)employeeDidStartWork:(id)employee {
 }
 
 - (void)employeeDidBecomeStandBy:(id)employee {
 }
 
-- (void)employeeDidBecomeBusy:(id)employee {
+- (void)employeeDidBecomeFree:(id)employee {
 }
 
 #pragma mark
@@ -123,11 +115,14 @@ static const NSUInteger kDYYWashPrice = 5;
     }
 }
 
-- (void)washCars:(NSArray *)cars {
-    if (cars != nil && [self.mutableCarsQueue count] < self.carsQueueLimit) {
-        self.mutableCarsQueue = [[cars copy] autorelease];
+- (void)washCar:(DYYCar *)car {
+    if (car) {
+        [self.mutableCarsQueue enqueue:car];
         DYYWorker *worker = [self freeEmployeeOfClass:[DYYWorker class]];
-        [self washCarQueueWithWorker:worker];
+        if (worker) {
+            NSLog(@"Enterprise reports: car was transferred to worker's processing queue...");
+            [worker performWorkWithObject:car];
+        }
     }
 }
 

@@ -7,11 +7,13 @@
 //
 
 #import "DYYEmployee.h"
+#import "NSObject+DYYExtensions.h"
+#import "DYYQueue.h"
 
 @interface DYYEmployee ()
 
 @property (nonatomic, assign)    NSUInteger         mutableMoney;
-@property (nonatomic, retain)    NSMutableArray     *mutableProcessingQueue;
+@property (nonatomic, retain)    DYYQueue           *mutableProcessingQueue;
 
 - (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object;
 
@@ -30,6 +32,7 @@
     self = [super init];
     if (self) {
         self.objectState = kDYYEmployeeFree;
+        self.mutableProcessingQueue = [DYYQueue object];
     }
     
     return self;
@@ -49,47 +52,59 @@
 #pragma mark -
 #pragma mark DYYCarwashObserverProtocol
 
-- (void)employeeStartedWork:(id)employee {
+- (void)employeeDidStartWork:(id)employee {
 }
 
 - (void)employeeDidBecomeStandBy:(id)employee {
 }
 
-- (void)employeeDidBecomeBusy:(id)employee {
+- (void)employeeDidBecomeFree:(id)employee {
+}
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case kDYYEmployeeBusy:
+            return @selector(employeeDidStartWork:);
+            
+        case kDYYEmployeeStandby:
+            return @selector(employeeDidBecomeStandBy:);
+            
+        case kDYYEmployeeFree:
+            return @selector(employeeDidBecomeFree:);
+            
+        default:
+            return nil;
+    }
+}
+
+- (void)processObject:(id)object {
+    return;
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)processObject:(id)object {
-    return;
-}
 
 - (void)performWorkWithObject:(id)object {
     if (object) {
         if (self.objectState == kDYYEmployeeFree) {
             [self performSelector:@selector(processObject:) withObject:object];
         } else {
-            [self.mutableProcessingQueue addObject:object];
+            [self.mutableProcessingQueue enqueue:object];
         }
     }
 }
 
-- (SEL)selectorForState:(NSUInteger)state {
-    switch (state) {
-        case kDYYEmployeeBusy:
-            return @selector(employeeStartedWork:);
-            
-        case kDYYEmployeeStandby:
-            return @selector(employeeDidBecomeStandBy:);
-            
-        case kDYYEmployeeFree:
-            return @selector(employeeDidBecomeBusy:);
-            
-        default:
-            return nil;
-    }
+- (void)takeObjectMoneyAndReport:(id<DYYCarwashMoneyTransferProtocol>)object {
+    [self setState:kDYYEmployeeBusy];
+    NSUInteger objectMoney = [object money];
+    [object payMoneyAmount:objectMoney];
+    [self takeMoneyAmount:objectMoney];
+    NSLog(@"Money amount of %lu was transferred", objectMoney);
+    [self setState:kDYYEmployeeFree];
 }
+
+
 
 #pragma mark -
 #pragma mark DYYCarwashMoneyTransferProtocol

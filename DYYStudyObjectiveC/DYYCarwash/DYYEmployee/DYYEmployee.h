@@ -26,5 +26,6 @@ typedef NS_ENUM (NSUInteger, DYYEmployeeState) {
 @property (nonatomic, readonly)     NSArray   *processingQueue;
 
 - (void)performWorkWithObject:(id)object;
+- (void)takeObjectMoneyAndReport:(id<DYYCarwashMoneyTransferProtocol>)object;
 
 @end

@@ -15,17 +15,13 @@
 }
 
 - (void)takeAccountantMoneyAndReport:(DYYAccountant *)accountant {
-    self.objectState = kDYYEmployeeBusy;
-    NSUInteger accountantMoney = [accountant money];
-    [accountant payMoneyAmount:accountantMoney];
-    [self takeMoneyAmount:accountantMoney];
-    NSLog(@"Money amount of %lu was transferred from accountant to director", accountantMoney);
+    [self takeObjectMoneyAndReport:(id)accountant];
     NSLog(@"Director reports money amount is %lu", self.money);
-    self.objectState = kDYYEmployeeFree;
+
 }
 
-- (void)itemIsFreeToWork:(id)item  {
-    [self performWorkWithObject:item];
+- (void)employeeDidBecomeFree:(id)employee {
+    [self performWorkWithObject:employee];
 }
 
 @end
