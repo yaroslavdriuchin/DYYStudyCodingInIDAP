@@ -46,8 +46,8 @@
 #pragma mark Public Methods
 
 - (void)setState:(NSUInteger)state {
-    if (self.objectState != state) {
-        _objectState = state;
+    if (self.state != state) {
+        _state = state;
         SEL selector = [self selectorForState:state];
         if (selector) {
             [self notifyObserversWithSelector:selector withObject:self];
@@ -72,7 +72,7 @@
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object {
     NSHashTable *observers = self.mutableObservers;
     for (id observer in observers) {
-        [observer performSelectorInBackground:selector withObject:object];
+        [observer performSelector:selector withObject:object];
     }
 }
 

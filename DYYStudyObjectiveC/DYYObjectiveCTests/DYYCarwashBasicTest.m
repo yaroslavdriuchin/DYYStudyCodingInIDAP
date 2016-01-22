@@ -32,14 +32,14 @@ NSUInteger const kDYYCarsArrayTwoLenght = 100;
 //    NSMutableArray *carsTwo = [NSMutableArray arrayWithCapacity:kDYYCarsArrayTwoLenght];
     
     for (NSUInteger index = 0; index < kDYYCarsArrayOneLenght; index++) {
-        DYYCar *car = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
+        DYYCar *car = [[[DYYCar alloc] initCarWithAmountofMoney:5] autorelease];
         [testCarwash washCar:car];
     }
     
     sleep(1);
     
     for (NSUInteger index = 0; index < kDYYCarsArrayTwoLenght; index++) {
-        DYYCar *car = [[[DYYCar alloc] initCarWithAmountofMoney:100] autorelease];
+        DYYCar *car = [[[DYYCar alloc] initCarWithAmountofMoney:5] autorelease];
         [testCarwash washCar:car];
     }
     

@@ -17,7 +17,6 @@
 - (void)takeAccountantMoneyAndReport:(DYYAccountant *)accountant {
     [self takeObjectMoneyAndReport:(id)accountant];
     NSLog(@"Director reports money amount is %lu", self.money);
-
 }
 
 - (void)employeeDidBecomeFree:(id)employee {

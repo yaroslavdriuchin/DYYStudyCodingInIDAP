@@ -16,19 +16,15 @@
 
 - (void)washCar:(DYYCar *)car {
     if (car) {
-        [self setState:kDYYEmployeeBusy];
-        [car payMoneyAmount:self.washPrice];
-        car.isClean = YES;
-        [self takeMoneyAmount:self.washPrice];
-        [self setState:kDYYEmployeeStandby];
+        car.clean = YES;
         NSLog(@"Worker reports - Car wash was completed");
-        NSLog(@"Worker money is %lu, car money is %lu", self.money, car.money);
-        [self setState:kDYYEmployeeFree];
+        [self takeObjectMoneyAndReport:car];
     }
 }
 
 - (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object {
     [self washCar:(DYYCar *)object];
+    NSLog(@"Worker money is %lu, car money is %lu", self.money, object.money);
 }
 
 @end

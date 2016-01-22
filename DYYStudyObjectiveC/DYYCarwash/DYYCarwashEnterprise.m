@@ -44,7 +44,6 @@ static const NSUInteger kDYYWashPrice = 5;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.mutableEmployees = [NSMutableArray array];
         self.mutableCarsQueue = [DYYQueue object];
         [self hireWorkers:kDYYWorkersCount withWashPrice:kDYYWashPrice];
     }
@@ -57,7 +56,7 @@ static const NSUInteger kDYYWashPrice = 5;
 
 - (id)freeEmployeeOfClass:(Class)class {
     for (DYYEmployee *employee in self.mutableEmployees) {
-        if (employee.objectState == kDYYEmployeeFree
+        if (employee.state == kDYYEmployeeFree
             && [employee isMemberOfClass:class])
         {
             return employee;
@@ -100,17 +99,20 @@ static const NSUInteger kDYYWashPrice = 5;
 
 - (void)hireWorkers:(NSUInteger)workers withWashPrice:(NSUInteger)washPrice
 {
+    self.mutableEmployees = [NSMutableArray array];
     DYYAccountant *accountant = [DYYAccountant object];
     DYYDirector *director = [DYYDirector object];
     
-    [self addEmployee:accountant withObservers:@[director]];
-    [self addEmployee:director withObservers:@[self]];
-    
-    for (NSUInteger index = 0; index < workers; index++) {
-        DYYWorker *worker = [DYYWorker object];
-        if (worker) {
-            worker.washPrice = washPrice;
-            [self addEmployee:worker withObservers:@[self, accountant]];
+    if (nil != director && nil != accountant) {
+        [self addEmployee:accountant withObservers:@[director]];
+        [self addEmployee:director withObservers:@[self]];
+        
+        for (NSUInteger index = 0; index < workers; index++) {
+            DYYWorker *worker = [DYYWorker object];
+            if (worker) {
+                worker.washPrice = washPrice;
+                [self addEmployee:worker withObservers:@[self, accountant]];
+            }
         }
     }
 }
@@ -123,6 +125,8 @@ static const NSUInteger kDYYWashPrice = 5;
             NSLog(@"Enterprise reports: car was transferred to worker's processing queue...");
             [worker performWorkWithObject:car];
         }
+        
+        [self.mutableCarsQueue dequeue];
     }
 }
 

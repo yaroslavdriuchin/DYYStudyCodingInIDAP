@@ -16,6 +16,9 @@
 @property (nonatomic, retain)    DYYQueue           *mutableProcessingQueue;
 
 - (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object;
+- (void)finishProcessing;
+- (void)finishPerformingWork;
+- (void)takeObjectMoneyAndReport:(id<DYYCarwashMoneyTransferProtocol>)object;
 
 @end
 
@@ -31,15 +34,11 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.objectState = kDYYEmployeeFree;
+        self.state = kDYYEmployeeFree;
         self.mutableProcessingQueue = [DYYQueue object];
     }
     
     return self;
-}
-
-- (NSArray *)processingQueue {
-    return [[self.mutableProcessingQueue copy] autorelease];
 }
 
 #pragma mark -
@@ -78,21 +77,34 @@
 }
 
 - (void)processObject:(id)object {
-    return;
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-
 - (void)performWorkWithObject:(id)object {
     if (object) {
-        if (self.objectState == kDYYEmployeeFree) {
-            [self performSelector:@selector(processObject:) withObject:object];
+        if (self.state == kDYYEmployeeFree) {
+            [self startProcessingObject:object];
+            [self finishProcessing];
+            [self finishPerformingWork];
         } else {
             [self.mutableProcessingQueue enqueue:object];
         }
     }
+}
+
+- (void)startProcessingObject:(id)object {
+    self.state = kDYYEmployeeBusy;
+    [self processObject:object];
+}
+
+- (void)finishProcessing {
+    [self setState:kDYYEmployeeStandby];
+}
+
+- (void)finishPerformingWork {
+    [self setState:kDYYEmployeeFree];
 }
 
 - (void)takeObjectMoneyAndReport:(id<DYYCarwashMoneyTransferProtocol>)object {
@@ -100,11 +112,8 @@
     NSUInteger objectMoney = [object money];
     [object payMoneyAmount:objectMoney];
     [self takeMoneyAmount:objectMoney];
-    NSLog(@"Money amount of %lu was transferred", objectMoney);
     [self setState:kDYYEmployeeFree];
 }
-
-
 
 #pragma mark -
 #pragma mark DYYCarwashMoneyTransferProtocol

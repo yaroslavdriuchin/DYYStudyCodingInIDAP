@@ -10,7 +10,7 @@
 
 @interface DYYObservableObject : NSObject
 @property (nonatomic, readonly)  NSHashTable    *observers;
-@property (nonatomic, assign)    NSUInteger    objectState;
+@property (nonatomic, assign)    NSUInteger     state;
 
 - (void)addObserver:(id)observer;
 - (void)removeObserver:(id)observer;

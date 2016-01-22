@@ -23,8 +23,6 @@ typedef NS_ENUM (NSUInteger, DYYEmployeeState) {
 
 @interface DYYEmployee : DYYObservableObject <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
 
-@property (nonatomic, readonly)     NSArray   *processingQueue;
-
 - (void)performWorkWithObject:(id)object;
 - (void)takeObjectMoneyAndReport:(id<DYYCarwashMoneyTransferProtocol>)object;
 
