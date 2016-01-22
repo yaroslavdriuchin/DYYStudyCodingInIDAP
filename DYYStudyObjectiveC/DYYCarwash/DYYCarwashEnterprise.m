@@ -20,7 +20,7 @@
 @property (nonatomic, retain)   NSMutableArray   *mutableEmployees;
 @property (nonatomic, retain)   DYYQueue         *mutableCarsQueue;
 
-- (void)hireWorkers:(NSUInteger)workers withWashPrice:(NSUInteger)washPrice;
+- (void)hireWorkers:(NSUInteger)workers;
 - (void)addEmployee:(DYYEmployee *)employee withObservers:(NSArray *)observers;
 - (void)resignEmployees;
 
@@ -29,7 +29,6 @@
 @implementation DYYCarwashEnterprise
 
 static const NSUInteger kDYYWorkersCount = 5;
-static const NSUInteger kDYYWashPrice = 5;
 
 #pragma mark -
 #pragma mark Initializations and Deallocators
@@ -45,7 +44,7 @@ static const NSUInteger kDYYWashPrice = 5;
     self = [super init];
     if (self) {
         self.mutableCarsQueue = [DYYQueue object];
-        [self hireWorkers:kDYYWorkersCount withWashPrice:kDYYWashPrice];
+        [self hireWorkers:kDYYWorkersCount];
     }
     
     return self;
@@ -97,8 +96,7 @@ static const NSUInteger kDYYWashPrice = 5;
 #pragma mark
 #pragma mark - Public Methods
 
-- (void)hireWorkers:(NSUInteger)workers withWashPrice:(NSUInteger)washPrice
-{
+- (void)hireWorkers:(NSUInteger)workers {
     self.mutableEmployees = [NSMutableArray array];
     DYYAccountant *accountant = [DYYAccountant object];
     DYYDirector *director = [DYYDirector object];
@@ -110,7 +108,6 @@ static const NSUInteger kDYYWashPrice = 5;
         for (NSUInteger index = 0; index < workers; index++) {
             DYYWorker *worker = [DYYWorker object];
             if (worker) {
-                worker.washPrice = washPrice;
                 [self addEmployee:worker withObservers:@[self, accountant]];
             }
         }

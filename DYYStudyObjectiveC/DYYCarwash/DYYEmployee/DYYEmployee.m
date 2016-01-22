@@ -106,7 +106,7 @@
     [self setState:kDYYEmployeeFree];
 }
 
-- (void)takeObjectMoneyAndReport:(id<DYYCarwashMoneyTransferProtocol>)object {
+- (void)takeObjectMoneyAndReportTransaction:(id<DYYCarwashMoneyTransferProtocol>)object {
     NSUInteger objectMoney = [object money];
     [object payMoneyAmount:objectMoney];
     [self takeMoneyAmount:objectMoney];

@@ -11,7 +11,6 @@
 @class DYYAccountant;
 
 @interface DYYWorker: DYYEmployee
-@property (nonatomic, assign)   NSUInteger   washPrice;
 
 - (void)washCar:(DYYCar *)car;
 

@@ -18,7 +18,7 @@
     if (car) {
         car.clean = YES;
         NSLog(@"Worker reports - Car wash was completed");
-        [self takeObjectMoneyAndReport:car];
+        [self takeObjectMoneyAndReportTransaction:car];
     }
 }
 

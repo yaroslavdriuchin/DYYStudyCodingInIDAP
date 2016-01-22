@@ -19,7 +19,7 @@
 }
 
 - (void)takeWorkerMoneyAndReport:(DYYWorker *)worker {
-    [self takeObjectMoneyAndReport:(id)worker];
+    [self takeObjectMoneyAndReportTransaction:(id)worker];
     NSLog(@"Accountant money is %lu", self.money);
 }
 

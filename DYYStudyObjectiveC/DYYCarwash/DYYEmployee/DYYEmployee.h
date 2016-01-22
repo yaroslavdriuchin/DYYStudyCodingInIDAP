@@ -24,6 +24,6 @@ typedef NS_ENUM (NSUInteger, DYYEmployeeState) {
 @interface DYYEmployee : DYYObservableObject <DYYCarwashMoneyTransferProtocol, DYYCarwashObserverProtocol>
 
 - (void)performWorkWithObject:(id)object;
-- (void)takeObjectMoneyAndReport:(id<DYYCarwashMoneyTransferProtocol>)object;
+- (void)takeObjectMoneyAndReportTransaction:(id<DYYCarwashMoneyTransferProtocol>)object;
 
 @end

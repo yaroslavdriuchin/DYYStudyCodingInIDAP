@@ -9,7 +9,6 @@
 #import "DYYCar.h"
 
 @interface DYYCar()
-
 @property (nonatomic, assign)    NSUInteger    mutableMoney;
 
 @end
