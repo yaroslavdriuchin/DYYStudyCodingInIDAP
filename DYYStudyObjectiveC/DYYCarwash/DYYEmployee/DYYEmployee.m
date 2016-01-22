@@ -18,7 +18,6 @@
 - (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object;
 - (void)finishProcessing;
 - (void)finishPerformingWork;
-- (void)takeObjectMoneyAndReport:(id<DYYCarwashMoneyTransferProtocol>)object;
 
 @end
 
@@ -108,11 +107,10 @@
 }
 
 - (void)takeObjectMoneyAndReport:(id<DYYCarwashMoneyTransferProtocol>)object {
-    [self setState:kDYYEmployeeBusy];
     NSUInteger objectMoney = [object money];
     [object payMoneyAmount:objectMoney];
     [self takeMoneyAmount:objectMoney];
-    [self setState:kDYYEmployeeFree];
+    NSLog(@"Money amount of %lu was transferred from %@", objectMoney, object);
 }
 
 #pragma mark -
