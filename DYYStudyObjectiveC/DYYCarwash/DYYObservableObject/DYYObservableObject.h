@@ -14,9 +14,10 @@
 
 - (void)addObserver:(id)observer;
 - (void)removeObserver:(id)observer;
+
+- (void)notifyObserversWithSelector:(SEL)selector;
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object;
 
-- (void)setState:(NSUInteger)state;
 - (SEL)selectorForState:(NSUInteger)state;
 
 @end

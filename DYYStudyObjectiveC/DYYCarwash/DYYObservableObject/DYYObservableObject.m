@@ -56,23 +56,33 @@
 }
 
 - (void)addObserver:(id)observer {
+    @synchronized(self) {
         [self.mutableObservers addObject:observer];
+    }
 }
 
 - (void)removeObserver:(id)observer {
+    @synchronized(self) {
         NSHashTable *observers = self.observers;
         for (id reference in observers) {
             if (reference == observer) {
                 [self.mutableObservers removeObject:reference];
                 break;
+            }
         }
     }
 }
 
+- (void)notifyObserversWithSelector:(SEL)selector {
+    [self notifyObserversWithSelector:(SEL)selector withObject:(id)nil];
+}
+
 - (void)notifyObserversWithSelector:(SEL)selector withObject:(id)object {
-    NSHashTable *observers = self.mutableObservers;
-    for (id observer in observers) {
-        [observer performSelector:selector withObject:object];
+    @synchronized(self) {
+        NSHashTable *observers = self.mutableObservers;
+        for (id observer in observers) {
+            [observer performSelector:selector withObject:object];
+        }
     }
 }
 

@@ -12,7 +12,6 @@
 
 @interface DYYAccountant : DYYEmployee
 
-- (void)takeWorkerMoneyAndReport:(DYYWorker *)worker;
 - (void)employeeDidBecomeStandBy:(id)employee;
 
 @end

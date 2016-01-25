@@ -11,7 +11,6 @@
 
 @interface DYYDirector : DYYEmployee
 
-- (void)takeAccountantMoneyAndReport:(DYYAccountant *)object;
-- (void)employeeDidBecomeFree:(id)employee;
+- (void)employeeDidBecomeStandBy:(id)employee;
 
 @end

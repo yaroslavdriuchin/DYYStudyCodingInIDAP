@@ -15,12 +15,10 @@
 #pragma mark Public Methods
 
 - (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object {
-    [self takeWorkerMoneyAndReport:(DYYWorker *)object];
-}
-
-- (void)takeWorkerMoneyAndReport:(DYYWorker *)worker {
-    [self takeObjectMoneyAndReportTransaction:(id)worker];
+    @synchronized(object) {
+    [self takeObjectMoneyAndReportTransaction:object];
     NSLog(@"Accountant money is %lu", self.money);
+    }
 }
 
 - (void)employeeDidBecomeStandBy:(id)employee {

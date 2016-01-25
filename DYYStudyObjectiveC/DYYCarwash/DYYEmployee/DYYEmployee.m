@@ -18,6 +18,7 @@
 - (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object;
 - (void)finishProcessing;
 - (void)finishPerformingWork;
+- (void)performBackgroundWorkWithObject:(id)object;
 
 @end
 
@@ -59,6 +60,9 @@
 - (void)employeeDidBecomeFree:(id)employee {
 }
 
+#pragma mark -
+#pragma mark Private Methods
+
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case kDYYEmployeeBusy:
@@ -78,50 +82,68 @@
 - (void)processObject:(id)object {
 }
 
+- (void)performBackgroundWorkWithObject:(id)object {
+    [self processObject:object];
+    [self performSelectorOnMainThread:@selector(finishProcessing) withObject:object waitUntilDone:YES];
+}
+
 #pragma mark -
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id)object {
-    if (object) {
-        if (self.state == kDYYEmployeeFree) {
-            [self startProcessingObject:object];
-            [self finishProcessing];
-            [self finishPerformingWork];
-        } else {
-            [self.mutableProcessingQueue enqueue:object];
+    @synchronized(object) {
+        if (object) {
+            if (self.state == kDYYEmployeeFree) {
+                [self startProcessingObject:object];
+                [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
+                [self finishPerformingWork];
+            } else {
+                [self.mutableProcessingQueue enqueue:object];
+            }
         }
     }
 }
 
 - (void)startProcessingObject:(id)object {
-    self.state = kDYYEmployeeBusy;
-    [self processObject:object];
+    @synchronized(self) {
+        self.state = kDYYEmployeeBusy;
+    }
 }
 
 - (void)finishProcessing {
-    [self setState:kDYYEmployeeStandby];
+    @synchronized(self) {
+        [self setState:kDYYEmployeeStandby];
+    }
 }
 
 - (void)finishPerformingWork {
-    [self setState:kDYYEmployeeFree];
+    @synchronized(self) {
+        [self setState:kDYYEmployeeFree];
+    }
 }
 
 - (void)takeObjectMoneyAndReportTransaction:(id<DYYCarwashMoneyTransferProtocol>)object {
-    NSUInteger objectMoney = [object money];
-    [object payMoneyAmount:objectMoney];
-    [self takeMoneyAmount:objectMoney];
-    NSLog(@"Money amount of %lu was transferred from %@", objectMoney, object);
+    @synchronized(self) {
+        NSUInteger objectMoney = [object money];
+        [object payMoneyAmount:objectMoney];
+        [self takeMoneyAmount:objectMoney];
+        NSLog(@"Money amount of %lu was transferred from %@", objectMoney, object);
+    }
 }
 
 #pragma mark -
 #pragma mark DYYCarwashMoneyTransferProtocol
 
 - (void)payMoneyAmount:(NSUInteger)amount {
+    @synchronized(self) {
         self.mutableMoney -= amount;
+    }
 }
 
 - (void)takeMoneyAmount:(NSUInteger)amount {
+    @synchronized(self) {
         self.mutableMoney += amount;
+    }
 }
 
 @end

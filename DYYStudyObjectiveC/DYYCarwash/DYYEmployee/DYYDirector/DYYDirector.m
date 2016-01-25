@@ -11,15 +11,13 @@
 @implementation DYYDirector
 
 - (void)processObject:(id)object {
-    [self takeAccountantMoneyAndReport:object];
-}
-
-- (void)takeAccountantMoneyAndReport:(DYYAccountant *)accountant {
-    [self takeObjectMoneyAndReportTransaction:(id)accountant];
+    @synchronized(object) {
+    [self takeObjectMoneyAndReportTransaction:object];
     NSLog(@"Director reports money amount is %lu", self.money);
+    }
 }
 
-- (void)employeeDidBecomeFree:(id)employee {
+- (void)employeeDidBecomeStandBy:(id)employee {
     [self performWorkWithObject:employee];
 }
 
