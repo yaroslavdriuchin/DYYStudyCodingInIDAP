@@ -46,11 +46,13 @@
 #pragma mark Public Methods
 
 - (void)setState:(NSUInteger)state {
-    if (self.state != state) {
-        _state = state;
-        SEL selector = [self selectorForState:state];
-        if (selector) {
-            [self notifyObserversWithSelector:selector withObject:self];
+    @synchronized(self) {
+        if (self.state != state) {
+            _state = state;
+            SEL selector = [self selectorForState:state];
+            if (selector) {
+                [self notifyObserversWithSelector:selector withObject:self];
+            }
         }
     }
 }

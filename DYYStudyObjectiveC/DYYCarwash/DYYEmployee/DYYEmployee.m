@@ -82,9 +82,21 @@
 - (void)processObject:(id)object {
 }
 
+- (void)processObjectsQueue {
+    if (self.mutableProcessingQueue) {
+        @synchronized(self) {
+            NSUInteger count = [self.mutableProcessingQueue count];
+            for (NSUInteger index = 0; index < count; index++) {
+            id object = [self.mutableProcessingQueue dequeue];
+            [self performBackgroundWorkWithObject:object];
+            }
+        }
+    }
+}
+
 - (void)performBackgroundWorkWithObject:(id)object {
     [self processObject:object];
-    [self performSelectorOnMainThread:@selector(finishProcessing) withObject:object waitUntilDone:YES];
+    [self performSelectorOnMainThread:@selector(finishProcessing) withObject:object waitUntilDone:NO];
 }
 
 #pragma mark -
@@ -96,6 +108,7 @@
             if (self.state == kDYYEmployeeFree) {
                 [self startProcessingObject:object];
                 [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
+                [self processObjectsQueue];
                 [self finishPerformingWork];
             } else {
                 [self.mutableProcessingQueue enqueue:object];
