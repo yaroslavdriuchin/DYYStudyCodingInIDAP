@@ -15,9 +15,9 @@
 #pragma mark Public Methods
 
 - (void)processObject:(id<DYYCarwashMoneyTransferProtocol>)object {
-    @synchronized(object) {
-    [self takeObjectMoneyAndReportTransaction:object];
-    NSLog(@"Accountant money is %lu", self.money);
+    @synchronized(self) {
+        [self takeObjectMoneyAndReportTransaction:object];
+        NSLog(@"Accountant money is %lu", self.money);
     }
 }
 

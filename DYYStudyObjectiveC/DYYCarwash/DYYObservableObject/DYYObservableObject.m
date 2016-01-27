@@ -65,13 +65,7 @@
 
 - (void)removeObserver:(id)observer {
     @synchronized(self) {
-        NSHashTable *observers = self.observers;
-        for (id reference in observers) {
-            if (reference == observer) {
-                [self.mutableObservers removeObject:reference];
-                break;
-            }
-        }
+        [self.mutableObservers removeObject:observer];
     }
 }
 

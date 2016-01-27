@@ -12,8 +12,8 @@
 
 - (void)processObject:(id)object {
     @synchronized(object) {
-    [self takeObjectMoneyAndReportTransaction:object];
-    NSLog(@"Director reports money amount is %lu", self.money);
+        [self takeObjectMoneyAndReportTransaction:object];
+        NSLog(@"Director reports money amount is %lu", self.money);
     }
 }
 

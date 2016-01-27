@@ -75,7 +75,7 @@
             return @selector(employeeDidBecomeFree:);
             
         default:
-            return nil;
+            return [super selectorForState:state];
     }
 }
 
@@ -86,9 +86,11 @@
     if (self.mutableProcessingQueue) {
         @synchronized(self) {
             NSUInteger count = [self.mutableProcessingQueue count];
-            for (NSUInteger index = 0; index < count; index++) {
-            id object = [self.mutableProcessingQueue dequeue];
-            [self performBackgroundWorkWithObject:object];
+            if (count > 0) {
+                for (NSUInteger index = 0; index < count; index++) {
+                    id object = [self.mutableProcessingQueue dequeue];
+                    [self performBackgroundWorkWithObject:object];
+                }
             }
         }
     }
@@ -108,7 +110,6 @@
             if (self.state == kDYYEmployeeFree) {
                 [self startProcessingObject:object];
                 [self performSelectorInBackground:@selector(performBackgroundWorkWithObject:) withObject:object];
-                [self processObjectsQueue];
                 [self finishPerformingWork];
             } else {
                 [self.mutableProcessingQueue enqueue:object];
@@ -125,13 +126,14 @@
 
 - (void)finishProcessing {
     @synchronized(self) {
-        [self setState:kDYYEmployeeStandby];
+        self.state = kDYYEmployeeStandby;
+        [self processObjectsQueue];
     }
 }
 
 - (void)finishPerformingWork {
     @synchronized(self) {
-        [self setState:kDYYEmployeeFree];
+        self.state = kDYYEmployeeFree;
     }
 }
 
